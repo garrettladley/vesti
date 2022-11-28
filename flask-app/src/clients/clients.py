@@ -2,11 +2,11 @@ from flask import Blueprint, request, jsonify, make_response
 import json
 from src import db
 
+clients = Blueprint('clients', __name__)
 
-customers = Blueprint('customers', __name__)
 
 # Get all customers from the DB
-@customers.route('/customers', methods=['GET'])
+@clients.route('/clients', methods=['GET'])
 def get_customers():
     cursor = db.get_db().cursor()
     cursor.execute('select customerNumber, customerName,\
@@ -21,8 +21,9 @@ def get_customers():
     the_response.mimetype = 'application/json'
     return the_response
 
+
 # Get customer detail for customer with particular userID
-@customers.route('/customers/<userID>', methods=['GET'])
+@clients.route('/clients/<userID>', methods=['GET'])
 def get_customer(userID):
     cursor = db.get_db().cursor()
     cursor.execute('select * from customers where customerNumber = {0}'.format(userID))

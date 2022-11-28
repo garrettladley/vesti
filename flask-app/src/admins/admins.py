@@ -2,11 +2,11 @@ from flask import Blueprint, request, jsonify, make_response
 import json
 from src import db
 
+admins = Blueprint('admins', __name__)
 
-products = Blueprint('products', __name__)
 
 # Get all the products from the database
-@products.route('/products', methods=['GET'])
+@admins.route('/admins', methods=['GET'])
 def get_products():
     # get a cursor object from the database
     cursor = db.get_db().cursor()
@@ -31,8 +31,9 @@ def get_products():
 
     return jsonify(json_data)
 
+
 # get the top 5 products from the database
-@products.route('/top5products')
+@admins.route('/top5products')
 def get_most_pop_products():
     cursor = db.get_db().cursor()
     query = '''
@@ -43,7 +44,7 @@ def get_most_pop_products():
         LIMIT 5;
     '''
     cursor.execute(query)
-       # grab the column headers from the returned data
+    # grab the column headers from the returned data
     column_headers = [x[0] for x in cursor.description]
 
     # create an empty dictionary object to use in
