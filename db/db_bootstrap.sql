@@ -1,5 +1,5 @@
 CREATE DATABASE vesti_db;
-CREATE USER 'webapp'@'%' IDENTIFIED BY 'thisisaweakpassword123';
+CREATE USER 'webapp'@'%';
 GRANT ALL PRIVILEGES ON vesti_db.* TO 'webapp'@'%';
 FLUSH PRIVILEGES;
 
