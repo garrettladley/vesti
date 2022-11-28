@@ -17,7 +17,7 @@ def get_products():
     # grab the column headers from the returned data
     column_headers = [x[0] for x in cursor.description]
 
-    # create an empty dictionary object to use in 
+    # create an empty dictionary object to use in
     # putting column headers together with data
     json_data = []
 
@@ -25,7 +25,7 @@ def get_products():
     theData = cursor.fetchall()
 
     # for each of the rows, zip the data elements together with
-    # the column headers. 
+    # the column headers.
     for row in theData:
         json_data.append(dict(zip(column_headers, row)))
 
@@ -46,7 +46,7 @@ def get_most_pop_products():
        # grab the column headers from the returned data
     column_headers = [x[0] for x in cursor.description]
 
-    # create an empty dictionary object to use in 
+    # create an empty dictionary object to use in
     # putting column headers together with data
     json_data = []
 
@@ -54,7 +54,7 @@ def get_most_pop_products():
     theData = cursor.fetchall()
 
     # for each of the rows, zip the data elements together with
-    # the column headers. 
+    # the column headers.
     for row in theData:
         json_data.append(dict(zip(column_headers, row)))
 
