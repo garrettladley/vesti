@@ -1,5 +1,4 @@
 CREATE DATABASE vesti_db;
-CREATE USER 'webapp'@'%';
 GRANT ALL PRIVILEGES ON vesti_db.* TO 'webapp'@'%';
 FLUSH PRIVILEGES;
 
@@ -8,7 +7,7 @@ USE vesti_db;
 CREATE TABLE client
 (
     clientID       INT AUTO_INCREMENT NOT NULL,
-    ssn            VARCHAR(9)         NOT NULL,
+    ssn            VARCHAR(11)        NOT NULL,
     phone_number   VARCHAR(15)        NOT NULL,
     email          VARCHAR(50)        NOT NULL,
     birthdate      DATE               NOT NULL,
@@ -41,7 +40,7 @@ CREATE TABLE investment_profile
     investment_attitude  ENUM ('Very Conservative', 'Somewhat Conservative', 'Moderate', 'Somewhat Aggressive', 'Very Aggressive')              NOT NULL,
     investment_purpose   ENUM ('Growth', 'Retirement', 'Asset Preservation')                                                                    NOT NULL,
     investment_timeframe ENUM ('Less Than One Year', '1-2 Years', '3-5 Years', '5-10 Years', '10-15 Years', '15-25 Years','More Than 25 Years') NOT NULL,
-    risk_tolerance       ENUM ('Averese', 'Moderate', 'Extreme')                                                                                NOT NULL,
+    risk_tolerance       ENUM ('Averse', 'Moderate', 'Extreme')                                                                                 NOT NULL,
     portfolioID          INT                                                                                                                    NOT NULL,
     PRIMARY KEY (investment_profileID),
     FOREIGN KEY (portfolioID) references portfolio (portfolioID)
@@ -87,66 +86,66 @@ CREATE TABLE administrator
 -- client sample data generated with Mockaroo
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (1, '790--87-8203', '418-715-3228', 'lcattermull0@berkeley.edu', '10/3/1964', '0307 Donald Parkway', 'Yelwa',
+values (1, '790-87-8203', '418-715-3228', 'lcattermull0@berkeley.edu', '1964-10-03', '0307 Donald Parkway', 'Yelwa',
         null, 'Nigeria', null, 'Orlando', 'Lelia', 'Cattermull');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (2, '086--32-9594', '922-044-3554', 'joldred1@ning.com', '8/13/1950', '4869 Tennyson Center', 'Paris 11',
+values (2, '086-32-9594', '922-044-3554', 'joldred1@ning.com', '1950-08-13', '4869 Tennyson Center', 'Paris 11',
         'Île-de-France', 'France', '75542 CEDEX 11', 'Hermione', 'Johanna', 'Oldred');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (3, '174--97-0987', '263-864-9628', 'efairy2@smugmug.com', '4/14/1950', '185 Steensland Junction', 'Bang Saphan',
+values (3, '174-97-0987', '263-864-9628', 'efairy2@smugmug.com', '1950-04-14', '185 Steensland Junction', 'Bang Saphan',
         null, 'Thailand', '77140', 'Arin', 'Essa', 'Fairy');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (4, '186--96-6884', '281-242-3406', 'jnorthwood3@princeton.edu', '5/6/1986', '2739 Kipling Pass', 'Olympia',
+values (4, '186-96-6884', '281-242-3406', 'jnorthwood3@princeton.edu', '1986-05-06', '2739 Kipling Pass', 'Olympia',
         'Washington', 'United States', '98516', 'Elyn', 'John', 'Northwood');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (5, '390--14-0999', '170-527-0484', 'bstonall4@tinypic.com', '5/8/1978', '4 Nova Lane', 'Kademangan', null,
+values (5, '390-14-0999', '170-527-0484', 'bstonall4@tinypic.com', '1978-05-08', '4 Nova Lane', 'Kademangan', null,
         'Indonesia', null, 'Agata', 'Betsey', 'Stonall');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (6, '765--26-7913', '333-742-4651', 'ymcveigh5@blinklist.com', '6/25/1980', '872 Elgar Circle', 'Mubi', null,
+values (6, '765-26-7913', '333-742-4651', 'ymcveigh5@blinklist.com', '1980-06-25', '872 Elgar Circle', 'Mubi', null,
         'Nigeria', null, 'Dennie', 'Yolande', 'McVeigh');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (7, '840--72-6576', '317-013-3501', 'ulondesborough6@ow.ly', '5/16/1983', '20189 Ridgeway Park', 'Xinpeicun',
+values (7, '840-72-6576', '317-013-3501', 'ulondesborough6@ow.ly', '1983-05-16', '20189 Ridgeway Park', 'Xinpeicun',
         null, 'China', null, 'Lyndel', 'Ulises', 'Londesborough');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (8, '269--27-6299', '604-877-6556', 'bkain7@issuu.com', '5/13/1968', '898 John Wall Street', 'Nagiba', null,
+values (8, '269-27-6299', '604-877-6556', 'bkain7@issuu.com', '1968-05-13', '898 John Wall Street', 'Nagiba', null,
         'Philippines', '5501', 'Happy', 'Brit', 'Kain');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (9, '640--45-6073', '216-620-8797', 'fsilber8@time.com', '3/17/1987', '2323 Superior Pass', 'Mubi', null,
+values (9, '640-45-6073', '216-620-8797', 'fsilber8@time.com', '1987-03-17', '2323 Superior Pass', 'Mubi', null,
         'Nigeria', null, 'Douglass', 'Freeman', 'Silber');
 insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name)
-values (10, '672--00-5561', '516-319-8776', 'ghowison9@umich.edu', '5/14/1966', '761 Bartillon Avenue', 'Kamuli', null,
+values (10, '672-00-5561', '516-319-8776', 'ghowison9@umich.edu', '1966-05-14', '761 Bartillon Avenue', 'Kamuli', null,
         'Uganda', null, 'Donaugh', 'Gunther', 'Howison');
 
 -- portfolio sample data generated with Mockaroo
 insert into portfolio (portfolioID, value, name, clientID)
-values (1, 398327799.4082, 'vulputate luctus cum', 1);
+values (1, 398327799.4082, 'Savings', 1);
 insert into portfolio (portfolioID, value, name, clientID)
-values (2, 183013941.8683, 'primis in faucibus orci luctus et ultrices posuere cubilia curae', 2);
+values (2, 183013941.8683, 'John''College Fund', 2);
 insert into portfolio (portfolioID, value, name, clientID)
-values (3, 608709058.4136, 'turpis a pede posuere nonummy integer non velit donec diam', 3);
+values (3, 608709058.4136, 'Trading Bot', 3);
 insert into portfolio (portfolioID, value, name, clientID)
-values (4, 222315406.6487, 'integer non velit donec diam', 4);
+values (4, 222315406.6487, 'Meme', 4);
 insert into portfolio (portfolioID, value, name, clientID)
-values (5, 898079309.8176, 'ultrices libero non mattis pulvinar', 5);
+values (5, 898079309.8176, 'Retirement', 5);
 insert into portfolio (portfolioID, value, name, clientID)
-values (6, 461554233.389, 'in', 6);
+values (6, 461554233.389, 'Algorithmic Trading Bot', 6);
 insert into portfolio (portfolioID, value, name, clientID)
-values (7, 245048286.9651, 'aliquam quis turpis eget elit sodales scelerisque mauris', 7);
+values (7, 245048286.9651, 'Rapid Growth', 7);
 insert into portfolio (portfolioID, value, name, clientID)
-values (8, 79599465.2704, 'quisque', 8);
+values (8, 79599465.2704, 'Risk Averse', 8);
 insert into portfolio (portfolioID, value, name, clientID)
-values (9, 639541884.0557, 'dictumst morbi vestibulum velit', 9);
+values (9, 639541884.0557, 'Asset Pres', 9);
 insert into portfolio (portfolioID, value, name, clientID)
-values (10, 234507376.6997, 'neque sapien placerat ante nulla', 10);
+values (10, 234507376.6997, 'John''s First Portfolio', 10);
 
 -- investment_profile sample data generated with Mockaroo
 insert into investment_profile (investment_profileID, investment_attitude, investment_purpose, investment_timeframe,
@@ -178,7 +177,7 @@ insert into investment_profile (investment_profileID, investment_attitude, inves
 values (9, 'Very Conservative', 'Growth', '3-5 Years', 'Moderate', 9);
 insert into investment_profile (investment_profileID, investment_attitude, investment_purpose, investment_timeframe,
                                 risk_tolerance, portfolioID)
-values (10, 'Moderate', 'Retirement', '15-25 Years', 'Averese', 10);
+values (10, 'Moderate', 'Retirement', '15-25 Years', 'Averse', 10);
 
 -- stock sample data generated with Mockaroo
 insert into stock (ticker, date_bought, quantity, portfolioID)
