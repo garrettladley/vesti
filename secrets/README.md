@@ -1,4 +1,4 @@
-In this folder, you'll need to create three files:
+# In this folder, you'll need to create three files:
 - `db_password.txt`
   - in this file, put a password that will be used for the webapp user.
 - `db_root_password.txt`
