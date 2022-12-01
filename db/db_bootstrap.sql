@@ -90,18 +90,18 @@ CREATE TABLE stock
 );
 
 -- administrator sample data generated with Mockaroo
-insert into administrator (adminID, phone_number, email, first_name, middle_name, last_name)
-values (1, '667-070-7361', 'eflahive0@gmpg.org', 'Saleem', 'Estel', 'Flahive'),
-       (2, '785-217-3445', 'cnewing1@chronoengine.com', 'Mirelle', 'Christophe', 'Newing'),
-       (3, '320-405-0506', 'jmalim2@instagram.com', 'Bret', 'Jana', 'Malim');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('667-070-7361', 'eflahive0@gmpg.org', 'Saleem', 'Estel', 'Flahive'),
+       ('785-217-3445', 'cnewing1@chronoengine.com', 'Mirelle', 'Christophe', 'Newing'),
+       ('320-405-0506', 'jmalim2@instagram.com', 'Bret', 'Jana', 'Malim');
 
 -- advisor sample data generated with Mockaroo
-insert into advisor (advisorID, phone_number, email, first_name, middle_name, last_name)
-values (1, '965-539-4107', 'wrafter0@zimbio.com', 'Kingsly', 'Waldon', 'Rafter'),
-       (2, '041-076-1509', 'cshimony1@theguardian.com', 'Stephana', 'Clementia', 'Shimony'),
-       (3, '544-341-8309', 'ddyers2@tumblr.com', 'Lyndell', 'Dallas', 'Dyers'),
-       (4, '763-216-2655', 'rcleland3@discuz.net', 'Dannie', 'Rufe', 'Cleland'),
-       (5, '648-381-1188', 'agowry4@w3.org', 'Karim', 'Audry', 'Gowry');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('965-539-4107', 'wrafter0@zimbio.com', 'Kingsly', 'Waldon', 'Rafter'),
+       ('041-076-1509', 'cshimony1@theguardian.com', 'Stephana', 'Clementia', 'Shimony'),
+       ('544-341-8309', 'ddyers2@tumblr.com', 'Lyndell', 'Dallas', 'Dyers'),
+       ('763-216-2655', 'rcleland3@discuz.net', 'Dannie', 'Rufe', 'Cleland'),
+       ('648-381-1188', 'agowry4@w3.org', 'Karim', 'Audry', 'Gowry');
 
 insert into admin_advisor (advisorID, adminID)
 values (1, 1),
@@ -117,64 +117,64 @@ values (1, 1),
        (5, 1);
 
 -- client sample data generated with Mockaroo
-insert into client (clientID, ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code,
                     first_name, middle_name, last_name, advisorID)
-values (1, '790-87-8203', '418-715-3228', 'lcattermull0@berkeley.edu', '1964-10-03', '0307 Donald Parkway', 'Yelwa',
+values ('790-87-8203', '418-715-3228', 'lcattermull0@berkeley.edu', '1964-10-03', '0307 Donald Parkway', 'Yelwa',
         null, 'Nigeria', null, 'Orlando', 'Lelia', 'Cattermull', 1),
-       (2, '086-32-9594', '922-044-3554', 'joldred1@ning.com', '1950-08-13', '4869 Tennyson Center', 'Paris 11',
+       ('086-32-9594', '922-044-3554', 'joldred1@ning.com', '1950-08-13', '4869 Tennyson Center', 'Paris 11',
         'Île-de-France', 'France', '75542 CEDEX 11', 'Hermione', 'Johanna', 'Oldred', 4),
-       (3, '174-97-0987', '263-864-9628', 'efairy2@smugmug.com', '1950-04-14', '185 Steensland Junction', 'Bang Saphan',
+       ('174-97-0987', '263-864-9628', 'efairy2@smugmug.com', '1950-04-14', '185 Steensland Junction', 'Bang Saphan',
         null, 'Thailand', '77140', 'Arin', 'Essa', 'Fairy', 3),
-       (4, '186-96-6884', '281-242-3406', 'jnorthwood3@princeton.edu', '1986-05-06', '2739 Kipling Pass', 'Olympia',
+       ('186-96-6884', '281-242-3406', 'jnorthwood3@princeton.edu', '1986-05-06', '2739 Kipling Pass', 'Olympia',
         'Washington', 'United States', '98516', 'Elyn', 'John', 'Northwood', 2),
-       (5, '390-14-0999', '170-527-0484', 'bstonall4@tinypic.com', '1978-05-08', '4 Nova Lane', 'Kademangan', null,
+       ('390-14-0999', '170-527-0484', 'bstonall4@tinypic.com', '1978-05-08', '4 Nova Lane', 'Kademangan', null,
         'Indonesia', null, 'Agata', 'Betsey', 'Stonall', 5),
-       (6, '765-26-7913', '333-742-4651', 'ymcveigh5@blinklist.com', '1980-06-25', '872 Elgar Circle', 'Mubi', null,
+       ('765-26-7913', '333-742-4651', 'ymcveigh5@blinklist.com', '1980-06-25', '872 Elgar Circle', 'Mubi', null,
         'Nigeria', null, 'Dennie', 'Yolande', 'McVeigh', 1),
-       (7, '840-72-6576', '317-013-3501', 'ulondesborough6@ow.ly', '1983-05-16', '20189 Ridgeway Park', 'Xinpeicun',
+       ('840-72-6576', '317-013-3501', 'ulondesborough6@ow.ly', '1983-05-16', '20189 Ridgeway Park', 'Xinpeicun',
         null, 'China', null, 'Lyndel', 'Ulises', 'Londesborough', 2),
-       (8, '269-27-6299', '604-877-6556', 'bkain7@issuu.com', '1968-05-13', '898 John Wall Street', 'Nagiba', null,
+       ('269-27-6299', '604-877-6556', 'bkain7@issuu.com', '1968-05-13', '898 John Wall Street', 'Nagiba', null,
         'Philippines', '5501', 'Happy', 'Brit', 'Kain', 2),
-       (9, '640-45-6073', '216-620-8797', 'fsilber8@time.com', '1987-03-17', '2323 Superior Pass', 'Mubi', null,
+       ('640-45-6073', '216-620-8797', 'fsilber8@time.com', '1987-03-17', '2323 Superior Pass', 'Mubi', null,
         'Nigeria', null, 'Douglass', 'Freeman', 'Silber', 3),
-       (10, '672-00-5561', '516-319-8776', 'ghowison9@umich.edu', '1966-05-14', '761 Bartillon Avenue', 'Kamuli', null,
+       ('672-00-5561', '516-319-8776', 'ghowison9@umich.edu', '1966-05-14', '761 Bartillon Avenue', 'Kamuli', null,
         'Uganda', null, 'Donaugh', 'Gunther', 'Howison', 5);
 
 -- portfolio sample data generated with Mockaroo
-insert into portfolio (portfolioID, value, name, clientID)
-values (1, 0, 'Savings', 1),
-       (2, 0, 'John''s College Fund', 2),
-       (3, 0, 'Trading Bot', 3),
-       (4, 0, 'Meme', 4),
-       (5, 0, 'Retirement', 5),
-       (6, 0, 'Algorithmic Trading Bot', 6),
-       (7, 0, 'Rapid Growth', 7),
-       (8, 0, 'Risk Averse', 8),
-       (9, 0, 'Asset Pres', 9),
-       (10, 0, 'Retirement', 10),
-       (11, 0, 'John''s First Portfolio', 1),
-       (12, 0, 'Tech', 5),
-       (13, 0, 'Healthcare', 5),
-       (14, 0, 'Energy', 5);
+insert into portfolio (value, name, clientID)
+values (0, 'Savings', 1),
+       (0, 'John''s College Fund', 2),
+       (0, 'Trading Bot', 3),
+       (0, 'Meme', 4),
+       (0, 'Retirement', 5),
+       (0, 'Algorithmic Trading Bot', 6),
+       (0, 'Rapid Growth', 7),
+       (0, 'Risk Averse', 8),
+       (0, 'Asset Pres', 9),
+       (0, 'Retirement', 10),
+       (0, 'John''s First Portfolio', 1),
+       (0, 'Tech', 5),
+       (0, 'Healthcare', 5),
+       (0, 'Energy', 5);
 
 
 -- investment_profile sample data generated with Mockaroo
-insert into investment_profile (investment_profileID, investment_attitude, investment_purpose, investment_timeframe,
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe,
                                 risk_tolerance, portfolioID)
-values (1, 'Very Conservative', 'Asset Preservation', 'Less Than One Year', 'Moderate', 1),
-       (2, 'Very Conservative', 'Growth', 'More Than 25 Years', 'Extreme', 2),
-       (3, 'Somewhat Aggressive', 'Retirement', 'Less Than One Year', 'Extreme', 3),
-       (4, 'Somewhat Aggressive', 'Growth', '1-2 Years', 'Extreme', 4),
-       (5, 'Moderate', 'Retirement', '15-25 Years', 'Moderate', 5),
-       (6, 'Very Aggressive', 'Asset Preservation', '15-25 Years', 'Moderate', 6),
-       (7, 'Very Conservative', 'Asset Preservation', '3-5 Years', 'Extreme', 7),
-       (8, 'Somewhat Conservative', 'Growth', '1-2 Years', 'Extreme', 8),
-       (9, 'Very Conservative', 'Growth', '3-5 Years', 'Moderate', 9),
-       (10, 'Moderate', 'Growth', '15-25 Years', 'Averse', 10),
-       (11, 'Moderate', 'Growth', '3-5 Years', 'Moderate', 11),
-       (12, 'Moderate', 'Growth', '5-10 Years', 'Moderate', 12),
-       (13, 'Somewhat Aggressive', 'Growth', '5-10 Years', 'Moderate', 13),
-       (14, 'Moderate', 'Growth', '5-10 Years', 'Moderate', 14);
+values ('Very Conservative', 'Asset Preservation', 'Less Than One Year', 'Moderate', 1),
+       ('Very Conservative', 'Growth', 'More Than 25 Years', 'Extreme', 2),
+       ('Somewhat Aggressive', 'Retirement', 'Less Than One Year', 'Extreme', 3),
+       ('Somewhat Aggressive', 'Growth', '1-2 Years', 'Extreme', 4),
+       ('Moderate', 'Retirement', '15-25 Years', 'Moderate', 5),
+       ('Very Aggressive', 'Asset Preservation', '15-25 Years', 'Moderate', 6),
+       ('Very Conservative', 'Asset Preservation', '3-5 Years', 'Extreme', 7),
+       ('Somewhat Conservative', 'Growth', '1-2 Years', 'Extreme', 8),
+       ('Very Conservative', 'Growth', '3-5 Years', 'Moderate', 9),
+       ('Moderate', 'Growth', '15-25 Years', 'Averse', 10),
+       ('Moderate', 'Growth', '3-5 Years', 'Moderate', 11),
+       ('Moderate', 'Growth', '5-10 Years', 'Moderate', 12),
+       ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Moderate', 13),
+       ('Moderate', 'Growth', '5-10 Years', 'Moderate', 14);
 
 -- stock sample data generaed with Mockaroo
 insert into stock (ticker, date_bought, quantity, portfolioID)
