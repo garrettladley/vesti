@@ -10,9 +10,10 @@ CREATE TABLE administrator
     phone_number VARCHAR(15)        NOT NULL,
     email        VARCHAR(50)        NOT NULL,
     first_name   VARCHAR(50)        NOT NULL,
-    middle_name  VARCHAR(50)        NOT NULL,
+    middle_name  VARCHAR(50),
     last_name    VARCHAR(50)        NOT NULL,
-    PRIMARY KEY (adminID)
+    PRIMARY KEY (adminID),
+    CONSTRAINT Unique_Contact_Info UNIQUE (phone_number, email)
 );
 
 CREATE TABLE advisor
@@ -21,9 +22,10 @@ CREATE TABLE advisor
     phone_number VARCHAR(15)        NOT NULL,
     email        VARCHAR(50)        NOT NULL,
     first_name   VARCHAR(50)        NOT NULL,
-    middle_name  VARCHAR(50)        NOT NULL,
+    middle_name  VARCHAR(50),
     last_name    VARCHAR(50)        NOT NULL,
-    PRIMARY KEY (advisorID)
+    PRIMARY KEY (advisorID),
+    CONSTRAINT Unique_Contact_Info UNIQUE (phone_number, email)
 );
 
 CREATE TABLE admin_advisor
@@ -31,8 +33,7 @@ CREATE TABLE admin_advisor
     advisorID INT NOT NULL,
     adminID   INT NOT NULL,
     FOREIGN KEY (advisorID) REFERENCES advisor (advisorID),
-    FOREIGN KEY (adminID) REFERENCES administrator (adminID),
-    UNIQUE (advisorID, adminID)
+    FOREIGN KEY (adminID) REFERENCES administrator (adminID)
 );
 
 CREATE TABLE client
@@ -48,11 +49,12 @@ CREATE TABLE client
     country        VARCHAR(50)        NOT NULL,
     postal_code    VARCHAR(50),
     first_name     VARCHAR(50)        NOT NULL,
-    middle_name    VARCHAR(50)        NOT NULL,
+    middle_name    VARCHAR(50),
     last_name      VARCHAR(50)        NOT NULL,
     advisorID      INT                NOT NULL,
     PRIMARY KEY (clientID),
-    FOREIGN KEY (advisorID) references advisor (advisorID)
+    FOREIGN KEY (advisorID) references advisor (advisorID),
+    CONSTRAINT Unique_Contact_Info UNIQUE (phone_number, email)
 );
 
 
@@ -191,4 +193,4 @@ values ('MAA^I', '2022-08-01 05:22:09', 1018.219, 1),
        ('QINC', '2022-06-06 20:57:56', 97.892, 11),
        ('TSLA', '2020-06-06 20:57:56', 7.12, 12),
        ('PFE', '2020-06-06 20:57:56', 175.625, 13),
-       ('DVN', '2020-06-06 20:57:56', 1000.0, 14)
+       ('DVN', '2020-06-06 20:57:56', 1000.0, 14);
