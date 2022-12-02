@@ -62,7 +62,7 @@ CREATE TABLE client
 CREATE TABLE portfolio
 (
     portfolioID INT AUTO_INCREMENT NOT NULL,
-    value       DECIMAL(13, 4)     NOT NULL,
+    value       DECIMAL(13, 4)     NOT NULL DEFAULT 0.0000,
     name        VARCHAR(50)        NOT NULL,
     clientID    INT                NOT NULL,
     PRIMARY KEY (portfolioID),
@@ -143,21 +143,21 @@ values ('790-87-8203', '418-715-3228', 'lcattermull0@berkeley.edu', '1964-10-03'
         'Uganda', null, 'Donaugh', 'Gunther', 'Howison', 5);
 
 -- portfolio sample data generated with Mockaroo
-insert into portfolio (value, name, clientID)
-values (0, 'Savings', 1),
-       (0, 'John''s College Fund', 2),
-       (0, 'Trading Bot', 3),
-       (0, 'Meme', 4),
-       (0, 'Retirement', 5),
-       (0, 'Algorithmic Trading Bot', 6),
-       (0, 'Rapid Growth', 7),
-       (0, 'Risk Averse', 8),
-       (0, 'Asset Pres', 9),
-       (0, 'Retirement', 10),
-       (0, 'John''s First Portfolio', 1),
-       (0, 'Tech', 5),
-       (0, 'Healthcare', 5),
-       (0, 'Energy', 5);
+insert into portfolio (name, clientID)
+values ('Savings', 1),
+       ('John''s College Fund', 2),
+       ('Trading Bot', 3),
+       ('Meme', 4),
+       ('Retirement', 5),
+       ('Algorithmic Trading Bot', 6),
+       ('Rapid Growth', 7),
+       ('Risk Averse', 8),
+       ('Asset Pres', 9),
+       ('Retirement', 10),
+       ('John''s First Portfolio', 1),
+       ('Tech', 5),
+       ('Healthcare', 5),
+       ('Energy', 5);
 
 
 -- investment_profile sample data generated with Mockaroo
