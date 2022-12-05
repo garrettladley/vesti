@@ -7,11 +7,11 @@ USE vesti_db;
 CREATE TABLE administrator
 (
     adminID      INT AUTO_INCREMENT NOT NULL,
-    phone_number VARCHAR(15)        NOT NULL,
-    email        VARCHAR(50)        NOT NULL,
-    first_name   VARCHAR(50)        NOT NULL,
+    phone_number VARCHAR(15) NOT NULL,
+    email        VARCHAR(50) NOT NULL,
+    first_name   VARCHAR(50) NOT NULL,
     middle_name  VARCHAR(50),
-    last_name    VARCHAR(50)        NOT NULL,
+    last_name    VARCHAR(50) NOT NULL,
     PRIMARY KEY (adminID),
     CONSTRAINT Unique_Contact_Info UNIQUE (phone_number, email)
 );
@@ -19,11 +19,11 @@ CREATE TABLE administrator
 CREATE TABLE advisor
 (
     advisorID    INT AUTO_INCREMENT NOT NULL,
-    phone_number VARCHAR(15)        NOT NULL,
-    email        VARCHAR(50)        NOT NULL,
-    first_name   VARCHAR(50)        NOT NULL,
+    phone_number VARCHAR(15) NOT NULL,
+    email        VARCHAR(50) NOT NULL,
+    first_name   VARCHAR(50) NOT NULL,
     middle_name  VARCHAR(50),
-    last_name    VARCHAR(50)        NOT NULL,
+    last_name    VARCHAR(50) NOT NULL,
     PRIMARY KEY (advisorID),
     CONSTRAINT Unique_Contact_Info UNIQUE (phone_number, email)
 );
@@ -39,19 +39,19 @@ CREATE TABLE admin_advisor
 CREATE TABLE client
 (
     clientID       INT AUTO_INCREMENT NOT NULL,
-    ssn            VARCHAR(11)        NOT NULL,
-    phone_number   VARCHAR(15)        NOT NULL,
-    email          VARCHAR(50)        NOT NULL,
-    birthdate      DATE               NOT NULL,
-    street_address VARCHAR(50)        NOT NULL,
-    city           VARCHAR(50)        NOT NULL,
+    ssn            VARCHAR(11) NOT NULL,
+    phone_number   VARCHAR(15) NOT NULL,
+    email          VARCHAR(50) NOT NULL,
+    birthdate      DATE        NOT NULL,
+    street_address VARCHAR(50) NOT NULL,
+    city           VARCHAR(50) NOT NULL,
     state          VARCHAR(50),
-    country        VARCHAR(50)        NOT NULL,
+    country        VARCHAR(50) NOT NULL,
     postal_code    VARCHAR(50),
-    first_name     VARCHAR(50)        NOT NULL,
+    first_name     VARCHAR(50) NOT NULL,
     middle_name    VARCHAR(50),
-    last_name      VARCHAR(50)        NOT NULL,
-    advisorID      INT                NOT NULL,
+    last_name      VARCHAR(50) NOT NULL,
+    advisorID      INT         NOT NULL,
     PRIMARY KEY (clientID),
     FOREIGN KEY (advisorID) references advisor (advisorID),
     CONSTRAINT Unique_Contact_Info UNIQUE (phone_number, email)
@@ -62,21 +62,21 @@ CREATE TABLE client
 CREATE TABLE portfolio
 (
     portfolioID INT AUTO_INCREMENT NOT NULL,
-    value       DECIMAL(13, 4)     NOT NULL DEFAULT 0.0000,
-    name        VARCHAR(50)        NOT NULL,
-    clientID    INT                NOT NULL,
+    value       DECIMAL(13, 4) NOT NULL DEFAULT 0.0000,
+    name        VARCHAR(50)    NOT NULL,
+    clientID    INT            NOT NULL,
     PRIMARY KEY (portfolioID),
     FOREIGN KEY (clientID) references client (clientID)
 );
 
 CREATE TABLE investment_profile
 (
-    investment_profileID INT AUTO_INCREMENT                                                                                                     NOT NULL,
-    investment_attitude  ENUM ('Very Conservative', 'Somewhat Conservative', 'Moderate', 'Somewhat Aggressive', 'Very Aggressive')              NOT NULL,
-    investment_purpose   ENUM ('Growth', 'Retirement', 'Asset Preservation')                                                                    NOT NULL,
+    investment_profileID INT AUTO_INCREMENT NOT NULL,
+    investment_attitude  ENUM ('Very Conservative', 'Somewhat Conservative', 'Moderate', 'Somewhat Aggressive', 'Very Aggressive') NOT NULL,
+    investment_purpose   ENUM ('Growth', 'Retirement', 'Asset Preservation') NOT NULL,
     investment_timeframe ENUM ('Less Than One Year', '1-2 Years', '3-5 Years', '5-10 Years', '10-15 Years', '15-25 Years','More Than 25 Years') NOT NULL,
-    risk_tolerance       ENUM ('Averse', 'Moderate', 'Extreme')                                                                                 NOT NULL,
-    portfolioID          INT                                                                                                                    NOT NULL,
+    risk_tolerance       ENUM ('Averse', 'Moderate', 'Extreme') NOT NULL,
+    portfolioID          INT NOT NULL,
     PRIMARY KEY (investment_profileID),
     FOREIGN KEY (portfolioID) references portfolio (portfolioID)
 );
@@ -96,253 +96,500 @@ insert into administrator (phone_number, email, first_name, middle_name, last_na
 values ('667-070-7361', 'eflahive0@gmpg.org', 'Saleem', 'Estel', 'Flahive'),
        ('785-217-3445', 'cnewing1@chronoengine.com', 'Mirelle', 'Christophe', 'Newing'),
        ('320-405-0506', 'jmalim2@instagram.com', 'Bret', 'Jana', 'Malim');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('752-233-5225', 'lfagan0@is.gd', 'Onfre', 'Lorrin', 'Fagan');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('504-952-8313', 'aosgodby1@meetup.com', 'Uri', 'Alistair', 'Osgodby');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('586-949-9270', 'lgottelier2@chronoengine.com', 'Hersch', 'Liam', 'Gottelier');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('493-195-2985', 'tbushnell3@addthis.com', 'Inez', 'Tallou', 'Bushnell');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('896-303-6598', 'cfeldhammer4@themeforest.net', 'Alina', 'Claudetta', 'Feldhammer');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('846-085-3174', 'facland5@google.it', 'Selene', 'Fonzie', 'Acland');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('074-166-2041', 'lmcmillam6@skyrock.com', 'Ervin', 'Lissy', 'McMillam');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('870-619-5982', 'bfrank7@disqus.com', 'Ronni', 'Brennan', 'Frank');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('987-696-5803', 'cyeates8@webmd.com', 'Midge', 'Curcio', 'Yeates');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('857-707-5895', 'lgadaud9@auda.org.au', 'Angela', 'Liane', 'Gadaud');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('610-592-4739', 'jspellara@amazon.co.uk', 'Sandor', 'Juliana', 'Spellar');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('066-402-4750', 'achableb@is.gd', 'Heinrik', 'Anthony', 'Chable');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('727-191-2891', 'gnicollsc@wired.com', 'Wylma', 'Gabriello', 'Nicolls');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('750-328-5870', 'kgrowyd@google.com.au', 'Hilde', 'Kathy', 'Growy');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('581-602-1321', 'kkobierieckie@people.com.cn', 'Elijah', 'Kial', 'Kobieriecki');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('822-425-5235', 'fdanslowf@statcounter.com', 'Juliane', 'Ferris', 'Danslow');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('140-161-2505', 'lcellerg@about.com', 'Belva', 'Lorraine', 'Celler');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('549-833-4965', 'alidsterh@seesaa.net', 'Meade', 'Allys', 'Lidster');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('910-014-4497', 'wspiveyi@soup.io', 'Karrah', 'Witty', 'Spivey');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('240-925-5968', 'nkleingrubj@aboutads.info', 'Micky', 'Nert', 'Kleingrub');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('275-578-9040', 'sbretellek@disqus.com', 'Tammie', 'Sigfried', 'Bretelle');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('150-804-8659', 'fhayhowl@squarespace.com', 'Emmye', 'Franciska', 'Hayhow');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('028-713-5181', 'bchapellem@list-manage.com', 'Kennan', 'Basil', 'Chapelle');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('091-600-8453', 'nhannigann@cisco.com', 'Blondy', 'Ned', 'Hannigan');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('062-741-0647', 'tdoncomo@sakura.ne.jp', 'Alejoa', 'Theodor', 'Doncom');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('215-450-1237', 'ewaplep@squarespace.com', 'Shae', 'Elmira', 'Waple');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('090-866-1896', 'averteyq@yelp.com', 'Arni', 'Ami', 'Vertey');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('571-257-2506', 'fkemwallr@ustream.tv', 'Natasha', 'Fonsie', 'Kemwall');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('137-814-6756', 'charnesss@bluehost.com', 'Adora', 'Clyve', 'Harness');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('289-733-9019', 'kkarslaket@wikispaces.com', 'Shirlee', 'Kirsteni', 'Karslake');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('852-072-2589', 'vmalimu@discovery.com', 'Berry', 'Vania', 'Malim');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('972-398-5031', 'wgoodersonv@mediafire.com', 'Farrell', 'Wildon', 'Gooderson');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('182-549-9439', 'agennrichw@cbslocal.com', 'Connie', 'Amelia', 'Gennrich');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('651-294-6768', 'gshinfieldx@comcast.net', 'Rouvin', 'Grete', 'Shinfield');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('529-942-3819', 'gswatlandy@sun.com', 'Allard', 'Gilberta', 'Swatland');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('282-263-6440', 'csouthworthz@ow.ly', 'Dorotea', 'Chrysler', 'Southworth');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('513-516-2893', 'dchardin10@samsung.com', 'Johnathon', 'Delmar', 'Chardin');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('563-893-7135', 'bsommer11@taobao.com', 'Vikki', 'Berkeley', 'Sommer');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('653-034-5165', 'wgrzesiewicz12@csmonitor.com', 'Marissa', 'Wyndham', 'Grzesiewicz');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('140-970-5673', 'cclinkard13@deviantart.com', 'Austen', 'Chadwick', 'Clinkard');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('109-101-0281', 'gbradane14@shutterfly.com', 'Coop', 'Georgianna', 'Bradane');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('648-907-2647', 'mvase15@princeton.edu', 'Hayyim', 'Marven', 'Vase');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('082-749-6089', 'dprobyn16@amazon.co.jp', 'Karlan', 'Denice', 'Probyn');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('352-217-3527', 'gbeavington17@businesswire.com', 'Skell', 'Gavrielle', 'Beavington');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('281-193-1390', 'cducarme18@bloglovin.com', 'Dimitri', 'Cedric', 'ducarme');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('925-631-5883', 'gholdforth19@va.gov', 'Desmond', 'Gwenette', 'Holdforth');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('608-541-8974', 'fcassley1a@qq.com', 'Nolana', 'Florie', 'Cassley');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('035-151-0778', 'ldevenish1b@discovery.com', 'Philip', 'Laurent', 'Devenish');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('001-075-7218', 'ushovel1c@answers.com', 'Flory', 'Upton', 'Shovel');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('257-219-1989', 'amacsherry1d@free.fr', 'Brewster', 'Ag', 'MacSherry');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('019-253-7239', 'npassfield1e@springer.com', 'Fania', 'Northrup', 'Passfield');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('644-920-4125', 'ifairley1f@so-net.ne.jp', 'Ricardo', 'Iris', 'Fairley');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('837-296-2672', 'htowers1g@unblog.fr', 'Dorita', 'Hurlee', 'Towers');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('076-085-2687', 'mcrippell1h@auda.org.au', 'Marianna', 'Missy', 'Crippell');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('824-750-9607', 'deddoes1i@ask.com', 'Leonerd', 'Dorthy', 'Eddoes');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('884-532-4491', 'bharbach1j@independent.co.uk', 'Ignacius', 'Bobbe', 'Harbach');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('417-442-7946', 'dgrahlman1k@ucsd.edu', 'Billy', 'Delaney', 'Grahlman');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('135-886-1705', 'ejeanequin1l@cpanel.net', 'Archambault', 'Em', 'Jeanequin');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('368-817-7633', 'hmishaw1m@usnews.com', 'Lainey', 'Hinze', 'Mishaw');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('320-121-9695', 'cgarnsworthy1n@seattletimes.com', 'Galina', 'Cornelia', 'Garnsworthy');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('939-068-2904', 'cberg1o@thetimes.co.uk', 'Mayer', 'Cornie', 'Berg');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('676-189-4976', 'mgarrett1p@cam.ac.uk', 'Hillier', 'Muhammad', 'Garrett');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('684-736-2797', 'wrodolico1q@narod.ru', 'Darcee', 'Winne', 'Rodolico');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('651-358-5927', 'omcconaghy1r@europa.eu', 'Nowell', 'Oswald', 'McConaghy');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('170-004-3584', 'pstockford1s@posterous.com', 'Ham', 'Pris', 'Stockford');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('099-450-0705', 'gelsom1t@ucla.edu', 'Frederic', 'Geri', 'Elsom');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('133-652-4860', 'dbriton1u@fc2.com', 'Erick', 'Darby', 'Briton');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('983-290-9189', 'mblanchet1v@blinklist.com', 'Felisha', 'Manny', 'Blanchet');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('201-703-6598', 'gralfe1w@mediafire.com', 'Urbanus', 'Gray', 'Ralfe');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('965-241-9346', 'hsandwich1x@apache.org', 'Berny', 'Harper', 'Sandwich');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('145-946-7464', 'lhowells1y@reddit.com', 'Winonah', 'Lucho', 'Howells');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('988-428-4917', 'mjoules1z@histats.com', 'Patsy', 'Miguela', 'Joules');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('336-711-5851', 'jbrearty20@geocities.com', 'Rupert', 'Johna', 'Brearty');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('050-226-8548', 'bdaughtrey21@yandex.ru', 'Olin', 'Berna', 'Daughtrey');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('903-483-3931', 'bscibsey22@xrea.com', 'Darcee', 'Bronny', 'Scibsey');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('538-419-0192', 'bmozzini23@hubpages.com', 'Abel', 'Brand', 'Mozzini');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('880-806-1254', 'kwollen24@facebook.com', 'Marna', 'Krysta', 'Wollen');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('371-055-7714', 'whabbergham25@illinois.edu', 'Grover', 'Winnie', 'Habbergham');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('771-050-0254', 'ablackborne26@cloudflare.com', 'Manya', 'Andreana', 'Blackborne');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('520-325-2074', 'bjorczyk27@sbwire.com', 'Benoite', 'Benn', 'Jorczyk');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('632-153-8132', 'ggallone28@admin.ch', 'Adrienne', 'Ginnie', 'Gallone');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('968-624-5526', 'gcromly29@ifeng.com', 'Nev', 'Geno', 'Cromly');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('594-277-5397', 'rrannigan2a@sciencedaily.com', 'Ozzie', 'Rina', 'Rannigan');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('892-638-8941', 'gpearne2b@webmd.com', 'Kennedy', 'Gleda', 'Pearne');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('157-185-5560', 'rcole2c@blogspot.com', 'Buckie', 'Rainer', 'Cole');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('965-325-4273', 'ejorger2d@ibm.com', 'Hasheem', 'Ennis', 'Jorger');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('933-871-8037', 'squaltro2e@flickr.com', 'Weylin', 'Shela', 'Qualtro');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('401-517-4560', 'wcapewell2f@cloudflare.com', 'Noland', 'Wylma', 'Capewell');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('412-455-4942', 'tslowcock2g@elegantthemes.com', 'Heidie', 'Tamar', 'Slowcock');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('726-713-5942', 'jsang2h@edublogs.org', 'Cornell', 'Jim', 'Sang');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('480-399-3832', 'bmcgilroy2i@nature.com', 'Jillayne', 'Brunhilde', 'McGilroy');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('160-654-2176', 'kdangerfield2j@accuweather.com', 'Vivie', 'Kalli', 'Dangerfield');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('527-534-0619', 'cbartkowiak2k@nyu.edu', 'Katha', 'Clerc', 'Bartkowiak');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('670-215-7919', 'scromack2l@wsj.com', 'Arleen', 'Sydel', 'Cromack');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('354-746-6800', 'tchipp2m@people.com.cn', 'Davey', 'Trstram', 'Chipp');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('821-321-4774', 'nbowle2n@aol.com', 'Blondy', 'Nolan', 'Bowle');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('910-965-6468', 'ajeaneau2o@etsy.com', 'Flory', 'Allie', 'Jeaneau');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('758-675-2954', 'bjendrys2p@eventbrite.com', 'Freemon', 'Bar', 'Jendrys');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('725-131-1937', 'gabramov2q@japanpost.jp', 'Genia', 'Guinna', 'Abramov');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('332-519-6666', 'relverstone2r@php.net', 'Hanny', 'Rob', 'Elverstone');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('228-273-0181', 'btorricella2s@elegantthemes.com', 'Bertine', 'Brucie', 'Torricella');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('542-432-4852', 'tevery2t@ucsd.edu', 'Yorke', 'Townsend', 'Every');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('702-630-4873', 'mterbrug2u@state.gov', 'Vaughan', 'Myca', 'Terbrug');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('842-933-5277', 'arochewell2v@hubpages.com', 'Yvette', 'Afton', 'Rochewell');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('838-888-5308', 'izimmermeister2w@ameblo.jp', 'Donetta', 'Ignazio', 'Zimmermeister');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('210-893-9401', 'fglastonbury2x@huffingtonpost.com', 'Sabra', 'Fowler', 'Glastonbury');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('663-819-0647', 'osilverthorne2y@spiegel.de', 'Chip', 'Orsola', 'Silverthorne');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('458-090-6292', 'dpedican2z@hibu.com', 'Pavel', 'Donica', 'Pedican');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('597-470-0123', 'biashvili30@mlb.com', 'Antonius', 'Brittaney', 'Iashvili');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('015-582-1329', 'hrotham31@sphinn.com', 'Verne', 'Haleigh', 'Rotham');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('682-611-0738', 'ibocking32@buzzfeed.com', 'Guido', 'Inge', 'Bocking');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('127-183-2661', 'sosgood33@bbb.org', 'Bryana', 'Sheffield', 'Osgood');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('497-188-4958', 'astanlack34@cam.ac.uk', 'Celestyn', 'Ashby', 'Stanlack');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('182-219-7313', 'gcorrigan35@sphinn.com', 'Shirline', 'Giustina', 'Corrigan');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('423-234-0278', 'bdullaghan36@blogspot.com', 'Germaine', 'Baryram', 'Dullaghan');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('998-901-1585', 'vrispen37@xinhuanet.com', 'Kellie', 'Violante', 'Rispen');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('589-878-5094', 'akirley38@list-manage.com', 'Breena', 'Anna-diana', 'Kirley');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('424-453-1559', 'hpierro39@sciencedirect.com', 'Patrice', 'Hoebart', 'Pierro');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('566-845-2616', 'gparsall3a@hc360.com', 'Gisele', 'Glenn', 'Parsall');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('352-434-8935', 'lfairpo3b@statcounter.com', 'Jolee', 'Linus', 'Fairpo');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('493-817-8718', 'lgergolet3c@ebay.com', 'Kipp', 'Laverna', 'Gergolet');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('933-577-9351', 'padshede3d@mayoclinic.com', 'Stacie', 'Patrica', 'Adshede');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('739-742-8926', 'tphear3e@ning.com', 'Rawley', 'Tabbatha', 'Phear');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('865-362-4448', 'dsaull3f@usgs.gov', 'Hogan', 'Delores', 'Saull');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('754-482-7302', 'bharvett3g@arizona.edu', 'Godiva', 'Bel', 'Harvett');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('765-769-7059', 'hcarass3h@google.com.au', 'Dirk', 'Hartley', 'Carass');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('881-558-7862', 'hgambrell3i@imgur.com', 'Vivianne', 'Harlin', 'Gambrell');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('056-127-5484', 'asybe3j@rambler.ru', 'Wylma', 'Audre', 'Sybe');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('709-122-6147', 'agunda3k@time.com', 'Livvyy', 'Alvan', 'Gunda');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('007-143-9263', 'vlockyer3l@cdbaby.com', 'Glad', 'Vitia', 'Lockyer');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('297-776-8309', 'grussel3m@theatlantic.com', 'Harriette', 'Galen', 'Russel');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('581-905-4196', 'jbruna3n@fotki.com', 'Verney', 'Jaquelin', 'Bruna');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('965-040-4685', 'nbarkas3o@addtoany.com', 'Meta', 'Nestor', 'Barkas');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('668-780-9081', 'dbarton3p@google.nl', 'Clea', 'Demetrius', 'Barton');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('451-109-6478', 'lbeagan3q@foxnews.com', 'Inez', 'Lancelot', 'Beagan');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('582-809-9614', 'jditchfield3r@hubpages.com', 'Felicia', 'Josie', 'Ditchfield');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('405-084-3277', 'ttimmermann3s@mediafire.com', 'Emmye', 'Therine', 'Timmermann');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('404-237-0262', 'amichele3t@washington.edu', 'Chelsea', 'Archer', 'Michele');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('053-954-6689', 'smariel3u@businessweek.com', 'Tracey', 'Sherie', 'Mariel');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('295-026-0907', 'gbelly3v@bloomberg.com', 'Reta', 'Gerladina', 'Belly');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('119-488-0547', 'escatchard3w@xinhuanet.com', 'Gabbie', 'Evey', 'Scatchard');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('949-756-3596', 'tadger3x@reuters.com', 'Miriam', 'Trumaine', 'Adger');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('723-721-4878', 'lmackeogh3y@vinaora.com', 'Sheilakathryn', 'Letitia', 'MacKeogh');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('862-595-2692', 'tfolcarelli3z@goo.ne.jp', 'Constantin', 'Timmie', 'Folcarelli');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('878-599-1431', 'cforcer40@sphinn.com', 'Gwendolin', 'Cacilie', 'Forcer');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('553-388-4708', 'jwybourne41@sun.com', 'Udell', 'Jereme', 'Wybourne');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('645-881-7415', 'cantal42@usda.gov', 'Hyacinthia', 'Carson', 'Antal');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('927-255-4359', 'pmorat43@geocities.jp', 'Doralynn', 'Patrice', 'Morat');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('771-069-7443', 'nhandrick44@goodreads.com', 'Kaycee', 'Nicholas', 'Handrick');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('551-212-5375', 'emackill45@privacy.gov.au', 'Faina', 'Elane', 'MacKill');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('197-561-8321', 'aubank46@sciencedaily.com', 'Karie', 'Aurore', 'Ubank');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('408-654-7281', 'osprague47@mac.com', 'Eloise', 'Obie', 'Sprague');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('913-851-3234', 'scastel48@freewebs.com', 'Janot', 'Silvana', 'Castel');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('715-234-8385', 'rbaudichon49@nhs.uk', 'Georgi', 'Reynold', 'Baudichon');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('284-692-6825', 'rkurth4a@bravesites.com', 'Melesa', 'Robers', 'Kurth');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('404-208-8268', 'ybrearton4b@intel.com', 'Lida', 'Yves', 'Brearton');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('913-330-1443', 'rscuse4c@dell.com', 'Sheryl', 'Ruperto', 'Scuse');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('369-963-8398', 'rdobbison4d@issuu.com', 'Bliss', 'Renato', 'Dobbison');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('165-219-0039', 'torwin4e@nymag.com', 'Culver', 'Talyah', 'Orwin');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('687-665-7694', 'dstiddard4f@wikispaces.com', 'Merle', 'Davita', 'Stiddard');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('553-592-7638', 'ddrew4g@amazon.co.jp', 'Kerk', 'Doralia', 'Drew');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('296-563-9241', 'bmullard4h@usatoday.com', 'Joby', 'Bayard', 'Mullard');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('527-051-2911', 'rcowern4i@nasa.gov', 'Carissa', 'Rik', 'Cowern');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('234-818-7666', 'kglancy4j@dyndns.org', 'Lurlene', 'Kitty', 'Glancy');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('247-255-8659', 'bbuckthought4k@hp.com', 'Janenna', 'Bowie', 'Buckthought');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('059-124-2105', 'easpland4l@typepad.com', 'Igor', 'Eulalie', 'Aspland');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('171-921-5677', 'pdonavan4m@cdbaby.com', 'Ivar', 'Packston', 'Donavan');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('115-075-4469', 'jstraker4n@oaic.gov.au', 'Alex', 'Jobie', 'Straker');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('653-496-4102', 'jlogie4o@squarespace.com', 'Abel', 'Jamesy', 'Logie');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('672-852-3271', 'rgregorio4p@chicagotribune.com', 'Gilbert', 'Rosmunda', 'Gregorio');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('333-009-4190', 'bseelbach4q@github.com', 'Marthena', 'Bernette', 'Seelbach');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('751-363-2363', 'cjosefsson4r@hibu.com', 'Julius', 'Carri', 'Josefsson');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('519-204-2534', 'ajordine4s@jalbum.net', 'Juan', 'Aile', 'Jordine');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('975-219-5794', 'ssweetsur4t@weather.com', 'Rudie', 'Shandra', 'Sweetsur');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('585-249-1902', 'tcoronado4u@diigo.com', 'Rick', 'Tymothy', 'Coronado');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('977-754-4782', 'rguinn4v@tinyurl.com', 'Pansy', 'Rozele', 'Guinn');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('169-266-9131', 'mlamey4w@geocities.com', 'Freedman', 'Maisie', 'Lamey');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('282-211-3043', 'dtwinbourne4x@wiley.com', 'Cassandre', 'Daryle', 'Twinbourne');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('346-025-3802', 'jmainson4y@nifty.com', 'Bryn', 'Jeana', 'Mainson');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('162-309-0966', 'wfain4z@si.edu', 'Annecorinne', 'Westley', 'Fain');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('956-230-5436', 'mtatem50@gov.uk', 'Cassaundra', 'Meridel', 'Tatem');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('243-991-8857', 'aoherlihy51@com.com', 'Anthony', 'Annadiana', 'Oherlihy');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('172-072-8845', 'bcoenraets52@topsy.com', 'Inna', 'Benedicto', 'Coenraets');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('709-850-7839', 'estocks53@tamu.edu', 'Alejandrina', 'Esme', 'Stocks');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('716-876-2080', 'vryott54@prnewswire.com', 'Cletus', 'Vidovik', 'Ryott');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('501-473-4446', 'dlindsley55@yellowbook.com', 'Kenna', 'Darya', 'Lindsley');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('237-100-3757', 'amelledy56@nyu.edu', 'Rosalind', 'Angel', 'Melledy');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('316-477-8395', 'klivingston57@economist.com', 'Cher', 'Kinsley', 'Livingston');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('520-109-4656', 'akhomin58@unc.edu', 'Nita', 'Aurore', 'Khomin');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('220-404-9826', 'rcurtiss59@who.int', 'Onfre', 'Rhiamon', 'Curtiss');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('424-228-3527', 'klabeuil5a@spiegel.de', 'Manfred', 'Kamila', 'Labeuil');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('984-558-9161', 'ishoute5b@elpais.com', 'Donavon', 'Issy', 'Shoute');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('662-267-5960', 'dbruckstein5c@wikimedia.org', 'Delcina', 'Darb', 'Bruckstein');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('340-132-0664', 'igatlin5d@infoseek.co.jp', 'Connor', 'Ivory', 'Gatlin');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('548-779-5834', 'jainge5e@mac.com', 'Sallie', 'Jakie', 'Ainge');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('196-015-1509', 'gharower5f@wikipedia.org', 'Alfi', 'Gates', 'Harower');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('143-658-9028', 'rportail5g@sohu.com', 'Deina', 'Rorke', 'Portail');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('759-498-8000', 'wswadlinge5h@twitter.com', 'Billye', 'Wynnie', 'Swadlinge');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('668-333-7208', 'dhovell5i@ibm.com', 'Roxine', 'Daune', 'Hovell');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('848-259-0879', 'rgoley5j@newsvine.com', 'Elvira', 'Rowney', 'Goley');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('167-834-8269', 'dboorn5k@yahoo.co.jp', 'Elfrida', 'Dorelia', 'Boorn');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('441-262-4479', 'srentalll5l@intel.com', 'Evin', 'Suzann', 'Rentalll');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('041-522-8626', 'alooker5m@discuz.net', 'Felita', 'Alessandro', 'Looker');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('725-177-7883', 'asictornes5n@csmonitor.com', 'Berkeley', 'April', 'Sictornes');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('424-719-8149', 'lbert5o@wikia.com', 'Melody', 'Lulita', 'Bert');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('190-222-0303', 'danstead5p@slideshare.net', 'Isabeau', 'Drucy', 'Anstead');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('848-617-8399', 'dmatura5q@list-manage.com', 'Marlow', 'Dalston', 'Matura');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('176-974-0490', 'icaldaro5r@nasa.gov', 'Madonna', 'Izak', 'Caldaro');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('922-061-1606', 'dbalding5s@washingtonpost.com', 'Marylynne', 'Dniren', 'Balding');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('271-555-7072', 'jdelacourt5t@live.com', 'Laurena', 'Joyan', 'Delacourt');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('452-019-3107', 'fseivertsen5u@163.com', 'Sig', 'Farley', 'Seivertsen');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('199-077-5003', 'mosmond5v@squarespace.com', 'Alessandro', 'Mannie', 'Osmond');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('515-424-5985', 'rleathlay5w@yellowbook.com', 'Sabine', 'Reggis', 'Leathlay');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('235-433-7283', 'tbartoszinski5x@huffingtonpost.com', 'Brynne', 'Teresita', 'Bartoszinski');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('037-106-5251', 'dbruce5y@hhs.gov', 'Rozamond', 'Darice', 'Bruce');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('090-705-6524', 'fkuhnhardt5z@google.com.hk', 'Jeanelle', 'Francklyn', 'Kuhnhardt');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('807-476-3133', 'dmartignoni60@nationalgeographic.com', 'Dyan', 'Dorothee', 'Martignoni');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('233-036-3707', 'nstelljes61@webeden.co.uk', 'Trudi', 'Nickey', 'Stelljes');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('003-968-8801', 'pever62@cyberchimps.com', 'Ossie', 'Peg', 'Ever');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('040-963-3043', 'tlannin63@auda.org.au', 'Waylon', 'Tamqrah', 'Lannin');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('841-688-9518', 'gpeploe64@buzzfeed.com', 'Franklyn', 'Gavin', 'Peploe');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('262-064-2850', 'tedsell65@toplist.cz', 'Stanislaw', 'Thayne', 'Edsell');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('628-106-6748', 'cnorville66@nature.com', 'Bond', 'Chere', 'Norville');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('161-147-8342', 'cberrisford67@businessinsider.com', 'Mahmoud', 'Creigh', 'Berrisford');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('087-475-6132', 'jgrinyer68@blogtalkradio.com', 'Rachel', 'Jenine', 'Grinyer');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('513-251-1625', 'slissemore69@upenn.edu', 'Belle', 'Sheffie', 'Lissemore');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('796-408-6458', 'lkitcat6a@shutterfly.com', 'Aylmar', 'Louella', 'Kitcat');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('618-711-0130', 'sbraime6b@cdbaby.com', 'Jenna', 'Shayne', 'Braime');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('995-643-8546', 'ktuny6c@cbslocal.com', 'Farlay', 'Kermit', 'Tuny');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('415-500-1465', 'dpitchers6d@reverbnation.com', 'Shep', 'Darn', 'Pitchers');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('359-352-6284', 'theardman6e@miitbeian.gov.cn', 'Fern', 'Tallulah', 'Heardman');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('492-992-9922', 'msivyour6f@imdb.com', 'Papagena', 'Milzie', 'Sivyour');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('314-241-5870', 'mlindenboim6g@wisc.edu', 'Quent', 'Milissent', 'Lindenboim');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('020-979-8769', 'nbatram6h@twitter.com', 'Emanuele', 'Nanette', 'Batram');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('362-406-1434', 'lthunderchief6i@opera.com', 'Mary', 'Lolita', 'Thunderchief');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('008-653-7135', 'asnoddin6j@google.es', 'Anette', 'Alexandrina', 'Snoddin');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('782-999-0281', 'wattrey6k@engadget.com', 'Davidde', 'Winny', 'Attrey');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('373-218-2147', 'bsherlaw6l@sina.com.cn', 'Cassie', 'Brit', 'Sherlaw');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('201-327-8301', 'mbeushaw6m@networksolutions.com', 'Magnum', 'Maxy', 'Beushaw');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('125-431-2289', 'cstoneham6n@instagram.com', 'Sammy', 'Cathrin', 'Stoneham');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('635-910-8602', 'ncullity6o@zimbio.com', 'Julian', 'Nolan', 'Cullity');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('668-170-3168', 'dgors6p@wikimedia.org', 'Brennen', 'Dunc', 'Gors');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('660-697-2778', 'ksabbins6q@who.int', 'Wesley', 'Kyrstin', 'Sabbins');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('980-093-8923', 'dbuer6r@squarespace.com', 'Patty', 'Domingo', 'Buer');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('863-712-6009', 'atarn6s@wp.com', 'Kimberley', 'Agretha', 'Tarn');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('304-408-0465', 'syann6t@kickstarter.com', 'Arnaldo', 'Sabrina', 'Yann');
-insert into administrator (phone_number, email, first_name, middle_name, last_name) values ('276-764-3934', 'jhaquin6u@biblegateway.com', 'Moll', 'Joshua', 'Haquin');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('752-233-5225', 'lfagan0@is.gd', 'Onfre', 'Lorrin', 'Fagan');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('504-952-8313', 'aosgodby1@meetup.com', 'Uri', 'Alistair', 'Osgodby');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('586-949-9270', 'lgottelier2@chronoengine.com', 'Hersch', 'Liam', 'Gottelier');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('493-195-2985', 'tbushnell3@addthis.com', 'Inez', 'Tallou', 'Bushnell');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('896-303-6598', 'cfeldhammer4@themeforest.net', 'Alina', 'Claudetta', 'Feldhammer');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('846-085-3174', 'facland5@google.it', 'Selene', 'Fonzie', 'Acland');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('074-166-2041', 'lmcmillam6@skyrock.com', 'Ervin', 'Lissy', 'McMillam');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('870-619-5982', 'bfrank7@disqus.com', 'Ronni', 'Brennan', 'Frank');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('987-696-5803', 'cyeates8@webmd.com', 'Midge', 'Curcio', 'Yeates');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('857-707-5895', 'lgadaud9@auda.org.au', 'Angela', 'Liane', 'Gadaud');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('610-592-4739', 'jspellara@amazon.co.uk', 'Sandor', 'Juliana', 'Spellar');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('066-402-4750', 'achableb@is.gd', 'Heinrik', 'Anthony', 'Chable');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('727-191-2891', 'gnicollsc@wired.com', 'Wylma', 'Gabriello', 'Nicolls');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('750-328-5870', 'kgrowyd@google.com.au', 'Hilde', 'Kathy', 'Growy');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('581-602-1321', 'kkobierieckie@people.com.cn', 'Elijah', 'Kial', 'Kobieriecki');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('822-425-5235', 'fdanslowf@statcounter.com', 'Juliane', 'Ferris', 'Danslow');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('140-161-2505', 'lcellerg@about.com', 'Belva', 'Lorraine', 'Celler');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('549-833-4965', 'alidsterh@seesaa.net', 'Meade', 'Allys', 'Lidster');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('910-014-4497', 'wspiveyi@soup.io', 'Karrah', 'Witty', 'Spivey');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('240-925-5968', 'nkleingrubj@aboutads.info', 'Micky', 'Nert', 'Kleingrub');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('275-578-9040', 'sbretellek@disqus.com', 'Tammie', 'Sigfried', 'Bretelle');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('150-804-8659', 'fhayhowl@squarespace.com', 'Emmye', 'Franciska', 'Hayhow');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('028-713-5181', 'bchapellem@list-manage.com', 'Kennan', 'Basil', 'Chapelle');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('091-600-8453', 'nhannigann@cisco.com', 'Blondy', 'Ned', 'Hannigan');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('062-741-0647', 'tdoncomo@sakura.ne.jp', 'Alejoa', 'Theodor', 'Doncom');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('215-450-1237', 'ewaplep@squarespace.com', 'Shae', 'Elmira', 'Waple');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('090-866-1896', 'averteyq@yelp.com', 'Arni', 'Ami', 'Vertey');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('571-257-2506', 'fkemwallr@ustream.tv', 'Natasha', 'Fonsie', 'Kemwall');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('137-814-6756', 'charnesss@bluehost.com', 'Adora', 'Clyve', 'Harness');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('289-733-9019', 'kkarslaket@wikispaces.com', 'Shirlee', 'Kirsteni', 'Karslake');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('852-072-2589', 'vmalimu@discovery.com', 'Berry', 'Vania', 'Malim');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('972-398-5031', 'wgoodersonv@mediafire.com', 'Farrell', 'Wildon', 'Gooderson');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('182-549-9439', 'agennrichw@cbslocal.com', 'Connie', 'Amelia', 'Gennrich');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('651-294-6768', 'gshinfieldx@comcast.net', 'Rouvin', 'Grete', 'Shinfield');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('529-942-3819', 'gswatlandy@sun.com', 'Allard', 'Gilberta', 'Swatland');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('282-263-6440', 'csouthworthz@ow.ly', 'Dorotea', 'Chrysler', 'Southworth');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('513-516-2893', 'dchardin10@samsung.com', 'Johnathon', 'Delmar', 'Chardin');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('563-893-7135', 'bsommer11@taobao.com', 'Vikki', 'Berkeley', 'Sommer');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('653-034-5165', 'wgrzesiewicz12@csmonitor.com', 'Marissa', 'Wyndham', 'Grzesiewicz');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('140-970-5673', 'cclinkard13@deviantart.com', 'Austen', 'Chadwick', 'Clinkard');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('109-101-0281', 'gbradane14@shutterfly.com', 'Coop', 'Georgianna', 'Bradane');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('648-907-2647', 'mvase15@princeton.edu', 'Hayyim', 'Marven', 'Vase');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('082-749-6089', 'dprobyn16@amazon.co.jp', 'Karlan', 'Denice', 'Probyn');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('352-217-3527', 'gbeavington17@businesswire.com', 'Skell', 'Gavrielle', 'Beavington');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('281-193-1390', 'cducarme18@bloglovin.com', 'Dimitri', 'Cedric', 'ducarme');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('925-631-5883', 'gholdforth19@va.gov', 'Desmond', 'Gwenette', 'Holdforth');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('608-541-8974', 'fcassley1a@qq.com', 'Nolana', 'Florie', 'Cassley');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('035-151-0778', 'ldevenish1b@discovery.com', 'Philip', 'Laurent', 'Devenish');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('001-075-7218', 'ushovel1c@answers.com', 'Flory', 'Upton', 'Shovel');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('257-219-1989', 'amacsherry1d@free.fr', 'Brewster', 'Ag', 'MacSherry');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('019-253-7239', 'npassfield1e@springer.com', 'Fania', 'Northrup', 'Passfield');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('644-920-4125', 'ifairley1f@so-net.ne.jp', 'Ricardo', 'Iris', 'Fairley');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('837-296-2672', 'htowers1g@unblog.fr', 'Dorita', 'Hurlee', 'Towers');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('076-085-2687', 'mcrippell1h@auda.org.au', 'Marianna', 'Missy', 'Crippell');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('824-750-9607', 'deddoes1i@ask.com', 'Leonerd', 'Dorthy', 'Eddoes');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('884-532-4491', 'bharbach1j@independent.co.uk', 'Ignacius', 'Bobbe', 'Harbach');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('417-442-7946', 'dgrahlman1k@ucsd.edu', 'Billy', 'Delaney', 'Grahlman');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('135-886-1705', 'ejeanequin1l@cpanel.net', 'Archambault', 'Em', 'Jeanequin');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('368-817-7633', 'hmishaw1m@usnews.com', 'Lainey', 'Hinze', 'Mishaw');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('320-121-9695', 'cgarnsworthy1n@seattletimes.com', 'Galina', 'Cornelia', 'Garnsworthy');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('939-068-2904', 'cberg1o@thetimes.co.uk', 'Mayer', 'Cornie', 'Berg');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('676-189-4976', 'mgarrett1p@cam.ac.uk', 'Hillier', 'Muhammad', 'Garrett');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('684-736-2797', 'wrodolico1q@narod.ru', 'Darcee', 'Winne', 'Rodolico');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('651-358-5927', 'omcconaghy1r@europa.eu', 'Nowell', 'Oswald', 'McConaghy');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('170-004-3584', 'pstockford1s@posterous.com', 'Ham', 'Pris', 'Stockford');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('099-450-0705', 'gelsom1t@ucla.edu', 'Frederic', 'Geri', 'Elsom');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('133-652-4860', 'dbriton1u@fc2.com', 'Erick', 'Darby', 'Briton');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('983-290-9189', 'mblanchet1v@blinklist.com', 'Felisha', 'Manny', 'Blanchet');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('201-703-6598', 'gralfe1w@mediafire.com', 'Urbanus', 'Gray', 'Ralfe');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('965-241-9346', 'hsandwich1x@apache.org', 'Berny', 'Harper', 'Sandwich');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('145-946-7464', 'lhowells1y@reddit.com', 'Winonah', 'Lucho', 'Howells');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('988-428-4917', 'mjoules1z@histats.com', 'Patsy', 'Miguela', 'Joules');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('336-711-5851', 'jbrearty20@geocities.com', 'Rupert', 'Johna', 'Brearty');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('050-226-8548', 'bdaughtrey21@yandex.ru', 'Olin', 'Berna', 'Daughtrey');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('903-483-3931', 'bscibsey22@xrea.com', 'Darcee', 'Bronny', 'Scibsey');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('538-419-0192', 'bmozzini23@hubpages.com', 'Abel', 'Brand', 'Mozzini');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('880-806-1254', 'kwollen24@facebook.com', 'Marna', 'Krysta', 'Wollen');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('371-055-7714', 'whabbergham25@illinois.edu', 'Grover', 'Winnie', 'Habbergham');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('771-050-0254', 'ablackborne26@cloudflare.com', 'Manya', 'Andreana', 'Blackborne');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('520-325-2074', 'bjorczyk27@sbwire.com', 'Benoite', 'Benn', 'Jorczyk');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('632-153-8132', 'ggallone28@admin.ch', 'Adrienne', 'Ginnie', 'Gallone');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('968-624-5526', 'gcromly29@ifeng.com', 'Nev', 'Geno', 'Cromly');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('594-277-5397', 'rrannigan2a@sciencedaily.com', 'Ozzie', 'Rina', 'Rannigan');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('892-638-8941', 'gpearne2b@webmd.com', 'Kennedy', 'Gleda', 'Pearne');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('157-185-5560', 'rcole2c@blogspot.com', 'Buckie', 'Rainer', 'Cole');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('965-325-4273', 'ejorger2d@ibm.com', 'Hasheem', 'Ennis', 'Jorger');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('933-871-8037', 'squaltro2e@flickr.com', 'Weylin', 'Shela', 'Qualtro');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('401-517-4560', 'wcapewell2f@cloudflare.com', 'Noland', 'Wylma', 'Capewell');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('412-455-4942', 'tslowcock2g@elegantthemes.com', 'Heidie', 'Tamar', 'Slowcock');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('726-713-5942', 'jsang2h@edublogs.org', 'Cornell', 'Jim', 'Sang');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('480-399-3832', 'bmcgilroy2i@nature.com', 'Jillayne', 'Brunhilde', 'McGilroy');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('160-654-2176', 'kdangerfield2j@accuweather.com', 'Vivie', 'Kalli', 'Dangerfield');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('527-534-0619', 'cbartkowiak2k@nyu.edu', 'Katha', 'Clerc', 'Bartkowiak');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('670-215-7919', 'scromack2l@wsj.com', 'Arleen', 'Sydel', 'Cromack');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('354-746-6800', 'tchipp2m@people.com.cn', 'Davey', 'Trstram', 'Chipp');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('821-321-4774', 'nbowle2n@aol.com', 'Blondy', 'Nolan', 'Bowle');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('910-965-6468', 'ajeaneau2o@etsy.com', 'Flory', 'Allie', 'Jeaneau');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('758-675-2954', 'bjendrys2p@eventbrite.com', 'Freemon', 'Bar', 'Jendrys');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('725-131-1937', 'gabramov2q@japanpost.jp', 'Genia', 'Guinna', 'Abramov');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('332-519-6666', 'relverstone2r@php.net', 'Hanny', 'Rob', 'Elverstone');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('228-273-0181', 'btorricella2s@elegantthemes.com', 'Bertine', 'Brucie', 'Torricella');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('542-432-4852', 'tevery2t@ucsd.edu', 'Yorke', 'Townsend', 'Every');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('702-630-4873', 'mterbrug2u@state.gov', 'Vaughan', 'Myca', 'Terbrug');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('842-933-5277', 'arochewell2v@hubpages.com', 'Yvette', 'Afton', 'Rochewell');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('838-888-5308', 'izimmermeister2w@ameblo.jp', 'Donetta', 'Ignazio', 'Zimmermeister');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('210-893-9401', 'fglastonbury2x@huffingtonpost.com', 'Sabra', 'Fowler', 'Glastonbury');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('663-819-0647', 'osilverthorne2y@spiegel.de', 'Chip', 'Orsola', 'Silverthorne');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('458-090-6292', 'dpedican2z@hibu.com', 'Pavel', 'Donica', 'Pedican');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('597-470-0123', 'biashvili30@mlb.com', 'Antonius', 'Brittaney', 'Iashvili');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('015-582-1329', 'hrotham31@sphinn.com', 'Verne', 'Haleigh', 'Rotham');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('682-611-0738', 'ibocking32@buzzfeed.com', 'Guido', 'Inge', 'Bocking');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('127-183-2661', 'sosgood33@bbb.org', 'Bryana', 'Sheffield', 'Osgood');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('497-188-4958', 'astanlack34@cam.ac.uk', 'Celestyn', 'Ashby', 'Stanlack');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('182-219-7313', 'gcorrigan35@sphinn.com', 'Shirline', 'Giustina', 'Corrigan');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('423-234-0278', 'bdullaghan36@blogspot.com', 'Germaine', 'Baryram', 'Dullaghan');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('998-901-1585', 'vrispen37@xinhuanet.com', 'Kellie', 'Violante', 'Rispen');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('589-878-5094', 'akirley38@list-manage.com', 'Breena', 'Anna-diana', 'Kirley');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('424-453-1559', 'hpierro39@sciencedirect.com', 'Patrice', 'Hoebart', 'Pierro');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('566-845-2616', 'gparsall3a@hc360.com', 'Gisele', 'Glenn', 'Parsall');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('352-434-8935', 'lfairpo3b@statcounter.com', 'Jolee', 'Linus', 'Fairpo');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('493-817-8718', 'lgergolet3c@ebay.com', 'Kipp', 'Laverna', 'Gergolet');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('933-577-9351', 'padshede3d@mayoclinic.com', 'Stacie', 'Patrica', 'Adshede');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('739-742-8926', 'tphear3e@ning.com', 'Rawley', 'Tabbatha', 'Phear');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('865-362-4448', 'dsaull3f@usgs.gov', 'Hogan', 'Delores', 'Saull');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('754-482-7302', 'bharvett3g@arizona.edu', 'Godiva', 'Bel', 'Harvett');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('765-769-7059', 'hcarass3h@google.com.au', 'Dirk', 'Hartley', 'Carass');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('881-558-7862', 'hgambrell3i@imgur.com', 'Vivianne', 'Harlin', 'Gambrell');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('056-127-5484', 'asybe3j@rambler.ru', 'Wylma', 'Audre', 'Sybe');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('709-122-6147', 'agunda3k@time.com', 'Livvyy', 'Alvan', 'Gunda');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('007-143-9263', 'vlockyer3l@cdbaby.com', 'Glad', 'Vitia', 'Lockyer');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('297-776-8309', 'grussel3m@theatlantic.com', 'Harriette', 'Galen', 'Russel');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('581-905-4196', 'jbruna3n@fotki.com', 'Verney', 'Jaquelin', 'Bruna');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('965-040-4685', 'nbarkas3o@addtoany.com', 'Meta', 'Nestor', 'Barkas');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('668-780-9081', 'dbarton3p@google.nl', 'Clea', 'Demetrius', 'Barton');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('451-109-6478', 'lbeagan3q@foxnews.com', 'Inez', 'Lancelot', 'Beagan');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('582-809-9614', 'jditchfield3r@hubpages.com', 'Felicia', 'Josie', 'Ditchfield');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('405-084-3277', 'ttimmermann3s@mediafire.com', 'Emmye', 'Therine', 'Timmermann');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('404-237-0262', 'amichele3t@washington.edu', 'Chelsea', 'Archer', 'Michele');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('053-954-6689', 'smariel3u@businessweek.com', 'Tracey', 'Sherie', 'Mariel');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('295-026-0907', 'gbelly3v@bloomberg.com', 'Reta', 'Gerladina', 'Belly');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('119-488-0547', 'escatchard3w@xinhuanet.com', 'Gabbie', 'Evey', 'Scatchard');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('949-756-3596', 'tadger3x@reuters.com', 'Miriam', 'Trumaine', 'Adger');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('723-721-4878', 'lmackeogh3y@vinaora.com', 'Sheilakathryn', 'Letitia', 'MacKeogh');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('862-595-2692', 'tfolcarelli3z@goo.ne.jp', 'Constantin', 'Timmie', 'Folcarelli');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('878-599-1431', 'cforcer40@sphinn.com', 'Gwendolin', 'Cacilie', 'Forcer');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('553-388-4708', 'jwybourne41@sun.com', 'Udell', 'Jereme', 'Wybourne');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('645-881-7415', 'cantal42@usda.gov', 'Hyacinthia', 'Carson', 'Antal');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('927-255-4359', 'pmorat43@geocities.jp', 'Doralynn', 'Patrice', 'Morat');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('771-069-7443', 'nhandrick44@goodreads.com', 'Kaycee', 'Nicholas', 'Handrick');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('551-212-5375', 'emackill45@privacy.gov.au', 'Faina', 'Elane', 'MacKill');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('197-561-8321', 'aubank46@sciencedaily.com', 'Karie', 'Aurore', 'Ubank');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('408-654-7281', 'osprague47@mac.com', 'Eloise', 'Obie', 'Sprague');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('913-851-3234', 'scastel48@freewebs.com', 'Janot', 'Silvana', 'Castel');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('715-234-8385', 'rbaudichon49@nhs.uk', 'Georgi', 'Reynold', 'Baudichon');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('284-692-6825', 'rkurth4a@bravesites.com', 'Melesa', 'Robers', 'Kurth');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('404-208-8268', 'ybrearton4b@intel.com', 'Lida', 'Yves', 'Brearton');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('913-330-1443', 'rscuse4c@dell.com', 'Sheryl', 'Ruperto', 'Scuse');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('369-963-8398', 'rdobbison4d@issuu.com', 'Bliss', 'Renato', 'Dobbison');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('165-219-0039', 'torwin4e@nymag.com', 'Culver', 'Talyah', 'Orwin');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('687-665-7694', 'dstiddard4f@wikispaces.com', 'Merle', 'Davita', 'Stiddard');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('553-592-7638', 'ddrew4g@amazon.co.jp', 'Kerk', 'Doralia', 'Drew');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('296-563-9241', 'bmullard4h@usatoday.com', 'Joby', 'Bayard', 'Mullard');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('527-051-2911', 'rcowern4i@nasa.gov', 'Carissa', 'Rik', 'Cowern');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('234-818-7666', 'kglancy4j@dyndns.org', 'Lurlene', 'Kitty', 'Glancy');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('247-255-8659', 'bbuckthought4k@hp.com', 'Janenna', 'Bowie', 'Buckthought');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('059-124-2105', 'easpland4l@typepad.com', 'Igor', 'Eulalie', 'Aspland');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('171-921-5677', 'pdonavan4m@cdbaby.com', 'Ivar', 'Packston', 'Donavan');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('115-075-4469', 'jstraker4n@oaic.gov.au', 'Alex', 'Jobie', 'Straker');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('653-496-4102', 'jlogie4o@squarespace.com', 'Abel', 'Jamesy', 'Logie');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('672-852-3271', 'rgregorio4p@chicagotribune.com', 'Gilbert', 'Rosmunda', 'Gregorio');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('333-009-4190', 'bseelbach4q@github.com', 'Marthena', 'Bernette', 'Seelbach');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('751-363-2363', 'cjosefsson4r@hibu.com', 'Julius', 'Carri', 'Josefsson');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('519-204-2534', 'ajordine4s@jalbum.net', 'Juan', 'Aile', 'Jordine');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('975-219-5794', 'ssweetsur4t@weather.com', 'Rudie', 'Shandra', 'Sweetsur');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('585-249-1902', 'tcoronado4u@diigo.com', 'Rick', 'Tymothy', 'Coronado');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('977-754-4782', 'rguinn4v@tinyurl.com', 'Pansy', 'Rozele', 'Guinn');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('169-266-9131', 'mlamey4w@geocities.com', 'Freedman', 'Maisie', 'Lamey');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('282-211-3043', 'dtwinbourne4x@wiley.com', 'Cassandre', 'Daryle', 'Twinbourne');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('346-025-3802', 'jmainson4y@nifty.com', 'Bryn', 'Jeana', 'Mainson');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('162-309-0966', 'wfain4z@si.edu', 'Annecorinne', 'Westley', 'Fain');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('956-230-5436', 'mtatem50@gov.uk', 'Cassaundra', 'Meridel', 'Tatem');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('243-991-8857', 'aoherlihy51@com.com', 'Anthony', 'Annadiana', 'Oherlihy');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('172-072-8845', 'bcoenraets52@topsy.com', 'Inna', 'Benedicto', 'Coenraets');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('709-850-7839', 'estocks53@tamu.edu', 'Alejandrina', 'Esme', 'Stocks');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('716-876-2080', 'vryott54@prnewswire.com', 'Cletus', 'Vidovik', 'Ryott');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('501-473-4446', 'dlindsley55@yellowbook.com', 'Kenna', 'Darya', 'Lindsley');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('237-100-3757', 'amelledy56@nyu.edu', 'Rosalind', 'Angel', 'Melledy');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('316-477-8395', 'klivingston57@economist.com', 'Cher', 'Kinsley', 'Livingston');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('520-109-4656', 'akhomin58@unc.edu', 'Nita', 'Aurore', 'Khomin');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('220-404-9826', 'rcurtiss59@who.int', 'Onfre', 'Rhiamon', 'Curtiss');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('424-228-3527', 'klabeuil5a@spiegel.de', 'Manfred', 'Kamila', 'Labeuil');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('984-558-9161', 'ishoute5b@elpais.com', 'Donavon', 'Issy', 'Shoute');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('662-267-5960', 'dbruckstein5c@wikimedia.org', 'Delcina', 'Darb', 'Bruckstein');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('340-132-0664', 'igatlin5d@infoseek.co.jp', 'Connor', 'Ivory', 'Gatlin');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('548-779-5834', 'jainge5e@mac.com', 'Sallie', 'Jakie', 'Ainge');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('196-015-1509', 'gharower5f@wikipedia.org', 'Alfi', 'Gates', 'Harower');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('143-658-9028', 'rportail5g@sohu.com', 'Deina', 'Rorke', 'Portail');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('759-498-8000', 'wswadlinge5h@twitter.com', 'Billye', 'Wynnie', 'Swadlinge');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('668-333-7208', 'dhovell5i@ibm.com', 'Roxine', 'Daune', 'Hovell');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('848-259-0879', 'rgoley5j@newsvine.com', 'Elvira', 'Rowney', 'Goley');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('167-834-8269', 'dboorn5k@yahoo.co.jp', 'Elfrida', 'Dorelia', 'Boorn');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('441-262-4479', 'srentalll5l@intel.com', 'Evin', 'Suzann', 'Rentalll');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('041-522-8626', 'alooker5m@discuz.net', 'Felita', 'Alessandro', 'Looker');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('725-177-7883', 'asictornes5n@csmonitor.com', 'Berkeley', 'April', 'Sictornes');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('424-719-8149', 'lbert5o@wikia.com', 'Melody', 'Lulita', 'Bert');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('190-222-0303', 'danstead5p@slideshare.net', 'Isabeau', 'Drucy', 'Anstead');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('848-617-8399', 'dmatura5q@list-manage.com', 'Marlow', 'Dalston', 'Matura');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('176-974-0490', 'icaldaro5r@nasa.gov', 'Madonna', 'Izak', 'Caldaro');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('922-061-1606', 'dbalding5s@washingtonpost.com', 'Marylynne', 'Dniren', 'Balding');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('271-555-7072', 'jdelacourt5t@live.com', 'Laurena', 'Joyan', 'Delacourt');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('452-019-3107', 'fseivertsen5u@163.com', 'Sig', 'Farley', 'Seivertsen');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('199-077-5003', 'mosmond5v@squarespace.com', 'Alessandro', 'Mannie', 'Osmond');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('515-424-5985', 'rleathlay5w@yellowbook.com', 'Sabine', 'Reggis', 'Leathlay');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('235-433-7283', 'tbartoszinski5x@huffingtonpost.com', 'Brynne', 'Teresita', 'Bartoszinski');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('037-106-5251', 'dbruce5y@hhs.gov', 'Rozamond', 'Darice', 'Bruce');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('090-705-6524', 'fkuhnhardt5z@google.com.hk', 'Jeanelle', 'Francklyn', 'Kuhnhardt');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('807-476-3133', 'dmartignoni60@nationalgeographic.com', 'Dyan', 'Dorothee', 'Martignoni');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('233-036-3707', 'nstelljes61@webeden.co.uk', 'Trudi', 'Nickey', 'Stelljes');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('003-968-8801', 'pever62@cyberchimps.com', 'Ossie', 'Peg', 'Ever');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('040-963-3043', 'tlannin63@auda.org.au', 'Waylon', 'Tamqrah', 'Lannin');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('841-688-9518', 'gpeploe64@buzzfeed.com', 'Franklyn', 'Gavin', 'Peploe');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('262-064-2850', 'tedsell65@toplist.cz', 'Stanislaw', 'Thayne', 'Edsell');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('628-106-6748', 'cnorville66@nature.com', 'Bond', 'Chere', 'Norville');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('161-147-8342', 'cberrisford67@businessinsider.com', 'Mahmoud', 'Creigh', 'Berrisford');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('087-475-6132', 'jgrinyer68@blogtalkradio.com', 'Rachel', 'Jenine', 'Grinyer');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('513-251-1625', 'slissemore69@upenn.edu', 'Belle', 'Sheffie', 'Lissemore');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('796-408-6458', 'lkitcat6a@shutterfly.com', 'Aylmar', 'Louella', 'Kitcat');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('618-711-0130', 'sbraime6b@cdbaby.com', 'Jenna', 'Shayne', 'Braime');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('995-643-8546', 'ktuny6c@cbslocal.com', 'Farlay', 'Kermit', 'Tuny');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('415-500-1465', 'dpitchers6d@reverbnation.com', 'Shep', 'Darn', 'Pitchers');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('359-352-6284', 'theardman6e@miitbeian.gov.cn', 'Fern', 'Tallulah', 'Heardman');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('492-992-9922', 'msivyour6f@imdb.com', 'Papagena', 'Milzie', 'Sivyour');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('314-241-5870', 'mlindenboim6g@wisc.edu', 'Quent', 'Milissent', 'Lindenboim');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('020-979-8769', 'nbatram6h@twitter.com', 'Emanuele', 'Nanette', 'Batram');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('362-406-1434', 'lthunderchief6i@opera.com', 'Mary', 'Lolita', 'Thunderchief');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('008-653-7135', 'asnoddin6j@google.es', 'Anette', 'Alexandrina', 'Snoddin');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('782-999-0281', 'wattrey6k@engadget.com', 'Davidde', 'Winny', 'Attrey');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('373-218-2147', 'bsherlaw6l@sina.com.cn', 'Cassie', 'Brit', 'Sherlaw');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('201-327-8301', 'mbeushaw6m@networksolutions.com', 'Magnum', 'Maxy', 'Beushaw');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('125-431-2289', 'cstoneham6n@instagram.com', 'Sammy', 'Cathrin', 'Stoneham');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('635-910-8602', 'ncullity6o@zimbio.com', 'Julian', 'Nolan', 'Cullity');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('668-170-3168', 'dgors6p@wikimedia.org', 'Brennen', 'Dunc', 'Gors');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('660-697-2778', 'ksabbins6q@who.int', 'Wesley', 'Kyrstin', 'Sabbins');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('980-093-8923', 'dbuer6r@squarespace.com', 'Patty', 'Domingo', 'Buer');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('863-712-6009', 'atarn6s@wp.com', 'Kimberley', 'Agretha', 'Tarn');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('304-408-0465', 'syann6t@kickstarter.com', 'Arnaldo', 'Sabrina', 'Yann');
+insert into administrator (phone_number, email, first_name, middle_name, last_name)
+values ('276-764-3934', 'jhaquin6u@biblegateway.com', 'Moll', 'Joshua', 'Haquin');
 
 
 -- advisor sample data generated with Mockaroo
@@ -352,96 +599,497 @@ values ('965-539-4107', 'wrafter0@zimbio.com', 'Kingsly', 'Waldon', 'Rafter'),
        ('544-341-8309', 'ddyers2@tumblr.com', 'Lyndell', 'Dallas', 'Dyers'),
        ('763-216-2655', 'rcleland3@discuz.net', 'Dannie', 'Rufe', 'Cleland'),
        ('648-381-1188', 'agowry4@w3.org', 'Karim', 'Audry', 'Gowry');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('971-507-7868', 'gbelding0@networksolutions.com', 'Ike', 'Gunner', 'Belding');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('255-311-6867', 'fswinburn1@ezinearticles.com', 'Lorry', 'Fee', 'Swinburn');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('341-623-4666', 'blyokhin2@alexa.com', 'Marv', 'Brande', 'Lyokhin');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('240-340-2555', 'calexander3@dell.com', 'Ilysa', 'Cordy', 'Alexander');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('564-140-6026', 'scastelow4@simplemachines.org', 'Charlotta', 'Stesha', 'Castelow');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('361-430-4794', 'mdryden5@cbc.ca', 'Bax', 'Mellisa', 'Dryden');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('516-032-8118', 'kdavydychev6@tinypic.com', 'Simon', 'Kane', 'Davydychev');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('350-199-3671', 'bhamlyn7@imdb.com', 'Sabina', 'Bertram', 'Hamlyn');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('267-886-5592', 'qdunthorne8@bbc.co.uk', 'Helyn', 'Quill', 'Dunthorne');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('926-863-9379', 'tleiden9@flavors.me', 'Cooper', 'Trista', 'Leiden');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('682-623-0419', 'vwhitwhama@wsj.com', 'Lezley', 'Verney', 'Whitwham');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('215-241-0841', 'rimbreyb@state.tx.us', 'Farley', 'Remington', 'Imbrey');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('719-877-6680', 'mcodlinc@ftc.gov', 'Casey', 'Martica', 'Codlin');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('861-631-2524', 'kturfesd@blinklist.com', 'Jaquelin', 'Kipp', 'Turfes');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('296-495-4147', 'nminilloe@apple.com', 'Denver', 'Nicky', 'Minillo');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('275-414-6935', 'svescovof@fda.gov', 'Delinda', 'Sonny', 'Vescovo');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('067-410-4440', 'rrolesg@newyorker.com', 'Ingmar', 'Rochella', 'Roles');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('397-283-0618', 'gkyberth@altervista.org', 'Olga', 'Gweneth', 'Kybert');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('124-140-4837', 'cbonelliei@sitemeter.com', 'Lon', 'Callida', 'Bonellie');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('094-163-3321', 'eruddockj@answers.com', 'Mal', 'Elisha', 'Ruddock');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('161-544-5046', 'pcomberbachk@sfgate.com', 'Ondrea', 'Peder', 'Comberbach');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('082-444-7869', 'edarrell@printfriendly.com', 'Collete', 'Elva', 'Darrel');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('776-860-3344', 'nbrentonm@toplist.cz', 'Ignacius', 'Ninette', 'Brenton');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('904-872-8294', 'chellekern@imgur.com', 'Shermie', 'Chrysa', 'Helleker');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('640-107-1637', 'luriano@who.int', 'Rene', 'Lorine', 'Urian');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('838-622-1302', 'lgoanep@timesonline.co.uk', 'Martyn', 'Leigh', 'Goane');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('471-081-9396', 'amalhamq@army.mil', 'Stanislaus', 'Antonella', 'Malham');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('040-634-8313', 'bmawr@fastcompany.com', 'Mandy', 'Benetta', 'Maw');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('457-122-7307', 'jgarthlands@europa.eu', 'Morrie', 'Jessica', 'Garthland');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('867-317-3711', 'lboldent@walmart.com', 'Wood', 'Lebbie', 'Bolden');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('259-704-2354', 'fdavenhillu@accuweather.com', 'Tabor', 'Flss', 'Davenhill');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('049-412-7956', 'hladburyv@tamu.edu', 'Ronni', 'Hedda', 'Ladbury');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('909-258-0933', 'hgreerw@spotify.com', 'Ceil', 'Hewe', 'Greer');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('855-387-3948', 'aalyoshinx@chron.com', 'Roobbie', 'Arabele', 'Alyoshin');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('908-671-4562', 'gbalcony@fda.gov', 'Andee', 'Gerhardt', 'Balcon');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('124-125-9037', 'aocrevanz@phoca.cz', 'Red', 'Arvin', 'O''Crevan');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('555-317-9888', 'tbascomb10@alibaba.com', 'Zacherie', 'Toinette', 'Bascomb');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('414-981-8559', 'blinfield11@exblog.jp', 'Eric', 'Benjamen', 'Linfield');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('397-321-6209', 'ccolman12@youtube.com', 'Lynn', 'Clari', 'Colman');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('491-561-2589', 'lguilleton13@cam.ac.uk', 'Carol', 'Lannie', 'Guilleton');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('466-180-4707', 'chendin14@usnews.com', 'Melisent', 'Celina', 'Hendin');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('090-107-7020', 'emarquese15@google.de', 'Allie', 'Estella', 'Marquese');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('548-756-0619', 'jpurrington16@imdb.com', 'Micaela', 'Junina', 'Purrington');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('969-737-1435', 'corgel17@nationalgeographic.com', 'Haskell', 'Caritta', 'Orgel');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('684-795-1370', 'jbleazard18@vistaprint.com', 'Zared', 'Jefferey', 'Bleazard');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('702-078-6213', 'cjockle19@npr.org', 'Joachim', 'Clarinda', 'Jockle');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('689-672-0348', 'asiberry1a@biglobe.ne.jp', 'Harmonia', 'Austina', 'Siberry');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('119-526-1386', 'wsherington1b@cyberchimps.com', 'Berkie', 'Wilfred', 'Sherington');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('521-883-9645', 'dtohill1c@furl.net', 'Phedra', 'Doralia', 'Tohill');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('443-298-4574', 'mlyburn1d@smugmug.com', 'Ingeborg', 'Milicent', 'Lyburn');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('884-118-7677', 'kstruijs1e@usa.gov', 'Teresita', 'Kermy', 'Struijs');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('964-941-6811', 'mavery1f@bigcartel.com', 'Link', 'Maurie', 'Avery');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('195-729-2107', 'oscrowson1g@seattletimes.com', 'Trent', 'Obediah', 'Scrowson');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('138-202-0348', 'mbointon1h@bandcamp.com', 'Sydney', 'Mimi', 'Bointon');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('200-026-7098', 'mmaplesden1i@sina.com.cn', 'Ezmeralda', 'Mozelle', 'Maplesden');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('288-369-1350', 'mmilsom1j@hostgator.com', 'Ernst', 'Mirabelle', 'Milsom');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('440-643-4254', 'cmanagh1k@omniture.com', 'Willie', 'Caritta', 'Managh');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('055-574-8348', 'ltustin1l@smugmug.com', 'Ileane', 'Lauralee', 'Tustin');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('759-910-4573', 'msexstone1m@twitpic.com', 'Zilvia', 'Mill', 'Sexstone');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('311-287-2954', 'lbiddy1n@newyorker.com', 'Eve', 'Laura', 'Biddy');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('890-215-0732', 'wmesias1o@ehow.com', 'Nealson', 'Winnie', 'Mesias');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('749-376-1991', 'dodevey1p@woothemes.com', 'Edik', 'Demeter', 'O''Devey');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('369-402-7802', 'tmccuthais1q@mtv.com', 'Ediva', 'Tiebold', 'McCuthais');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('598-138-2806', 'mtoohey1r@usnews.com', 'Teddie', 'Mohammed', 'Toohey');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('610-138-8886', 'ssaterthwait1s@shop-pro.jp', 'Worthy', 'Stevie', 'Saterthwait');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('551-395-1137', 'nhaswall1t@usda.gov', 'Pembroke', 'Nolly', 'Haswall');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('539-445-7641', 'hbarritt1u@1und1.de', 'Celestyna', 'Harlie', 'Barritt');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('817-295-9153', 'cbenham1v@dmoz.org', 'Rupert', 'Cami', 'Benham');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('215-527-5842', 'moddey1w@dmoz.org', 'Gayel', 'Mikael', 'Oddey');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('636-066-0009', 'ecristobal1x@yellowpages.com', 'Abbye', 'Engracia', 'Cristobal');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('641-801-0627', 'cbeevens1y@bravesites.com', 'Tracey', 'Carlin', 'Beevens');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('433-091-2531', 'celie1z@live.com', 'Flor', 'Carr', 'Elie');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('841-613-3761', 'rstadden20@rakuten.co.jp', 'Sophronia', 'Rory', 'Stadden');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('353-384-4757', 'lspratling21@thetimes.co.uk', 'Di', 'Lyndy', 'Spratling');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('537-264-2315', 'cstodhart22@wix.com', 'Bord', 'Caryl', 'Stodhart');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('135-348-1928', 'hbellhanger23@google.de', 'Steve', 'Hyacinthie', 'Bellhanger');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('005-352-7189', 'slichfield24@ucoz.com', 'Lucine', 'Shelton', 'Lichfield');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('734-639-2084', 'mtolman25@ed.gov', 'Melisandra', 'Miran', 'Tolman');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('600-942-6071', 'kfronzek26@mashable.com', 'Corabel', 'Karie', 'Fronzek');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('472-460-7450', 'darons27@etsy.com', 'Sabrina', 'Darlleen', 'Arons');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('927-788-9855', 'eireson28@free.fr', 'Neron', 'Essy', 'Ireson');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('366-704-9642', 'wsculley29@weebly.com', 'Roxine', 'Wylie', 'Sculley');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('656-534-5831', 'etchaikovsky2a@storify.com', 'Sebastiano', 'Estevan', 'Tchaikovsky');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('774-955-9968', 'vbabon2b@devhub.com', 'Guilbert', 'Vikki', 'Babon');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('010-647-4076', 'gstairmond2c@businessweek.com', 'Anya', 'Gratiana', 'Stairmond');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('993-453-6560', 'gdjekic2d@cornell.edu', 'Coretta', 'Ginevra', 'Djekic');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('448-319-1910', 'jmudie2e@npr.org', 'Ivar', 'Jan', 'Mudie');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('742-598-2759', 'rcansdill2f@ed.gov', 'Ileana', 'Robyn', 'Cansdill');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('641-257-9458', 'wbartolijn2g@dot.gov', 'Clemens', 'Wash', 'Bartolijn');
-insert into advisor (phone_number, email, first_name, middle_name, last_name) values ('060-938-6789', 'vgodain2h@furl.net', 'Osgood', 'Vonni', 'Godain');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('803-169-6370', 'jlouisot0@amazon.co.uk', 'Bondon', 'Jemmy', 'Louisot');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('552-872-5328', 'abraidon1@cdbaby.com', 'Mair', 'Appolonia', 'Braidon');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('530-796-9915', 'wbellinger2@w3.org', 'Milton', 'Wernher', 'Bellinger');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('604-930-8474', 'nchidzoy3@ebay.com', 'Merry', 'Nora', 'Chidzoy');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('551-154-6851', 'sskechley4@cyberchimps.com', 'Valle', 'Stacee', 'Skechley');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('296-386-6036', 'asmeuin5@zimbio.com', 'Guenevere', 'Alma', 'Smeuin');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('702-590-3870', 'gpedrocco6@oaic.gov.au', 'Lyell', 'Gaile', 'Pedrocco');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('540-234-7158', 'averne7@xinhuanet.com', 'Raul', 'Ashla', 'Verne');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('036-203-1897', 'charome8@blogspot.com', 'Isidora', 'Chrysler', 'Harome');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('763-394-8288', 'jofarris9@hp.com', 'Royal', 'Jenine', 'O''Farris');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('983-556-9899', 'tuzellia@skype.com', 'Charyl', 'Timotheus', 'Uzelli');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('044-912-9798', 'droufb@wordpress.com', 'Eydie', 'Deana', 'Rouf');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('538-760-0539', 'awalfordc@walmart.com', 'Donn', 'Augustina', 'Walford');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('387-164-0828', 'gclutheramd@newyorker.com', 'Loutitia', 'Gerrie', 'Clutheram');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('470-036-0729', 'mmacgiollae@sourceforge.net', 'Virgie', 'Myriam', 'MacGiolla');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('185-382-0084', 'jivashintsovf@surveymonkey.com', 'Adelind', 'Jessika', 'Ivashintsov');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('452-803-0993', 'btocquevilleg@nifty.com', 'Sully', 'Bonny', 'Tocqueville');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('699-440-4241', 'kderwinh@digg.com', 'Katerina', 'Kennith', 'Derwin');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('181-071-8696', 'gsaddletoni@blogger.com', 'Jilly', 'Gaultiero', 'Saddleton');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('511-662-1406', 'euccellij@sfgate.com', 'Klement', 'Ellissa', 'Uccelli');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('095-781-8792', 'jchristoforouk@ihg.com', 'Rica', 'Jasper', 'Christoforou');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('103-447-2402', 'tteacyl@goo.ne.jp', 'Brewer', 'Thomas', 'Teacy');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('132-433-5180', 'fgobelm@java.com', 'Malinda', 'Faulkner', 'Gobel');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('163-310-4322', 'etrussloven@hugedomains.com', 'David', 'Erinn', 'Trusslove');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('409-230-6669', 'bhilldropo@yelp.com', 'Sella', 'Bondon', 'Hilldrop');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('129-908-7462', 'hoehmep@google.com.au', 'Dorelle', 'Hyacintha', 'Oehme');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('869-543-1424', 'odemeisq@scientificamerican.com', 'Cyrus', 'Orbadiah', 'De Meis');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('863-688-8580', 'sredgewellr@cnbc.com', 'Megan', 'Sarene', 'Redgewell');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('624-468-8400', 'mtadlows@goo.gl', 'Somerset', 'Melissa', 'Tadlow');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('071-863-0593', 'mrayburnt@github.com', 'Marje', 'Marjy', 'Rayburn');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('943-995-4308', 'cmarcieku@twitpic.com', 'Derrek', 'Cliff', 'Marciek');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('090-390-7271', 'scecelyv@simplemachines.org', 'Rosemaria', 'Sarena', 'Cecely');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('865-029-3327', 'zshildrickw@netscape.com', 'Richart', 'Zacharia', 'Shildrick');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('069-395-8376', 'bmosex@ucoz.ru', 'Taddeusz', 'Brynn', 'Mose');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('950-301-6197', 'sschukerty@prnewswire.com', 'Sid', 'Shaina', 'Schukert');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('411-340-5046', 'cbaackz@ocn.ne.jp', 'Luz', 'Cornie', 'Baack');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('025-278-3747', 'lcompston10@wikispaces.com', 'Gareth', 'Lionel', 'Compston');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('581-703-3295', 'bgarment11@intel.com', 'Tori', 'Bertina', 'Garment');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('293-035-2107', 'aenstone12@globo.com', 'Michaelina', 'Adena', 'Enstone');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('012-507-5482', 'cmulqueeny13@vinaora.com', 'Avril', 'Celestyn', 'Mulqueeny');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('547-642-9292', 'pspinks14@toplist.cz', 'Ced', 'Packston', 'Spinks');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('374-767-2313', 'gbeynkn15@dagondesign.com', 'Olivie', 'Gard', 'Beynkn');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('313-652-0803', 'odetloff16@edublogs.org', 'Heall', 'Odell', 'Detloff');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('136-019-3369', 'wanwyl17@a8.net', 'Sallie', 'Winn', 'Anwyl');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('464-736-2086', 'mgodsil18@ocn.ne.jp', 'Birk', 'Maryellen', 'Godsil');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('259-020-7746', 'ejenteau19@webmd.com', 'Elihu', 'Emlynn', 'Jenteau');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('346-047-7059', 'rdimblebee1a@indiatimes.com', 'Nadia', 'Robin', 'Dimblebee');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('153-374-5320', 'dparzizek1b@aboutads.info', 'Cristine', 'Darice', 'Parzizek');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('972-402-3557', 'bbrakewell1c@ca.gov', 'Yard', 'Bernete', 'Brakewell');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('552-269-3866', 'cshurrocks1d@house.gov', 'Georgi', 'Calvin', 'Shurrocks');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('047-126-6036', 'mdagg1e@weather.com', 'Terra', 'Morgen', 'Dagg');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('729-529-7852', 'dganniclifft1f@webnode.com', 'Rudd', 'Daron', 'Ganniclifft');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('120-019-7570', 'imccaster1g@state.gov', 'Mary', 'Ives', 'McCaster');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('419-705-8271', 'sclements1h@tripadvisor.com', 'Feodora', 'Stoddard', 'Clements');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('969-876-3846', 'kkenneway1i@ca.gov', 'Bil', 'Kania', 'Kenneway');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('885-612-4519', 'dgravenall1j@abc.net.au', 'Serena', 'Dayle', 'Gravenall');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('883-372-1728', 'pwilson1k@independent.co.uk', 'Timi', 'Paulie', 'Wilson');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('879-070-3091', 'alegendre1l@amazon.com', 'Nev', 'Armand', 'Legendre');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('484-588-6601', 'jsmedmore1m@feedburner.com', 'Elbertine', 'Janos', 'Smedmore');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('469-657-2598', 'gyokley1n@uiuc.edu', 'Richmond', 'Gus', 'Yokley');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('988-441-7208', 'rchazette1o@disqus.com', 'Rodd', 'Rayner', 'Chazette');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('783-742-4600', 'mluckes1p@reverbnation.com', 'Joey', 'Madella', 'Luckes');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('992-678-6153', 'mcausey1q@hatena.ne.jp', 'Ara', 'Mona', 'Causey');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('287-590-1081', 'ghuman1r@1688.com', 'Malorie', 'Guy', 'Human');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('711-475-1367', 'pcarbett1s@infoseek.co.jp', 'Inger', 'Pierre', 'Carbett');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('092-592-1472', 'drainger1t@chicagotribune.com', 'Shay', 'Drucie', 'Rainger');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('814-612-1262', 'lmercey1u@wix.com', 'Flemming', 'Leigh', 'Mercey');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('751-815-1451', 'erye1v@google.com.hk', 'Riane', 'Editha', 'Rye');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('966-041-8029', 'bhancock1w@paypal.com', 'Annamarie', 'Brina', 'Hancock');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('726-893-2717', 'kgariff1x@mail.ru', 'Mile', 'Katina', 'Gariff');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('844-974-3700', 'rgrangier1y@spotify.com', 'Alberto', 'Ronda', 'Grangier');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('911-161-3815', 'bsharville1z@apache.org', 'Newton', 'Barbie', 'Sharville');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('848-751-4243', 'rmizzi20@loc.gov', 'Johnnie', 'Rudyard', 'Mizzi');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('175-865-6566', 'kskates21@yellowpages.com', 'Jade', 'Kalli', 'Skates');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('202-804-2536', 'kdalmeida22@narod.ru', 'Tomkin', 'Katharina', 'D''Almeida');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('615-695-3318', 'dhitzmann23@amazon.co.uk', 'Nye', 'Ddene', 'Hitzmann');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('319-094-4935', 'lsineath24@indiatimes.com', 'Gifford', 'Lorant', 'Sineath');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('537-408-0924', 'scroxley25@i2i.jp', 'Martita', 'Sabina', 'Croxley');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('383-886-5356', 'oshord26@mac.com', 'Melitta', 'Oby', 'Shord');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('098-370-0689', 'ptowner27@nhs.uk', 'Angele', 'Patty', 'Towner');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('448-664-5501', 'cknapp28@ebay.com', 'Vasilis', 'Caz', 'Knapp');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('413-029-6594', 'zbirden29@tripod.com', 'Lorry', 'Zora', 'Birden');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('024-424-1485', 'rbartolomeu2a@theatlantic.com', 'Milli', 'Rivalee', 'Bartolomeu');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('792-344-0159', 'jfontelles2b@sakura.ne.jp', 'Arlana', 'Josi', 'Fontelles');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('234-794-0993', 'tsteuart2c@google.com', 'Filmore', 'Trisha', 'Steuart');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('497-649-1823', 'bgoldhawk2d@booking.com', 'Tadd', 'Bail', 'Goldhawk');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('739-846-8181', 'kgittis2e@apache.org', 'Mimi', 'Kinsley', 'Gittis');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('821-590-3853', 'bhowsan2f@acquirethisname.com', 'Abie', 'Brana', 'Howsan');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('394-010-0259', 'tgarnam2g@adobe.com', 'Jerrie', 'Tori', 'Garnam');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('716-158-6885', 'shobbing2h@deviantart.com', 'Pascal', 'Sidonia', 'Hobbing');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('653-613-3166', 'adicke2i@yellowbook.com', 'Reuben', 'Agretha', 'Dicke');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('140-430-9801', 'ybobasch2j@jimdo.com', 'Gabey', 'Yetty', 'Bobasch');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('704-487-9040', 'kzumbusch2k@cocolog-nifty.com', 'Eziechiele', 'Kim', 'Zumbusch');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('124-986-4228', 'nerdes2l@hubpages.com', 'Matti', 'Nikolas', 'Erdes');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('874-076-6152', 'rollis2m@t.co', 'Denis', 'Randie', 'Ollis');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('013-325-0746', 'acockin2n@sfgate.com', 'Maegan', 'Aveline', 'Cockin');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('839-848-1365', 'kveschambes2o@delicious.com', 'Richart', 'Keane', 'Veschambes');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('938-923-1321', 'lmanhood2p@comcast.net', 'Paddie', 'Luis', 'Manhood');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('323-649-5608', 'tbridgstock2q@bizjournals.com', 'Lev', 'Tatiana', 'Bridgstock');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('650-352-9157', 'ebrideau2r@i2i.jp', 'Alvis', 'Edy', 'Brideau');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('405-516-6363', 'maleevy2s@mashable.com', 'Gladi', 'Melody', 'Aleevy');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('941-105-2596', 'vlister2t@imdb.com', 'Eulalie', 'Vickie', 'Lister');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('073-379-4127', 'fmidden2u@dedecms.com', 'Pate', 'Faunie', 'Midden');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('269-547-4952', 'opoulsen2v@msu.edu', 'Jed', 'Othello', 'Poulsen');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('041-595-4897', 'kmorratt2w@tumblr.com', 'Bogey', 'Korey', 'Morratt');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('249-477-3289', 'ggallichan2x@youku.com', 'Gus', 'Gloriana', 'Gallichan');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('567-224-2562', 'cjeanet2y@google.de', 'Fayre', 'Cchaddie', 'Jeanet');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('758-587-8930', 'mfillingham2z@surveymonkey.com', 'Traver', 'Marsha', 'Fillingham');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('196-830-7712', 'tsedge30@hostgator.com', 'Aryn', 'Thor', 'Sedge');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('208-429-3780', 'gmaber31@deliciousdays.com', 'Cheri', 'Giulio', 'Maber');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('247-270-8706', 'fshaplin32@fastcompany.com', 'Honey', 'Fay', 'Shaplin');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('830-599-4013', 'ttumber33@usda.gov', 'Claresta', 'Torrance', 'Tumber');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('706-524-4974', 'hcottrell34@hostgator.com', 'Kory', 'Helen-elizabeth', 'Cottrell');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('423-657-8300', 'nleopard35@vkontakte.ru', 'Joey', 'Nerita', 'Leopard');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('374-904-0245', 'kstarzaker36@shinystat.com', 'Kerrie', 'Korry', 'Starzaker');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('040-280-0560', 'pocurneen37@irs.gov', 'Claire', 'Papageno', 'O''Curneen');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('731-274-5930', 'phuonic38@gmpg.org', 'Fifine', 'Pierre', 'Huonic');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('193-652-7907', 'mmathes39@twitpic.com', 'Tandy', 'Malorie', 'Mathes');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('274-731-1102', 'ehallmark3a@so-net.ne.jp', 'Donn', 'Ethelind', 'Hallmark');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('838-075-5266', 'iughelli3b@vistaprint.com', 'Valentina', 'Ichabod', 'Ughelli');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('880-770-2803', 'nreinard3c@chronoengine.com', 'Alard', 'Nelly', 'Reinard');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('699-378-0166', 'lalpin3d@prweb.com', 'Karleen', 'Lynnette', 'Alpin');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('598-665-4441', 'aroglieri3e@people.com.cn', 'Sharlene', 'Agnes', 'Roglieri');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('042-123-1109', 'cdebrett3f@bizjournals.com', 'Shane', 'Cordi', 'De Brett');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('796-847-7357', 'bdimanche3g@tripod.com', 'Jan', 'Baillie', 'Dimanche');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('667-345-6905', 'mluckwell3h@edublogs.org', 'Tabbatha', 'Merry', 'Luckwell');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('854-968-7509', 'cstaddom3i@imageshack.us', 'Flo', 'Carmine', 'Staddom');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('306-282-4004', 'ebale3j@yellowpages.com', 'Benjy', 'Eric', 'Bale');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('024-585-6635', 'achristoffels3k@goo.gl', 'Barrett', 'Alick', 'Christoffels');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('172-295-2892', 'gren3l@geocities.com', 'Judith', 'Gregoire', 'Ren');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('203-781-3972', 'aknappett3m@utexas.edu', 'Free', 'Aurelie', 'Knappett');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('908-803-7669', 'lcavilla3n@php.net', 'Lynn', 'Lorri', 'Cavilla');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('630-103-4254', 'bhause3o@reuters.com', 'Bastian', 'Brynne', 'Hause');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('438-243-2604', 'dlyddiatt3p@edublogs.org', 'Olia', 'Davidde', 'Lyddiatt');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('977-556-8777', 'cboise3q@dedecms.com', 'Heda', 'Cornelius', 'Boise');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('154-486-6996', 'nsawart3r@mlb.com', 'Rollo', 'Nat', 'Sawart');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('265-004-0462', 'gvignaux3s@t-online.de', 'Grayce', 'Gilly', 'Vignaux');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('858-572-6593', 'czanetto3t@skyrock.com', 'Iver', 'Camella', 'Zanetto');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('660-697-0281', 'asartin3u@independent.co.uk', 'Drusie', 'Alden', 'Sartin');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('933-924-8309', 'hmitchelhill3v@sciencedirect.com', 'Laureen', 'Huberto', 'Mitchelhill');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('498-347-4126', 'gelijah3w@sbwire.com', 'Cherie', 'Geraldine', 'Elijah');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('832-766-8514', 'schatelot3x@about.me', 'Garvy', 'Sibyl', 'Chatelot');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('710-582-0374', 'npalmar3y@ebay.co.uk', 'Iorgos', 'Normand', 'Palmar');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('096-944-9399', 'twidocks3z@bloglines.com', 'Laverna', 'Tracey', 'Widocks');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('367-636-3967', 'rbattleson40@clickbank.net', 'Gilemette', 'Rhianon', 'Battleson');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('721-506-3977', 'kodunneen41@cyberchimps.com', 'Joella', 'Kaycee', 'O''Dunneen');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('513-451-4627', 'bfarncomb42@japanpost.jp', 'Kristina', 'Brad', 'Farncomb');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('084-633-8127', 'jbarrar43@admin.ch', 'Everett', 'Jandy', 'Barrar');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('147-618-6790', 'edornan44@comsenz.com', 'Millard', 'Edsel', 'Dornan');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('080-254-7811', 'jrouge45@spotify.com', 'Knox', 'Joaquin', 'Rouge');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('153-938-1228', 'kfirpi46@apple.com', 'Storm', 'Katerina', 'Firpi');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('820-486-9159', 'tamsden47@photobucket.com', 'Loraine', 'Thalia', 'Amsden');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('486-152-0420', 'sdelgadillo48@java.com', 'Clarisse', 'Suzy', 'Delgadillo');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('708-422-7275', 'fcannings49@nydailynews.com', 'Meagan', 'Francesco', 'Cannings');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('352-976-9848', 'sheadingham4a@ucoz.ru', 'Gunar', 'Sophia', 'Headingham');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('680-758-3723', 'jgodart4b@addtoany.com', 'Louisa', 'Junia', 'Godart');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('650-345-4764', 'sdonnell4c@stanford.edu', 'Barde', 'Sharyl', 'Donnell');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('192-248-1663', 'gcallingham4d@slate.com', 'Brodie', 'Gwyneth', 'Callingham');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('713-529-9481', 'cstockings4e@washingtonpost.com', 'Garnette', 'Constancia', 'Stockings');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('203-851-1495', 'bperfili4f@parallels.com', 'Isahella', 'Belva', 'Perfili');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('355-585-9854', 'hlawling4g@wordpress.com', 'Esme', 'Hatti', 'Lawling');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('263-214-3344', 'vbanbury4h@toplist.cz', 'Pier', 'Vin', 'Banbury');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('742-585-6610', 'abisco4i@yahoo.com', 'Rey', 'Arnaldo', 'Bisco');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('057-842-7295', 'alinfitt4j@ed.gov', 'Maia', 'Alano', 'Linfitt');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('760-905-8534', 'pshulem4k@instagram.com', 'Valeda', 'Parker', 'Shulem');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('258-124-5330', 'tskullet4l@bravesites.com', 'Hilton', 'Tammi', 'Skullet');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('830-457-8768', 'mdebeneditti4m@cisco.com', 'Meriel', 'Merle', 'De Beneditti');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('852-992-5693', 'wfernihough4n@plala.or.jp', 'Brnaba', 'Willis', 'Fernihough');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('249-958-9176', 'reccersley4o@sfgate.com', 'Claudine', 'Rolland', 'Eccersley');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('376-337-6376', 'tmyner4p@digg.com', 'Lydon', 'Toinette', 'Myner');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('987-275-7449', 'mnerney4q@microsoft.com', 'Minor', 'Michell', 'Nerney');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('278-667-6401', 'uhookes4r@usa.gov', 'Basile', 'Udale', 'Hookes');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('640-151-9162', 'kedis4s@godaddy.com', 'Corine', 'Kareem', 'Edis');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('989-942-9974', 'jwythill4t@privacy.gov.au', 'Marjy', 'Janna', 'Wythill');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('869-531-4596', 'cwhistlecroft4u@census.gov', 'Danna', 'Cletus', 'Whistlecroft');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('522-596-4056', 'rdorward4v@springer.com', 'Pru', 'Rowney', 'Dorward');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('357-857-3732', 'lsavary4w@plala.or.jp', 'Brenna', 'Lois', 'Savary');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('812-452-6534', 'jgaliford4x@jugem.jp', 'Sumner', 'Jud', 'Galiford');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('612-607-1389', 'bcowderay4y@timesonline.co.uk', 'Darcee', 'Bjorn', 'Cowderay');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('042-291-9922', 'rpflieger4z@exblog.jp', 'Belia', 'Renato', 'Pflieger');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('597-925-1700', 'gropkins50@google.pl', 'Phaedra', 'Germain', 'Ropkins');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('426-929-9719', 'jmctear51@ox.ac.uk', 'Tatiania', 'Jocelin', 'McTear');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('790-014-0145', 'borourke52@sohu.com', 'Neille', 'Bondie', 'O''Rourke');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('424-112-9191', 'sduffy53@shop-pro.jp', 'Aland', 'Stafani', 'Duffy');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('420-608-6353', 'dtilt54@dell.com', 'Webb', 'Don', 'Tilt');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('481-697-6433', 'atring55@upenn.edu', 'Yettie', 'Audra', 'Tring');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('640-496-6667', 'coffer56@nbcnews.com', 'Elyssa', 'Camey', 'Offer');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('584-754-6393', 'marundale57@studiopress.com', 'Malchy', 'Milena', 'Arundale');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('587-953-9645', 'ggiven58@china.com.cn', 'Anabella', 'Gussie', 'Given');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('288-640-8651', 'mobert59@webeden.co.uk', 'Ardisj', 'Meredith', 'Obert');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('548-951-8601', 'mroman5a@bravesites.com', 'Abner', 'Michaella', 'Roman');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('709-717-0540', 'lparzizek5b@woothemes.com', 'Judas', 'Lorianne', 'Parzizek');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('625-716-6442', 'ctedstone5c@theguardian.com', 'Conny', 'Cortney', 'Tedstone');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('561-301-1133', 'rcastelot5d@bloglines.com', 'Flora', 'Ramsey', 'Castelot');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('911-419-5076', 'atompkins5e@un.org', 'Audrey', 'Aridatha', 'Tompkins');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('832-572-4057', 'bdoumer5f@infoseek.co.jp', 'Berky', 'Berenice', 'Doumer');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('215-980-4765', 'jsteinhammer5g@blog.com', 'Jase', 'Jeffrey', 'Steinhammer');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('128-996-3925', 'dcanwell5h@hao123.com', 'Charita', 'Dusty', 'Canwell');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('173-314-9586', 'mhutcheson5i@army.mil', 'Nanny', 'Marcelia', 'Hutcheson');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('368-547-0216', 'iyankov5j@mashable.com', 'Sydelle', 'Irena', 'Yankov');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('976-208-8752', 'fclapson5k@senate.gov', 'Holli', 'Friedrich', 'Clapson');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('111-846-1101', 'wweson5l@omniture.com', 'Hermina', 'Weber', 'Weson');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('782-169-7749', 'esevern5m@webeden.co.uk', 'Cort', 'Evin', 'Severn');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('459-070-5217', 'ktilby5n@de.vu', 'Butch', 'Kacy', 'Tilby');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('298-779-6132', 'bmaccostye5o@hhs.gov', 'Kirstyn', 'Benedicto', 'MacCostye');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('687-912-2791', 'pbernette5p@moonfruit.com', 'Moira', 'Paulie', 'Bernette');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('434-643-6983', 'cgerrill5q@ow.ly', 'Shurwood', 'Charlean', 'Gerrill');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('058-794-8289', 'ealhirsi5r@aol.com', 'Eli', 'Erroll', 'Al Hirsi');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('615-677-1253', 'rshearman5s@mlb.com', 'Marquita', 'Rois', 'Shearman');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('454-870-1476', 'gspillane5t@booking.com', 'Trip', 'Garfield', 'Spillane');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('441-911-5498', 'vmabbot5u@smugmug.com', 'Darda', 'Valerie', 'Mabbot');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('448-675-8525', 'dmeriton5v@pinterest.com', 'Earvin', 'Dotty', 'Meriton');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('394-052-4381', 'nmeach5w@pbs.org', 'Jarrad', 'Nataline', 'Meach');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('733-298-1111', 'cdoodson5x@51.la', 'Anna-diana', 'Clem', 'Doodson');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('484-834-1758', 'nrabson5y@wiley.com', 'Wilek', 'Nedda', 'Rabson');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('998-254-0679', 'tjephcott5z@uiuc.edu', 'Alyss', 'Taffy', 'Jephcott');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('070-365-1184', 'scorden60@theatlantic.com', 'Lindon', 'Seymour', 'Corden');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('870-815-8370', 'rmollen61@tripadvisor.com', 'Reeba', 'Reggie', 'Mollen');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('661-612-6401', 'ojarrelt62@yellowpages.com', 'Tony', 'Osgood', 'Jarrelt');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('562-163-5269', 'apedrol63@flickr.com', 'Cheslie', 'Addy', 'Pedrol');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('519-518-5736', 'hmacaulay64@samsung.com', 'Madeleine', 'Hilly', 'MacAulay');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('958-358-1940', 'swillshear65@feedburner.com', 'Prince', 'Sapphira', 'Willshear');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('703-653-6919', 'agarnall66@dropbox.com', 'Wildon', 'Althea', 'Garnall');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('845-670-1183', 'mmaroney67@irs.gov', 'Alonso', 'Melly', 'Maroney');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('637-732-6149', 'hridhole68@cam.ac.uk', 'Wadsworth', 'Hedvig', 'Ridhole');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('823-617-6458', 'fadams69@vk.com', 'Fredra', 'Fransisco', 'Adams');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('978-808-6910', 'edimaria6a@nydailynews.com', 'Manya', 'Esme', 'Di Maria');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('698-188-2875', 'gnelthorpe6b@seattletimes.com', 'Delaney', 'Gui', 'Nelthorpe');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('846-472-9457', 'sstorrar6c@bloglines.com', 'Lulu', 'Sergio', 'Storrar');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('404-190-1426', 'sstebbings6d@mysql.com', 'Lyndsay', 'Sherill', 'Stebbings');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('866-107-2865', 'umcghie6e@spotify.com', 'Kelley', 'Urbanus', 'McGhie');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('870-559-8043', 'xelsop6f@google.ru', 'Tabbitha', 'Xylina', 'Elsop');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('135-903-5271', 'olapwood6g@infoseek.co.jp', 'Salim', 'Odell', 'Lapwood');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('490-767-0496', 'dmullord6h@behance.net', 'Garfield', 'Dottie', 'Mullord');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('149-460-9587', 'hpadbery6i@feedburner.com', 'Tracey', 'Harv', 'Padbery');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('031-662-2573', 'pnorfolk6j@google.it', 'Floris', 'Perceval', 'Norfolk');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('829-026-3537', 'kgotter6k@hugedomains.com', 'Staford', 'Katrina', 'Gotter');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('096-703-5062', 'jpeschke6l@fema.gov', 'L;urette', 'Johan', 'Peschke');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('826-366-5830', 'shofler6m@plala.or.jp', 'Kristi', 'Sven', 'Hofler');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('777-732-7161', 'gdocherty6n@omniture.com', 'Thalia', 'Glynn', 'Docherty');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('870-732-3921', 'ahaggerwood6o@imgur.com', 'Cull', 'Ashly', 'Haggerwood');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('946-381-9874', 'wtommaseo6p@1und1.de', 'Jeannie', 'Wendie', 'Tommaseo');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('786-453-8403', 'mpirnie6q@pagesperso-orange.fr', 'Celisse', 'Merrill', 'Pirnie');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('031-253-5537', 'adowty6r@canalblog.com', 'Kelby', 'Agata', 'Dowty');
+insert into advisor (phone_number, email, first_name, middle_name, last_name)
+values ('828-848-3535', 'dglenton6s@google.com.br', 'Celka', 'Demetris', 'Glenton');
+
 
 -- admin_advisor sample data generated with Mockaroo
 insert into admin_advisor (advisorID, adminID)
@@ -456,496 +1104,984 @@ values (1, 1),
        (4, 2),
        (4, 3),
        (5, 1);
-insert into admin_advisor (advisorID, adminID) values (159, 115);
-insert into admin_advisor (advisorID, adminID) values (17, 49);
-insert into admin_advisor (advisorID, adminID) values (2, 116);
-insert into admin_advisor (advisorID, adminID) values (204, 187);
-insert into admin_advisor (advisorID, adminID) values (34, 52);
-insert into admin_advisor (advisorID, adminID) values (35, 180);
-insert into admin_advisor (advisorID, adminID) values (218, 62);
-insert into admin_advisor (advisorID, adminID) values (91, 20);
-insert into admin_advisor (advisorID, adminID) values (192, 105);
-insert into admin_advisor (advisorID, adminID) values (237, 235);
-insert into admin_advisor (advisorID, adminID) values (127, 26);
-insert into admin_advisor (advisorID, adminID) values (133, 131);
-insert into admin_advisor (advisorID, adminID) values (149, 143);
-insert into admin_advisor (advisorID, adminID) values (174, 208);
-insert into admin_advisor (advisorID, adminID) values (28, 210);
-insert into admin_advisor (advisorID, adminID) values (16, 179);
-insert into admin_advisor (advisorID, adminID) values (37, 200);
-insert into admin_advisor (advisorID, adminID) values (238, 72);
-insert into admin_advisor (advisorID, adminID) values (232, 151);
-insert into admin_advisor (advisorID, adminID) values (192, 139);
-insert into admin_advisor (advisorID, adminID) values (130, 214);
-insert into admin_advisor (advisorID, adminID) values (103, 35);
-insert into admin_advisor (advisorID, adminID) values (182, 238);
-insert into admin_advisor (advisorID, adminID) values (56, 173);
-insert into admin_advisor (advisorID, adminID) values (16, 110);
-insert into admin_advisor (advisorID, adminID) values (223, 142);
-insert into admin_advisor (advisorID, adminID) values (125, 6);
-insert into admin_advisor (advisorID, adminID) values (143, 61);
-insert into admin_advisor (advisorID, adminID) values (192, 39);
-insert into admin_advisor (advisorID, adminID) values (94, 52);
-insert into admin_advisor (advisorID, adminID) values (175, 225);
-insert into admin_advisor (advisorID, adminID) values (65, 187);
-insert into admin_advisor (advisorID, adminID) values (161, 246);
-insert into admin_advisor (advisorID, adminID) values (219, 105);
-insert into admin_advisor (advisorID, adminID) values (209, 153);
-insert into admin_advisor (advisorID, adminID) values (131, 220);
-insert into admin_advisor (advisorID, adminID) values (187, 93);
-insert into admin_advisor (advisorID, adminID) values (227, 103);
-insert into admin_advisor (advisorID, adminID) values (78, 229);
-insert into admin_advisor (advisorID, adminID) values (142, 77);
-insert into admin_advisor (advisorID, adminID) values (76, 214);
-insert into admin_advisor (advisorID, adminID) values (250, 65);
-insert into admin_advisor (advisorID, adminID) values (140, 91);
-insert into admin_advisor (advisorID, adminID) values (225, 134);
-insert into admin_advisor (advisorID, adminID) values (128, 112);
-insert into admin_advisor (advisorID, adminID) values (70, 56);
-insert into admin_advisor (advisorID, adminID) values (198, 195);
-insert into admin_advisor (advisorID, adminID) values (6, 48);
-insert into admin_advisor (advisorID, adminID) values (177, 159);
-insert into admin_advisor (advisorID, adminID) values (210, 78);
-insert into admin_advisor (advisorID, adminID) values (143, 3);
-insert into admin_advisor (advisorID, adminID) values (179, 129);
-insert into admin_advisor (advisorID, adminID) values (192, 240);
-insert into admin_advisor (advisorID, adminID) values (163, 31);
-insert into admin_advisor (advisorID, adminID) values (217, 102);
-insert into admin_advisor (advisorID, adminID) values (78, 15);
-insert into admin_advisor (advisorID, adminID) values (47, 31);
-insert into admin_advisor (advisorID, adminID) values (42, 98);
-insert into admin_advisor (advisorID, adminID) values (66, 187);
-insert into admin_advisor (advisorID, adminID) values (183, 22);
-insert into admin_advisor (advisorID, adminID) values (247, 77);
-insert into admin_advisor (advisorID, adminID) values (34, 174);
-insert into admin_advisor (advisorID, adminID) values (157, 85);
-insert into admin_advisor (advisorID, adminID) values (179, 8);
-insert into admin_advisor (advisorID, adminID) values (118, 194);
-insert into admin_advisor (advisorID, adminID) values (223, 206);
-insert into admin_advisor (advisorID, adminID) values (164, 77);
-insert into admin_advisor (advisorID, adminID) values (89, 212);
-insert into admin_advisor (advisorID, adminID) values (126, 13);
-insert into admin_advisor (advisorID, adminID) values (124, 37);
-insert into admin_advisor (advisorID, adminID) values (58, 207);
-insert into admin_advisor (advisorID, adminID) values (216, 201);
-insert into admin_advisor (advisorID, adminID) values (32, 100);
-insert into admin_advisor (advisorID, adminID) values (131, 204);
-insert into admin_advisor (advisorID, adminID) values (231, 196);
-insert into admin_advisor (advisorID, adminID) values (46, 62);
-insert into admin_advisor (advisorID, adminID) values (243, 60);
-insert into admin_advisor (advisorID, adminID) values (65, 138);
-insert into admin_advisor (advisorID, adminID) values (222, 152);
-insert into admin_advisor (advisorID, adminID) values (157, 206);
-insert into admin_advisor (advisorID, adminID) values (79, 85);
-insert into admin_advisor (advisorID, adminID) values (52, 57);
-insert into admin_advisor (advisorID, adminID) values (112, 151);
-insert into admin_advisor (advisorID, adminID) values (8, 23);
-insert into admin_advisor (advisorID, adminID) values (117, 165);
-insert into admin_advisor (advisorID, adminID) values (144, 240);
-insert into admin_advisor (advisorID, adminID) values (93, 135);
-insert into admin_advisor (advisorID, adminID) values (178, 17);
-insert into admin_advisor (advisorID, adminID) values (249, 13);
-insert into admin_advisor (advisorID, adminID) values (230, 33);
-insert into admin_advisor (advisorID, adminID) values (243, 129);
-insert into admin_advisor (advisorID, adminID) values (35, 136);
-insert into admin_advisor (advisorID, adminID) values (167, 205);
-insert into admin_advisor (advisorID, adminID) values (47, 144);
-insert into admin_advisor (advisorID, adminID) values (188, 104);
-insert into admin_advisor (advisorID, adminID) values (242, 62);
-insert into admin_advisor (advisorID, adminID) values (44, 33);
-insert into admin_advisor (advisorID, adminID) values (22, 150);
-insert into admin_advisor (advisorID, adminID) values (102, 113);
-insert into admin_advisor (advisorID, adminID) values (20, 97);
-insert into admin_advisor (advisorID, adminID) values (132, 103);
-insert into admin_advisor (advisorID, adminID) values (220, 176);
-insert into admin_advisor (advisorID, adminID) values (8, 238);
-insert into admin_advisor (advisorID, adminID) values (51, 123);
-insert into admin_advisor (advisorID, adminID) values (153, 67);
-insert into admin_advisor (advisorID, adminID) values (116, 92);
-insert into admin_advisor (advisorID, adminID) values (107, 115);
-insert into admin_advisor (advisorID, adminID) values (213, 92);
-insert into admin_advisor (advisorID, adminID) values (98, 247);
-insert into admin_advisor (advisorID, adminID) values (125, 209);
-insert into admin_advisor (advisorID, adminID) values (79, 68);
-insert into admin_advisor (advisorID, adminID) values (36, 71);
-insert into admin_advisor (advisorID, adminID) values (208, 231);
-insert into admin_advisor (advisorID, adminID) values (218, 172);
-insert into admin_advisor (advisorID, adminID) values (152, 120);
-insert into admin_advisor (advisorID, adminID) values (58, 16);
-insert into admin_advisor (advisorID, adminID) values (26, 161);
-insert into admin_advisor (advisorID, adminID) values (130, 138);
-insert into admin_advisor (advisorID, adminID) values (78, 169);
-insert into admin_advisor (advisorID, adminID) values (136, 206);
-insert into admin_advisor (advisorID, adminID) values (95, 159);
-insert into admin_advisor (advisorID, adminID) values (139, 248);
-insert into admin_advisor (advisorID, adminID) values (28, 209);
-insert into admin_advisor (advisorID, adminID) values (81, 129);
-insert into admin_advisor (advisorID, adminID) values (125, 21);
-insert into admin_advisor (advisorID, adminID) values (29, 142);
-insert into admin_advisor (advisorID, adminID) values (183, 213);
-insert into admin_advisor (advisorID, adminID) values (230, 104);
-insert into admin_advisor (advisorID, adminID) values (150, 113);
-insert into admin_advisor (advisorID, adminID) values (184, 5);
-insert into admin_advisor (advisorID, adminID) values (21, 22);
-insert into admin_advisor (advisorID, adminID) values (100, 12);
-insert into admin_advisor (advisorID, adminID) values (82, 106);
-insert into admin_advisor (advisorID, adminID) values (84, 73);
-insert into admin_advisor (advisorID, adminID) values (121, 172);
-insert into admin_advisor (advisorID, adminID) values (69, 231);
-insert into admin_advisor (advisorID, adminID) values (94, 46);
-insert into admin_advisor (advisorID, adminID) values (169, 132);
-insert into admin_advisor (advisorID, adminID) values (53, 141);
-insert into admin_advisor (advisorID, adminID) values (99, 30);
-insert into admin_advisor (advisorID, adminID) values (69, 195);
-insert into admin_advisor (advisorID, adminID) values (141, 116);
-insert into admin_advisor (advisorID, adminID) values (3, 245);
-insert into admin_advisor (advisorID, adminID) values (177, 53);
-insert into admin_advisor (advisorID, adminID) values (6, 139);
-insert into admin_advisor (advisorID, adminID) values (132, 211);
-insert into admin_advisor (advisorID, adminID) values (12, 3);
-insert into admin_advisor (advisorID, adminID) values (104, 69);
-insert into admin_advisor (advisorID, adminID) values (161, 63);
-insert into admin_advisor (advisorID, adminID) values (182, 206);
-insert into admin_advisor (advisorID, adminID) values (164, 175);
-insert into admin_advisor (advisorID, adminID) values (27, 172);
-insert into admin_advisor (advisorID, adminID) values (245, 189);
-insert into admin_advisor (advisorID, adminID) values (118, 219);
-insert into admin_advisor (advisorID, adminID) values (133, 133);
-insert into admin_advisor (advisorID, adminID) values (95, 175);
-insert into admin_advisor (advisorID, adminID) values (7, 32);
-insert into admin_advisor (advisorID, adminID) values (202, 110);
-insert into admin_advisor (advisorID, adminID) values (234, 55);
-insert into admin_advisor (advisorID, adminID) values (40, 179);
-insert into admin_advisor (advisorID, adminID) values (220, 183);
-insert into admin_advisor (advisorID, adminID) values (79, 159);
-insert into admin_advisor (advisorID, adminID) values (107, 136);
-insert into admin_advisor (advisorID, adminID) values (9, 136);
-insert into admin_advisor (advisorID, adminID) values (182, 195);
-insert into admin_advisor (advisorID, adminID) values (249, 178);
-insert into admin_advisor (advisorID, adminID) values (249, 223);
-insert into admin_advisor (advisorID, adminID) values (206, 59);
-insert into admin_advisor (advisorID, adminID) values (65, 108);
-insert into admin_advisor (advisorID, adminID) values (74, 12);
-insert into admin_advisor (advisorID, adminID) values (99, 157);
-insert into admin_advisor (advisorID, adminID) values (115, 249);
-insert into admin_advisor (advisorID, adminID) values (85, 55);
-insert into admin_advisor (advisorID, adminID) values (237, 248);
-insert into admin_advisor (advisorID, adminID) values (80, 67);
-insert into admin_advisor (advisorID, adminID) values (25, 208);
-insert into admin_advisor (advisorID, adminID) values (249, 32);
-insert into admin_advisor (advisorID, adminID) values (161, 57);
-insert into admin_advisor (advisorID, adminID) values (126, 234);
-insert into admin_advisor (advisorID, adminID) values (112, 97);
-insert into admin_advisor (advisorID, adminID) values (50, 195);
-insert into admin_advisor (advisorID, adminID) values (140, 157);
-insert into admin_advisor (advisorID, adminID) values (20, 103);
-insert into admin_advisor (advisorID, adminID) values (161, 118);
-insert into admin_advisor (advisorID, adminID) values (193, 116);
-insert into admin_advisor (advisorID, adminID) values (168, 215);
-insert into admin_advisor (advisorID, adminID) values (174, 175);
-insert into admin_advisor (advisorID, adminID) values (234, 79);
-insert into admin_advisor (advisorID, adminID) values (181, 219);
-insert into admin_advisor (advisorID, adminID) values (3, 151);
-insert into admin_advisor (advisorID, adminID) values (221, 222);
-insert into admin_advisor (advisorID, adminID) values (108, 116);
-insert into admin_advisor (advisorID, adminID) values (100, 24);
-insert into admin_advisor (advisorID, adminID) values (47, 110);
-insert into admin_advisor (advisorID, adminID) values (239, 88);
-insert into admin_advisor (advisorID, adminID) values (20, 244);
-insert into admin_advisor (advisorID, adminID) values (207, 42);
-insert into admin_advisor (advisorID, adminID) values (179, 244);
-insert into admin_advisor (advisorID, adminID) values (238, 189);
-insert into admin_advisor (advisorID, adminID) values (124, 139);
-insert into admin_advisor (advisorID, adminID) values (99, 181);
-insert into admin_advisor (advisorID, adminID) values (208, 152);
-insert into admin_advisor (advisorID, adminID) values (200, 142);
-insert into admin_advisor (advisorID, adminID) values (99, 12);
-insert into admin_advisor (advisorID, adminID) values (221, 141);
-insert into admin_advisor (advisorID, adminID) values (106, 146);
-insert into admin_advisor (advisorID, adminID) values (95, 200);
-insert into admin_advisor (advisorID, adminID) values (234, 97);
-insert into admin_advisor (advisorID, adminID) values (15, 190);
-insert into admin_advisor (advisorID, adminID) values (124, 81);
-insert into admin_advisor (advisorID, adminID) values (44, 92);
-insert into admin_advisor (advisorID, adminID) values (146, 26);
-insert into admin_advisor (advisorID, adminID) values (120, 177);
-insert into admin_advisor (advisorID, adminID) values (13, 94);
-insert into admin_advisor (advisorID, adminID) values (151, 79);
-insert into admin_advisor (advisorID, adminID) values (157, 41);
-insert into admin_advisor (advisorID, adminID) values (180, 179);
-insert into admin_advisor (advisorID, adminID) values (225, 190);
-insert into admin_advisor (advisorID, adminID) values (7, 17);
-insert into admin_advisor (advisorID, adminID) values (176, 235);
-insert into admin_advisor (advisorID, adminID) values (171, 161);
-insert into admin_advisor (advisorID, adminID) values (165, 225);
-insert into admin_advisor (advisorID, adminID) values (159, 76);
-insert into admin_advisor (advisorID, adminID) values (217, 28);
-insert into admin_advisor (advisorID, adminID) values (182, 175);
-insert into admin_advisor (advisorID, adminID) values (41, 62);
-insert into admin_advisor (advisorID, adminID) values (26, 148);
-insert into admin_advisor (advisorID, adminID) values (125, 102);
-insert into admin_advisor (advisorID, adminID) values (165, 73);
-insert into admin_advisor (advisorID, adminID) values (240, 23);
-insert into admin_advisor (advisorID, adminID) values (53, 144);
-insert into admin_advisor (advisorID, adminID) values (224, 214);
-insert into admin_advisor (advisorID, adminID) values (48, 124);
-insert into admin_advisor (advisorID, adminID) values (240, 4);
-insert into admin_advisor (advisorID, adminID) values (114, 54);
-insert into admin_advisor (advisorID, adminID) values (106, 113);
-insert into admin_advisor (advisorID, adminID) values (132, 246);
-insert into admin_advisor (advisorID, adminID) values (78, 45);
-insert into admin_advisor (advisorID, adminID) values (145, 22);
-insert into admin_advisor (advisorID, adminID) values (139, 73);
-insert into admin_advisor (advisorID, adminID) values (196, 108);
-insert into admin_advisor (advisorID, adminID) values (226, 219);
-insert into admin_advisor (advisorID, adminID) values (119, 114);
-insert into admin_advisor (advisorID, adminID) values (99, 219);
-insert into admin_advisor (advisorID, adminID) values (6, 170);
-insert into admin_advisor (advisorID, adminID) values (126, 184);
-insert into admin_advisor (advisorID, adminID) values (212, 97);
-insert into admin_advisor (advisorID, adminID) values (233, 129);
-insert into admin_advisor (advisorID, adminID) values (179, 14);
-insert into admin_advisor (advisorID, adminID) values (114, 196);
-insert into admin_advisor (advisorID, adminID) values (141, 94);
-insert into admin_advisor (advisorID, adminID) values (65, 237);
-insert into admin_advisor (advisorID, adminID) values (121, 144);
-insert into admin_advisor (advisorID, adminID) values (88, 81);
-insert into admin_advisor (advisorID, adminID) values (44, 221);
-insert into admin_advisor (advisorID, adminID) values (211, 126);
-insert into admin_advisor (advisorID, adminID) values (171, 152);
-insert into admin_advisor (advisorID, adminID) values (65, 204);
-insert into admin_advisor (advisorID, adminID) values (232, 38);
-insert into admin_advisor (advisorID, adminID) values (190, 126);
-insert into admin_advisor (advisorID, adminID) values (150, 191);
-insert into admin_advisor (advisorID, adminID) values (122, 94);
-insert into admin_advisor (advisorID, adminID) values (243, 3);
-insert into admin_advisor (advisorID, adminID) values (163, 115);
-insert into admin_advisor (advisorID, adminID) values (207, 141);
-insert into admin_advisor (advisorID, adminID) values (216, 246);
-insert into admin_advisor (advisorID, adminID) values (240, 83);
-insert into admin_advisor (advisorID, adminID) values (126, 137);
-insert into admin_advisor (advisorID, adminID) values (186, 122);
-insert into admin_advisor (advisorID, adminID) values (118, 181);
-insert into admin_advisor (advisorID, adminID) values (47, 111);
-insert into admin_advisor (advisorID, adminID) values (78, 146);
-insert into admin_advisor (advisorID, adminID) values (87, 66);
-insert into admin_advisor (advisorID, adminID) values (189, 118);
-insert into admin_advisor (advisorID, adminID) values (137, 206);
-insert into admin_advisor (advisorID, adminID) values (94, 139);
-insert into admin_advisor (advisorID, adminID) values (176, 123);
-insert into admin_advisor (advisorID, adminID) values (234, 12);
-insert into admin_advisor (advisorID, adminID) values (156, 189);
-insert into admin_advisor (advisorID, adminID) values (123, 154);
-insert into admin_advisor (advisorID, adminID) values (113, 92);
-insert into admin_advisor (advisorID, adminID) values (89, 207);
-insert into admin_advisor (advisorID, adminID) values (206, 124);
-insert into admin_advisor (advisorID, adminID) values (223, 179);
-insert into admin_advisor (advisorID, adminID) values (129, 194);
-insert into admin_advisor (advisorID, adminID) values (194, 35);
-insert into admin_advisor (advisorID, adminID) values (34, 60);
-insert into admin_advisor (advisorID, adminID) values (16, 107);
-insert into admin_advisor (advisorID, adminID) values (157, 106);
-insert into admin_advisor (advisorID, adminID) values (14, 64);
-insert into admin_advisor (advisorID, adminID) values (31, 121);
-insert into admin_advisor (advisorID, adminID) values (158, 189);
-insert into admin_advisor (advisorID, adminID) values (26, 3);
-insert into admin_advisor (advisorID, adminID) values (114, 121);
-insert into admin_advisor (advisorID, adminID) values (22, 154);
-insert into admin_advisor (advisorID, adminID) values (240, 140);
-insert into admin_advisor (advisorID, adminID) values (112, 190);
-insert into admin_advisor (advisorID, adminID) values (35, 144);
-insert into admin_advisor (advisorID, adminID) values (31, 149);
-insert into admin_advisor (advisorID, adminID) values (41, 5);
-insert into admin_advisor (advisorID, adminID) values (25, 32);
-insert into admin_advisor (advisorID, adminID) values (245, 206);
-insert into admin_advisor (advisorID, adminID) values (19, 107);
-insert into admin_advisor (advisorID, adminID) values (13, 152);
-insert into admin_advisor (advisorID, adminID) values (62, 162);
-insert into admin_advisor (advisorID, adminID) values (137, 222);
-insert into admin_advisor (advisorID, adminID) values (62, 174);
-insert into admin_advisor (advisorID, adminID) values (206, 10);
-insert into admin_advisor (advisorID, adminID) values (248, 71);
-insert into admin_advisor (advisorID, adminID) values (14, 150);
-insert into admin_advisor (advisorID, adminID) values (76, 97);
-insert into admin_advisor (advisorID, adminID) values (243, 115);
-insert into admin_advisor (advisorID, adminID) values (183, 98);
-insert into admin_advisor (advisorID, adminID) values (23, 100);
-insert into admin_advisor (advisorID, adminID) values (100, 226);
-insert into admin_advisor (advisorID, adminID) values (232, 225);
-insert into admin_advisor (advisorID, adminID) values (183, 82);
-insert into admin_advisor (advisorID, adminID) values (224, 148);
-insert into admin_advisor (advisorID, adminID) values (25, 40);
-insert into admin_advisor (advisorID, adminID) values (218, 101);
-insert into admin_advisor (advisorID, adminID) values (57, 146);
-insert into admin_advisor (advisorID, adminID) values (228, 147);
-insert into admin_advisor (advisorID, adminID) values (217, 57);
-insert into admin_advisor (advisorID, adminID) values (196, 69);
-insert into admin_advisor (advisorID, adminID) values (156, 59);
-insert into admin_advisor (advisorID, adminID) values (2, 187);
-insert into admin_advisor (advisorID, adminID) values (110, 166);
-insert into admin_advisor (advisorID, adminID) values (52, 4);
-insert into admin_advisor (advisorID, adminID) values (239, 33);
-insert into admin_advisor (advisorID, adminID) values (63, 109);
-insert into admin_advisor (advisorID, adminID) values (201, 220);
-insert into admin_advisor (advisorID, adminID) values (177, 162);
-insert into admin_advisor (advisorID, adminID) values (138, 128);
-insert into admin_advisor (advisorID, adminID) values (104, 19);
-insert into admin_advisor (advisorID, adminID) values (124, 67);
-insert into admin_advisor (advisorID, adminID) values (61, 105);
-insert into admin_advisor (advisorID, adminID) values (209, 207);
-insert into admin_advisor (advisorID, adminID) values (43, 183);
-insert into admin_advisor (advisorID, adminID) values (179, 63);
-insert into admin_advisor (advisorID, adminID) values (133, 27);
-insert into admin_advisor (advisorID, adminID) values (204, 131);
-insert into admin_advisor (advisorID, adminID) values (152, 91);
-insert into admin_advisor (advisorID, adminID) values (46, 109);
-insert into admin_advisor (advisorID, adminID) values (48, 143);
-insert into admin_advisor (advisorID, adminID) values (202, 35);
-insert into admin_advisor (advisorID, adminID) values (91, 249);
-insert into admin_advisor (advisorID, adminID) values (242, 141);
-insert into admin_advisor (advisorID, adminID) values (44, 43);
-insert into admin_advisor (advisorID, adminID) values (148, 20);
-insert into admin_advisor (advisorID, adminID) values (34, 144);
-insert into admin_advisor (advisorID, adminID) values (138, 137);
-insert into admin_advisor (advisorID, adminID) values (47, 25);
-insert into admin_advisor (advisorID, adminID) values (225, 205);
-insert into admin_advisor (advisorID, adminID) values (90, 157);
-insert into admin_advisor (advisorID, adminID) values (16, 245);
-insert into admin_advisor (advisorID, adminID) values (241, 179);
-insert into admin_advisor (advisorID, adminID) values (213, 200);
-insert into admin_advisor (advisorID, adminID) values (92, 170);
-insert into admin_advisor (advisorID, adminID) values (14, 208);
-insert into admin_advisor (advisorID, adminID) values (157, 203);
-insert into admin_advisor (advisorID, adminID) values (191, 231);
-insert into admin_advisor (advisorID, adminID) values (111, 96);
-insert into admin_advisor (advisorID, adminID) values (136, 69);
-insert into admin_advisor (advisorID, adminID) values (229, 192);
-insert into admin_advisor (advisorID, adminID) values (73, 241);
-insert into admin_advisor (advisorID, adminID) values (155, 198);
-insert into admin_advisor (advisorID, adminID) values (33, 71);
-insert into admin_advisor (advisorID, adminID) values (225, 122);
-insert into admin_advisor (advisorID, adminID) values (164, 128);
-insert into admin_advisor (advisorID, adminID) values (100, 39);
-insert into admin_advisor (advisorID, adminID) values (186, 77);
-insert into admin_advisor (advisorID, adminID) values (223, 185);
-insert into admin_advisor (advisorID, adminID) values (197, 20);
-insert into admin_advisor (advisorID, adminID) values (159, 77);
-insert into admin_advisor (advisorID, adminID) values (58, 226);
-insert into admin_advisor (advisorID, adminID) values (28, 52);
-insert into admin_advisor (advisorID, adminID) values (70, 119);
-insert into admin_advisor (advisorID, adminID) values (245, 40);
-insert into admin_advisor (advisorID, adminID) values (183, 45);
-insert into admin_advisor (advisorID, adminID) values (137, 8);
-insert into admin_advisor (advisorID, adminID) values (170, 100);
-insert into admin_advisor (advisorID, adminID) values (139, 137);
-insert into admin_advisor (advisorID, adminID) values (38, 102);
-insert into admin_advisor (advisorID, adminID) values (164, 19);
-insert into admin_advisor (advisorID, adminID) values (219, 247);
-insert into admin_advisor (advisorID, adminID) values (60, 119);
-insert into admin_advisor (advisorID, adminID) values (224, 239);
-insert into admin_advisor (advisorID, adminID) values (215, 70);
-insert into admin_advisor (advisorID, adminID) values (134, 224);
-insert into admin_advisor (advisorID, adminID) values (243, 167);
-insert into admin_advisor (advisorID, adminID) values (216, 180);
-insert into admin_advisor (advisorID, adminID) values (198, 93);
-insert into admin_advisor (advisorID, adminID) values (229, 190);
-insert into admin_advisor (advisorID, adminID) values (249, 200);
-insert into admin_advisor (advisorID, adminID) values (134, 153);
-insert into admin_advisor (advisorID, adminID) values (46, 55);
-insert into admin_advisor (advisorID, adminID) values (198, 156);
-insert into admin_advisor (advisorID, adminID) values (100, 38);
-insert into admin_advisor (advisorID, adminID) values (136, 84);
-insert into admin_advisor (advisorID, adminID) values (131, 55);
-insert into admin_advisor (advisorID, adminID) values (240, 135);
-insert into admin_advisor (advisorID, adminID) values (222, 243);
-insert into admin_advisor (advisorID, adminID) values (200, 38);
-insert into admin_advisor (advisorID, adminID) values (166, 147);
-insert into admin_advisor (advisorID, adminID) values (246, 149);
-insert into admin_advisor (advisorID, adminID) values (152, 4);
-insert into admin_advisor (advisorID, adminID) values (92, 176);
-insert into admin_advisor (advisorID, adminID) values (178, 172);
-insert into admin_advisor (advisorID, adminID) values (58, 27);
-insert into admin_advisor (advisorID, adminID) values (76, 203);
-insert into admin_advisor (advisorID, adminID) values (59, 154);
-insert into admin_advisor (advisorID, adminID) values (118, 233);
-insert into admin_advisor (advisorID, adminID) values (157, 199);
-insert into admin_advisor (advisorID, adminID) values (151, 142);
-insert into admin_advisor (advisorID, adminID) values (227, 176);
-insert into admin_advisor (advisorID, adminID) values (180, 191);
-insert into admin_advisor (advisorID, adminID) values (7, 8);
-insert into admin_advisor (advisorID, adminID) values (9, 69);
-insert into admin_advisor (advisorID, adminID) values (236, 242);
-insert into admin_advisor (advisorID, adminID) values (7, 43);
-insert into admin_advisor (advisorID, adminID) values (186, 40);
-insert into admin_advisor (advisorID, adminID) values (209, 45);
-insert into admin_advisor (advisorID, adminID) values (76, 131);
-insert into admin_advisor (advisorID, adminID) values (172, 244);
-insert into admin_advisor (advisorID, adminID) values (4, 136);
-insert into admin_advisor (advisorID, adminID) values (183, 53);
-insert into admin_advisor (advisorID, adminID) values (66, 53);
-insert into admin_advisor (advisorID, adminID) values (58, 13);
-insert into admin_advisor (advisorID, adminID) values (25, 94);
-insert into admin_advisor (advisorID, adminID) values (182, 183);
-insert into admin_advisor (advisorID, adminID) values (167, 122);
-insert into admin_advisor (advisorID, adminID) values (116, 118);
-insert into admin_advisor (advisorID, adminID) values (82, 194);
-insert into admin_advisor (advisorID, adminID) values (185, 13);
-insert into admin_advisor (advisorID, adminID) values (132, 43);
-insert into admin_advisor (advisorID, adminID) values (155, 147);
-insert into admin_advisor (advisorID, adminID) values (142, 57);
-insert into admin_advisor (advisorID, adminID) values (219, 6);
-insert into admin_advisor (advisorID, adminID) values (31, 137);
-insert into admin_advisor (advisorID, adminID) values (29, 103);
-insert into admin_advisor (advisorID, adminID) values (248, 238);
-insert into admin_advisor (advisorID, adminID) values (65, 132);
-insert into admin_advisor (advisorID, adminID) values (46, 231);
-insert into admin_advisor (advisorID, adminID) values (113, 129);
-insert into admin_advisor (advisorID, adminID) values (222, 190);
-insert into admin_advisor (advisorID, adminID) values (96, 153);
-insert into admin_advisor (advisorID, adminID) values (133, 212);
-insert into admin_advisor (advisorID, adminID) values (50, 74);
-insert into admin_advisor (advisorID, adminID) values (55, 5);
-insert into admin_advisor (advisorID, adminID) values (97, 93);
-insert into admin_advisor (advisorID, adminID) values (173, 83);
-insert into admin_advisor (advisorID, adminID) values (62, 46);
-insert into admin_advisor (advisorID, adminID) values (177, 94);
-insert into admin_advisor (advisorID, adminID) values (132, 64);
-insert into admin_advisor (advisorID, adminID) values (191, 66);
-insert into admin_advisor (advisorID, adminID) values (224, 223);
-insert into admin_advisor (advisorID, adminID) values (10, 63);
-insert into admin_advisor (advisorID, adminID) values (239, 116);
-insert into admin_advisor (advisorID, adminID) values (86, 47);
-insert into admin_advisor (advisorID, adminID) values (180, 148);
-insert into admin_advisor (advisorID, adminID) values (74, 98);
-insert into admin_advisor (advisorID, adminID) values (178, 127);
-insert into admin_advisor (advisorID, adminID) values (202, 235);
-insert into admin_advisor (advisorID, adminID) values (227, 100);
-insert into admin_advisor (advisorID, adminID) values (24, 6);
-insert into admin_advisor (advisorID, adminID) values (107, 77);
-insert into admin_advisor (advisorID, adminID) values (127, 24);
-insert into admin_advisor (advisorID, adminID) values (198, 119);
-insert into admin_advisor (advisorID, adminID) values (244, 76);
-insert into admin_advisor (advisorID, adminID) values (219, 116);
-insert into admin_advisor (advisorID, adminID) values (156, 3);
-insert into admin_advisor (advisorID, adminID) values (50, 223);
-insert into admin_advisor (advisorID, adminID) values (59, 139);
-insert into admin_advisor (advisorID, adminID) values (144, 92);
-insert into admin_advisor (advisorID, adminID) values (215, 66);
-insert into admin_advisor (advisorID, adminID) values (218, 250);
-insert into admin_advisor (advisorID, adminID) values (182, 208);
-insert into admin_advisor (advisorID, adminID) values (174, 186);
-insert into admin_advisor (advisorID, adminID) values (90, 110);
-insert into admin_advisor (advisorID, adminID) values (138, 207);
-insert into admin_advisor (advisorID, adminID) values (96, 162);
-insert into admin_advisor (advisorID, adminID) values (243, 98);
-insert into admin_advisor (advisorID, adminID) values (103, 111);
-insert into admin_advisor (advisorID, adminID) values (55, 164);
-insert into admin_advisor (advisorID, adminID) values (226, 95);
-insert into admin_advisor (advisorID, adminID) values (231, 63);
-insert into admin_advisor (advisorID, adminID) values (232, 3);
-insert into admin_advisor (advisorID, adminID) values (103, 20);
-insert into admin_advisor (advisorID, adminID) values (187, 198);
-
+insert into admin_advisor (advisorID, adminID)
+values (159, 115);
+insert into admin_advisor (advisorID, adminID)
+values (17, 49);
+insert into admin_advisor (advisorID, adminID)
+values (2, 116);
+insert into admin_advisor (advisorID, adminID)
+values (204, 187);
+insert into admin_advisor (advisorID, adminID)
+values (34, 52);
+insert into admin_advisor (advisorID, adminID)
+values (35, 180);
+insert into admin_advisor (advisorID, adminID)
+values (218, 62);
+insert into admin_advisor (advisorID, adminID)
+values (91, 20);
+insert into admin_advisor (advisorID, adminID)
+values (192, 105);
+insert into admin_advisor (advisorID, adminID)
+values (237, 235);
+insert into admin_advisor (advisorID, adminID)
+values (127, 26);
+insert into admin_advisor (advisorID, adminID)
+values (133, 131);
+insert into admin_advisor (advisorID, adminID)
+values (149, 143);
+insert into admin_advisor (advisorID, adminID)
+values (174, 208);
+insert into admin_advisor (advisorID, adminID)
+values (28, 210);
+insert into admin_advisor (advisorID, adminID)
+values (16, 179);
+insert into admin_advisor (advisorID, adminID)
+values (37, 200);
+insert into admin_advisor (advisorID, adminID)
+values (238, 72);
+insert into admin_advisor (advisorID, adminID)
+values (232, 151);
+insert into admin_advisor (advisorID, adminID)
+values (192, 139);
+insert into admin_advisor (advisorID, adminID)
+values (130, 214);
+insert into admin_advisor (advisorID, adminID)
+values (103, 35);
+insert into admin_advisor (advisorID, adminID)
+values (182, 238);
+insert into admin_advisor (advisorID, adminID)
+values (56, 173);
+insert into admin_advisor (advisorID, adminID)
+values (16, 110);
+insert into admin_advisor (advisorID, adminID)
+values (223, 142);
+insert into admin_advisor (advisorID, adminID)
+values (125, 6);
+insert into admin_advisor (advisorID, adminID)
+values (143, 61);
+insert into admin_advisor (advisorID, adminID)
+values (192, 39);
+insert into admin_advisor (advisorID, adminID)
+values (94, 52);
+insert into admin_advisor (advisorID, adminID)
+values (175, 225);
+insert into admin_advisor (advisorID, adminID)
+values (65, 187);
+insert into admin_advisor (advisorID, adminID)
+values (161, 246);
+insert into admin_advisor (advisorID, adminID)
+values (219, 105);
+insert into admin_advisor (advisorID, adminID)
+values (209, 153);
+insert into admin_advisor (advisorID, adminID)
+values (131, 220);
+insert into admin_advisor (advisorID, adminID)
+values (187, 93);
+insert into admin_advisor (advisorID, adminID)
+values (227, 103);
+insert into admin_advisor (advisorID, adminID)
+values (78, 229);
+insert into admin_advisor (advisorID, adminID)
+values (142, 77);
+insert into admin_advisor (advisorID, adminID)
+values (76, 214);
+insert into admin_advisor (advisorID, adminID)
+values (250, 65);
+insert into admin_advisor (advisorID, adminID)
+values (140, 91);
+insert into admin_advisor (advisorID, adminID)
+values (225, 134);
+insert into admin_advisor (advisorID, adminID)
+values (128, 112);
+insert into admin_advisor (advisorID, adminID)
+values (70, 56);
+insert into admin_advisor (advisorID, adminID)
+values (198, 195);
+insert into admin_advisor (advisorID, adminID)
+values (6, 48);
+insert into admin_advisor (advisorID, adminID)
+values (177, 159);
+insert into admin_advisor (advisorID, adminID)
+values (210, 78);
+insert into admin_advisor (advisorID, adminID)
+values (143, 3);
+insert into admin_advisor (advisorID, adminID)
+values (179, 129);
+insert into admin_advisor (advisorID, adminID)
+values (192, 240);
+insert into admin_advisor (advisorID, adminID)
+values (163, 31);
+insert into admin_advisor (advisorID, adminID)
+values (217, 102);
+insert into admin_advisor (advisorID, adminID)
+values (78, 15);
+insert into admin_advisor (advisorID, adminID)
+values (47, 31);
+insert into admin_advisor (advisorID, adminID)
+values (42, 98);
+insert into admin_advisor (advisorID, adminID)
+values (66, 187);
+insert into admin_advisor (advisorID, adminID)
+values (183, 22);
+insert into admin_advisor (advisorID, adminID)
+values (247, 77);
+insert into admin_advisor (advisorID, adminID)
+values (34, 174);
+insert into admin_advisor (advisorID, adminID)
+values (157, 85);
+insert into admin_advisor (advisorID, adminID)
+values (179, 8);
+insert into admin_advisor (advisorID, adminID)
+values (118, 194);
+insert into admin_advisor (advisorID, adminID)
+values (223, 206);
+insert into admin_advisor (advisorID, adminID)
+values (164, 77);
+insert into admin_advisor (advisorID, adminID)
+values (89, 212);
+insert into admin_advisor (advisorID, adminID)
+values (126, 13);
+insert into admin_advisor (advisorID, adminID)
+values (124, 37);
+insert into admin_advisor (advisorID, adminID)
+values (58, 207);
+insert into admin_advisor (advisorID, adminID)
+values (216, 201);
+insert into admin_advisor (advisorID, adminID)
+values (32, 100);
+insert into admin_advisor (advisorID, adminID)
+values (131, 204);
+insert into admin_advisor (advisorID, adminID)
+values (231, 196);
+insert into admin_advisor (advisorID, adminID)
+values (46, 62);
+insert into admin_advisor (advisorID, adminID)
+values (243, 60);
+insert into admin_advisor (advisorID, adminID)
+values (65, 138);
+insert into admin_advisor (advisorID, adminID)
+values (222, 152);
+insert into admin_advisor (advisorID, adminID)
+values (157, 206);
+insert into admin_advisor (advisorID, adminID)
+values (79, 85);
+insert into admin_advisor (advisorID, adminID)
+values (52, 57);
+insert into admin_advisor (advisorID, adminID)
+values (112, 151);
+insert into admin_advisor (advisorID, adminID)
+values (8, 23);
+insert into admin_advisor (advisorID, adminID)
+values (117, 165);
+insert into admin_advisor (advisorID, adminID)
+values (144, 240);
+insert into admin_advisor (advisorID, adminID)
+values (93, 135);
+insert into admin_advisor (advisorID, adminID)
+values (178, 17);
+insert into admin_advisor (advisorID, adminID)
+values (249, 13);
+insert into admin_advisor (advisorID, adminID)
+values (230, 33);
+insert into admin_advisor (advisorID, adminID)
+values (243, 129);
+insert into admin_advisor (advisorID, adminID)
+values (35, 136);
+insert into admin_advisor (advisorID, adminID)
+values (167, 205);
+insert into admin_advisor (advisorID, adminID)
+values (47, 144);
+insert into admin_advisor (advisorID, adminID)
+values (188, 104);
+insert into admin_advisor (advisorID, adminID)
+values (242, 62);
+insert into admin_advisor (advisorID, adminID)
+values (44, 33);
+insert into admin_advisor (advisorID, adminID)
+values (22, 150);
+insert into admin_advisor (advisorID, adminID)
+values (102, 113);
+insert into admin_advisor (advisorID, adminID)
+values (20, 97);
+insert into admin_advisor (advisorID, adminID)
+values (132, 103);
+insert into admin_advisor (advisorID, adminID)
+values (220, 176);
+insert into admin_advisor (advisorID, adminID)
+values (8, 238);
+insert into admin_advisor (advisorID, adminID)
+values (51, 123);
+insert into admin_advisor (advisorID, adminID)
+values (153, 67);
+insert into admin_advisor (advisorID, adminID)
+values (116, 92);
+insert into admin_advisor (advisorID, adminID)
+values (107, 115);
+insert into admin_advisor (advisorID, adminID)
+values (213, 92);
+insert into admin_advisor (advisorID, adminID)
+values (98, 247);
+insert into admin_advisor (advisorID, adminID)
+values (125, 209);
+insert into admin_advisor (advisorID, adminID)
+values (79, 68);
+insert into admin_advisor (advisorID, adminID)
+values (36, 71);
+insert into admin_advisor (advisorID, adminID)
+values (208, 231);
+insert into admin_advisor (advisorID, adminID)
+values (218, 172);
+insert into admin_advisor (advisorID, adminID)
+values (152, 120);
+insert into admin_advisor (advisorID, adminID)
+values (58, 16);
+insert into admin_advisor (advisorID, adminID)
+values (26, 161);
+insert into admin_advisor (advisorID, adminID)
+values (130, 138);
+insert into admin_advisor (advisorID, adminID)
+values (78, 169);
+insert into admin_advisor (advisorID, adminID)
+values (136, 206);
+insert into admin_advisor (advisorID, adminID)
+values (95, 159);
+insert into admin_advisor (advisorID, adminID)
+values (139, 248);
+insert into admin_advisor (advisorID, adminID)
+values (28, 209);
+insert into admin_advisor (advisorID, adminID)
+values (81, 129);
+insert into admin_advisor (advisorID, adminID)
+values (125, 21);
+insert into admin_advisor (advisorID, adminID)
+values (29, 142);
+insert into admin_advisor (advisorID, adminID)
+values (183, 213);
+insert into admin_advisor (advisorID, adminID)
+values (230, 104);
+insert into admin_advisor (advisorID, adminID)
+values (150, 113);
+insert into admin_advisor (advisorID, adminID)
+values (184, 5);
+insert into admin_advisor (advisorID, adminID)
+values (21, 22);
+insert into admin_advisor (advisorID, adminID)
+values (100, 12);
+insert into admin_advisor (advisorID, adminID)
+values (82, 106);
+insert into admin_advisor (advisorID, adminID)
+values (84, 73);
+insert into admin_advisor (advisorID, adminID)
+values (121, 172);
+insert into admin_advisor (advisorID, adminID)
+values (69, 231);
+insert into admin_advisor (advisorID, adminID)
+values (94, 46);
+insert into admin_advisor (advisorID, adminID)
+values (169, 132);
+insert into admin_advisor (advisorID, adminID)
+values (53, 141);
+insert into admin_advisor (advisorID, adminID)
+values (99, 30);
+insert into admin_advisor (advisorID, adminID)
+values (69, 195);
+insert into admin_advisor (advisorID, adminID)
+values (141, 116);
+insert into admin_advisor (advisorID, adminID)
+values (3, 245);
+insert into admin_advisor (advisorID, adminID)
+values (177, 53);
+insert into admin_advisor (advisorID, adminID)
+values (6, 139);
+insert into admin_advisor (advisorID, adminID)
+values (132, 211);
+insert into admin_advisor (advisorID, adminID)
+values (12, 3);
+insert into admin_advisor (advisorID, adminID)
+values (104, 69);
+insert into admin_advisor (advisorID, adminID)
+values (161, 63);
+insert into admin_advisor (advisorID, adminID)
+values (182, 206);
+insert into admin_advisor (advisorID, adminID)
+values (164, 175);
+insert into admin_advisor (advisorID, adminID)
+values (27, 172);
+insert into admin_advisor (advisorID, adminID)
+values (245, 189);
+insert into admin_advisor (advisorID, adminID)
+values (118, 219);
+insert into admin_advisor (advisorID, adminID)
+values (133, 133);
+insert into admin_advisor (advisorID, adminID)
+values (95, 175);
+insert into admin_advisor (advisorID, adminID)
+values (7, 32);
+insert into admin_advisor (advisorID, adminID)
+values (202, 110);
+insert into admin_advisor (advisorID, adminID)
+values (234, 55);
+insert into admin_advisor (advisorID, adminID)
+values (40, 179);
+insert into admin_advisor (advisorID, adminID)
+values (220, 183);
+insert into admin_advisor (advisorID, adminID)
+values (79, 159);
+insert into admin_advisor (advisorID, adminID)
+values (107, 136);
+insert into admin_advisor (advisorID, adminID)
+values (9, 136);
+insert into admin_advisor (advisorID, adminID)
+values (182, 195);
+insert into admin_advisor (advisorID, adminID)
+values (249, 178);
+insert into admin_advisor (advisorID, adminID)
+values (249, 223);
+insert into admin_advisor (advisorID, adminID)
+values (206, 59);
+insert into admin_advisor (advisorID, adminID)
+values (65, 108);
+insert into admin_advisor (advisorID, adminID)
+values (74, 12);
+insert into admin_advisor (advisorID, adminID)
+values (99, 157);
+insert into admin_advisor (advisorID, adminID)
+values (115, 249);
+insert into admin_advisor (advisorID, adminID)
+values (85, 55);
+insert into admin_advisor (advisorID, adminID)
+values (237, 248);
+insert into admin_advisor (advisorID, adminID)
+values (80, 67);
+insert into admin_advisor (advisorID, adminID)
+values (25, 208);
+insert into admin_advisor (advisorID, adminID)
+values (249, 32);
+insert into admin_advisor (advisorID, adminID)
+values (161, 57);
+insert into admin_advisor (advisorID, adminID)
+values (126, 234);
+insert into admin_advisor (advisorID, adminID)
+values (112, 97);
+insert into admin_advisor (advisorID, adminID)
+values (50, 195);
+insert into admin_advisor (advisorID, adminID)
+values (140, 157);
+insert into admin_advisor (advisorID, adminID)
+values (20, 103);
+insert into admin_advisor (advisorID, adminID)
+values (161, 118);
+insert into admin_advisor (advisorID, adminID)
+values (193, 116);
+insert into admin_advisor (advisorID, adminID)
+values (168, 215);
+insert into admin_advisor (advisorID, adminID)
+values (174, 175);
+insert into admin_advisor (advisorID, adminID)
+values (234, 79);
+insert into admin_advisor (advisorID, adminID)
+values (181, 219);
+insert into admin_advisor (advisorID, adminID)
+values (3, 151);
+insert into admin_advisor (advisorID, adminID)
+values (221, 222);
+insert into admin_advisor (advisorID, adminID)
+values (108, 116);
+insert into admin_advisor (advisorID, adminID)
+values (100, 24);
+insert into admin_advisor (advisorID, adminID)
+values (47, 110);
+insert into admin_advisor (advisorID, adminID)
+values (239, 88);
+insert into admin_advisor (advisorID, adminID)
+values (20, 244);
+insert into admin_advisor (advisorID, adminID)
+values (207, 42);
+insert into admin_advisor (advisorID, adminID)
+values (179, 244);
+insert into admin_advisor (advisorID, adminID)
+values (238, 189);
+insert into admin_advisor (advisorID, adminID)
+values (124, 139);
+insert into admin_advisor (advisorID, adminID)
+values (99, 181);
+insert into admin_advisor (advisorID, adminID)
+values (208, 152);
+insert into admin_advisor (advisorID, adminID)
+values (200, 142);
+insert into admin_advisor (advisorID, adminID)
+values (99, 12);
+insert into admin_advisor (advisorID, adminID)
+values (221, 141);
+insert into admin_advisor (advisorID, adminID)
+values (106, 146);
+insert into admin_advisor (advisorID, adminID)
+values (95, 200);
+insert into admin_advisor (advisorID, adminID)
+values (234, 97);
+insert into admin_advisor (advisorID, adminID)
+values (15, 190);
+insert into admin_advisor (advisorID, adminID)
+values (124, 81);
+insert into admin_advisor (advisorID, adminID)
+values (44, 92);
+insert into admin_advisor (advisorID, adminID)
+values (146, 26);
+insert into admin_advisor (advisorID, adminID)
+values (120, 177);
+insert into admin_advisor (advisorID, adminID)
+values (13, 94);
+insert into admin_advisor (advisorID, adminID)
+values (151, 79);
+insert into admin_advisor (advisorID, adminID)
+values (157, 41);
+insert into admin_advisor (advisorID, adminID)
+values (180, 179);
+insert into admin_advisor (advisorID, adminID)
+values (225, 190);
+insert into admin_advisor (advisorID, adminID)
+values (7, 17);
+insert into admin_advisor (advisorID, adminID)
+values (176, 235);
+insert into admin_advisor (advisorID, adminID)
+values (171, 161);
+insert into admin_advisor (advisorID, adminID)
+values (165, 225);
+insert into admin_advisor (advisorID, adminID)
+values (159, 76);
+insert into admin_advisor (advisorID, adminID)
+values (217, 28);
+insert into admin_advisor (advisorID, adminID)
+values (182, 175);
+insert into admin_advisor (advisorID, adminID)
+values (41, 62);
+insert into admin_advisor (advisorID, adminID)
+values (26, 148);
+insert into admin_advisor (advisorID, adminID)
+values (125, 102);
+insert into admin_advisor (advisorID, adminID)
+values (165, 73);
+insert into admin_advisor (advisorID, adminID)
+values (240, 23);
+insert into admin_advisor (advisorID, adminID)
+values (53, 144);
+insert into admin_advisor (advisorID, adminID)
+values (224, 214);
+insert into admin_advisor (advisorID, adminID)
+values (48, 124);
+insert into admin_advisor (advisorID, adminID)
+values (240, 4);
+insert into admin_advisor (advisorID, adminID)
+values (114, 54);
+insert into admin_advisor (advisorID, adminID)
+values (106, 113);
+insert into admin_advisor (advisorID, adminID)
+values (132, 246);
+insert into admin_advisor (advisorID, adminID)
+values (78, 45);
+insert into admin_advisor (advisorID, adminID)
+values (145, 22);
+insert into admin_advisor (advisorID, adminID)
+values (139, 73);
+insert into admin_advisor (advisorID, adminID)
+values (196, 108);
+insert into admin_advisor (advisorID, adminID)
+values (226, 219);
+insert into admin_advisor (advisorID, adminID)
+values (119, 114);
+insert into admin_advisor (advisorID, adminID)
+values (99, 219);
+insert into admin_advisor (advisorID, adminID)
+values (6, 170);
+insert into admin_advisor (advisorID, adminID)
+values (126, 184);
+insert into admin_advisor (advisorID, adminID)
+values (212, 97);
+insert into admin_advisor (advisorID, adminID)
+values (233, 129);
+insert into admin_advisor (advisorID, adminID)
+values (179, 14);
+insert into admin_advisor (advisorID, adminID)
+values (114, 196);
+insert into admin_advisor (advisorID, adminID)
+values (141, 94);
+insert into admin_advisor (advisorID, adminID)
+values (65, 237);
+insert into admin_advisor (advisorID, adminID)
+values (121, 144);
+insert into admin_advisor (advisorID, adminID)
+values (88, 81);
+insert into admin_advisor (advisorID, adminID)
+values (44, 221);
+insert into admin_advisor (advisorID, adminID)
+values (211, 126);
+insert into admin_advisor (advisorID, adminID)
+values (171, 152);
+insert into admin_advisor (advisorID, adminID)
+values (65, 204);
+insert into admin_advisor (advisorID, adminID)
+values (232, 38);
+insert into admin_advisor (advisorID, adminID)
+values (190, 126);
+insert into admin_advisor (advisorID, adminID)
+values (150, 191);
+insert into admin_advisor (advisorID, adminID)
+values (122, 94);
+insert into admin_advisor (advisorID, adminID)
+values (243, 3);
+insert into admin_advisor (advisorID, adminID)
+values (163, 115);
+insert into admin_advisor (advisorID, adminID)
+values (207, 141);
+insert into admin_advisor (advisorID, adminID)
+values (216, 246);
+insert into admin_advisor (advisorID, adminID)
+values (240, 83);
+insert into admin_advisor (advisorID, adminID)
+values (126, 137);
+insert into admin_advisor (advisorID, adminID)
+values (186, 122);
+insert into admin_advisor (advisorID, adminID)
+values (118, 181);
+insert into admin_advisor (advisorID, adminID)
+values (47, 111);
+insert into admin_advisor (advisorID, adminID)
+values (78, 146);
+insert into admin_advisor (advisorID, adminID)
+values (87, 66);
+insert into admin_advisor (advisorID, adminID)
+values (189, 118);
+insert into admin_advisor (advisorID, adminID)
+values (137, 206);
+insert into admin_advisor (advisorID, adminID)
+values (94, 139);
+insert into admin_advisor (advisorID, adminID)
+values (176, 123);
+insert into admin_advisor (advisorID, adminID)
+values (234, 12);
+insert into admin_advisor (advisorID, adminID)
+values (156, 189);
+insert into admin_advisor (advisorID, adminID)
+values (123, 154);
+insert into admin_advisor (advisorID, adminID)
+values (113, 92);
+insert into admin_advisor (advisorID, adminID)
+values (89, 207);
+insert into admin_advisor (advisorID, adminID)
+values (206, 124);
+insert into admin_advisor (advisorID, adminID)
+values (223, 179);
+insert into admin_advisor (advisorID, adminID)
+values (129, 194);
+insert into admin_advisor (advisorID, adminID)
+values (194, 35);
+insert into admin_advisor (advisorID, adminID)
+values (34, 60);
+insert into admin_advisor (advisorID, adminID)
+values (16, 107);
+insert into admin_advisor (advisorID, adminID)
+values (157, 106);
+insert into admin_advisor (advisorID, adminID)
+values (14, 64);
+insert into admin_advisor (advisorID, adminID)
+values (31, 121);
+insert into admin_advisor (advisorID, adminID)
+values (158, 189);
+insert into admin_advisor (advisorID, adminID)
+values (26, 3);
+insert into admin_advisor (advisorID, adminID)
+values (114, 121);
+insert into admin_advisor (advisorID, adminID)
+values (22, 154);
+insert into admin_advisor (advisorID, adminID)
+values (240, 140);
+insert into admin_advisor (advisorID, adminID)
+values (112, 190);
+insert into admin_advisor (advisorID, adminID)
+values (35, 144);
+insert into admin_advisor (advisorID, adminID)
+values (31, 149);
+insert into admin_advisor (advisorID, adminID)
+values (41, 5);
+insert into admin_advisor (advisorID, adminID)
+values (25, 32);
+insert into admin_advisor (advisorID, adminID)
+values (245, 206);
+insert into admin_advisor (advisorID, adminID)
+values (19, 107);
+insert into admin_advisor (advisorID, adminID)
+values (13, 152);
+insert into admin_advisor (advisorID, adminID)
+values (62, 162);
+insert into admin_advisor (advisorID, adminID)
+values (137, 222);
+insert into admin_advisor (advisorID, adminID)
+values (62, 174);
+insert into admin_advisor (advisorID, adminID)
+values (206, 10);
+insert into admin_advisor (advisorID, adminID)
+values (248, 71);
+insert into admin_advisor (advisorID, adminID)
+values (14, 150);
+insert into admin_advisor (advisorID, adminID)
+values (76, 97);
+insert into admin_advisor (advisorID, adminID)
+values (243, 115);
+insert into admin_advisor (advisorID, adminID)
+values (183, 98);
+insert into admin_advisor (advisorID, adminID)
+values (23, 100);
+insert into admin_advisor (advisorID, adminID)
+values (100, 226);
+insert into admin_advisor (advisorID, adminID)
+values (232, 225);
+insert into admin_advisor (advisorID, adminID)
+values (183, 82);
+insert into admin_advisor (advisorID, adminID)
+values (224, 148);
+insert into admin_advisor (advisorID, adminID)
+values (25, 40);
+insert into admin_advisor (advisorID, adminID)
+values (218, 101);
+insert into admin_advisor (advisorID, adminID)
+values (57, 146);
+insert into admin_advisor (advisorID, adminID)
+values (228, 147);
+insert into admin_advisor (advisorID, adminID)
+values (217, 57);
+insert into admin_advisor (advisorID, adminID)
+values (196, 69);
+insert into admin_advisor (advisorID, adminID)
+values (156, 59);
+insert into admin_advisor (advisorID, adminID)
+values (2, 187);
+insert into admin_advisor (advisorID, adminID)
+values (110, 166);
+insert into admin_advisor (advisorID, adminID)
+values (52, 4);
+insert into admin_advisor (advisorID, adminID)
+values (239, 33);
+insert into admin_advisor (advisorID, adminID)
+values (63, 109);
+insert into admin_advisor (advisorID, adminID)
+values (201, 220);
+insert into admin_advisor (advisorID, adminID)
+values (177, 162);
+insert into admin_advisor (advisorID, adminID)
+values (138, 128);
+insert into admin_advisor (advisorID, adminID)
+values (104, 19);
+insert into admin_advisor (advisorID, adminID)
+values (124, 67);
+insert into admin_advisor (advisorID, adminID)
+values (61, 105);
+insert into admin_advisor (advisorID, adminID)
+values (209, 207);
+insert into admin_advisor (advisorID, adminID)
+values (43, 183);
+insert into admin_advisor (advisorID, adminID)
+values (179, 63);
+insert into admin_advisor (advisorID, adminID)
+values (133, 27);
+insert into admin_advisor (advisorID, adminID)
+values (204, 131);
+insert into admin_advisor (advisorID, adminID)
+values (152, 91);
+insert into admin_advisor (advisorID, adminID)
+values (46, 109);
+insert into admin_advisor (advisorID, adminID)
+values (48, 143);
+insert into admin_advisor (advisorID, adminID)
+values (202, 35);
+insert into admin_advisor (advisorID, adminID)
+values (91, 249);
+insert into admin_advisor (advisorID, adminID)
+values (242, 141);
+insert into admin_advisor (advisorID, adminID)
+values (44, 43);
+insert into admin_advisor (advisorID, adminID)
+values (148, 20);
+insert into admin_advisor (advisorID, adminID)
+values (34, 144);
+insert into admin_advisor (advisorID, adminID)
+values (138, 137);
+insert into admin_advisor (advisorID, adminID)
+values (47, 25);
+insert into admin_advisor (advisorID, adminID)
+values (225, 205);
+insert into admin_advisor (advisorID, adminID)
+values (90, 157);
+insert into admin_advisor (advisorID, adminID)
+values (16, 245);
+insert into admin_advisor (advisorID, adminID)
+values (241, 179);
+insert into admin_advisor (advisorID, adminID)
+values (213, 200);
+insert into admin_advisor (advisorID, adminID)
+values (92, 170);
+insert into admin_advisor (advisorID, adminID)
+values (14, 208);
+insert into admin_advisor (advisorID, adminID)
+values (157, 203);
+insert into admin_advisor (advisorID, adminID)
+values (191, 231);
+insert into admin_advisor (advisorID, adminID)
+values (111, 96);
+insert into admin_advisor (advisorID, adminID)
+values (136, 69);
+insert into admin_advisor (advisorID, adminID)
+values (229, 192);
+insert into admin_advisor (advisorID, adminID)
+values (73, 241);
+insert into admin_advisor (advisorID, adminID)
+values (155, 198);
+insert into admin_advisor (advisorID, adminID)
+values (33, 71);
+insert into admin_advisor (advisorID, adminID)
+values (225, 122);
+insert into admin_advisor (advisorID, adminID)
+values (164, 128);
+insert into admin_advisor (advisorID, adminID)
+values (100, 39);
+insert into admin_advisor (advisorID, adminID)
+values (186, 77);
+insert into admin_advisor (advisorID, adminID)
+values (223, 185);
+insert into admin_advisor (advisorID, adminID)
+values (197, 20);
+insert into admin_advisor (advisorID, adminID)
+values (159, 77);
+insert into admin_advisor (advisorID, adminID)
+values (58, 226);
+insert into admin_advisor (advisorID, adminID)
+values (28, 52);
+insert into admin_advisor (advisorID, adminID)
+values (70, 119);
+insert into admin_advisor (advisorID, adminID)
+values (245, 40);
+insert into admin_advisor (advisorID, adminID)
+values (183, 45);
+insert into admin_advisor (advisorID, adminID)
+values (137, 8);
+insert into admin_advisor (advisorID, adminID)
+values (170, 100);
+insert into admin_advisor (advisorID, adminID)
+values (139, 137);
+insert into admin_advisor (advisorID, adminID)
+values (38, 102);
+insert into admin_advisor (advisorID, adminID)
+values (164, 19);
+insert into admin_advisor (advisorID, adminID)
+values (219, 247);
+insert into admin_advisor (advisorID, adminID)
+values (60, 119);
+insert into admin_advisor (advisorID, adminID)
+values (224, 239);
+insert into admin_advisor (advisorID, adminID)
+values (215, 70);
+insert into admin_advisor (advisorID, adminID)
+values (134, 224);
+insert into admin_advisor (advisorID, adminID)
+values (243, 167);
+insert into admin_advisor (advisorID, adminID)
+values (216, 180);
+insert into admin_advisor (advisorID, adminID)
+values (198, 93);
+insert into admin_advisor (advisorID, adminID)
+values (229, 190);
+insert into admin_advisor (advisorID, adminID)
+values (249, 200);
+insert into admin_advisor (advisorID, adminID)
+values (134, 153);
+insert into admin_advisor (advisorID, adminID)
+values (46, 55);
+insert into admin_advisor (advisorID, adminID)
+values (198, 156);
+insert into admin_advisor (advisorID, adminID)
+values (100, 38);
+insert into admin_advisor (advisorID, adminID)
+values (136, 84);
+insert into admin_advisor (advisorID, adminID)
+values (131, 55);
+insert into admin_advisor (advisorID, adminID)
+values (240, 135);
+insert into admin_advisor (advisorID, adminID)
+values (222, 243);
+insert into admin_advisor (advisorID, adminID)
+values (200, 38);
+insert into admin_advisor (advisorID, adminID)
+values (166, 147);
+insert into admin_advisor (advisorID, adminID)
+values (246, 149);
+insert into admin_advisor (advisorID, adminID)
+values (152, 4);
+insert into admin_advisor (advisorID, adminID)
+values (92, 176);
+insert into admin_advisor (advisorID, adminID)
+values (178, 172);
+insert into admin_advisor (advisorID, adminID)
+values (58, 27);
+insert into admin_advisor (advisorID, adminID)
+values (76, 203);
+insert into admin_advisor (advisorID, adminID)
+values (59, 154);
+insert into admin_advisor (advisorID, adminID)
+values (118, 233);
+insert into admin_advisor (advisorID, adminID)
+values (157, 199);
+insert into admin_advisor (advisorID, adminID)
+values (151, 142);
+insert into admin_advisor (advisorID, adminID)
+values (227, 176);
+insert into admin_advisor (advisorID, adminID)
+values (180, 191);
+insert into admin_advisor (advisorID, adminID)
+values (7, 8);
+insert into admin_advisor (advisorID, adminID)
+values (9, 69);
+insert into admin_advisor (advisorID, adminID)
+values (236, 242);
+insert into admin_advisor (advisorID, adminID)
+values (7, 43);
+insert into admin_advisor (advisorID, adminID)
+values (186, 40);
+insert into admin_advisor (advisorID, adminID)
+values (209, 45);
+insert into admin_advisor (advisorID, adminID)
+values (76, 131);
+insert into admin_advisor (advisorID, adminID)
+values (172, 244);
+insert into admin_advisor (advisorID, adminID)
+values (4, 136);
+insert into admin_advisor (advisorID, adminID)
+values (183, 53);
+insert into admin_advisor (advisorID, adminID)
+values (66, 53);
+insert into admin_advisor (advisorID, adminID)
+values (58, 13);
+insert into admin_advisor (advisorID, adminID)
+values (25, 94);
+insert into admin_advisor (advisorID, adminID)
+values (182, 183);
+insert into admin_advisor (advisorID, adminID)
+values (167, 122);
+insert into admin_advisor (advisorID, adminID)
+values (116, 118);
+insert into admin_advisor (advisorID, adminID)
+values (82, 194);
+insert into admin_advisor (advisorID, adminID)
+values (185, 13);
+insert into admin_advisor (advisorID, adminID)
+values (132, 43);
+insert into admin_advisor (advisorID, adminID)
+values (155, 147);
+insert into admin_advisor (advisorID, adminID)
+values (142, 57);
+insert into admin_advisor (advisorID, adminID)
+values (219, 6);
+insert into admin_advisor (advisorID, adminID)
+values (31, 137);
+insert into admin_advisor (advisorID, adminID)
+values (29, 103);
+insert into admin_advisor (advisorID, adminID)
+values (248, 238);
+insert into admin_advisor (advisorID, adminID)
+values (65, 132);
+insert into admin_advisor (advisorID, adminID)
+values (46, 231);
+insert into admin_advisor (advisorID, adminID)
+values (113, 129);
+insert into admin_advisor (advisorID, adminID)
+values (222, 190);
+insert into admin_advisor (advisorID, adminID)
+values (96, 153);
+insert into admin_advisor (advisorID, adminID)
+values (133, 212);
+insert into admin_advisor (advisorID, adminID)
+values (50, 74);
+insert into admin_advisor (advisorID, adminID)
+values (55, 5);
+insert into admin_advisor (advisorID, adminID)
+values (97, 93);
+insert into admin_advisor (advisorID, adminID)
+values (173, 83);
+insert into admin_advisor (advisorID, adminID)
+values (62, 46);
+insert into admin_advisor (advisorID, adminID)
+values (177, 94);
+insert into admin_advisor (advisorID, adminID)
+values (132, 64);
+insert into admin_advisor (advisorID, adminID)
+values (191, 66);
+insert into admin_advisor (advisorID, adminID)
+values (224, 223);
+insert into admin_advisor (advisorID, adminID)
+values (10, 63);
+insert into admin_advisor (advisorID, adminID)
+values (239, 116);
+insert into admin_advisor (advisorID, adminID)
+values (86, 47);
+insert into admin_advisor (advisorID, adminID)
+values (180, 148);
+insert into admin_advisor (advisorID, adminID)
+values (74, 98);
+insert into admin_advisor (advisorID, adminID)
+values (178, 127);
+insert into admin_advisor (advisorID, adminID)
+values (202, 235);
+insert into admin_advisor (advisorID, adminID)
+values (227, 100);
+insert into admin_advisor (advisorID, adminID)
+values (24, 6);
+insert into admin_advisor (advisorID, adminID)
+values (107, 77);
+insert into admin_advisor (advisorID, adminID)
+values (127, 24);
+insert into admin_advisor (advisorID, adminID)
+values (198, 119);
+insert into admin_advisor (advisorID, adminID)
+values (244, 76);
+insert into admin_advisor (advisorID, adminID)
+values (219, 116);
+insert into admin_advisor (advisorID, adminID)
+values (156, 3);
+insert into admin_advisor (advisorID, adminID)
+values (50, 223);
+insert into admin_advisor (advisorID, adminID)
+values (59, 139);
+insert into admin_advisor (advisorID, adminID)
+values (144, 92);
+insert into admin_advisor (advisorID, adminID)
+values (215, 66);
+insert into admin_advisor (advisorID, adminID)
+values (218, 250);
+insert into admin_advisor (advisorID, adminID)
+values (182, 208);
+insert into admin_advisor (advisorID, adminID)
+values (174, 186);
+insert into admin_advisor (advisorID, adminID)
+values (90, 110);
+insert into admin_advisor (advisorID, adminID)
+values (138, 207);
+insert into admin_advisor (advisorID, adminID)
+values (96, 162);
+insert into admin_advisor (advisorID, adminID)
+values (243, 98);
+insert into admin_advisor (advisorID, adminID)
+values (103, 111);
+insert into admin_advisor (advisorID, adminID)
+values (55, 164);
+insert into admin_advisor (advisorID, adminID)
+values (226, 95);
+insert into admin_advisor (advisorID, adminID)
+values (231, 63);
+insert into admin_advisor (advisorID, adminID)
+values (232, 3);
+insert into admin_advisor (advisorID, adminID)
+values (103, 20);
+insert into admin_advisor (advisorID, adminID)
+values (187, 198);
 
 
 -- client sample data generated with Mockaroo
@@ -971,246 +2107,966 @@ values ('790-87-8203', '418-715-3228', 'lcattermull0@berkeley.edu', '1964-10-03'
         'Nigeria', null, 'Douglass', 'Freeman', 'Silber', 3),
        ('672-00-5561', '516-319-8776', 'ghowison9@umich.edu', '1966-05-14', '761 Bartillon Avenue', 'Kamuli', null,
         'Uganda', null, 'Donaugh', 'Gunther', 'Howison', 5);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('365-883-7556', '412-317-9144', 'laltofts0@engadget.com', '1973-06-16 03:13:57', '14776 Park Meadow Junction', 'Borik', null, 'Indonesia', null, 'Olenka', 'Lola', 'Altofts', 184);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('668-620-6426', '839-980-8560', 'aarp1@cbc.ca', '1985-02-13 15:50:31', '5 6th Crossing', 'Valašská Polanka', null, 'Czech Republic', '756 11', 'Adora', 'Ashla', 'Arp', 246);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('038-257-3939', '636-395-2958', 'bizat2@hostgator.com', '1981-03-03 02:10:03', '4191 Armistice Plaza', 'Ulichnoye', null, 'Ukraine', null, 'Adelheid', 'Burr', 'Izat', 78);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('223-883-2790', '353-663-6046', 'phamby3@wikia.com', '1996-12-25 15:10:05', '3400 Warrior Avenue', 'Dogondoutchi', null, 'Niger', null, 'Riannon', 'Pepe', 'Hamby', 249);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('950-181-8453', '990-463-0406', 'ledelheit4@360.cn', '1976-08-09 14:37:00', '49 Eastlawn Crossing', 'Gorshechnoye', null, 'Russia', '307425', 'Priscella', 'Lonee', 'Edelheit', 174);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('084-374-6814', '647-713-3117', 'dgemmill5@pcworld.com', '1969-01-19 15:50:57', '12 Hintze Terrace', 'Gyōda', null, 'Japan', '369-0137', 'Alexi', 'Delainey', 'Gemmill', 161);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('546-167-1457', '819-140-7273', 'qcapeloff6@yale.edu', '1996-11-21 00:48:39', '93 Nancy Parkway', 'Souziqiu', null, 'China', null, 'Karlik', 'Quintus', 'Capeloff', 175);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('984-638-5942', '370-354-0933', 'mdore7@jigsy.com', '1989-08-23 06:19:40', '2 Corry Alley', 'Xintai', null, 'China', null, 'Mersey', 'Margeaux', 'Dore', 103);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('824-403-9963', '346-381-6565', 'dcleghorn8@macromedia.com', '1980-06-23 08:57:00', '3 Schurz Circle', 'Anka', null, 'Nigeria', null, 'Conny', 'Dorita', 'Cleghorn', 109);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('272-909-4351', '170-303-2485', 'gfrowd9@ted.com', '1961-03-03 18:11:44', '5728 Farmco Alley', 'Boundiali', null, 'Ivory Coast', null, 'Lane', 'Grange', 'Frowd', 148);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('113-676-4212', '623-205-7115', 'fcastillaa@cargocollective.com', '1969-01-26 05:11:27', '551 Golf Way', 'Samut Songkhram', null, 'Thailand', '75110', 'Natalee', 'Filmer', 'Castilla', 250);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('460-068-6156', '812-791-9147', 'msirettb@google.com.au', '1994-05-24 03:36:44', '21 Charing Cross Avenue', 'Kurbnesh', null, 'Albania', null, 'Giorgia', 'Marketa', 'Sirett', 231);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('010-729-7620', '400-380-0429', 'ndotc@com.com', '1998-02-10 14:51:10', '2 Bluejay Avenue', 'Sanbao', null, 'China', null, 'Nerti', 'Nat', 'Dot', 168);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('560-350-4928', '458-534-6090', 'bpllud@usatoday.com', '1988-01-04 14:45:46', '37983 Northport Parkway', 'Kotabumi', null, 'Indonesia', null, 'Sapphira', 'Barby', 'Pllu', 104);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('642-948-5203', '139-888-3690', 'qphilcotte@elpais.com', '1988-09-30 12:57:40', '61058 Corben Street', 'Drawsko Pomorskie', null, 'Poland', '78-500', 'Helsa', 'Quintus', 'Philcott', 229);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('993-757-9944', '572-168-9436', 'nmilnesf@marriott.com', '1974-05-05 23:42:09', '31 Crowley Circle', 'Klenica', null, 'Poland', '66-130', 'Blondie', 'Nicolais', 'Milnes', 88);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('335-932-2625', '238-318-1597', 'acrockeng@linkedin.com', '1961-08-30 00:21:29', '0 Oak Hill', 'Bauta', null, 'Cuba', null, 'Grannie', 'Artemus', 'Crocken', 140);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('714-157-6257', '232-317-2424', 'dseiterh@wp.com', '1979-07-26 00:02:32', '9404 Maple Wood Avenue', 'Jincang', null, 'China', null, 'Ellis', 'Dayle', 'Seiter', 214);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('089-808-7132', '478-654-3357', 'jabercrombiei@go.com', '1968-06-16 06:33:03', '84 Coleman Alley', 'Concepción', null, 'Paraguay', null, 'Dominica', 'Jacquette', 'Abercrombie', 180);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('646-417-5866', '711-637-1910', 'lbowermanj@imgur.com', '1995-05-06 22:57:32', '2 Fairview Parkway', 'Yangxi', null, 'China', null, 'Nikola', 'Lyda', 'Bowerman', 38);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('453-269-1012', '841-398-3364', 'mcasellik@ebay.com', '1950-08-30 11:53:02', '9 Stephen Trail', 'Lavadorinhos', 'Porto', 'Portugal', '4415-708', 'Ogdan', 'Malchy', 'Caselli', 187);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('656-031-0869', '188-815-7984', 'ebattesonl@state.gov', '1946-07-20 07:13:46', '9 Maple Center', 'Airmata', null, 'Indonesia', null, 'Tiebold', 'Emmalynne', 'Batteson', 122);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('616-474-9000', '423-799-0751', 'schuem@ox.ac.uk', '1977-12-14 15:44:19', '924 Johnson Parkway', 'Granada', 'Andalucia', 'Spain', '18010', 'Janella', 'Sophia', 'Chue', 130);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('585-088-1247', '703-330-3474', 'bdiclaudion@surveymonkey.com', '1989-04-13 02:59:07', '42 Monument Court', 'Labney', null, 'Philippines', '2437', 'Casey', 'Brandon', 'Di Claudio', 235);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('510-349-8606', '934-371-7556', 'nbolando@columbia.edu', '1982-07-11 17:55:33', '810 Sunnyside Terrace', 'Girang', null, 'Indonesia', null, 'Dasi', 'Nathalia', 'Boland', 97);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('919-436-9875', '341-499-6281', 'proddellp@nifty.com', '1990-07-21 13:41:39', '507 Scoville Hill', 'Gardawice', null, 'Poland', '44-246', 'Mill', 'Pat', 'Roddell', 210);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('929-044-6882', '906-581-7855', 'jhextq@whitehouse.gov', '1946-08-01 12:26:15', '9 Crest Line Lane', 'Ivanivka', null, 'Ukraine', null, 'Juanita', 'Janey', 'Hext', 68);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('748-832-0293', '837-185-4446', 'dingredar@ustream.tv', '1994-10-23 03:40:06', '481 Golf Park', 'Tangalla', null, 'Sri Lanka', '82200', 'Park', 'Darcey', 'Ingreda', 102);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('183-001-5509', '528-709-2076', 'churchs@sourceforge.net', '1987-10-13 03:24:38', '9 Artisan Parkway', 'Kuliyapitiya', null, 'Sri Lanka', '60200', 'Ofelia', 'Cloe', 'Hurch', 229);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('850-771-5725', '797-997-1419', 'lcoket@dailymotion.com', '1997-04-29 21:37:52', '066 Anzinger Street', 'Biting', null, 'Indonesia', null, 'Elizabeth', 'Louie', 'Coke', 195);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('848-457-9992', '273-171-1308', 'ttroddu@usgs.gov', '1997-03-31 00:26:51', '8282 Crowley Court', 'Mianhu', null, 'China', null, 'Ruby', 'Thorstein', 'Trodd', 137);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('161-604-0977', '896-757-2488', 'omurrigansv@symantec.com', '1975-05-01 03:32:27', '0221 Kinsman Road', 'Mambi', null, 'Indonesia', null, 'Krysta', 'Opalina', 'Murrigans', 108);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('510-768-2840', '569-214-3343', 'adillwayw@soup.io', '1989-03-23 15:50:29', '6 Monument Parkway', 'Mahikeng', null, 'South Africa', '2777', 'Avram', 'Alexina', 'Dillway', 232);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('952-046-1575', '707-780-7223', 'ladamox@yellowpages.com', '1992-07-19 04:50:52', '73 Red Cloud Trail', 'Balice', null, 'Poland', '32-083', 'Cathe', 'Lorry', 'Adamo', 56);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('935-061-3452', '780-523-1939', 'jpeersy@weibo.com', '1977-02-09 18:09:20', '22270 Muir Point', 'Piñas', null, 'Ecuador', null, 'Abbey', 'Jo-ann', 'Peers', 21);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('917-208-9851', '761-766-0683', 'lcreavinz@youtube.com', '1967-05-30 07:56:48', '0061 Sunfield Terrace', 'Jinhe', null, 'China', null, 'Marya', 'Lynde', 'Creavin', 110);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('511-263-8458', '812-816-0771', 'hdyche10@angelfire.com', '1965-08-02 11:16:23', '58 Londonderry Trail', 'Klagenfurt am Wörthersee', 'Kaernten', 'Austria', '9073', 'Franky', 'Hendrika', 'Dyche', 78);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('289-147-9111', '859-663-9633', 'bbeeckx11@ibm.com', '1953-12-16 21:41:05', '00988 Del Mar Way', 'Solec-Zdrój', null, 'Poland', '28-131', 'Dun', 'Brew', 'Beeckx', 217);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('224-432-4640', '260-394-9280', 'kdana12@slate.com', '1966-12-13 04:26:23', '572 Onsgard Place', 'Fort Wayne', 'Indiana', 'United States', '46857', 'Horatius', 'Kelsi', 'Dana', 173);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('573-141-8452', '788-993-5303', 'mbreinl13@fastcompany.com', '1947-05-17 15:30:26', '2762 Monument Road', 'Marabá', null, 'Brazil', '68500-000', 'Amalea', 'Merill', 'Breinl', 232);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('526-765-9008', '833-815-6908', 'spedden14@dailymotion.com', '1979-04-07 18:09:09', '995 Michigan Crossing', 'Chengxi', null, 'China', null, 'Hamel', 'Simone', 'Pedden', 163);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('610-931-8204', '650-116-4104', 'straske15@who.int', '1954-08-22 23:56:36', '5503 Cambridge Junction', 'Jayune', null, 'Peru', null, 'Roland', 'Sonny', 'Traske', 132);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('069-119-6769', '921-236-5041', 'dliven16@meetup.com', '1982-04-27 06:28:20', '081 Grim Park', 'Jiaoqi', null, 'China', null, 'Catlee', 'Della', 'Liven', 108);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('636-568-9955', '886-892-4632', 'smewis17@sciencedaily.com', '1970-06-24 05:11:29', '8691 Ridgeway Alley', 'Sirib', null, 'Philippines', '6113', 'Garvin', 'Sybilla', 'Mewis', 111);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('994-876-9496', '816-958-0595', 'mkrop18@oracle.com', '1959-08-29 05:03:04', '777 Erie Junction', 'Vojkovice', null, 'Czech Republic', '739 51', 'Dawn', 'Mehetabel', 'Krop', 75);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('841-490-1497', '186-549-1970', 'ntordoff19@instagram.com', '1969-12-22 07:26:48', '87 6th Park', 'Palhoça', null, 'Brazil', '88130-000', 'Laural', 'Natka', 'Tordoff', 73);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('414-270-1452', '985-863-4660', 'fnys1a@livejournal.com', '1947-01-05 08:45:20', '722 Lunder Crossing', 'Pecka', null, 'Czech Republic', '507 82', 'Novelia', 'Friederike', 'Nys', 80);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('143-814-2518', '627-745-9974', 'dgirkin1b@huffingtonpost.com', '1997-11-26 23:39:22', '077 Schmedeman Lane', 'Xingyuan', null, 'China', null, 'Ivory', 'Dianne', 'Girkin', 27);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('877-598-1289', '315-101-7328', 'jcrocumbe1c@salon.com', '1978-10-28 19:33:32', '321 Green Junction', 'Sanhe', null, 'China', null, 'Winonah', 'Jo', 'Crocumbe', 183);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('020-548-7737', '593-878-2840', 'kkissick1d@fc2.com', '1986-10-01 10:39:23', '04 Mcbride Center', 'Złotów', null, 'Poland', '77-400', 'Nataniel', 'Karie', 'Kissick', 200);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('578-598-6428', '918-702-2074', 'bbrasner1e@jalbum.net', '1959-03-30 12:06:53', '40 Goodland Alley', 'Tulsa', 'Oklahoma', 'United States', '74193', 'Denis', 'Bren', 'Brasner', 46);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('417-727-9486', '462-636-8992', 'cblackmuir1f@free.fr', '1960-06-12 19:44:42', '5358 Cordelia Parkway', 'Batu', null, 'Philippines', '1144', 'Cam', 'Corbet', 'Blackmuir', 51);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('151-711-9386', '608-545-6813', 'jfairs1g@cpanel.net', '1976-12-02 19:31:42', '8297 Sage Drive', 'Serzedo', 'Porto', 'Portugal', '4410-013', 'Dillon', 'Jacquenette', 'Fairs', 125);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('008-477-4049', '173-324-1314', 'ppettecrew1h@ning.com', '1968-02-16 23:00:14', '4 Melby Alley', 'Zhonghouhe', null, 'China', null, 'Claudius', 'Pierce', 'Pettecrew', 64);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('582-220-1988', '685-290-6050', 'chewell1i@fda.gov', '1958-07-04 13:07:03', '818 Drewry Junction', 'Fukiage-fujimi', null, 'Japan', '369-0137', 'Bennie', 'Chandal', 'Hewell', 64);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('183-056-0647', '639-420-5930', 'kcatherick1j@opensource.org', '1980-02-09 08:47:23', '92 Kingsford Way', 'San Juan', null, 'Argentina', '3611', 'Sukey', 'Kelila', 'Catherick', 194);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('054-601-1001', '311-480-5301', 'bdillintone1k@networkadvertising.org', '1972-11-29 23:13:40', '60440 Bultman Park', 'Ketapang', null, 'Indonesia', null, 'Zola', 'Brandy', 'Dillintone', 27);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('984-459-1468', '736-690-2475', 'cdalman1l@cnn.com', '1965-03-13 00:36:27', '48496 Holy Cross Point', 'Çepan', null, 'Albania', null, 'Sisile', 'Caria', 'Dalman', 106);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('567-413-2662', '952-105-0504', 'efake1m@foxnews.com', '1961-08-30 22:21:58', '71071 Summit Pass', 'Fuxin', null, 'China', null, 'Nicky', 'Erek', 'Fake', 137);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('975-122-1710', '625-656-0919', 'msmithend1n@istockphoto.com', '1990-06-16 19:09:20', '15677 Jana Place', 'Krian', null, 'Indonesia', null, 'Alisha', 'Mose', 'Smithend', 53);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('543-651-3367', '276-463-3468', 'abowne1o@php.net', '1961-06-18 22:26:35', '817 Lighthouse Bay Lane', 'Bogovinje', null, 'Macedonia', '1220', 'Micah', 'Arch', 'Bowne', 9);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('400-026-0012', '361-736-9270', 'ibroughton1p@whitehouse.gov', '1972-01-07 08:22:57', '365 Nobel Lane', 'Bellavista', 'Guanajuato', 'Mexico', '37360', 'Gena', 'Idette', 'Broughton', 237);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('072-553-0545', '529-796-5443', 'bsollom1q@nsw.gov.au', '1993-02-19 12:18:36', '06466 Maywood Park', 'Puerta de Corral Quemado', null, 'Argentina', '4751', 'Amerigo', 'Bryna', 'Sollom', 194);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('304-839-9010', '210-421-0679', 'baskaw1r@prweb.com', '1996-08-19 02:51:28', '5404 Gerald Trail', 'Sohbatpur', null, 'Pakistan', '80501', 'Jeana', 'Bran', 'Askaw', 207);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('979-820-0650', '149-629-6072', 'kbartles1s@newsvine.com', '1959-06-01 06:22:46', '8017 Blue Bill Park Trail', 'Calumpang', null, 'Philippines', '2307', 'Lorettalorna', 'Kasey', 'Bartles', 108);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('030-507-8161', '929-553-0978', 'ucarleman1t@tinypic.com', '1966-08-25 22:22:57', '87 Anderson Pass', 'Whitwell', 'England', 'United Kingdom', 'DL10', 'Cheri', 'Ulrike', 'Carleman', 231);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('929-310-2532', '440-931-3003', 'mvuitte1u@yolasite.com', '1951-10-28 20:28:41', '9151 Green Ridge Court', 'Pasongsongan', null, 'Indonesia', null, 'Antoni', 'Marianne', 'Vuitte', 150);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('776-061-9509', '177-556-5494', 'nivett1v@google.com.hk', '1971-12-28 05:51:27', '2827 Moose Plaza', 'Canguaretama', null, 'Brazil', '59190-000', 'Abraham', 'Nancey', 'Ivett', 225);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('673-625-1517', '782-623-8885', 'cmacgillivray1w@elpais.com', '1968-04-05 07:26:45', '1 Onsgard Circle', 'Phu Luang', null, 'Thailand', '42230', 'Gay', 'Cookie', 'MacGillivray', 104);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('246-528-1317', '798-601-3361', 'ccrook1x@histats.com', '1978-06-01 21:13:40', '8 Charing Cross Lane', 'Limatambo', null, 'Peru', null, 'Sheeree', 'Cecilius', 'Crook', 20);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('248-031-6634', '537-343-6238', 'amounter1y@goo.gl', '1995-05-05 04:04:53', '084 Eastwood Hill', 'Tupaciguara', null, 'Brazil', '38430-000', 'Zoe', 'Abbe', 'Mounter', 235);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('896-152-9531', '949-429-2584', 'mdeathridge1z@ycombinator.com', '1953-07-06 18:54:53', '69 Oriole Hill', 'Guadalupe', 'Campeche', 'Mexico', '24400', 'Omero', 'Mikey', 'Deathridge', 127);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('401-126-2694', '340-554-9299', 'gschuler20@myspace.com', '1985-07-30 05:45:51', '764 Randy Plaza', 'Sakchu-ŭp', null, 'North Korea', null, 'Neile', 'Gene', 'Schuler', 23);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('938-218-0561', '813-797-5501', 'dvangiffen21@sourceforge.net', '1949-10-30 21:29:59', '0943 Hagan Street', 'Chambishi', null, 'Zambia', null, 'Marianna', 'Delphinia', 'Van Giffen', 208);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('836-607-2928', '365-884-3967', 'ckares22@mtv.com', '1968-12-20 16:30:18', '4911 Kedzie Alley', 'Babakansalam', null, 'Indonesia', null, 'Marcus', 'Crichton', 'Kares', 5);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('719-834-0610', '702-856-6322', 'hrollason23@baidu.com', '1975-11-03 01:59:53', '55 Prairieview Parkway', 'Gramoteino', null, 'Russia', '652660', 'Edlin', 'Ham', 'Rollason', 13);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('810-693-0510', '566-201-5789', 'blacey24@slashdot.org', '1961-09-18 09:39:09', '32748 Briar Crest Road', 'Villach', 'Kaernten', 'Austria', '9580', 'Iggie', 'Bevin', 'Lacey', 7);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('371-713-1695', '983-450-1848', 'dbenez25@rediff.com', '1995-09-25 03:14:21', '41 Trailsway Center', 'Aga', null, 'Philippines', '3505', 'Lettie', 'Dougy', 'Benez', 104);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('466-391-7624', '290-835-9737', 'afarre26@cocolog-nifty.com', '1968-07-02 09:07:50', '2048 Norway Maple Way', 'Magisterial', 'Zacatecas', 'Mexico', '99750', 'Marnie', 'Ario', 'Farre', 36);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('179-281-7771', '652-606-4484', 'fdudderidge27@typepad.com', '1968-07-25 16:45:35', '87824 Hoffman Park', 'Majia', null, 'China', null, 'Fidelio', 'Filberte', 'Dudderidge', 126);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('634-501-1679', '353-277-7680', 'glinebarger28@squarespace.com', '1989-07-06 15:31:43', '36028 Starling Street', 'Vërtop', null, 'Albania', null, 'Lanita', 'Gibb', 'Linebarger', 97);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('288-504-4487', '199-951-8365', 'lloude29@forbes.com', '1969-10-15 08:14:12', '9422 Fallview Place', 'Rentian', null, 'China', null, 'Garrot', 'Lane', 'Loude', 221);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('279-330-6785', '208-857-5953', 'rlavalde2a@engadget.com', '1960-10-31 03:09:51', '63 Lunder Pass', 'Gyeongsan-si', null, 'South Korea', null, 'Ardyce', 'Rena', 'Lavalde', 61);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('876-418-2731', '379-313-2772', 'lilden2b@nyu.edu', '1949-09-13 11:59:29', '82463 Arapahoe Crossing', 'Calauan', null, 'Philippines', '4012', 'Eberto', 'Leonanie', 'Ilden', 46);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('557-640-4663', '891-212-9831', 'wchallice2c@furl.net', '1973-03-29 02:46:56', '720 Dottie Park', 'Huangqi', null, 'China', null, 'Tucky', 'Wynne', 'Challice', 176);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('061-561-2902', '950-552-1321', 'nclaus2d@xinhuanet.com', '1976-03-19 21:17:45', '41007 5th Junction', 'Pecatu', null, 'Indonesia', null, 'Erny', 'Niels', 'Claus', 199);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('030-977-8480', '768-341-7600', 'rmayhou2e@comsenz.com', '1946-02-16 22:06:37', '2 Delaware Alley', 'Radomin', null, 'Poland', '87-404', 'Niel', 'Reinwald', 'Mayhou', 140);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('930-594-9804', '628-658-4715', 'fblakebrough2f@about.me', '1970-02-03 00:07:58', '929 Nova Trail', 'Majiadu', null, 'China', null, 'Moreen', 'Faustina', 'Blakebrough', 148);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('920-289-5041', '357-654-1421', 'klicciardo2g@qq.com', '1985-11-16 00:54:57', '47 Fremont Street', 'Nakło nad Notecią', null, 'Poland', '61-710', 'Nolan', 'Katharine', 'Licciardo', 33);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('704-434-5156', '687-538-2136', 'srattrie2h@symantec.com', '1969-11-24 23:26:39', '79 Hollow Ridge Lane', 'Sumbersarikrajan', null, 'Indonesia', null, 'Angelique', 'Shela', 'Rattrie', 70);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('664-018-1391', '342-358-7915', 'izucker2i@shinystat.com', '1982-06-15 20:14:35', '560 Pine View Circle', 'Xiaoshanzi', null, 'China', null, 'Gale', 'Israel', 'Zucker', 219);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('638-503-8646', '780-916-0365', 'gwellfare2j@unblog.fr', '1998-01-24 01:26:44', '76299 Porter Circle', 'Bethel Town', null, 'Jamaica', null, 'Ariela', 'Geri', 'Wellfare', 136);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('199-610-1466', '625-329-5851', 'plintott2k@etsy.com', '1973-09-29 19:33:29', '7821 Haas Parkway', 'Chantilly', 'Picardie', 'France', '60647 CEDEX', 'Urbain', 'Phaidra', 'Lintott', 185);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('087-748-0496', '640-324-8707', 'denderwick2l@1688.com', '1996-01-26 18:17:23', '457 Redwing Center', 'Bergen', 'Hordaland', 'Norway', '5012', 'Rennie', 'Darcee', 'Enderwick', 41);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('326-782-5844', '274-509-4902', 'akilfeather2m@chronoengine.com', '1987-12-27 04:25:38', '66676 Stuart Parkway', 'Unawatuna', null, 'Sri Lanka', '80600', 'Tiffany', 'Agata', 'Kilfeather', 220);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('224-784-0777', '465-392-7832', 'ayurevich2n@amazonaws.com', '1992-11-01 22:11:06', '6 Annamark Street', 'Junín', null, 'Colombia', '251227', 'Danella', 'Allianora', 'Yurevich', 103);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('074-663-0083', '901-433-9788', 'varnet2o@qq.com', '1963-11-04 02:00:57', '28242 Bunting Place', 'Shuanghejiedao', null, 'China', null, 'Cariotta', 'Valida', 'Arnet', 202);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('438-788-9719', '119-353-6686', 'emadine2p@admin.ch', '1957-10-24 19:31:47', '65 Independence Alley', 'Simnas', null, 'Lithuania', '64037', 'Ibby', 'Eduard', 'Madine', 61);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('974-066-5063', '256-599-1826', 'dcheco2q@ucsd.edu', '1991-07-22 01:44:05', '781 Sycamore Trail', 'Nytva', null, 'Russia', '617000', 'Rickie', 'Dorian', 'Checo', 41);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('914-087-9742', '892-147-4558', 'sgainsborough2r@discovery.com', '1976-11-22 17:59:05', '929 Kingsford Pass', 'Poctol', null, 'Philippines', '7416', 'Amelina', 'Stefan', 'Gainsborough', 186);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('586-581-8204', '837-860-6103', 'anotley2s@multiply.com', '1953-09-29 05:43:10', '22 Bartelt Pass', 'Ādaži', null, 'Latvia', null, 'Nikolaos', 'Arlen', 'Notley', 20);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('331-302-9416', '754-345-1280', 'aastin2t@shinystat.com', '1995-01-05 17:04:51', '331 Dorton Parkway', 'Yeshan', null, 'China', null, 'Lottie', 'Ali', 'Astin', 230);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('869-151-6148', '131-133-7280', 'adraper2u@sun.com', '1997-06-23 01:54:55', '05 Oak Valley Pass', 'Bamenda', null, 'Cameroon', null, 'Giustina', 'Alicia', 'Draper', 128);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('379-071-3736', '261-511-2762', 'jreddlesden2v@rambler.ru', '1962-06-17 03:06:19', '56 Vahlen Avenue', 'Nova Lima', null, 'Brazil', '34000-000', 'Baxie', 'Jannelle', 'Reddlesden', 221);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('269-388-5451', '235-662-6441', 'cwohlers2w@pagesperso-orange.fr', '1946-03-29 07:31:17', '50 Aberg Terrace', 'Xianyuan', null, 'China', null, 'Hally', 'Cleveland', 'Wohlers', 215);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('600-847-0012', '210-853-7466', 'dmowne2x@storify.com', '1986-09-05 05:52:04', '7099 Redwing Trail', 'Napenay', null, 'Argentina', '3706', 'Milissent', 'Dino', 'Mowne', 83);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('962-689-5047', '900-832-4737', 'vfunnell2y@oaic.gov.au', '1986-06-09 12:57:32', '91 1st Junction', 'Nizui', null, 'China', null, 'Bard', 'Verge', 'Funnell', 95);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('826-635-6956', '619-383-9714', 'yvail2z@dyndns.org', '1976-04-21 20:12:51', '19 Emmet Junction', 'Jiefang', null, 'China', null, 'Ragnar', 'Yorgos', 'Vail', 127);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('988-703-3695', '330-306-6017', 'afoulkes30@nature.com', '1993-11-10 13:14:09', '00478 Melrose Place', 'Kingston', null, 'Norfolk Island', null, 'Giorgi', 'Arlene', 'Foulkes', 78);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('794-647-3374', '797-555-3252', 'namps31@salon.com', '1952-09-03 06:48:51', '8400 Esker Point', 'Fengyuan', null, 'China', null, 'Base', 'Nariko', 'Amps', 239);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('875-855-5332', '714-241-7459', 'lblanpein32@walmart.com', '1983-01-20 22:00:47', '6862 Blackbird Trail', 'El Marañón', null, 'Honduras', null, 'Debera', 'Lorne', 'Blanpein', 243);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('283-511-2038', '432-597-4786', 'nmassenhove33@cdbaby.com', '1999-12-13 16:00:23', '9727 Ronald Regan Way', 'Keboireng', null, 'Indonesia', null, 'Tan', 'Norry', 'Massenhove', 182);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('351-609-3380', '403-443-7534', 'tmackstead34@hud.gov', '1965-06-21 15:08:36', '70179 Rigney Way', 'Rokytnice nad Jizerou', null, 'Czech Republic', '513 01', 'Laurie', 'Tiena', 'Mackstead', 42);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('947-758-4682', '632-841-0305', 'jruston35@disqus.com', '1994-04-23 07:26:40', '35629 Orin Hill', 'Ruzhany', null, 'Belarus', null, 'Merle', 'Juli', 'Ruston', 232);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('460-354-1952', '671-348-4285', 'gconrad36@businessinsider.com', '1989-05-03 02:51:26', '0586 Heath Lane', 'Hola Prystan’', null, 'Ukraine', null, 'Natalya', 'Gillie', 'Conrad', 64);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('198-127-0897', '482-605-9442', 'mdovinson37@globo.com', '1958-09-02 02:21:46', '102 Reinke Trail', 'Trasak', null, 'Indonesia', null, 'Rebbecca', 'Martica', 'Dovinson', 118);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('967-089-6227', '637-653-8671', 'acorinton38@xing.com', '1965-02-15 19:43:23', '35290 Ruskin Parkway', 'Idi Rayeuk', null, 'Indonesia', null, 'Glori', 'Alexandre', 'Corinton', 17);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('135-516-3975', '489-757-5573', 'bbrocklesby39@npr.org', '1968-03-14 07:13:50', '5 Bunker Hill Pass', 'Saltpond', null, 'Ghana', null, 'Kerrie', 'Bendite', 'Brocklesby', 172);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('809-760-5862', '586-977-3573', 'cfurzer3a@toplist.cz', '1989-06-20 05:25:31', '1041 Anthes Trail', 'Dmytrivka', null, 'Ukraine', null, 'Titus', 'Calvin', 'Furzer', 45);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('356-428-9398', '310-752-6011', 'ldelcastel3b@techcrunch.com', '1972-02-23 21:15:52', '0 Kennedy Junction', 'Baicun', null, 'China', null, 'Terry', 'Lemar', 'Delcastel', 34);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('777-945-0265', '367-998-6675', 'hdavidek3c@chronoengine.com', '1960-03-26 14:17:55', '233 Sommers Terrace', 'Cabay', null, 'Philippines', '4323', 'Bowie', 'Harcourt', 'Davidek', 186);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('535-214-0536', '546-594-0344', 'tbatecok3d@hexun.com', '1975-11-28 06:07:04', '50 Bobwhite Trail', 'Kiszkowo', null, 'Poland', '62-280', 'Haleigh', 'Terrence', 'Batecok', 15);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('884-039-1009', '483-597-2492', 'fmaberley3e@nbcnews.com', '1977-03-05 22:15:14', '46 Graceland Parkway', 'Xiangshan', null, 'China', null, 'Allie', 'Franchot', 'Maberley', 159);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('180-918-7492', '296-764-0528', 'praisher3f@wikispaces.com', '1963-06-27 23:57:28', '72659 Washington Trail', 'Krynki', null, 'Poland', '16-120', 'Cordy', 'Pauline', 'Raisher', 6);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('479-406-4330', '509-279-7853', 'glayton3g@unblog.fr', '1961-04-26 16:39:35', '707 Talmadge Terrace', 'Zibu', null, 'China', null, 'Hobey', 'Glenn', 'Layton', 155);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('566-190-6549', '812-291-6866', 'jchaddock3h@drupal.org', '1982-05-09 12:56:55', '89 International Avenue', 'Zyukayka', null, 'Russia', '617110', 'Devondra', 'Jillayne', 'Chaddock', 207);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('772-755-8881', '205-598-8604', 'delverston3i@forbes.com', '1989-02-04 20:42:23', '392 Waywood Place', 'Rasony', null, 'Belarus', null, 'Constancia', 'Dee dee', 'Elverston', 142);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('397-621-0938', '513-498-9180', 'dshilburne3j@nba.com', '1997-10-31 18:47:05', '022 Jay Road', 'La Roche-sur-Yon', 'Pays de la Loire', 'France', '85021 CEDEX', 'Amelita', 'Dian', 'Shilburne', 12);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('814-500-3261', '712-303-9575', 'lpisco3k@goodreads.com', '1996-12-20 14:17:10', '6 Acker Point', 'Jawa', null, 'Indonesia', null, 'Rosalie', 'Lorrie', 'Pisco', 143);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('489-025-7272', '592-246-5218', 'eellsom3l@stanford.edu', '1999-05-25 06:41:06', '56781 Claremont Court', 'Skála', null, 'Greece', null, 'Billy', 'Elvin', 'Ellsom', 147);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('077-096-0357', '991-539-9006', 'imcelree3m@samsung.com', '1965-03-10 13:05:05', '4045 Veith Road', 'Mavingouni', null, 'Comoros', null, 'Bruis', 'Izaak', 'McElree', 42);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('382-589-5734', '893-745-7871', 'wcalvey3n@thetimes.co.uk', '1977-03-17 11:41:25', '5 Randy Road', 'Ratenggoji', null, 'Indonesia', null, 'Georgi', 'Wald', 'Calvey', 54);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('420-040-3700', '271-152-6564', 'krawcliffe3o@pcworld.com', '1962-12-10 23:38:01', '19781 Elgar Crossing', 'Gamping Lor', null, 'Indonesia', null, 'Richart', 'Kristel', 'Rawcliffe', 121);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('595-338-7295', '416-410-2955', 'sburch3p@cloudflare.com', '1993-04-10 01:04:37', '01618 Huxley Junction', 'Cotia', null, 'Brazil', '06700-000', 'Pat', 'Smith', 'Burch', 6);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('559-992-6322', '168-248-8763', 'rvedekhin3q@ameblo.jp', '1959-04-12 10:25:04', '30 Clarendon Drive', 'Drohiczyn', null, 'Poland', '17-312', 'Harrison', 'Robin', 'Vedekhin', 104);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('618-230-3361', '317-128-6489', 'cgimeno3r@gov.uk', '1991-06-08 03:00:56', '81 Golf Crossing', 'Lazaro Cardenas', 'Chiapas', 'Mexico', '29755', 'Corette', 'Cahra', 'Gimeno', 79);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('973-667-3393', '515-491-3681', 'nmcareavey3s@behance.net', '1946-11-16 00:49:52', '398 3rd Lane', 'Jalgung', null, 'Indonesia', null, 'Bar', 'Nonie', 'McAreavey', 243);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('147-727-9074', '160-681-8303', 'tgannan3t@google.com', '1970-06-05 04:58:32', '09 Namekagon Road', 'Paiçandu', null, 'Brazil', '87140-000', 'Morey', 'Timoteo', 'Gannan', 111);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('329-826-0903', '684-638-4847', 'kgolley3u@dyndns.org', '1956-11-03 09:16:26', '8 Crownhardt Hill', 'Mošorin', null, 'Serbia', null, 'Melisandra', 'Kaleena', 'Golley', 205);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('032-663-5770', '553-541-0135', 'rpickhaver3v@dailymail.co.uk', '1982-10-04 10:05:36', '4 Porter Plaza', 'Baitang', null, 'China', null, 'Mauricio', 'Ritchie', 'Pickhaver', 154);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('541-252-4112', '418-595-4356', 'rstollenberg3w@people.com.cn', '1997-12-01 20:29:20', '8964 Bunting Drive', 'Krasnoznamensk', null, 'Russia', '172126', 'Ivar', 'Rebbecca', 'Stollenberg', 66);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('712-649-8036', '534-923-8408', 'aettritch3x@webs.com', '1958-06-21 21:36:12', '24596 Schiller Alley', 'Mangere', null, 'New Zealand', '2154', 'Joan', 'Anya', 'Ettritch', 143);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('673-895-5898', '365-126-5888', 'amaunders3y@wikia.com', '1980-01-18 04:03:04', '27610 Paget Junction', 'Fulin', null, 'China', null, 'Nerty', 'Austine', 'Maunders', 40);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('897-278-3645', '993-302-1141', 'kgunby3z@joomla.org', '1947-09-12 07:08:43', '1462 Village Green Circle', 'Lemery', null, 'Philippines', '5043', 'Cathyleen', 'Kimball', 'Gunby', 104);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('157-779-2695', '903-238-5292', 'mvarney40@hibu.com', '1980-04-26 07:05:03', '32 Mitchell Pass', 'Tyler', 'Texas', 'United States', '75799', 'Ganny', 'Mathilde', 'Varney', 208);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('915-594-2770', '308-370-7550', 'dstickels41@samsung.com', '1996-03-21 15:05:22', '64 Killdeer Junction', 'Sainte-Anne-de-Bellevue', 'Québec', 'Canada', 'H9X', 'Yolanthe', 'Dante', 'Stickels', 31);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('845-168-6690', '783-335-3319', 'ckienlein42@theatlantic.com', '1983-01-08 02:15:58', '22 Burrows Trail', 'Jaboticabal', null, 'Brazil', '14870-000', 'Windy', 'Charline', 'Kienlein', 247);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('490-550-5635', '171-565-5773', 'mbliben43@bloglines.com', '1958-04-16 08:15:12', '6 Melrose Avenue', 'Tibakisa', null, 'Indonesia', null, 'Torin', 'Meredithe', 'Bliben', 176);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('355-049-0557', '161-200-9246', 'ksmoughton44@yellowbook.com', '1987-04-21 08:06:56', '7 Homewood Trail', 'Tremembé', null, 'Brazil', '12120-000', 'Davita', 'Katuscha', 'Smoughton', 152);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('219-195-2828', '179-991-4086', 'cmosdill45@time.com', '1954-04-24 06:02:07', '431 Sugar Pass', 'Gudong', null, 'China', null, 'Cchaddie', 'Charleen', 'Mosdill', 93);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('513-855-5607', '947-541-1760', 'cbrockherst46@google.com', '1961-05-31 09:36:34', '29 Messerschmidt Drive', 'Shifo', null, 'China', null, 'Ray', 'Caressa', 'Brockherst', 39);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('352-600-2475', '227-590-6890', 'mkayzer47@umich.edu', '1949-12-19 15:01:03', '07286 Spohn Plaza', 'Casalinho', 'Leiria', 'Portugal', '2540-170', 'Sisile', 'Margot', 'Kayzer', 186);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('671-596-2161', '202-899-1272', 'rphizackerly48@msn.com', '1995-07-17 11:54:42', '562 Kipling Court', 'Washington', 'District of Columbia', 'United States', '20436', 'Staffard', 'Rakel', 'Phizackerly', 224);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('365-159-4717', '306-958-5859', 'rsimone49@wordpress.com', '1974-03-09 19:04:26', '92 Haas Center', 'Gubukjero Timuk', null, 'Indonesia', null, 'Bartie', 'Reidar', 'Simone', 171);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('684-263-9117', '453-259-4041', 'fpetkens4a@naver.com', '1995-05-02 00:21:38', '81 Longview Junction', 'Boyle', null, 'Ireland', 'F52', 'Roslyn', 'Fay', 'Petkens', 228);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('224-200-3122', '154-451-2440', 'cmelly4b@elegantthemes.com', '1968-11-07 11:30:55', '8256 Tony Circle', 'Goianésia', null, 'Brazil', '76380-000', 'Amabel', 'Cordy', 'Melly', 89);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('647-539-4541', '873-635-2705', 'edjokovic4c@google.es', '1946-09-20 02:33:42', '35604 Emmet Center', 'Palermo', 'Sicilia', 'Italy', '90141', 'Sarge', 'Eliza', 'Djokovic', 65);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('421-234-5402', '403-744-1925', 'swrixon4d@eventbrite.com', '1973-11-12 22:37:40', '960 4th Plaza', 'Roi Et', null, 'Thailand', '45000', 'Ingelbert', 'Scottie', 'Wrixon', 142);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('737-051-3390', '429-975-7787', 'scastagnone4e@list-manage.com', '1964-04-24 19:53:20', '6380 Meadow Ridge Center', 'Bayantal', null, 'Mongolia', null, 'Vonnie', 'Susette', 'Castagnone', 7);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('512-424-6341', '739-865-5274', 'smacdearmaid4f@cdc.gov', '1979-03-14 16:41:13', '3373 Bluejay Place', 'Mojoagung', null, 'Indonesia', null, 'Alanson', 'Stanly', 'MacDearmaid', 104);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('937-584-8264', '554-355-1292', 'oannes4g@mail.ru', '1991-01-30 08:18:35', '7 Clyde Gallagher Hill', 'Bukui', null, 'China', null, 'Delainey', 'Osbert', 'Annes', 179);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('251-951-6620', '564-454-5059', 'hwyvill4h@google.it', '1959-04-01 12:50:37', '50810 Clove Drive', 'Tarnogskiy Gorodok', null, 'Russia', '161560', 'Loretta', 'Harman', 'Wyvill', 23);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('868-729-9005', '387-939-3908', 'aludy4i@hibu.com', '1949-10-13 06:23:04', '47 Pine View Point', 'Tobruk', null, 'Libya', null, 'Emilia', 'Arlene', 'Ludy', 163);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('533-010-1620', '226-359-1585', 'hdeambrosis4j@github.com', '1998-09-01 07:27:38', '987 Lakewood Street', 'Kula', null, 'Bulgaria', '3818', 'Eleni', 'Harriett', 'De Ambrosis', 231);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('647-955-1813', '394-637-1399', 'tamey4k@mac.com', '1991-02-01 07:07:07', '2 Raven Street', 'Horlivka', null, 'Ukraine', null, 'Schuyler', 'Tory', 'Amey', 223);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('499-538-0235', '417-485-3934', 'rbiever4l@bloglovin.com', '1967-02-15 17:32:19', '749 Boyd Junction', 'Taypano', null, 'Philippines', '1066', 'Dalenna', 'Ronald', 'Biever', 164);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('528-824-9999', '257-699-6817', 'stough4m@sciencedaily.com', '1969-08-27 19:35:50', '3 Basil Parkway', 'Moca', null, 'Dominican Republic', '11803', 'Slade', 'Sandi', 'Tough', 5);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('184-391-5992', '878-487-8364', 'cwoodus4n@ning.com', '1957-08-31 23:18:57', '4 Bellgrove Way', 'Cete', 'Porto', 'Portugal', '4580-313', 'Vivienne', 'Cleon', 'Woodus', 38);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('315-487-0281', '991-167-8867', 'cgirt4o@devhub.com', '1974-06-19 15:45:50', '3 Merchant Parkway', 'Solec Nad Wisłą', null, 'Poland', '80-201', 'Tadd', 'Christi', 'Girt', 123);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('951-060-0850', '770-174-2630', 'pjedrzejewski4p@ehow.com', '1959-03-20 05:06:11', '1685 Shasta Court', 'Kinamayan', null, 'Philippines', '9611', 'Gerek', 'Pepi', 'Jedrzejewski', 153);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('950-891-0716', '253-536-0880', 'lumbert4q@google.nl', '1979-05-02 03:17:06', '65 Pearson Circle', 'Zahvizdya', null, 'Ukraine', null, 'Mason', 'Leah', 'Umbert', 101);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('950-273-9210', '873-541-9957', 'iosiaghail4r@ihg.com', '1974-01-14 01:40:39', '52 Wayridge Crossing', 'Diamante', null, 'Argentina', '3105', 'Fanechka', 'Iago', 'O''Siaghail', 52);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('535-916-6393', '977-999-4097', 'mfullerlove4s@biglobe.ne.jp', '1946-08-20 09:50:14', '53453 Kensington Pass', 'Concordia', null, 'Philippines', '5046', 'Lisbeth', 'Mace', 'Fullerlove', 188);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('019-987-0449', '449-616-8551', 'jprantl4t@comcast.net', '1973-07-13 11:16:36', '34 Meadow Ridge Avenue', 'Lopatyn', null, 'Ukraine', null, 'Abey', 'Jakob', 'Prantl', 6);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('867-109-3098', '319-575-7084', 'kcomoletti4u@blogger.com', '1978-05-12 15:08:34', '95 New Castle Alley', 'Orléans', 'Centre', 'France', '45016 CEDEX 1', 'Cyrillus', 'Kirsti', 'Comoletti', 98);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('671-962-4847', '814-241-0092', 'gprott4v@nydailynews.com', '1955-06-02 13:55:26', '6 Scoville Street', 'Masiga', null, 'Philippines', '4900', 'Cece', 'Gray', 'Prott', 119);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('874-036-5483', '361-559-3648', 'dplease4w@timesonline.co.uk', '1984-07-25 12:12:40', '41 Butternut Hill', 'Kalwaria Zebrzydowska', null, 'Poland', '34-130', 'Jesus', 'Delaney', 'Please', 183);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('661-800-0684', '955-298-7673', 'kravelus4x@omniture.com', '1974-03-26 11:22:59', '60556 Fisk Avenue', 'Echarate', null, 'Peru', null, 'Lynelle', 'Kelly', 'Ravelus', 13);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('256-503-1657', '396-803-2840', 'kridsdell4y@so-net.ne.jp', '1959-07-31 20:10:15', '77447 Marcy Avenue', 'Sanshan', null, 'China', null, 'Kalina', 'Katina', 'Ridsdell', 35);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('649-386-7694', '240-708-8682', 'ccrowd4z@wordpress.org', '1999-02-22 23:19:50', '09463 Dottie Trail', 'Banān', null, 'Syria', null, 'Cassaundra', 'Carlie', 'Crowd', 148);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('643-639-6633', '621-101-1946', 'ohallgough50@yelp.com', '1949-04-30 02:41:36', '619 Anniversary Circle', 'Vinkkilä', null, 'Finland', '23201', 'Shamus', 'Oby', 'Hall-Gough', 191);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('949-704-8140', '586-323-9516', 'bslimme51@twitter.com', '1979-09-05 08:33:29', '90 Luster Circle', 'Batangafo', null, 'Central African Republic', null, 'Gretchen', 'Barclay', 'Slimme', 172);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('184-585-9276', '461-683-4063', 'egoodsir52@macromedia.com', '1953-04-26 09:11:00', '93171 Norway Maple Terrace', 'Itajuípe', null, 'Brazil', '45630-000', 'Tobe', 'Elsbeth', 'Goodsir', 118);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('256-520-0265', '840-897-1679', 'mmaccafferky53@myspace.com', '1968-12-24 07:41:53', '63366 Sachtjen Trail', 'Kousséri', null, 'Cameroon', null, 'Arielle', 'Michael', 'MacCafferky', 231);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('480-536-1632', '135-873-0535', 'slorenzin54@uiuc.edu', '1959-06-12 15:39:01', '1 Vahlen Hill', 'Apaga', null, 'Armenia', null, 'Yuri', 'Shandee', 'Lorenzin', 78);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('963-674-8150', '486-798-8500', 'cbelchem55@ihg.com', '1980-09-21 04:33:43', '929 Stoughton Center', 'Bīrganj', null, 'Nepal', null, 'Em', 'Curr', 'Belchem', 231);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('671-658-2991', '164-946-1620', 'peisak56@wikipedia.org', '1997-06-19 18:56:05', '741 Sundown Point', 'Repentigny', 'Québec', 'Canada', 'J6V', 'Tamqrah', 'Papageno', 'Eisak', 200);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('966-918-0423', '590-228-1740', 'jclyburn57@fema.gov', '1964-09-16 12:39:18', '154 Reindahl Plaza', 'Tukhlya', null, 'Ukraine', null, 'Melicent', 'Jeri', 'Clyburn', 70);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('373-515-1396', '517-932-5979', 'hcastangia58@cisco.com', '1977-09-12 11:31:46', '245 Westend Terrace', 'Lansing', 'Michigan', 'United States', '48919', 'Sascha', 'Hildy', 'Castangia', 85);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('183-966-8404', '938-909-4069', 'lcharrett59@nbcnews.com', '1945-03-10 12:01:20', '830 Karstens Alley', 'Shuitou', null, 'China', null, 'Sapphira', 'Leila', 'Charrett', 137);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('668-189-4206', '828-102-6101', 'ltrunkfield5a@e-recht24.de', '1974-01-17 06:46:05', '391 Texas Court', 'Troitskaya', null, 'Russia', '386245', 'Amye', 'Laetitia', 'Trunkfield', 60);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('940-573-2403', '524-793-2667', 'bbowater5b@printfriendly.com', '1958-05-09 21:22:13', '444 Upham Circle', 'Caçapava', null, 'Brazil', '12280-000', 'Cassius', 'Basilio', 'Bowater', 239);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('956-839-1092', '873-801-4225', 'gdunley5c@craigslist.org', '1973-03-12 19:51:09', '38 Browning Point', 'Sobral', null, 'Brazil', '62000-000', 'Kori', 'Gretel', 'Dunley', 175);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('254-753-9094', '839-151-5823', 'scoaster5d@youku.com', '1986-10-14 00:53:45', '330 Westerfield Terrace', 'San Jose', null, 'Philippines', '8427', 'Walden', 'Salomo', 'Coaster', 164);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('768-081-5617', '280-101-0995', 'lsplevins5e@buzzfeed.com', '1990-06-24 12:39:40', '73 Gerald Junction', 'Tungelsta', 'Stockholm', 'Sweden', '137 57', 'Clair', 'Langston', 'Splevins', 237);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('798-020-1686', '788-777-9629', 'jcarsey5f@1688.com', '1962-05-16 20:19:09', '40 Pearson Way', 'Iperó', null, 'Brazil', '18560-000', 'Sib', 'Jillene', 'Carsey', 28);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('435-654-1607', '441-843-4345', 'nplaice5g@unesco.org', '1987-08-06 17:59:08', '3 Farragut Point', 'Paso de Indios', null, 'Argentina', '9207', 'Hebert', 'Nesta', 'Plaice', 109);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('451-881-4349', '613-452-4415', 'aglidden5h@japanpost.jp', '1995-07-28 18:34:36', '9 Merchant Terrace', 'Fuchūchō', null, 'Japan', '729-3222', 'Nichols', 'Alexandros', 'Glidden', 110);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('859-630-2379', '768-463-4244', 'nromayne5i@blogs.com', '1971-08-21 07:51:38', '55 Lyons Trail', 'Ozëry', null, 'Russia', '142152', 'Emogene', 'Norine', 'Romayne', 105);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('024-865-3822', '228-148-9143', 'csphinxe5j@spotify.com', '1958-06-11 21:55:04', '19474 Transport Circle', 'Hecheng', null, 'China', null, 'Dexter', 'Claretta', 'Sphinxe', 185);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('155-819-9347', '911-354-2828', 'gbotterman5k@buzzfeed.com', '1951-01-06 07:35:46', '10785 Kings Parkway', 'Liujia', null, 'China', null, 'Jinny', 'Giacomo', 'Botterman', 148);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('929-527-8698', '595-403-0572', 'ccleeton5l@hexun.com', '1972-03-22 10:24:11', '8 Johnson Alley', 'Lingdangge', null, 'China', null, 'Lynelle', 'Cristen', 'Cleeton', 138);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('355-190-3152', '208-819-5132', 'ckench5m@oakley.com', '1984-08-09 06:58:35', '9394 Annamark Terrace', 'Houmen', null, 'China', null, 'Donalt', 'Clerkclaude', 'Kench', 137);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('933-983-2754', '475-611-2495', 'rokeaveny5n@wsj.com', '1978-08-19 14:39:44', '91 Mayfield Lane', 'Stará Huť', null, 'Czech Republic', '336 01', 'Clayborne', 'Ronda', 'O''Keaveny', 122);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('139-364-7530', '869-871-9422', 'dhaquin5o@addthis.com', '1968-07-22 22:37:30', '8203 Oxford Lane', 'Kuala Lumpur', 'Kuala Lumpur', 'Malaysia', '50609', 'Cherey', 'Dolli', 'Haquin', 171);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('180-469-6811', '130-486-1432', 'shalsey5p@google.com.hk', '1958-11-20 07:04:13', '64 Burrows Way', 'Sakai', null, 'Japan', '999-2256', 'Vickie', 'Stephanus', 'Halsey', 112);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('590-353-7399', '146-422-3452', 'vconn5q@qq.com', '1953-08-16 22:08:12', '468 Farmco Parkway', 'Mtinko', null, 'Tanzania', null, 'Jennine', 'Valery', 'Conn', 76);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('640-540-9947', '134-240-3998', 'sroizn5r@mail.ru', '1970-08-01 19:22:42', '66808 Nelson Park', 'Jeruk', null, 'Indonesia', null, 'Ash', 'Sarene', 'Roizn', 230);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('277-141-6582', '505-953-6146', 'dplayer5s@angelfire.com', '1968-04-12 17:24:29', '51 Fieldstone Way', 'Lengshui', null, 'China', null, 'Duncan', 'Dave', 'Player', 133);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('816-772-8242', '913-689-1920', 'cstpierre5t@state.gov', '1991-03-29 03:31:34', '9830 Amoth Road', 'Shawnee Mission', 'Kansas', 'United States', '66276', 'Angie', 'Coleman', 'St. Pierre', 149);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('803-058-6968', '262-852-6474', 'bganley5u@qq.com', '1991-05-15 01:57:33', '8 Tennyson Point', 'Eybens', 'Rhône-Alpes', 'France', '38327 CEDEX', 'Eirena', 'Bethena', 'Ganley', 43);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('172-378-7855', '828-375-6686', 'njeanet5v@yellowpages.com', '1945-09-01 17:13:11', '09793 Sommers Junction', 'Mayskiy', null, 'Russia', '385433', 'Francoise', 'Nadiya', 'Jeanet', 34);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('412-724-3522', '579-744-6099', 'gparamore5w@amazon.co.jp', '1993-03-20 01:41:44', '6026 Delladonna Terrace', 'Volkhov', null, 'Russia', '187409', 'Derwin', 'Gunther', 'Paramore', 228);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('692-237-5897', '851-746-2620', 'mgendricke5x@sitemeter.com', '1973-06-13 20:46:18', '9 Gateway Avenue', 'Youlan', null, 'China', null, 'Delora', 'Maisey', 'Gendricke', 149);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('049-557-6534', '207-415-1612', 'wbomfield5y@ehow.com', '1976-04-29 01:53:03', '3 4th Point', 'Osieczany', null, 'Poland', '32-432', 'Gael', 'Willamina', 'Bomfield', 217);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('986-303-8857', '672-815-5265', 'nklaffs5z@sohu.com', '1963-05-01 18:15:14', '95 Veith Junction', 'Macas', null, 'Ecuador', null, 'Denni', 'Nicky', 'Klaffs', 213);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('866-797-9782', '790-572-2963', 'lsurgenor60@hubpages.com', '1997-11-30 15:13:14', '923 Memorial Lane', 'Delaware', 'Ontario', 'Canada', 'M3H', 'Adrianne', 'Leland', 'Surgenor', 87);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('320-294-2395', '358-730-1995', 'bsqueers61@examiner.com', '1956-03-08 11:51:30', '1 Towne Lane', 'Koszyce Wielkie', null, 'Poland', '33-111', 'Nye', 'Bondon', 'Squeers', 221);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('232-096-8107', '402-101-3771', 'joneil62@vistaprint.com', '1995-07-02 04:06:18', '12568 Elka Parkway', 'Šavnik', null, 'Montenegro', null, 'Tamra', 'Josi', 'Oneil', 168);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('604-346-6476', '590-792-9064', 'yhorrell63@biblegateway.com', '1997-11-17 01:18:10', '449 Elmside Street', 'Jaciara', null, 'Brazil', '78820-000', 'Mindy', 'Yvonne', 'Horrell', 76);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('772-151-5481', '511-250-4154', 'klackner64@blinklist.com', '1970-12-31 15:23:59', '379 Continental Avenue', 'Moyynkum', null, 'Kazakhstan', null, 'Joachim', 'Karrah', 'Lackner', 204);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('194-014-1073', '586-178-6801', 'iberrick65@comcast.net', '1967-06-05 22:45:53', '9 Merry Way', 'Nyaungdon', null, 'Myanmar', null, 'Gillie', 'Indira', 'Berrick', 92);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('417-795-6467', '746-792-3971', 'bmcward66@stanford.edu', '1998-06-16 13:01:42', '988 Beilfuss Plaza', 'Cikaduen', null, 'Indonesia', null, 'Laughton', 'Batsheva', 'McWard', 101);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('688-731-8364', '345-632-0947', 'aappleford67@un.org', '1986-12-03 20:22:33', '74549 Haas Lane', 'Yushikalasu', null, 'China', null, 'Tanney', 'Asa', 'Appleford', 212);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('714-842-7802', '990-353-1976', 'aanderer68@dedecms.com', '1952-02-17 03:16:31', '8326 Sommers Court', 'Vólos', null, 'Greece', null, 'Joice', 'Archer', 'Anderer', 225);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('198-621-8164', '971-359-0451', 'ltrahair69@zimbio.com', '1964-03-16 15:26:42', '172 Hermina Court', 'Portland', 'Oregon', 'United States', '97229', 'Geri', 'Lucia', 'Trahair', 243);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('328-000-8815', '661-185-7850', 'dgosson6a@opensource.org', '1945-08-25 13:42:27', '78 Mallard Court', 'Ituberá', null, 'Brazil', '45435-000', 'Catina', 'Drusi', 'Gosson', 70);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('210-208-3757', '544-305-1782', 'nead6b@blog.com', '1997-01-12 14:24:22', '00572 North Drive', 'Cruz', 'Viseu', 'Portugal', '3560-136', 'Janeczka', 'Nevin', 'Ead', 83);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('374-351-5489', '282-617-2087', 'lburfitt6c@adobe.com', '1988-11-10 01:07:09', '3 4th Avenue', 'Ugljevik', null, 'Bosnia and Herzegovina', null, 'Eziechiele', 'Loretta', 'Burfitt', 219);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('960-126-9944', '934-133-4755', 'abeentjes6d@bravesites.com', '1963-12-27 14:01:50', '960 Merchant Junction', 'Bang Rak', null, 'Thailand', '10500', 'Krisha', 'Amalee', 'Beentjes', 38);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('098-420-5898', '215-525-0879', 'bentissle6e@jiathis.com', '1980-03-17 07:27:43', '725 Anthes Point', 'Vranisht', null, 'Albania', null, 'Faun', 'Bertram', 'Entissle', 112);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('862-504-1060', '103-506-4574', 'bbasant6f@aol.com', '1969-03-13 17:49:42', '12007 Reindahl Junction', 'Pazin', null, 'Croatia', '52000', 'Artemas', 'Berty', 'Basant', 145);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('869-527-4680', '659-903-6856', 'tchattock6g@theguardian.com', '1960-05-29 05:54:39', '28 Burning Wood Drive', 'Borzna', null, 'Ukraine', null, 'Danny', 'Thornton', 'Chattock', 45);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('964-101-7188', '931-181-0728', 'cstranaghan6h@bing.com', '1961-05-17 10:26:19', '334 Springview Avenue', 'Kihniö', null, 'Finland', '39820', 'Lee', 'Cristi', 'Stranaghan', 47);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('144-695-0049', '732-225-0165', 'medowes6i@china.com.cn', '1962-09-16 23:16:24', '3842 Meadow Ridge Terrace', 'Phra Phrom', null, 'Thailand', '80000', 'Madelyn', 'Mandel', 'Edowes', 183);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('005-852-4255', '784-154-8511', 'smallaby6j@businessweek.com', '1984-11-13 19:04:17', '398 Farmco Terrace', 'Embarcación', null, 'Argentina', '4550', 'Minerva', 'Stephi', 'Mallaby', 113);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('094-496-1702', '166-627-7809', 'amcwaters6k@cnet.com', '1983-10-11 15:50:36', '15 Heffernan Way', 'Tai’an', null, 'China', null, 'Jodie', 'Angelico', 'McWaters', 127);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('573-784-6769', '439-597-5107', 'hivanchenkov6l@soundcloud.com', '1979-08-14 14:50:17', '91665 Stephen Junction', 'Uiasa', null, 'Indonesia', null, 'Ricki', 'Haydon', 'Ivanchenkov', 142);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('985-974-0444', '197-734-7682', 'tbraybrook6m@behance.net', '1959-10-31 03:11:27', '0147 Saint Paul Terrace', 'Dongzaogang', null, 'China', null, 'Web', 'Terrance', 'Braybrook', 174);
-insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name, middle_name, last_name, advisorID) values ('899-723-4696', '161-904-0746', 'amoatt6n@trellian.com', '1967-06-02 18:57:01', '7 Gulseth Alley', 'Bungereng', null, 'Indonesia', null, 'Arabele', 'Audi', 'Moatt', 146);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('824-89-3352', '711-498-3087', 'thugk0@prlog.org', '1969-10-22 12:35:03', '9534 Russell Plaza', 'La Esperanza',
+        'Guanajuato', 'Mexico', '37900', 'Vin', 'Timothy', 'Hugk', 46);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('017-81-2423', '307-271-9905', 'ncristea1@ftc.gov', '1954-07-29 04:53:10', '0750 Cherokee Hill', 'Nanam', null,
+        'North Korea', null, 'Pansie', 'Nalani', 'Cristea', 26);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('558-94-8049', '943-653-9814', 'dcarpenter2@addthis.com', '1957-06-28 10:13:25', '824 Mitchell Street',
+        'Chơn Thành', null, 'Vietnam', null, 'Natala', 'Denys', 'Carpenter', 212);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('522-41-2707', '838-198-4961', 'nblewitt3@economist.com', '1962-08-08 16:48:36', '525 Vermont Center',
+        'Santa Anita', 'Guanajuato', 'Mexico', '38900', 'Tallie', 'Noel', 'Blewitt', 26);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('103-54-8777', '224-937-8677', 'sgerhardt4@google.de', '1991-01-03 23:13:53', '063 Buena Vista Junction',
+        'Lafia', null, 'Nigeria', null, 'Felix', 'Sandor', 'Gerhardt', 55);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('683-72-0446', '896-523-1384', 'ganthona5@soundcloud.com', '1947-05-22 00:35:47', '5915 Columbus Parkway',
+        'Lulindi', null, 'Tanzania', null, 'Cori', 'Griffith', 'Anthona', 101);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('065-99-1028', '783-710-6328', 'drobez6@mashable.com', '1963-03-25 06:29:18', '502 Riverside Terrace',
+        'Maoping', null, 'China', null, 'Saunders', 'Duffy', 'Robez', 221);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('223-08-9786', '294-813-4327', 'twheble7@noaa.gov', '1996-11-25 02:43:16', '3 Steensland Point', 'Nangang',
+        null, 'China', null, 'Moritz', 'Tobie', 'Wheble', 66);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('487-27-6568', '105-428-0198', 'sbreyt8@goo.gl', '1952-09-30 14:33:07', '1432 American Ash Drive', 'Si Somdet',
+        null, 'Thailand', '95130', 'Radcliffe', 'Seumas', 'Breyt', 134);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('596-43-5192', '856-783-2795', 'bnickoll9@simplemachines.org', '1985-02-07 09:19:31', '395 Clemons Road',
+        'Nagarakembang', null, 'Indonesia', null, 'Jamie', 'Brigid', 'Nickoll', 2);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('394-68-8455', '274-116-1944', 'cvideana@bandcamp.com', '1990-03-06 14:38:20', '2 Gina Park', 'Toyós', null,
+        'Honduras', null, 'Carlynne', 'Cora', 'Videan', 78);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('894-50-0677', '944-829-5284', 'aboutellb@google.com.au', '1971-04-15 04:12:23', '66 Merrick Alley', 'Puncan',
+        null, 'Philippines', '9317', 'Verina', 'Aubry', 'Boutell', 196);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('674-10-9644', '811-772-9995', 'mmawbyc@blogspot.com', '1995-08-19 08:30:54', '9 Ruskin Park', 'Phumĭ Véal Srê',
+        null, 'Cambodia', null, 'Sigmund', 'My', 'Mawby', 59);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('708-58-0673', '794-200-9820', 'ghalburtond@virginia.edu', '1965-10-22 13:46:23', '56265 1st Street', 'Birr',
+        null, 'Ireland', 'R42', 'Dotti', 'Goran', 'Halburton', 88);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('552-56-7817', '463-596-6975', 'lriddele@icio.us', '1954-08-25 19:24:35', '9028 South Court', 'Youssoufia',
+        null, 'Morocco', null, 'Edna', 'Lilias', 'Riddel', 29);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('541-77-9868', '438-696-5697', 'ccuelf@shinystat.com', '1958-05-08 07:39:51', '6402 Butterfield Plaza',
+        'Victoria', null, 'Argentina', '3153', 'Micheline', 'Claudie', 'Cuel', 95);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('459-18-7734', '319-183-4337', 'dgronauerg@disqus.com', '1953-09-04 22:30:19', '2891 Bashford Street',
+        'Krajan Dua Patempuran', null, 'Indonesia', null, 'Shelby', 'Danila', 'Gronauer', 52);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('484-66-3776', '631-354-4976', 'sbreedsh@mac.com', '1945-11-19 01:40:24', '78 Hanover Junction',
+        'Shangyanzhuang', null, 'China', null, 'Virge', 'Shell', 'Breeds', 234);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('238-26-6284', '152-193-9085', 'nlanyoni@cnbc.com', '1982-04-06 18:18:18', '247 Mosinee Point', 'Layu', null,
+        'China', null, 'Merline', 'Nancie', 'Lanyon', 242);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('332-49-4443', '442-701-3797', 'rbremnerj@ebay.co.uk', '1950-08-29 04:20:50', '0 Aberg Trail', 'Wailang', null,
+        'China', null, 'Reece', 'Rozalin', 'Bremner', 228);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('852-91-3042', '841-704-1440', 'fgallenk@mit.edu', '1981-03-08 03:17:49', '6642 Blackbird Hill', 'Sam Phran',
+        null, 'Thailand', '73110', 'Missie', 'Filbert', 'Gallen', 209);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('910-13-8902', '467-236-9988', 'zflowerdenl@goo.gl', '1977-03-25 14:02:58', '0949 Elka Road', 'Dūāb', null,
+        'Afghanistan', null, 'Forster', 'Zorana', 'Flowerden', 181);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('392-13-1780', '644-302-6997', 'jbalchm@bloomberg.com', '1987-03-08 18:04:47', '85325 Hintze Hill', 'Nantai',
+        null, 'China', null, 'Ives', 'Jeniece', 'Balch', 156);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('351-07-8397', '811-180-4164', 'awernhern@google.ru', '1992-10-20 10:50:41', '87174 Bellgrove Point',
+        'Barbalha', null, 'Brazil', '63180-000', 'Lovell', 'Amalee', 'Wernher', 218);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('987-68-4436', '410-580-3955', 'iwelldrakeo@hugedomains.com', '1993-04-25 20:19:17', '940 Spaight Point',
+        'El Asintal', null, 'Guatemala', '11009', 'Leighton', 'Issi', 'Welldrake', 163);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('232-62-9557', '326-144-1161', 'esarsonsp@qq.com', '1988-04-12 16:03:44', '4 Mendota Court', 'Eslāmābād', null,
+        'Iran', null, 'Frieda', 'Eba', 'Sarsons', 52);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('293-84-4288', '214-759-1144', 'tbarkasq@google.ru', '1952-02-13 19:06:42', '44995 Sullivan Avenue', 'Bradag',
+        null, 'Indonesia', null, 'Freedman', 'Tania', 'Barkas', 92);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('656-37-9556', '663-819-3564', 'lbindleyr@blogtalkradio.com', '1966-02-13 20:56:43', '50 Riverside Hill',
+        'Zhoutie', null, 'China', null, 'Marga', 'Leland', 'Bindley', 170);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('034-09-7006', '327-316-7718', 'aattestones@deviantart.com', '1997-09-24 09:44:13', '64615 Loomis Junction',
+        'Vostochnoe Degunino', null, 'Russia', '412184', 'Saunders', 'Abbie', 'Atte-Stone', 111);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('153-30-6324', '692-728-7011', 'nparadycet@comsenz.com', '1996-09-30 03:12:12', '31127 Independence Alley',
+        'Al ‘Alamayn', null, 'Egypt', null, 'Wainwright', 'Natasha', 'Paradyce', 196);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('257-93-4954', '430-862-7698', 'dlysteu@mashable.com', '1966-10-16 15:58:36', '98 Hansons Plaza', 'Pasarkayu',
+        null, 'Indonesia', null, 'Ellary', 'Dimitri', 'Lyste', 184);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('650-64-0005', '978-925-1353', 'wkennadyv@techcrunch.com', '1970-02-23 05:31:57', '4 Golf View Road', 'Kaulon',
+        null, 'Indonesia', null, 'Jolyn', 'Wade', 'Kennady', 193);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('473-25-9442', '861-137-7559', 'mawtyw@themeforest.net', '1947-05-16 19:14:40', '39856 New Castle Way',
+        'Huangbu', null, 'China', null, 'Jenica', 'Melloney', 'Awty', 140);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('388-76-9559', '923-358-2804', 'jretallackx@archive.org', '1999-04-30 17:52:25', '9 Grayhawk Avenue',
+        'Majagual', null, 'Dominican Republic', '11604', 'Brand', 'Jacenta', 'Retallack', 160);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('151-35-4718', '631-770-2026', 'cparrishy@youku.com', '1981-05-02 10:00:16', '3887 Graedel Junction', 'Bagrāmī',
+        null, 'Afghanistan', null, 'Morna', 'Caprice', 'Parrish', 142);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('260-53-9348', '411-894-2457', 'skittz@tinypic.com', '1981-07-25 05:54:20', '37 Lerdahl Plaza', 'Kaliasin',
+        null, 'Indonesia', null, 'Talyah', 'Suzanne', 'Kitt', 1);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('079-32-3744', '185-482-6634', 'esquibbs10@flavors.me', '1982-03-28 14:05:31', '63 Waxwing Plaza', 'Tongjiang',
+        null, 'China', null, 'Cleopatra', 'Ellary', 'Squibbs', 205);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('379-10-2648', '363-285-1366', 'baimeric11@ftc.gov', '1945-07-22 05:13:59', '50 Sauthoff Terrace', 'Kalawit',
+        null, 'Philippines', '7124', 'Lorin', 'Bryn', 'Aimeric', 218);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('619-81-3275', '342-864-3991', 'rtattersfield12@ebay.co.uk', '1952-08-24 00:22:46', '5 Sunbrook Court',
+        'Nurmijärvi', null, 'Finland', '01901', 'Constance', 'Reed', 'Tattersfield', 209);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('354-18-9996', '847-971-4371', 'rkildale13@vkontakte.ru', '1963-08-09 11:07:17', '3 Stuart Street',
+        'Xiashixiang', null, 'China', null, 'Christel', 'Reeba', 'Kildale', 136);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('318-54-1628', '662-433-0533', 'vlammin14@cyberchimps.com', '1982-12-22 08:23:17', '4 Rigney Circle',
+        'Prey Veng', null, 'Cambodia', null, 'Derrik', 'Valdemar', 'Lammin', 4);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('910-01-4803', '801-207-3433', 'nbraben15@accuweather.com', '1949-07-09 11:20:22', '63 Towne Pass', 'Kołbiel',
+        null, 'Poland', '05-340', 'Dulcea', 'Nani', 'Braben', 40);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('634-71-0510', '870-149-3736', 'dosiaghail16@yahoo.com', '1994-04-26 10:39:59', '86 Florence Street', 'Fenggao',
+        null, 'China', null, 'Daryl', 'Dixie', 'O''Siaghail', 107);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('000-63-2323', '560-299-0259', 'jbastistini17@paypal.com', '1992-11-26 13:55:41', '898 Oxford Crossing',
+        'Limoeiro do Norte', null, 'Brazil', '62930-000', 'Johnath', 'Junie', 'Bastistini', 170);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('744-47-4647', '823-738-9671', 'mdavenhill18@narod.ru', '1979-10-07 22:48:19', '58458 Anzinger Center',
+        'Ubon Ratchathani', null, 'Thailand', '67150', 'Nikki', 'Mandie', 'Davenhill', 103);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('235-23-4368', '708-957-0548', 'mineson19@multiply.com', '1987-11-24 19:39:46', '592 Barby Drive', 'Kinshasa',
+        null, 'Democratic Republic of the Congo', null, 'Rakel', 'Matti', 'Ineson', 25);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('572-60-8968', '178-359-5688', 'tchrichton1a@sitemeter.com', '1973-03-13 05:02:07', '504 Sauthoff Avenue',
+        'Dresden', 'Sachsen', 'Germany', '01156', 'Lucian', 'Timmie', 'Chrichton', 244);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('866-49-0066', '672-818-2347', 'pknapman1b@sogou.com', '1991-02-09 09:21:15', '7 Village Green Plaza', 'Tyvriv',
+        null, 'Ukraine', null, 'Celka', 'Padriac', 'Knapman', 81);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('864-04-3280', '952-807-7902', 'esetch1c@unesco.org', '1953-02-06 23:27:51', '2159 Grayhawk Pass', 'Shuiyuan',
+        null, 'China', null, 'Dacia', 'Edward', 'Setch', 245);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('573-43-6918', '996-676-1692', 'bholt1d@columbia.edu', '1959-11-07 09:08:29', '8 Russell Crossing',
+        'Néa Flogitá', null, 'Greece', null, 'Isadore', 'Baxy', 'Holt', 184);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('901-71-7871', '103-683-6791', 'lwillden1e@mediafire.com', '1956-10-09 06:12:01', '4 Hoffman Lane', 'Kahama',
+        null, 'Tanzania', null, 'Purcell', 'Lemmy', 'Willden', 133);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('968-51-8483', '893-586-2422', 'rbarthram1f@loc.gov', '1948-08-15 03:03:25', '32576 Schlimgen Way', 'Mramani',
+        null, 'Comoros', null, 'Lothaire', 'Ricky', 'Barthram', 222);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('771-06-9681', '573-528-7599', 'kquinion1g@newsvine.com', '1952-12-25 11:28:21', '1 Clove Road', 'Ķegums', null,
+        'Latvia', null, 'Tabina', 'Kienan', 'Quinion', 177);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('713-22-5206', '242-549-8142', 'hlighterness1h@google.com.au', '1954-04-03 03:53:52', '6 Hauk Parkway',
+        'Béthune', 'Nord-Pas-de-Calais', 'France', '62404 CEDEX', 'Casandra', 'Herve', 'Lighterness', 22);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('816-63-8512', '457-729-2339', 'clayburn1i@ted.com', '1973-11-28 18:22:18', '3257 Arizona Court', 'Ifon', null,
+        'Nigeria', null, 'Camille', 'Cairistiona', 'Layburn', 56);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('862-27-8210', '684-300-2982', 'kaimson1j@yale.edu', '1963-05-21 21:07:54', '8325 Prentice Lane', 'Khadīr',
+        null, 'Afghanistan', null, 'Dorthy', 'Kirby', 'Aimson', 159);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('120-23-6399', '415-525-4739', 'dfrick1k@paginegialle.it', '1984-05-22 02:17:47', '46793 Rieder Alley', 'Solna',
+        'Stockholm', 'Sweden', '169 35', 'Ilene', 'Delainey', 'Frick', 30);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('265-89-5035', '675-969-5541', 'drobbins1l@liveinternet.ru', '1952-06-09 05:36:22', '2661 Ridge Oak Road',
+        'Mombasa', null, 'Kenya', null, 'Saloma', 'Delmar', 'Robbins', 105);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('831-82-0988', '535-890-0832', 'aamerici1m@indiatimes.com', '1998-04-10 08:17:13', '117 Troy Junction',
+        'Sivers’k', null, 'Ukraine', null, 'Derrick', 'Agustin', 'Americi', 41);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('295-55-4660', '226-218-5616', 'snarraway1n@issuu.com', '1972-01-06 01:14:15', '2727 Golf View Road',
+        'Askersund', 'Örebro', 'Sweden', '696 91', 'Sancho', 'Susette', 'Narraway', 74);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('714-53-4936', '540-806-7977', 'mcockshut1o@istockphoto.com', '1951-02-16 22:52:36', '84543 Iowa Point',
+        'Xiaochengzi', null, 'China', null, 'Ford', 'Mace', 'Cockshut', 98);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('735-98-1943', '918-249-6927', 'sbewshaw1p@desdev.cn', '1986-06-15 05:22:12', '92357 Messerschmidt Trail',
+        'Tulsa', 'Oklahoma', 'United States', '74184', 'Ad', 'Shara', 'Bewshaw', 208);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('511-48-1898', '373-564-3180', 'hwortley1q@ebay.com', '1977-04-18 09:41:10', '025 Almo Court',
+        'Chervonopartyzans’k', null, 'Ukraine', null, 'Patrica', 'Hebert', 'Wortley', 215);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('265-70-5212', '713-392-6712', 'dagget1r@flickr.com', '1988-03-29 08:20:02', '1690 Hoffman Avenue', 'Shuibian',
+        null, 'China', null, 'Lela', 'Deanne', 'Agget', 197);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('359-75-5201', '701-188-8010', 'tbowdon1s@yale.edu', '1949-12-14 08:11:32', '670 Dahle Alley', 'Bantog', null,
+        'Philippines', '2445', 'Jim', 'Teresina', 'Bowdon', 93);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('025-33-7346', '411-878-7204', 'kbodocs1t@yahoo.co.jp', '1962-11-18 01:31:39', '47992 Mariners Cove Center',
+        'Phu Luang', null, 'Thailand', '42230', 'Thaxter', 'Kristal', 'Bodocs', 68);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('689-44-4839', '445-410-6168', 'swatmough1u@dagondesign.com', '1948-01-31 14:19:05', '514 7th Way',
+        'Zheleznogorsk', null, 'Russia', '307156', 'Bentley', 'Salvatore', 'Watmough', 70);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('652-38-0119', '971-842-7224', 'jcowmeadow1v@bluehost.com', '1978-04-08 00:54:27', '36 Stoughton Way', 'Dongxi',
+        null, 'China', null, 'Vernen', 'Jacqui', 'Cowmeadow', 93);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('669-59-9689', '279-822-0303', 'hferreira1w@google.com.hk', '1985-08-09 19:29:58', '8009 Cottonwood Crossing',
+        'Songgang', null, 'China', null, 'Marris', 'Ham', 'Ferreira', 12);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('381-80-1052', '535-541-9632', 'aflorio1x@webmd.com', '1974-02-01 12:13:43', '714 Utah Pass', 'Bolderaja', null,
+        'Latvia', null, 'Lincoln', 'Ailene', 'Florio', 231);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('143-48-6793', '492-322-2391', 'bbalassi1y@qq.com', '1996-09-07 04:55:40', '3433 Sachs Hill', 'Shuangshipu',
+        null, 'China', null, 'Hatty', 'Bonni', 'Balassi', 152);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('829-47-4080', '226-403-0361', 'cbottomley1z@mtv.com', '1959-08-21 21:33:17', '2 Southridge Trail', 'Astromil',
+        'Porto', 'Portugal', '4585-794', 'Bryn', 'Colan', 'Bottomley', 122);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('210-12-7719', '924-841-6854', 'rnattrass20@ask.com', '1960-09-12 23:43:27', '1 Schmedeman Place', 'Manevychi',
+        null, 'Ukraine', null, 'Heall', 'Rafa', 'Nattrass', 161);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('907-53-9916', '287-623-1000', 'choldworth21@smh.com.au', '1973-07-21 05:09:27', '0 Crownhardt Circle',
+        'Ágio Pnévma', null, 'Greece', null, 'Laureen', 'Christean', 'Holdworth', 223);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('531-82-2797', '362-301-0632', 'bjaine22@cbsnews.com', '1958-10-30 00:33:36', '7 Eagan Pass', 'Ikalamavony',
+        null, 'Madagascar', null, 'Hanan', 'Benjamin', 'Jaine', 49);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('937-78-7654', '274-320-5637', 'rdrohun23@ucoz.com', '1958-06-18 09:46:48', '9141 Norway Maple Road',
+        'Неготино', null, 'Macedonia', '1236', 'Fan', 'Royce', 'Drohun', 48);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('201-03-0417', '891-700-0703', 'dsheffield24@bloglovin.com', '1984-01-31 05:24:43', '3416 Waxwing Plaza',
+        'Santos Dumont', null, 'Brazil', '36240-000', 'Israel', 'Denis', 'Sheffield', 151);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('784-78-3458', '146-120-4664', 'ccamosso25@redcross.org', '1987-03-09 14:52:37', '95621 Summit Parkway',
+        'Wujian', null, 'China', null, 'Brandea', 'Cayla', 'Camosso', 14);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('410-35-9853', '941-591-1069', 'npaternoster26@vkontakte.ru', '1998-06-22 06:52:43', '4334 Scoville Circle',
+        'Sivers’k', null, 'Ukraine', null, 'Ki', 'Nina', 'Paternoster', 181);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('318-75-2963', '138-665-1097', 'mtrevett27@google.com.au', '1999-03-31 08:11:09', '341 Spenser Drive',
+        'Fonteleite', 'Porto', 'Portugal', '4745-530', 'Augy', 'Morley', 'Trevett', 54);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('630-59-4449', '688-816-4114', 'jarbuckel28@dell.com', '1948-08-03 21:33:02', '8 Jenna Place', 'Jiaodai', null,
+        'China', null, 'Bryce', 'Jodie', 'Arbuckel', 225);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('814-87-3814', '827-907-9153', 'bchatt29@ted.com', '1946-09-07 06:50:50', '19104 Evergreen Lane', 'Bartica',
+        null, 'Guyana', null, 'Shelbi', 'Bibbie', 'Chatt', 85);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('255-92-3396', '314-403-1471', 'omatveyev2a@over-blog.com', '1979-08-12 08:37:21', '4518 Dovetail Lane',
+        'Tongyang', null, 'China', null, 'Kippy', 'Orson', 'Matveyev', 160);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('647-69-4572', '396-227-3936', 'ehanigan2b@hao123.com', '1984-01-28 01:20:14', '5802 Golf Park', 'Placencia',
+        null, 'Belize', null, 'Desiree', 'Eziechiele', 'Hanigan', 151);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('201-69-1408', '151-327-3505', 'jeidelman2c@imgur.com', '1974-12-12 11:25:24', '1 Lindbergh Avenue', 'Bozkow',
+        null, 'Poland', '51-376', 'Daniela', 'Johann', 'Eidelman', 138);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('528-16-2857', '588-460-9038', 'nmellodey2d@msu.edu', '1988-02-22 11:16:46', '7 Marcy Hill', 'Marisgama', null,
+        'Indonesia', null, 'Mill', 'Nealon', 'Mellodey', 203);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('267-56-0114', '943-813-8618', 'sbarlee2e@discovery.com', '1993-02-15 11:09:44', '752 Homewood Trail',
+        'Gampang', null, 'Indonesia', null, 'Myrle', 'Sharron', 'Barlee', 150);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('691-21-4525', '380-849-6584', 'biban2f@tinypic.com', '1963-04-09 01:51:11', '99 Westend Road', 'Naha-shi',
+        null, 'Japan', '903-0826', 'Pris', 'Brooks', 'Iban', 55);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('862-06-1411', '338-361-7499', 'scrutchfield2g@behance.net', '1953-01-30 01:59:27', '15398 Superior Court',
+        'Sidamukti', null, 'Indonesia', null, 'Emmaline', 'Shea', 'Crutchfield', 30);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('636-15-8990', '714-949-7826', 'pscreech2h@123-reg.co.uk', '1976-05-19 08:38:00', '30 Oak Valley Crossing',
+        'Węgorzyno', null, 'Poland', '73-155', 'Maddy', 'Paten', 'Screech', 41);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('221-51-2853', '156-839-3197', 'jlebond2i@godaddy.com', '1951-04-19 17:15:23', '65811 Welch Crossing',
+        'Jacareí', null, 'Brazil', '12300-000', 'Keir', 'Josee', 'Lebond', 14);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('452-84-2158', '778-556-8351', 'crefford2j@imdb.com', '1982-03-02 09:06:21', '8 Debra Pass', 'Prosyana', null,
+        'Ukraine', null, 'Teddie', 'Cullie', 'Refford', 191);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('098-54-9528', '914-268-4211', 'hroderham2k@dailymotion.com', '1970-07-15 22:30:59', '08 Schurz Park',
+        'Salinas', null, 'Ecuador', null, 'Gibby', 'Hubert', 'Roderham', 21);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('774-13-8193', '597-874-6619', 'esturm2l@prnewswire.com', '1945-09-17 18:37:16', '5 Paget Plaza', 'Březová',
+        null, 'Czech Republic', '747 44', 'Deeann', 'Esther', 'Sturm', 113);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('099-74-1313', '176-386-9135', 'ecastro2m@diigo.com', '1953-01-01 16:03:33', '8656 Harper Trail', 'G’uzor',
+        null, 'Uzbekistan', null, 'Riordan', 'Edythe', 'Castro', 107);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('866-71-9312', '829-520-8047', 'eiglesias2n@europa.eu', '1967-10-29 06:13:51', '68 Nobel Street', 'Xankandi',
+        null, 'Azerbaijan', null, 'Wayland', 'Emily', 'Iglesias', 31);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('355-88-2755', '805-361-8709', 'asemered2o@arizona.edu', '1970-08-01 21:54:24', '443 Luster Street',
+        'Huanggang', null, 'China', null, 'Orin', 'Alvis', 'Semered', 166);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('579-92-0043', '226-805-1047', 'salexsandrov2p@nifty.com', '1976-04-10 20:07:27', '3084 Cottonwood Park',
+        'Oebobo', null, 'Indonesia', null, 'Magdalene', 'Stafford', 'Alexsandrov', 57);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('557-07-2434', '803-347-4419', 'ematzl2q@yelp.com', '1991-03-29 08:44:45', '375 Orin Circle', 'Shirbīn', null,
+        'Egypt', null, 'Tove', 'Elwood', 'Matzl', 100);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('879-84-1477', '504-134-4843', 'fshaxby2r@java.com', '1982-04-19 01:04:36', '2 Armistice Point', 'Nglengkir',
+        null, 'Indonesia', null, 'Corbett', 'Fax', 'Shaxby', 67);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('449-20-0315', '450-171-0858', 'dbrimilcombe2s@tripadvisor.com', '1998-08-09 22:19:13', '03887 Debs Hill',
+        'Shanglu', null, 'China', null, 'Allianora', 'Dael', 'Brimilcombe', 126);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('346-26-5851', '316-443-8600', 'gcorns2t@reference.com', '1954-10-07 05:17:32', '0 Sullivan Center',
+        'Tiedonglu', null, 'China', null, 'Steffi', 'Gustavo', 'Corns', 108);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('803-52-5453', '653-121-4106', 'lepelett2u@topsy.com', '1959-03-25 03:54:28', '212 Esker Parkway', 'Bassar',
+        null, 'Togo', null, 'Ludovico', 'Liane', 'Epelett', 164);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('263-63-3796', '454-955-3066', 'crudloff2v@bloglovin.com', '1964-04-10 18:19:07', '2 Florence Road', 'Güiria',
+        null, 'Venezuela', null, 'Nolan', 'Clovis', 'Rudloff', 25);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('364-48-5940', '678-941-1564', 'reye2w@istockphoto.com', '1966-09-12 11:14:10', '6 Shoshone Pass', 'Vannes',
+        'Bretagne', 'France', '56004 CEDEX', 'Arron', 'Riordan', 'Eye', 122);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('546-60-3441', '437-244-4862', 'shedditch2x@java.com', '1947-11-05 18:54:11', '96181 Crownhardt Park',
+        'Itiruçu', null, 'Brazil', '45350-000', 'Kinsley', 'Shelley', 'Hedditch', 156);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('411-22-6898', '604-976-4295', 'rruane2y@devhub.com', '1978-04-18 07:14:30', '0160 Sherman Avenue', 'Bjästa',
+        'Västernorrland', 'Sweden', '893 23', 'Keane', 'Rollins', 'Ruane', 68);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('355-99-9614', '735-125-9449', 'klytton2z@usda.gov', '1986-02-27 19:14:02', '58 Superior Circle', 'Flagstaff',
+        null, 'South Africa', '4821', 'Baxie', 'Karly', 'Lytton', 26);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('331-92-5534', '768-753-0163', 'celis30@ifeng.com', '1978-10-31 14:34:58', '363 Jana Junction', 'Tauranga',
+        null, 'New Zealand', '3144', 'Heinrik', 'Cecilla', 'Elis', 110);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('961-53-7839', '922-926-4535', 'kmattioli31@reuters.com', '1956-08-10 22:37:02', '738 Lillian Park', 'Acobamba',
+        null, 'Peru', null, 'Moyna', 'Kalil', 'Mattioli', 190);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('134-27-7819', '640-282-8731', 'fsimanek32@arstechnica.com', '1988-06-29 08:37:05', '0 Welch Avenue',
+        'Genisséa', null, 'Greece', null, 'Codi', 'Farica', 'Simanek', 136);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('861-55-9524', '296-930-2363', 'mjakeman33@reddit.com', '1955-09-01 06:08:35', '17844 Continental Circle',
+        'Pule', null, 'Indonesia', null, 'Walden', 'Merrielle', 'Jakeman', 235);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('843-17-8110', '458-295-4988', 'dkemmer34@sohu.com', '1965-01-10 05:24:30', '8 Hintze Hill', 'Itabaiana', null,
+        'Brazil', '49500-000', 'Sanderson', 'Drud', 'Kemmer', 36);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('943-09-5433', '852-489-1978', 'pjewsbury35@over-blog.com', '1948-08-03 23:05:58', '0623 Becker Point', 'Jami',
+        null, 'Indonesia', null, 'Fran', 'Paxon', 'Jewsbury', 179);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('875-70-1124', '285-855-5395', 'darnholz36@toplist.cz', '1983-07-18 12:24:30', '99289 Debs Point',
+        'Juan Adrián', null, 'Dominican Republic', '11506', 'Lionel', 'Dalila', 'Arnholz', 36);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('054-11-0682', '897-254-9646', 'lsexty37@nps.gov', '1954-09-07 11:25:15', '4822 Lawn Circle', 'Andahuaylas',
+        null, 'Peru', null, 'Erastus', 'Leyla', 'Sexty', 117);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('834-81-4367', '356-880-6773', 'acarleton38@illinois.edu', '1973-09-20 13:12:49', '46 Dorton Trail', 'Tafeng',
+        null, 'China', null, 'Mayne', 'Ariel', 'Carleton', 48);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('574-39-3634', '591-533-1820', 'vhaverson39@about.com', '1995-12-19 07:47:16', '57000 Crescent Oaks Place',
+        'Aginskoye', null, 'Russia', '663580', 'Verna', 'Verene', 'Haverson', 52);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('562-33-9321', '783-587-7367', 'mhumes3a@typepad.com', '1959-05-30 21:29:28', '75 Gina Pass', 'Ресен', null,
+        'Macedonia', '7320', 'Poppy', 'Mahmoud', 'Humes', 119);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('028-31-2123', '567-939-8848', 'wconstable3b@vistaprint.com', '1953-12-30 20:05:39', '3 Erie Park', 'Tongxing',
+        null, 'China', null, 'Nancey', 'Wynny', 'Constable', 216);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('462-87-1608', '182-771-7281', 'smatthius3c@twitter.com', '1950-08-19 14:58:48', '68 Fairfield Circle',
+        'Tanushimarumachi-toyoki', null, 'Japan', '839-1344', 'Shalom', 'Stillmann', 'Matthius', 135);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('474-39-3465', '677-358-0680', 'kpidwell3d@meetup.com', '1963-03-25 20:20:03', '9133 Union Parkway', 'Kumane',
+        null, 'Serbia', null, 'Kristian', 'Karly', 'Pidwell', 117);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('087-83-3994', '982-439-6203', 'arecher3e@wisc.edu', '1979-08-10 04:28:55', '118 Ilene Alley', 'Tajrīsh', null,
+        'Iran', null, 'Wilona', 'Abner', 'Recher', 174);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('137-98-8678', '982-388-9219', 'ckineton3f@nifty.com', '1981-05-10 23:47:23', '00965 Alpine Center', 'Shilong',
+        null, 'China', null, 'Aubrey', 'Coletta', 'Kineton', 168);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('063-68-4538', '169-414-0144', 'ecopes3g@chron.com', '1995-07-04 17:51:31', '06 Clarendon Circle',
+        'Palmas De Gran Canaria, Las', 'Canarias', 'Spain', '35005', 'Antonie', 'Elliot', 'Copes', 76);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('642-88-3527', '745-198-3185', 'edanilin3h@arstechnica.com', '1990-06-30 01:39:08', '45163 Waywood Place',
+        'Navatat', null, 'Philippines', '0905', 'Nadeen', 'Eustace', 'Danilin', 5);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('550-72-7429', '918-250-7631', 'bspoure3i@networksolutions.com', '1957-11-07 08:49:36', '0 Kim Parkway',
+        'Mayingzhuang', null, 'China', null, 'Dominique', 'Buddy', 'Spoure', 4);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('493-15-6178', '860-780-5894', 'ebeyne3j@disqus.com', '1952-12-14 07:06:25', '24 Express Junction', 'Yanwan',
+        null, 'China', null, 'Elijah', 'Engracia', 'Beyne', 168);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('472-71-1584', '444-696-2826', 'nberesford3k@miibeian.gov.cn', '1991-04-06 00:15:25', '7677 Superior Place',
+        'Det Udom', null, 'Thailand', '34160', 'Venita', 'Nelli', 'Beresford', 123);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('185-12-5813', '806-871-7356', 'kbebis3l@webeden.co.uk', '1983-01-05 02:03:54', '9 Gale Street', 'Konga', null,
+        'Indonesia', null, 'Kristian', 'Kylen', 'Bebis', 167);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('850-72-2241', '241-927-2773', 'tranner3m@nydailynews.com', '1991-08-05 20:59:27', '30 Columbus Street',
+        'Kadujangkung', null, 'Indonesia', null, 'Susie', 'Teddy', 'Ranner', 183);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('636-58-7521', '813-246-3798', 'sgrishukhin3n@bing.com', '1990-10-11 04:49:08', '7861 Grasskamp Court',
+        'Vänersborg', 'Västra Götaland', 'Sweden', '462 22', 'Lauraine', 'Skipton', 'Grishukhin', 131);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('976-06-3488', '535-929-7283', 'cfaux3o@cnbc.com', '1964-07-17 08:41:14', '18783 Monterey Plaza', 'Gemuruh',
+        null, 'Indonesia', null, 'Saw', 'Cherye', 'Faux', 120);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('348-85-6092', '623-510-0221', 'apiotr3p@skyrock.com', '1988-11-02 03:59:36', '42514 Quincy Junction',
+        'Sampués', null, 'Colombia', '705079', 'Delbert', 'Aldin', 'Piotr', 129);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('310-16-0124', '423-999-0106', 'apougher3q@google.de', '1999-03-15 19:09:37', '1559 Dawn Place', 'Duzhou', null,
+        'China', null, 'Lynnell', 'Annabella', 'Pougher', 241);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('979-44-9284', '503-851-3584', 'ecrevy3r@live.com', '1965-01-07 07:22:39', '34310 Dawn Drive', 'Muraharjo',
+        null, 'Indonesia', null, 'Eimile', 'Eleonore', 'Crevy', 126);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('731-82-9894', '523-628-9822', 'sabramowsky3s@google.co.uk', '1961-11-09 01:25:53', '71907 Goodland Place',
+        'Plavsk', null, 'Russia', '301477', 'Rollie', 'Suzette', 'Abramowsky', 174);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('306-35-8886', '747-344-1951', 'wmatasov3t@mediafire.com', '1949-02-01 06:28:13', '6 Haas Place',
+        'Tekstil’shchiki', null, 'Russia', '678126', 'Phillip', 'Winonah', 'Matasov', 202);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('544-57-5805', '312-753-3873', 'kblazej3u@amazon.co.uk', '1945-04-01 14:01:28', '41 Nancy Way', 'Chicago',
+        'Illinois', 'United States', '60663', 'Humberto', 'Kaine', 'Blazej', 106);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('339-12-9282', '504-272-0912', 'gsahlstrom3v@shop-pro.jp', '1967-02-11 19:36:19', '800 La Follette Parkway',
+        'Jeseník', null, 'Czech Republic', '790 01', 'Delores', 'Gerry', 'Sahlstrom', 153);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('577-86-5029', '298-958-8425', 'rlobbe3w@washingtonpost.com', '1982-06-10 01:44:30', '3 Mayer Parkway',
+        'Nakhon Pathom', null, 'Thailand', '40140', 'Marylou', 'Rosetta', 'Lobbe', 82);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('147-14-3483', '663-524-9238', 'kgagin3x@businessinsider.com', '1998-05-03 07:06:25', '4 Caliangt Terrace',
+        'Doom', null, 'Indonesia', null, 'Ogden', 'Kean', 'Gagin', 1);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('589-39-9073', '769-426-1255', 'mlauder3y@redcross.org', '1969-02-21 07:16:22', '3 Meadow Ridge Trail', 'Ipala',
+        null, 'Guatemala', '20011', 'Dov', 'Matteo', 'Lauder', 132);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('584-96-2102', '367-604-0439', 'mwilloughway3z@wikipedia.org', '1986-11-01 23:56:44', '3244 Sutteridge Court',
+        'Zastron', null, 'South Africa', '9951', 'Cullie', 'Maure', 'Willoughway', 107);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('612-85-8563', '839-124-5582', 'shobben40@cocolog-nifty.com', '1975-02-18 10:38:25', '73145 Forster Junction',
+        'Da’ao', null, 'China', null, 'Inna', 'Sherrie', 'Hobben', 229);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('357-89-3127', '504-405-0022', 'ttumbridge41@biglobe.ne.jp', '1989-05-18 08:13:55', '4 Buena Vista Place',
+        'Shelabolikha', null, 'Russia', '659050', 'Garrick', 'Thia', 'Tumbridge', 242);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('543-68-6795', '257-154-1388', 'tespadater42@google.es', '1969-03-17 07:36:46', '97833 Mandrake Circle', 'Riga',
+        null, 'Latvia', null, 'Calley', 'Tasia', 'Espadater', 14);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('150-26-0451', '301-680-8869', 'idopson43@godaddy.com', '1961-07-13 23:52:56', '47 Harbort Lane', 'Chaniá',
+        null, 'Greece', null, 'Gianna', 'Imelda', 'Dopson', 192);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('727-45-6910', '927-889-7093', 'gtorr44@amazon.co.uk', '1984-10-23 05:51:20', '56 Clarendon Avenue',
+        'Ārt Khwājah', null, 'Afghanistan', null, 'Hazlett', 'Gib', 'Torr', 18);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('432-22-2506', '274-163-3762', 'htrematick45@statcounter.com', '1960-03-17 20:01:50', '0184 Delladonna Circle',
+        'Idenao', null, 'Cameroon', null, 'Anstice', 'Horatio', 'Trematick', 140);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('979-13-3002', '531-631-7005', 'smoscone46@kickstarter.com', '1978-08-06 00:32:23', '2 Katie Place', 'Augustów',
+        null, 'Poland', '16-303', 'Jill', 'Sheila', 'Moscone', 93);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('548-99-4688', '202-793-2395', 'ldonalson47@posterous.com', '1999-08-14 03:53:59', '9891 Ohio Lane',
+        'Washington', 'District of Columbia', 'United States', '20088', 'Jessy', 'Lolita', 'Donalson', 92);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('497-58-4738', '944-915-7968', 'gduff48@yellowbook.com', '1998-02-13 19:35:28', '288 West Parkway', 'Ngilengan',
+        null, 'Indonesia', null, 'Urbanus', 'Gaile', 'Duff', 140);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('663-24-3951', '440-567-1413', 'pgeockle49@state.tx.us', '1949-09-16 11:52:36', '61 Warner Way',
+        'Nowosielce-Gniewosz', null, 'Poland', '38-507', 'Danya', 'Patrica', 'Geockle', 162);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('278-96-8324', '535-500-3454', 'dclotworthy4a@icq.com', '1998-03-17 03:07:49', '0793 Washington Drive',
+        'Santarém', null, 'Brazil', '58928-000', 'Ezekiel', 'Daffy', 'Clotworthy', 141);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('055-92-3529', '908-193-1269', 'clovewell4b@ihg.com', '1958-04-24 12:43:05', '20513 Canary Center', 'Brocēni',
+        null, 'Latvia', null, 'Carlita', 'Codie', 'Lovewell', 238);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('964-73-5051', '709-890-7416', 'mpanketh4c@skyrock.com', '1962-07-22 21:11:22', '8 Susan Plaza', 'Rogoza', null,
+        'Slovenia', '2327', 'Corabella', 'Mendy', 'Panketh', 161);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('777-50-4600', '385-861-2871', 'abywater4d@de.vu', '1985-07-20 21:19:38', '57 Loeprich Road', 'Trzciana', null,
+        'Poland', '36-071', 'Cacilia', 'Anabelle', 'Bywater', 73);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('278-85-8709', '372-660-4146', 'bcurdell4e@bloglines.com', '1962-01-30 07:38:02', '57605 Katie Parkway',
+        'Saint-Denis', 'Réunion', 'Reunion', '97471 CEDEX', 'Phoebe', 'Bridget', 'Curdell', 11);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('901-98-9354', '588-961-1626', 'khamnett4f@wikia.com', '1974-07-18 01:27:30', '46 Village Green Junction',
+        'Myshkin', null, 'Russia', '152835', 'Emera', 'Kaine', 'Hamnett', 208);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('787-57-1878', '599-223-6112', 'gguild4g@myspace.com', '1978-07-26 21:14:50', '25 Novick Street', 'Lom Sak',
+        null, 'Thailand', '67110', 'Lance', 'Gabriel', 'Guild', 117);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('116-20-0009', '538-189-3648', 'astrowan4h@plala.or.jp', '1956-07-28 20:26:06', '6263 Artisan Lane', 'Kathu',
+        null, 'South Africa', '1033', 'Arnaldo', 'Alena', 'Strowan', 41);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('187-84-1734', '527-946-9085', 'gveall4i@hibu.com', '1961-10-21 07:58:07', '76941 Del Sol Pass', 'Camp Thorel',
+        null, 'Mauritius', null, 'Teodora', 'Goddart', 'Veall', 3);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('825-73-1424', '902-894-7091', 'ebednall4j@umn.edu', '1994-02-01 03:35:56', '10 Lien Plaza', 'Maizuru', null,
+        'Japan', '626-0072', 'Ariella', 'Edie', 'Bednall', 127);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('384-10-3586', '866-866-7512', 'lceaser4k@digg.com', '1980-08-12 10:18:16', '31613 Chive Parkway', 'Tulle',
+        'Limousin', 'France', '19011 CEDEX', 'Georgena', 'Lilas', 'Ceaser', 50);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('107-88-8431', '276-285-0035', 'ysebire4l@google.fr', '1954-10-26 13:26:59', '18 Sundown Plaza', 'Ziyang', null,
+        'China', null, 'Noami', 'Yorgos', 'Sebire', 67);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('929-05-1541', '935-844-4603', 'mlowers4m@miitbeian.gov.cn', '1997-07-21 11:44:54', '05139 Del Sol Crossing',
+        'Gongchenqiao', null, 'China', null, 'Lauraine', 'Mark', 'Lowers', 8);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('083-60-1959', '420-929-9441', 'hmattessen4n@hugedomains.com', '1961-10-06 04:08:53', '59 Forest Run Park',
+        'Voskehask', null, 'Armenia', null, 'Kipper', 'Horatio', 'Mattessen', 223);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('766-66-5589', '912-894-6369', 'hstannis4o@vk.com', '1975-05-18 16:11:53', '38 Eastlawn Pass', 'Mastaiciai',
+        null, 'Lithuania', '60028', 'Annadiane', 'Hervey', 'Stannis', 243);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('518-01-2865', '393-587-6250', 'ebendig4p@i2i.jp', '1997-03-04 02:06:43', '34881 Valley Edge Court', 'Kozy',
+        null, 'Poland', '43-340', 'Juliana', 'Em', 'Bendig', 98);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('940-13-8369', '315-430-7229', 'cvotier4q@bloomberg.com', '1960-05-05 07:59:40', '414 Beilfuss Drive',
+        'Waoundé', null, 'Senegal', null, 'Tiff', 'Caritta', 'Votier', 7);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('404-04-3294', '492-507-4091', 'wpembridge4r@google.com.hk', '1960-07-06 20:09:06', '78720 Schmedeman Lane',
+        'Umanday Centro', null, 'Philippines', '2415', 'Curtice', 'Wait', 'Pembridge', 44);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('415-08-8513', '848-344-9359', 'obodechon4s@goodreads.com', '1973-07-29 18:26:23', '8 Northland Parkway',
+        'Khairpur', null, 'Pakistan', '65011', 'Artemas', 'Olin', 'Bodechon', 40);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('331-71-3816', '456-488-2800', 'cfearenside4t@boston.com', '1949-09-26 21:20:18', '83 Del Mar Center',
+        'Wanling', null, 'China', null, 'Oren', 'Carina', 'Fearenside', 169);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('180-29-0400', '972-117-0886', 'dlinnell4u@businessweek.com', '1960-07-22 12:08:35', '195 Hermina Plaza',
+        'Cipunglu', null, 'Indonesia', null, 'Huntlee', 'Dill', 'Linnell', 39);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('102-51-1866', '820-521-4031', 'mleathlay4v@whitehouse.gov', '1986-09-26 07:13:27', '01 Elgar Lane',
+        'Trubchevsk', null, 'Russia', '242251', 'Davis', 'Michaelina', 'Leathlay', 135);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('017-22-4201', '156-520-2532', 'pkenewell4w@vimeo.com', '1957-07-05 23:58:50', '0264 Sommers Hill', 'Pawa',
+        null, 'Philippines', '4501', 'Pryce', 'Patrizia', 'Kenewell', 160);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('479-05-8791', '986-319-8430', 'mlusher4x@webnode.com', '1989-09-18 12:23:48', '661 Acker Plaza', 'Socorro',
+        null, 'Philippines', '8416', 'Rica', 'Marilee', 'Lusher', 164);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('795-22-5622', '967-145-4480', 'cdabinett4y@dailymail.co.uk', '1963-09-21 18:50:17', '79774 Kipling Crossing',
+        'Amahusu', null, 'Indonesia', null, 'Linnie', 'Carla', 'Dabinett', 57);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('518-15-2739', '895-618-7279', 'esimoncello4z@angelfire.com', '1969-05-10 22:53:09', '8718 Crest Line Plaza',
+        'Bonak', null, 'Indonesia', null, 'Andras', 'Elia', 'Simoncello', 2);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('917-80-9556', '414-616-4061', 'lmulberry50@angelfire.com', '1963-05-03 14:23:26', '29 Namekagon Court',
+        'Seteluk Tengah', null, 'Indonesia', null, 'Wilt', 'Lavena', 'Mulberry', 222);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('607-45-3827', '352-809-8827', 'voconor51@stumbleupon.com', '1960-10-04 15:20:16', '229 Bellgrove Point',
+        'Gainesville', 'Florida', 'United States', '32605', 'Marissa', 'Vlad', 'O''Conor', 213);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('201-01-2675', '941-829-3810', 'imaguire52@accuweather.com', '1982-08-29 00:06:16', '1030 Laurel Park',
+        'Diawara', null, 'Senegal', null, 'Reynold', 'Isabelita', 'Maguire', 73);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('210-33-0777', '673-855-0380', 'pdallan53@godaddy.com', '1976-05-26 18:22:18', '0455 Sycamore Avenue',
+        'Qintong', null, 'China', null, 'Hortense', 'Putnam', 'Dallan', 170);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('797-80-6272', '952-363-7477', 'jgiraudel54@time.com', '1949-03-08 10:18:43', '6 Browning Street',
+        'Kiarajangkung', null, 'Indonesia', null, 'Marlon', 'Janet', 'Giraudel', 85);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('773-50-7214', '711-451-8667', 'nsutehall55@yahoo.co.jp', '1956-08-10 14:41:07', '38578 Bartelt Road',
+        'Leuwipicung', null, 'Indonesia', null, 'Dory', 'Nolan', 'Sutehall', 46);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('763-06-4614', '937-878-3994', 'anunan56@noaa.gov', '1971-01-31 08:45:39', '1173 Esker Junction', 'Chinch''ŏn',
+        null, 'South Korea', null, 'Killy', 'Archambault', 'Nunan', 160);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('463-45-3530', '189-621-5624', 'ecosgriff57@flavors.me', '1949-10-31 09:20:38', '20597 Northfield Place',
+        'Bang Yai', null, 'Thailand', '11140', 'Cloe', 'Emlynne', 'Cosgriff', 9);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('975-80-6766', '689-974-7605', 'fbantham58@twitter.com', '1984-09-18 18:31:32', '57103 Summer Ridge Drive',
+        'Xinghua', null, 'China', null, 'Nevin', 'Fraser', 'Bantham', 91);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('453-93-0188', '395-971-6196', 'thecks59@comcast.net', '1974-08-28 11:52:50', '8 Mandrake Terrace', 'El Cacao',
+        null, 'Dominican Republic', '11511', 'Jorie', 'Tomasine', 'Hecks', 18);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('011-41-0090', '894-673-9983', 'rcolthurst5a@sina.com.cn', '1991-06-07 01:10:07', '629 Old Gate Center',
+        'Ambulong', null, 'Philippines', '4234', 'Hans', 'Randa', 'Colthurst', 166);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('161-07-3056', '972-914-9736', 'gsmickle5b@who.int', '1960-03-01 14:26:20', '317 Grover Trail', 'Nurota Shahri',
+        null, 'Uzbekistan', null, 'Lucille', 'Grantham', 'Smickle', 13);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('462-82-7020', '426-758-2102', 'jcommander5c@moonfruit.com', '1958-05-17 18:52:53', '19 Park Meadow Trail',
+        'Al Bawīţī', null, 'Egypt', null, 'Eleen', 'June', 'Commander', 43);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('924-66-1764', '670-960-8160', 'ecardenas5d@google.it', '1996-10-13 04:41:00', '42249 Fairview Circle',
+        'Janakkala', null, 'Finland', '14240', 'Giorgia', 'Eldin', 'Cardenas', 247);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('269-04-6513', '104-868-6518', 'cjanosevic5e@altervista.org', '1965-07-15 22:40:58', '521 7th Trail',
+        'Grivenskaya', null, 'Russia', '353798', 'Selene', 'Chlo', 'Janosevic', 77);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('474-55-7054', '908-919-5732', 'sbrushfield5f@samsung.com', '1965-02-11 18:43:34', '28130 Anderson Pass',
+        'Thị Trấn Mộc Châu', null, 'Vietnam', null, 'Jen', 'Sheeree', 'Brushfield', 189);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('054-96-1836', '759-388-9450', 'aparsons5g@fda.gov', '1990-07-12 09:53:45', '314 Merchant Alley', 'Campbellton',
+        'New Brunswick', 'Canada', 'E3N', 'Friederike', 'Alia', 'Parsons', 70);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('368-69-4958', '166-281-5393', 'dbessell5h@mashable.com', '1976-08-09 04:55:01', '73 Becker Plaza', 'Ferbane',
+        null, 'Ireland', 'E32', 'Luella', 'Doralynne', 'Bessell', 68);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('370-41-5326', '579-462-6291', 'aminette5i@virginia.edu', '1971-02-19 06:15:13', '9091 Weeping Birch Trail',
+        'Mahong', null, 'China', null, 'Tarra', 'Arliene', 'Minette', 144);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('222-31-3531', '439-941-4182', 'dlanyon5j@slideshare.net', '1991-09-27 21:34:20', '970 Northport Road',
+        'Socorro', null, 'Brazil', '13960-000', 'Vanessa', 'Daisy', 'Lanyon', 87);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('498-84-7841', '553-740-0977', 'wclewlow5k@ucla.edu', '1958-02-15 11:46:43', '2419 Fallview Terrace', 'Mouquim',
+        'Braga', 'Portugal', '4770-354', 'Andee', 'Wilek', 'Clewlow', 110);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('212-71-2767', '149-529-7229', 'laxelbey5l@indiegogo.com', '1952-02-24 07:41:01', '64618 Golden Leaf Terrace',
+        'Bieqiao', null, 'China', null, 'Celina', 'Lilyan', 'Axelbey', 126);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('871-93-0031', '173-346-3421', 'aosipov5m@prlog.org', '1983-05-21 06:52:08', '39 Vernon Trail', 'Mosopa', null,
+        'Botswana', null, 'Darius', 'Aigneis', 'Osipov', 169);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('888-21-3232', '821-208-2726', 'ogilchrest5n@mail.ru', '1989-09-09 16:21:08', '414 Dapin Avenue', 'Uiasa', null,
+        'Indonesia', null, 'Dalenna', 'Orelie', 'Gilchrest', 10);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('746-79-0760', '504-317-4883', 'rheaven5o@gizmodo.com', '1958-10-03 23:12:21', '7643 Dovetail Plaza', 'Kario',
+        null, 'Pakistan', '50251', 'Ertha', 'Ranique', 'Heaven', 151);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('833-98-4734', '347-157-7880', 'dcrassweller5p@vkontakte.ru', '1978-10-10 13:20:35', '53761 Thierer Road',
+        'Venlo', 'Provincie Limburg', 'Netherlands', '5904', 'Katrine', 'Deck', 'Crassweller', 142);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('814-48-4422', '850-811-3874', 'ccearley5q@wunderground.com', '1950-01-11 19:41:33', '65 6th Point', 'Helie',
+        null, 'China', null, 'Bonni', 'Cassandra', 'Cearley', 93);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('510-92-0353', '635-568-8195', 'rjansen5r@chron.com', '1960-07-20 12:55:53', '7803 Waubesa Terrace',
+        'Villa Santa Rita', null, 'Argentina', '4600', 'Ario', 'Ricky', 'Jansen', 233);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('116-10-5383', '430-397-3053', 'ochomiszewski5s@timesonline.co.uk', '1980-04-23 23:00:49',
+        '8240 Forest Run Drive', 'Puteran Kidul', null, 'Indonesia', null, 'Lorry', 'Odey', 'Chomiszewski', 4);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('887-88-9965', '300-333-4811', 'mgriston5t@123-reg.co.uk', '1946-11-07 12:15:31', '62716 Calypso Way',
+        'Mairana', null, 'Bolivia', null, 'Freddy', 'Mohammed', 'Griston', 181);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('322-39-4928', '830-510-8400', 'cbaison5u@spiegel.de', '1998-11-02 14:33:52', '44525 Southridge Street',
+        'Dajanrurung', null, 'Indonesia', null, 'Phaedra', 'Cairistiona', 'Baison', 108);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('289-55-6009', '264-367-6573', 'pjellicorse5v@tuttocitta.it', '1950-10-27 00:09:48', '1077 Forest Run Circle',
+        'Krinichnaya', null, 'Ukraine', null, 'Berke', 'Pace', 'Jellicorse', 33);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('977-02-1129', '926-295-9484', 'syakushkin5w@dot.gov', '1997-05-22 07:35:10', '81 Westerfield Junction',
+        'Lesuhe', null, 'China', null, 'Jsandye', 'Shanta', 'Yakushkin', 148);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('385-51-5405', '762-438-4355', 'zritchley5x@stumbleupon.com', '1976-02-14 23:07:08', '86 High Crossing Court',
+        'Tuanjie', null, 'China', null, 'Jaquelyn', 'Zebulen', 'Ritchley', 96);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('982-28-3093', '359-824-6775', 'adeamaya5y@constantcontact.com', '1991-09-28 07:01:21',
+        '8014 Stone Corner Hill', 'Kafachan', null, 'Nigeria', null, 'Ranna', 'Arlee', 'de Amaya', 36);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('124-20-2533', '330-554-3124', 'bfennell5z@businessinsider.com', '1988-12-23 05:12:07', '8995 Eggendart Pass',
+        'Arras', 'Nord-Pas-de-Calais', 'France', '62972 CEDEX 9', 'Barnaby', 'Brade', 'Fennell', 13);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('381-96-2034', '727-351-4743', 'cparidge60@posterous.com', '1980-05-23 03:00:53', '60389 Hollow Ridge Alley',
+        'Ilopango', null, 'El Salvador', null, 'Eberhard', 'Clarabelle', 'Paridge', 148);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('790-89-6017', '958-264-9399', 'sdaal61@e-recht24.de', '1998-01-29 20:19:06', '0 Vahlen Terrace', 'Paris 15',
+        'Île-de-France', 'France', '75509 CEDEX 15', 'Tymon', 'Skye', 'Daal', 105);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('859-32-9068', '692-184-2236', 'mfrankton62@wsj.com', '1955-02-15 06:16:37', '5 Ludington Court', 'Kalanguy',
+        null, 'Russia', '674553', 'Chevy', 'Merrick', 'Frankton', 27);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('427-96-3741', '261-845-1819', 'fweare63@tinyurl.com', '1983-10-09 07:30:05', '38556 Shasta Drive', 'Nantes',
+        'Pays de la Loire', 'France', '44036 CEDEX 1', 'Alia', 'Fredia', 'Weare', 230);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('051-16-2961', '356-760-4495', 'rgregoraci64@umn.edu', '1993-07-03 16:04:00', '63 Basil Parkway', 'Lyon',
+        'Rhône-Alpes', 'France', '69345 CEDEX 07', 'Corbin', 'Rock', 'Gregoraci', 139);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('152-00-4475', '561-695-9804', 'pjansky65@cbslocal.com', '1986-08-29 18:00:48', '027 Forest Court',
+        'Canavieiras', null, 'Brazil', '45860-000', 'Hart', 'Paxton', 'Jansky', 25);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('250-35-8480', '542-269-9042', 'llush66@vkontakte.ru', '1965-08-30 16:24:23', '82 Vernon Trail', 'San Fernando',
+        null, 'Philippines', '8711', 'Veradis', 'Latrina', 'Lush', 241);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('209-33-4255', '644-112-9117', 'mgaisford67@ovh.net', '1956-08-22 19:30:47', '13342 Farmco Center', 'Auas',
+        null, 'Honduras', null, 'Lindsay', 'Mireille', 'Gaisford', 201);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('457-83-3276', '514-843-7256', 'ltreeby68@scribd.com', '1996-11-22 09:54:14', '51148 Green Ridge Lane',
+        'Daveluyville', 'Québec', 'Canada', 'R3P', 'Tish', 'Liane', 'Treeby', 88);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('958-65-3767', '748-929-8699', 'jwaldie69@vinaora.com', '1978-04-25 20:59:09', '15709 Ridge Oak Parkway',
+        'Paris 16', 'Île-de-France', 'France', '75784 CEDEX 16', 'Maxie', 'Janaya', 'Waldie', 90);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('878-47-5010', '488-290-4315', 'oacom6a@wix.com', '1955-05-28 02:08:00', '38 Jay Plaza', 'Jiujie', null,
+        'China', null, 'Gleda', 'Otha', 'Acom', 42);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('668-61-0784', '433-669-0513', 'smccaffrey6b@yolasite.com', '1997-12-29 07:59:15', '5 Kenwood Parkway', 'Biga',
+        null, 'Philippines', '7031', 'Rollo', 'Sigismond', 'McCaffrey', 30);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('405-95-9713', '497-149-8910', 'srate6c@nationalgeographic.com', '1988-06-30 02:13:53', '398 Sauthoff Parkway',
+        'Cartí Suitupo', null, 'Panama', null, 'Adriena', 'Shellysheldon', 'Rate', 139);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('269-78-4402', '275-413-2232', 'atames6d@guardian.co.uk', '1969-09-01 10:13:25', '986 Melrose Road',
+        'Włocławek', null, 'Poland', '87-822', 'Tedda', 'Ad', 'Tames', 60);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('989-06-1647', '977-323-1170', 'cmoultrie6e@illinois.edu', '1967-07-04 04:43:47', '50 Union Place', 'Plast',
+        null, 'Russia', '457031', 'Nikaniki', 'Celinda', 'Moultrie', 243);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('487-58-9822', '272-865-1267', 'khumes6f@opensource.org', '1999-06-18 10:01:18', '22559 Boyd Trail',
+        'Gunjur Kuta', null, 'Gambia', null, 'Allison', 'Kore', 'Humes', 176);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('842-10-8375', '712-454-8943', 'kchopy6g@feedburner.com', '1956-02-01 23:21:18', '4261 Crescent Oaks Way',
+        'Doro Oo', null, 'Indonesia', null, 'Laurena', 'Ki', 'Chopy', 123);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('913-88-6217', '127-938-1273', 'hboffey6h@woothemes.com', '1970-12-23 02:31:56', '605 Loomis Junction',
+        'Bolszewo', null, 'Poland', '84-239', 'Robin', 'Honoria', 'Boffey', 133);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('436-00-2671', '206-517-2879', 'swraith6i@geocities.jp', '1978-08-11 07:46:25', '701 Delladonna Avenue',
+        'Lianhua', null, 'China', null, 'Leese', 'Stearne', 'Wraith', 149);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('886-05-6074', '491-557-4004', 'rbassick6j@nsw.gov.au', '1985-12-02 18:06:57', '019 Vahlen Circle', 'Mörön',
+        null, 'Mongolia', null, 'Celie', 'Reyna', 'Bassick', 80);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('095-94-9659', '153-674-4146', 'hhegden6k@shutterfly.com', '1946-08-21 12:50:24', '44 Bonner Way', 'Wuyao',
+        null, 'China', null, 'Udall', 'Hort', 'Hegden', 110);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('548-82-5769', '234-972-6567', 'cstoggles6l@google.ca', '1971-03-24 18:33:55', '67058 Sugar Avenue',
+        'Eskilstuna', 'Södermanland', 'Sweden', '635 11', 'Coleman', 'Cozmo', 'Stoggles', 156);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('473-25-4893', '335-597-7690', 'cmcgawn6m@hugedomains.com', '1967-01-13 03:16:24', '7 Park Meadow Center',
+        'Huotian', null, 'China', null, 'Gabriel', 'Cordelie', 'McGawn', 201);
+insert into client (ssn, phone_number, email, birthdate, street_address, city, state, country, postal_code, first_name,
+                    middle_name, last_name, advisorID)
+values ('143-55-2032', '493-267-5274', 'ispinnace6n@dion.ne.jp', '1977-08-20 15:12:14', '42966 Sachs Lane', 'Macapá',
+        null, 'Brazil', '68900-000', 'Rabi', 'Ignace', 'Spinnace', 114);
 
 
 -- portfolio sample data generated with Mockaroo
@@ -1229,243 +3085,478 @@ values ('Savings', 1),
        ('Tech', 5),
        ('Healthcare', 5),
        ('Energy', 5);
-insert into portfolio (name, clientID) values ('molestie', 170);
-insert into portfolio (name, clientID) values ('mi nulla ac enim in', 153);
-insert into portfolio (name, clientID) values ('nonummy integer non velit', 238);
-insert into portfolio (name, clientID) values ('vitae', 26);
-insert into portfolio (name, clientID) values ('in', 172);
-insert into portfolio (name, clientID) values ('convallis', 37);
-insert into portfolio (name, clientID) values ('porttitor lorem', 200);
-insert into portfolio (name, clientID) values ('nulla dapibus', 103);
-insert into portfolio (name, clientID) values ('nec nisi', 201);
-insert into portfolio (name, clientID) values ('bibendum felis sed', 36);
-insert into portfolio (name, clientID) values ('magna', 215);
-insert into portfolio (name, clientID) values ('aliquam quis', 152);
-insert into portfolio (name, clientID) values ('rutrum', 226);
-insert into portfolio (name, clientID) values ('mi in', 159);
-insert into portfolio (name, clientID) values ('morbi quis tortor id', 89);
-insert into portfolio (name, clientID) values ('tempus', 41);
-insert into portfolio (name, clientID) values ('feugiat non pretium', 129);
-insert into portfolio (name, clientID) values ('nullam', 189);
-insert into portfolio (name, clientID) values ('nec sem duis', 125);
-insert into portfolio (name, clientID) values ('in hac habitasse platea dictumst', 132);
-insert into portfolio (name, clientID) values ('suspendisse', 236);
-insert into portfolio (name, clientID) values ('maecenas ut massa', 195);
-insert into portfolio (name, clientID) values ('penatibus et magnis dis', 77);
-insert into portfolio (name, clientID) values ('id consequat in', 198);
-insert into portfolio (name, clientID) values ('rutrum rutrum neque aenean auctor', 186);
-insert into portfolio (name, clientID) values ('convallis', 131);
-insert into portfolio (name, clientID) values ('nam', 19);
-insert into portfolio (name, clientID) values ('ac nibh fusce lacus', 131);
-insert into portfolio (name, clientID) values ('sed accumsan felis ut at', 98);
-insert into portfolio (name, clientID) values ('aliquet maecenas leo', 146);
-insert into portfolio (name, clientID) values ('dolor', 53);
-insert into portfolio (name, clientID) values ('quis justo', 33);
-insert into portfolio (name, clientID) values ('turpis', 160);
-insert into portfolio (name, clientID) values ('morbi vestibulum velit id pretium', 109);
-insert into portfolio (name, clientID) values ('a', 68);
-insert into portfolio (name, clientID) values ('diam cras pellentesque volutpat', 222);
-insert into portfolio (name, clientID) values ('scelerisque quam turpis adipiscing', 6);
-insert into portfolio (name, clientID) values ('amet lobortis sapien sapien non', 115);
-insert into portfolio (name, clientID) values ('odio consequat varius integer ac', 160);
-insert into portfolio (name, clientID) values ('erat eros viverra', 209);
-insert into portfolio (name, clientID) values ('eu orci mauris lacinia sapien', 32);
-insert into portfolio (name, clientID) values ('consequat metus sapien ut nunc', 182);
-insert into portfolio (name, clientID) values ('dictumst maecenas ut massa quis', 30);
-insert into portfolio (name, clientID) values ('eget semper rutrum nulla', 167);
-insert into portfolio (name, clientID) values ('consequat morbi a ipsum integer', 123);
-insert into portfolio (name, clientID) values ('sit', 159);
-insert into portfolio (name, clientID) values ('quis orci', 35);
-insert into portfolio (name, clientID) values ('sem mauris laoreet ut', 107);
-insert into portfolio (name, clientID) values ('lacus at velit vivamus vel', 28);
-insert into portfolio (name, clientID) values ('lectus aliquam', 209);
-insert into portfolio (name, clientID) values ('pede ullamcorper augue', 80);
-insert into portfolio (name, clientID) values ('pharetra magna vestibulum', 16);
-insert into portfolio (name, clientID) values ('id', 234);
-insert into portfolio (name, clientID) values ('non ligula pellentesque ultrices', 195);
-insert into portfolio (name, clientID) values ('sapien', 131);
-insert into portfolio (name, clientID) values ('consectetuer adipiscing elit proin risus', 63);
-insert into portfolio (name, clientID) values ('iaculis congue vivamus', 87);
-insert into portfolio (name, clientID) values ('pulvinar lobortis est', 106);
-insert into portfolio (name, clientID) values ('eget eros elementum pellentesque quisque', 155);
-insert into portfolio (name, clientID) values ('velit id pretium iaculis diam', 223);
-insert into portfolio (name, clientID) values ('in hac habitasse platea', 25);
-insert into portfolio (name, clientID) values ('quam fringilla rhoncus', 114);
-insert into portfolio (name, clientID) values ('sed interdum venenatis', 54);
-insert into portfolio (name, clientID) values ('leo maecenas pulvinar lobortis', 57);
-insert into portfolio (name, clientID) values ('tortor id nulla ultrices aliquet', 215);
-insert into portfolio (name, clientID) values ('duis', 129);
-insert into portfolio (name, clientID) values ('cursus id turpis integer aliquet', 208);
-insert into portfolio (name, clientID) values ('mollis molestie lorem quisque', 87);
-insert into portfolio (name, clientID) values ('mi nulla ac enim', 93);
-insert into portfolio (name, clientID) values ('quam fringilla rhoncus', 135);
-insert into portfolio (name, clientID) values ('commodo placerat praesent blandit nam', 203);
-insert into portfolio (name, clientID) values ('posuere', 155);
-insert into portfolio (name, clientID) values ('lacus', 11);
-insert into portfolio (name, clientID) values ('id mauris', 146);
-insert into portfolio (name, clientID) values ('vitae nisi', 139);
-insert into portfolio (name, clientID) values ('amet erat', 229);
-insert into portfolio (name, clientID) values ('nibh in lectus', 51);
-insert into portfolio (name, clientID) values ('erat nulla', 141);
-insert into portfolio (name, clientID) values ('integer tincidunt ante vel', 62);
-insert into portfolio (name, clientID) values ('non', 121);
-insert into portfolio (name, clientID) values ('nulla suspendisse potenti cras in', 62);
-insert into portfolio (name, clientID) values ('orci', 227);
-insert into portfolio (name, clientID) values ('blandit lacinia erat vestibulum', 208);
-insert into portfolio (name, clientID) values ('orci luctus et ultrices', 234);
-insert into portfolio (name, clientID) values ('congue', 133);
-insert into portfolio (name, clientID) values ('in', 18);
-insert into portfolio (name, clientID) values ('id sapien in sapien iaculis', 19);
-insert into portfolio (name, clientID) values ('justo in blandit ultrices', 8);
-insert into portfolio (name, clientID) values ('nec', 211);
-insert into portfolio (name, clientID) values ('rutrum', 8);
-insert into portfolio (name, clientID) values ('diam', 172);
-insert into portfolio (name, clientID) values ('nulla sed accumsan felis', 219);
-insert into portfolio (name, clientID) values ('vitae nisl aenean lectus', 38);
-insert into portfolio (name, clientID) values ('venenatis lacinia aenean sit amet', 88);
-insert into portfolio (name, clientID) values ('neque aenean auctor gravida sem', 19);
-insert into portfolio (name, clientID) values ('sollicitudin vitae consectetuer eget rutrum', 231);
-insert into portfolio (name, clientID) values ('ut tellus nulla', 217);
-insert into portfolio (name, clientID) values ('elit proin interdum', 168);
-insert into portfolio (name, clientID) values ('aliquet maecenas leo', 232);
-insert into portfolio (name, clientID) values ('mauris non', 151);
-insert into portfolio (name, clientID) values ('convallis', 243);
-insert into portfolio (name, clientID) values ('nascetur', 145);
-insert into portfolio (name, clientID) values ('sit amet', 135);
-insert into portfolio (name, clientID) values ('erat vestibulum sed magna at', 32);
-insert into portfolio (name, clientID) values ('justo nec', 1);
-insert into portfolio (name, clientID) values ('urna pretium nisl ut volutpat', 212);
-insert into portfolio (name, clientID) values ('sem mauris laoreet ut', 111);
-insert into portfolio (name, clientID) values ('ipsum dolor sit', 4);
-insert into portfolio (name, clientID) values ('semper sapien a libero', 93);
-insert into portfolio (name, clientID) values ('nibh in', 237);
-insert into portfolio (name, clientID) values ('eleifend pede libero quis', 245);
-insert into portfolio (name, clientID) values ('pellentesque', 208);
-insert into portfolio (name, clientID) values ('lorem ipsum dolor sit', 38);
-insert into portfolio (name, clientID) values ('tortor', 79);
-insert into portfolio (name, clientID) values ('luctus nec molestie', 152);
-insert into portfolio (name, clientID) values ('sed justo', 129);
-insert into portfolio (name, clientID) values ('lacinia sapien quis libero nullam', 125);
-insert into portfolio (name, clientID) values ('tempus vivamus in felis', 231);
-insert into portfolio (name, clientID) values ('quam', 50);
-insert into portfolio (name, clientID) values ('gravida nisi at nibh', 160);
-insert into portfolio (name, clientID) values ('sem fusce consequat nulla', 83);
-insert into portfolio (name, clientID) values ('augue vel accumsan tellus', 55);
-insert into portfolio (name, clientID) values ('nibh in lectus pellentesque at', 89);
-insert into portfolio (name, clientID) values ('cras pellentesque volutpat', 63);
-insert into portfolio (name, clientID) values ('consectetuer eget rutrum at lorem', 102);
-insert into portfolio (name, clientID) values ('vestibulum rutrum rutrum', 244);
-insert into portfolio (name, clientID) values ('velit vivamus vel nulla eget', 150);
-insert into portfolio (name, clientID) values ('nibh quisque id justo sit', 122);
-insert into portfolio (name, clientID) values ('nam ultrices', 222);
-insert into portfolio (name, clientID) values ('turpis enim blandit mi', 134);
-insert into portfolio (name, clientID) values ('non mauris', 189);
-insert into portfolio (name, clientID) values ('cursus id turpis integer aliquet', 196);
-insert into portfolio (name, clientID) values ('amet cursus id', 33);
-insert into portfolio (name, clientID) values ('at lorem integer tincidunt', 84);
-insert into portfolio (name, clientID) values ('vehicula condimentum curabitur in libero', 127);
-insert into portfolio (name, clientID) values ('a nibh', 187);
-insert into portfolio (name, clientID) values ('pharetra magna', 44);
-insert into portfolio (name, clientID) values ('morbi', 250);
-insert into portfolio (name, clientID) values ('ipsum dolor sit', 213);
-insert into portfolio (name, clientID) values ('hendrerit at', 234);
-insert into portfolio (name, clientID) values ('odio odio elementum', 175);
-insert into portfolio (name, clientID) values ('tortor sollicitudin', 88);
-insert into portfolio (name, clientID) values ('erat eros viverra', 141);
-insert into portfolio (name, clientID) values ('dictumst etiam faucibus', 184);
-insert into portfolio (name, clientID) values ('convallis eget', 119);
-insert into portfolio (name, clientID) values ('diam', 106);
-insert into portfolio (name, clientID) values ('cursus id turpis integer aliquet', 185);
-insert into portfolio (name, clientID) values ('leo', 149);
-insert into portfolio (name, clientID) values ('in hac habitasse platea dictumst', 185);
-insert into portfolio (name, clientID) values ('habitasse platea dictumst maecenas', 167);
-insert into portfolio (name, clientID) values ('aenean auctor', 193);
-insert into portfolio (name, clientID) values ('non mi integer ac neque', 67);
-insert into portfolio (name, clientID) values ('aliquet', 172);
-insert into portfolio (name, clientID) values ('vestibulum', 61);
-insert into portfolio (name, clientID) values ('at', 105);
-insert into portfolio (name, clientID) values ('eu', 106);
-insert into portfolio (name, clientID) values ('a pede', 141);
-insert into portfolio (name, clientID) values ('in quis justo maecenas rhoncus', 123);
-insert into portfolio (name, clientID) values ('nisl venenatis lacinia aenean sit', 36);
-insert into portfolio (name, clientID) values ('ultrices aliquet', 192);
-insert into portfolio (name, clientID) values ('nisi', 24);
-insert into portfolio (name, clientID) values ('tortor risus dapibus augue', 160);
-insert into portfolio (name, clientID) values ('vivamus vestibulum sagittis sapien cum', 178);
-insert into portfolio (name, clientID) values ('platea dictumst aliquam augue', 5);
-insert into portfolio (name, clientID) values ('convallis nunc', 70);
-insert into portfolio (name, clientID) values ('integer tincidunt ante vel', 88);
-insert into portfolio (name, clientID) values ('habitasse platea dictumst morbi vestibulum', 145);
-insert into portfolio (name, clientID) values ('nunc commodo placerat', 8);
-insert into portfolio (name, clientID) values ('augue a suscipit', 22);
-insert into portfolio (name, clientID) values ('leo odio porttitor', 206);
-insert into portfolio (name, clientID) values ('rhoncus sed vestibulum sit', 114);
-insert into portfolio (name, clientID) values ('diam cras pellentesque volutpat dui', 247);
-insert into portfolio (name, clientID) values ('adipiscing elit', 89);
-insert into portfolio (name, clientID) values ('aliquet massa', 232);
-insert into portfolio (name, clientID) values ('pharetra', 63);
-insert into portfolio (name, clientID) values ('pellentesque ultrices mattis', 224);
-insert into portfolio (name, clientID) values ('sit amet eleifend pede', 96);
-insert into portfolio (name, clientID) values ('ornare consequat lectus in est', 73);
-insert into portfolio (name, clientID) values ('convallis morbi odio odio', 85);
-insert into portfolio (name, clientID) values ('pulvinar', 191);
-insert into portfolio (name, clientID) values ('morbi', 169);
-insert into portfolio (name, clientID) values ('viverra dapibus nulla suscipit ligula', 145);
-insert into portfolio (name, clientID) values ('sapien quis libero nullam sit', 176);
-insert into portfolio (name, clientID) values ('ac nulla', 25);
-insert into portfolio (name, clientID) values ('volutpat', 87);
-insert into portfolio (name, clientID) values ('aliquet massa id', 214);
-insert into portfolio (name, clientID) values ('odio condimentum id luctus', 86);
-insert into portfolio (name, clientID) values ('nulla nisl', 144);
-insert into portfolio (name, clientID) values ('rutrum nulla tellus', 4);
-insert into portfolio (name, clientID) values ('sed interdum venenatis turpis enim', 33);
-insert into portfolio (name, clientID) values ('eu magna vulputate', 105);
-insert into portfolio (name, clientID) values ('luctus et ultrices posuere', 136);
-insert into portfolio (name, clientID) values ('pulvinar sed nisl nunc rhoncus', 43);
-insert into portfolio (name, clientID) values ('ligula pellentesque ultrices phasellus id', 34);
-insert into portfolio (name, clientID) values ('enim', 30);
-insert into portfolio (name, clientID) values ('amet sem', 49);
-insert into portfolio (name, clientID) values ('ultrices posuere cubilia curae', 203);
-insert into portfolio (name, clientID) values ('dapibus augue vel', 200);
-insert into portfolio (name, clientID) values ('curabitur in libero ut', 236);
-insert into portfolio (name, clientID) values ('sed sagittis', 174);
-insert into portfolio (name, clientID) values ('vel ipsum', 108);
-insert into portfolio (name, clientID) values ('parturient montes', 176);
-insert into portfolio (name, clientID) values ('interdum venenatis', 88);
-insert into portfolio (name, clientID) values ('in tempor turpis nec', 110);
-insert into portfolio (name, clientID) values ('viverra dapibus nulla suscipit ligula', 135);
-insert into portfolio (name, clientID) values ('in leo', 138);
-insert into portfolio (name, clientID) values ('parturient montes nascetur', 28);
-insert into portfolio (name, clientID) values ('at nunc commodo placerat', 132);
-insert into portfolio (name, clientID) values ('quisque erat', 243);
-insert into portfolio (name, clientID) values ('ut', 27);
-insert into portfolio (name, clientID) values ('porttitor pede justo eu', 157);
-insert into portfolio (name, clientID) values ('diam', 193);
-insert into portfolio (name, clientID) values ('lacus', 95);
-insert into portfolio (name, clientID) values ('posuere cubilia', 152);
-insert into portfolio (name, clientID) values ('felis', 22);
-insert into portfolio (name, clientID) values ('ultrices vel augue', 68);
-insert into portfolio (name, clientID) values ('phasellus id', 5);
-insert into portfolio (name, clientID) values ('enim sit', 67);
-insert into portfolio (name, clientID) values ('amet eros suspendisse accumsan tortor', 138);
-insert into portfolio (name, clientID) values ('venenatis', 24);
-insert into portfolio (name, clientID) values ('integer', 107);
-insert into portfolio (name, clientID) values ('bibendum', 213);
-insert into portfolio (name, clientID) values ('lacus morbi', 182);
-insert into portfolio (name, clientID) values ('porttitor', 22);
-insert into portfolio (name, clientID) values ('ultrices libero non mattis pulvinar', 123);
-insert into portfolio (name, clientID) values ('vitae', 145);
-insert into portfolio (name, clientID) values ('imperdiet et commodo', 161);
-insert into portfolio (name, clientID) values ('est donec', 51);
-insert into portfolio (name, clientID) values ('posuere', 68);
-insert into portfolio (name, clientID) values ('in quis', 53);
-insert into portfolio (name, clientID) values ('tempus semper est quam pharetra', 227);
-insert into portfolio (name, clientID) values ('pellentesque viverra pede ac', 63);
-insert into portfolio (name, clientID) values ('donec quis', 249);
-insert into portfolio (name, clientID) values ('nisi vulputate nonummy maecenas tincidunt', 101);
-insert into portfolio (name, clientID) values ('suscipit nulla elit', 214);
-insert into portfolio (name, clientID) values ('sit amet eleifend', 116);
-
+insert into portfolio (name, clientID)
+values ('molestie', 170);
+insert into portfolio (name, clientID)
+values ('mi nulla ac enim in', 153);
+insert into portfolio (name, clientID)
+values ('nonummy integer non velit', 238);
+insert into portfolio (name, clientID)
+values ('vitae', 26);
+insert into portfolio (name, clientID)
+values ('in', 172);
+insert into portfolio (name, clientID)
+values ('convallis', 37);
+insert into portfolio (name, clientID)
+values ('porttitor lorem', 200);
+insert into portfolio (name, clientID)
+values ('nulla dapibus', 103);
+insert into portfolio (name, clientID)
+values ('nec nisi', 201);
+insert into portfolio (name, clientID)
+values ('bibendum felis sed', 36);
+insert into portfolio (name, clientID)
+values ('magna', 215);
+insert into portfolio (name, clientID)
+values ('aliquam quis', 152);
+insert into portfolio (name, clientID)
+values ('rutrum', 226);
+insert into portfolio (name, clientID)
+values ('mi in', 159);
+insert into portfolio (name, clientID)
+values ('morbi quis tortor id', 89);
+insert into portfolio (name, clientID)
+values ('tempus', 41);
+insert into portfolio (name, clientID)
+values ('feugiat non pretium', 129);
+insert into portfolio (name, clientID)
+values ('nullam', 189);
+insert into portfolio (name, clientID)
+values ('nec sem duis', 125);
+insert into portfolio (name, clientID)
+values ('in hac habitasse platea dictumst', 132);
+insert into portfolio (name, clientID)
+values ('suspendisse', 236);
+insert into portfolio (name, clientID)
+values ('maecenas ut massa', 195);
+insert into portfolio (name, clientID)
+values ('penatibus et magnis dis', 77);
+insert into portfolio (name, clientID)
+values ('id consequat in', 198);
+insert into portfolio (name, clientID)
+values ('rutrum rutrum neque aenean auctor', 186);
+insert into portfolio (name, clientID)
+values ('convallis', 131);
+insert into portfolio (name, clientID)
+values ('nam', 19);
+insert into portfolio (name, clientID)
+values ('ac nibh fusce lacus', 131);
+insert into portfolio (name, clientID)
+values ('sed accumsan felis ut at', 98);
+insert into portfolio (name, clientID)
+values ('aliquet maecenas leo', 146);
+insert into portfolio (name, clientID)
+values ('dolor', 53);
+insert into portfolio (name, clientID)
+values ('quis justo', 33);
+insert into portfolio (name, clientID)
+values ('turpis', 160);
+insert into portfolio (name, clientID)
+values ('morbi vestibulum velit id pretium', 109);
+insert into portfolio (name, clientID)
+values ('a', 68);
+insert into portfolio (name, clientID)
+values ('diam cras pellentesque volutpat', 222);
+insert into portfolio (name, clientID)
+values ('scelerisque quam turpis adipiscing', 6);
+insert into portfolio (name, clientID)
+values ('amet lobortis sapien sapien non', 115);
+insert into portfolio (name, clientID)
+values ('odio consequat varius integer ac', 160);
+insert into portfolio (name, clientID)
+values ('erat eros viverra', 209);
+insert into portfolio (name, clientID)
+values ('eu orci mauris lacinia sapien', 32);
+insert into portfolio (name, clientID)
+values ('consequat metus sapien ut nunc', 182);
+insert into portfolio (name, clientID)
+values ('dictumst maecenas ut massa quis', 30);
+insert into portfolio (name, clientID)
+values ('eget semper rutrum nulla', 167);
+insert into portfolio (name, clientID)
+values ('consequat morbi a ipsum integer', 123);
+insert into portfolio (name, clientID)
+values ('sit', 159);
+insert into portfolio (name, clientID)
+values ('quis orci', 35);
+insert into portfolio (name, clientID)
+values ('sem mauris laoreet ut', 107);
+insert into portfolio (name, clientID)
+values ('lacus at velit vivamus vel', 28);
+insert into portfolio (name, clientID)
+values ('lectus aliquam', 209);
+insert into portfolio (name, clientID)
+values ('pede ullamcorper augue', 80);
+insert into portfolio (name, clientID)
+values ('pharetra magna vestibulum', 16);
+insert into portfolio (name, clientID)
+values ('id', 234);
+insert into portfolio (name, clientID)
+values ('non ligula pellentesque ultrices', 195);
+insert into portfolio (name, clientID)
+values ('sapien', 131);
+insert into portfolio (name, clientID)
+values ('consectetuer adipiscing elit proin risus', 63);
+insert into portfolio (name, clientID)
+values ('iaculis congue vivamus', 87);
+insert into portfolio (name, clientID)
+values ('pulvinar lobortis est', 106);
+insert into portfolio (name, clientID)
+values ('eget eros elementum pellentesque quisque', 155);
+insert into portfolio (name, clientID)
+values ('velit id pretium iaculis diam', 223);
+insert into portfolio (name, clientID)
+values ('in hac habitasse platea', 25);
+insert into portfolio (name, clientID)
+values ('quam fringilla rhoncus', 114);
+insert into portfolio (name, clientID)
+values ('sed interdum venenatis', 54);
+insert into portfolio (name, clientID)
+values ('leo maecenas pulvinar lobortis', 57);
+insert into portfolio (name, clientID)
+values ('tortor id nulla ultrices aliquet', 215);
+insert into portfolio (name, clientID)
+values ('duis', 129);
+insert into portfolio (name, clientID)
+values ('cursus id turpis integer aliquet', 208);
+insert into portfolio (name, clientID)
+values ('mollis molestie lorem quisque', 87);
+insert into portfolio (name, clientID)
+values ('mi nulla ac enim', 93);
+insert into portfolio (name, clientID)
+values ('quam fringilla rhoncus', 135);
+insert into portfolio (name, clientID)
+values ('commodo placerat praesent blandit nam', 203);
+insert into portfolio (name, clientID)
+values ('posuere', 155);
+insert into portfolio (name, clientID)
+values ('lacus', 11);
+insert into portfolio (name, clientID)
+values ('id mauris', 146);
+insert into portfolio (name, clientID)
+values ('vitae nisi', 139);
+insert into portfolio (name, clientID)
+values ('amet erat', 229);
+insert into portfolio (name, clientID)
+values ('nibh in lectus', 51);
+insert into portfolio (name, clientID)
+values ('erat nulla', 141);
+insert into portfolio (name, clientID)
+values ('integer tincidunt ante vel', 62);
+insert into portfolio (name, clientID)
+values ('non', 121);
+insert into portfolio (name, clientID)
+values ('nulla suspendisse potenti cras in', 62);
+insert into portfolio (name, clientID)
+values ('orci', 227);
+insert into portfolio (name, clientID)
+values ('blandit lacinia erat vestibulum', 208);
+insert into portfolio (name, clientID)
+values ('orci luctus et ultrices', 234);
+insert into portfolio (name, clientID)
+values ('congue', 133);
+insert into portfolio (name, clientID)
+values ('in', 18);
+insert into portfolio (name, clientID)
+values ('id sapien in sapien iaculis', 19);
+insert into portfolio (name, clientID)
+values ('justo in blandit ultrices', 8);
+insert into portfolio (name, clientID)
+values ('nec', 211);
+insert into portfolio (name, clientID)
+values ('rutrum', 8);
+insert into portfolio (name, clientID)
+values ('diam', 172);
+insert into portfolio (name, clientID)
+values ('nulla sed accumsan felis', 219);
+insert into portfolio (name, clientID)
+values ('vitae nisl aenean lectus', 38);
+insert into portfolio (name, clientID)
+values ('venenatis lacinia aenean sit amet', 88);
+insert into portfolio (name, clientID)
+values ('neque aenean auctor gravida sem', 19);
+insert into portfolio (name, clientID)
+values ('sollicitudin vitae consectetuer eget rutrum', 231);
+insert into portfolio (name, clientID)
+values ('ut tellus nulla', 217);
+insert into portfolio (name, clientID)
+values ('elit proin interdum', 168);
+insert into portfolio (name, clientID)
+values ('aliquet maecenas leo', 232);
+insert into portfolio (name, clientID)
+values ('mauris non', 151);
+insert into portfolio (name, clientID)
+values ('convallis', 243);
+insert into portfolio (name, clientID)
+values ('nascetur', 145);
+insert into portfolio (name, clientID)
+values ('sit amet', 135);
+insert into portfolio (name, clientID)
+values ('erat vestibulum sed magna at', 32);
+insert into portfolio (name, clientID)
+values ('justo nec', 1);
+insert into portfolio (name, clientID)
+values ('urna pretium nisl ut volutpat', 212);
+insert into portfolio (name, clientID)
+values ('sem mauris laoreet ut', 111);
+insert into portfolio (name, clientID)
+values ('ipsum dolor sit', 4);
+insert into portfolio (name, clientID)
+values ('semper sapien a libero', 93);
+insert into portfolio (name, clientID)
+values ('nibh in', 237);
+insert into portfolio (name, clientID)
+values ('eleifend pede libero quis', 245);
+insert into portfolio (name, clientID)
+values ('pellentesque', 208);
+insert into portfolio (name, clientID)
+values ('lorem ipsum dolor sit', 38);
+insert into portfolio (name, clientID)
+values ('tortor', 79);
+insert into portfolio (name, clientID)
+values ('luctus nec molestie', 152);
+insert into portfolio (name, clientID)
+values ('sed justo', 129);
+insert into portfolio (name, clientID)
+values ('lacinia sapien quis libero nullam', 125);
+insert into portfolio (name, clientID)
+values ('tempus vivamus in felis', 231);
+insert into portfolio (name, clientID)
+values ('quam', 50);
+insert into portfolio (name, clientID)
+values ('gravida nisi at nibh', 160);
+insert into portfolio (name, clientID)
+values ('sem fusce consequat nulla', 83);
+insert into portfolio (name, clientID)
+values ('augue vel accumsan tellus', 55);
+insert into portfolio (name, clientID)
+values ('nibh in lectus pellentesque at', 89);
+insert into portfolio (name, clientID)
+values ('cras pellentesque volutpat', 63);
+insert into portfolio (name, clientID)
+values ('consectetuer eget rutrum at lorem', 102);
+insert into portfolio (name, clientID)
+values ('vestibulum rutrum rutrum', 244);
+insert into portfolio (name, clientID)
+values ('velit vivamus vel nulla eget', 150);
+insert into portfolio (name, clientID)
+values ('nibh quisque id justo sit', 122);
+insert into portfolio (name, clientID)
+values ('nam ultrices', 222);
+insert into portfolio (name, clientID)
+values ('turpis enim blandit mi', 134);
+insert into portfolio (name, clientID)
+values ('non mauris', 189);
+insert into portfolio (name, clientID)
+values ('cursus id turpis integer aliquet', 196);
+insert into portfolio (name, clientID)
+values ('amet cursus id', 33);
+insert into portfolio (name, clientID)
+values ('at lorem integer tincidunt', 84);
+insert into portfolio (name, clientID)
+values ('vehicula condimentum curabitur in libero', 127);
+insert into portfolio (name, clientID)
+values ('a nibh', 187);
+insert into portfolio (name, clientID)
+values ('pharetra magna', 44);
+insert into portfolio (name, clientID)
+values ('morbi', 250);
+insert into portfolio (name, clientID)
+values ('ipsum dolor sit', 213);
+insert into portfolio (name, clientID)
+values ('hendrerit at', 234);
+insert into portfolio (name, clientID)
+values ('odio odio elementum', 175);
+insert into portfolio (name, clientID)
+values ('tortor sollicitudin', 88);
+insert into portfolio (name, clientID)
+values ('erat eros viverra', 141);
+insert into portfolio (name, clientID)
+values ('dictumst etiam faucibus', 184);
+insert into portfolio (name, clientID)
+values ('convallis eget', 119);
+insert into portfolio (name, clientID)
+values ('diam', 106);
+insert into portfolio (name, clientID)
+values ('cursus id turpis integer aliquet', 185);
+insert into portfolio (name, clientID)
+values ('leo', 149);
+insert into portfolio (name, clientID)
+values ('in hac habitasse platea dictumst', 185);
+insert into portfolio (name, clientID)
+values ('habitasse platea dictumst maecenas', 167);
+insert into portfolio (name, clientID)
+values ('aenean auctor', 193);
+insert into portfolio (name, clientID)
+values ('non mi integer ac neque', 67);
+insert into portfolio (name, clientID)
+values ('aliquet', 172);
+insert into portfolio (name, clientID)
+values ('vestibulum', 61);
+insert into portfolio (name, clientID)
+values ('at', 105);
+insert into portfolio (name, clientID)
+values ('eu', 106);
+insert into portfolio (name, clientID)
+values ('a pede', 141);
+insert into portfolio (name, clientID)
+values ('in quis justo maecenas rhoncus', 123);
+insert into portfolio (name, clientID)
+values ('nisl venenatis lacinia aenean sit', 36);
+insert into portfolio (name, clientID)
+values ('ultrices aliquet', 192);
+insert into portfolio (name, clientID)
+values ('nisi', 24);
+insert into portfolio (name, clientID)
+values ('tortor risus dapibus augue', 160);
+insert into portfolio (name, clientID)
+values ('vivamus vestibulum sagittis sapien cum', 178);
+insert into portfolio (name, clientID)
+values ('platea dictumst aliquam augue', 5);
+insert into portfolio (name, clientID)
+values ('convallis nunc', 70);
+insert into portfolio (name, clientID)
+values ('integer tincidunt ante vel', 88);
+insert into portfolio (name, clientID)
+values ('habitasse platea dictumst morbi vestibulum', 145);
+insert into portfolio (name, clientID)
+values ('nunc commodo placerat', 8);
+insert into portfolio (name, clientID)
+values ('augue a suscipit', 22);
+insert into portfolio (name, clientID)
+values ('leo odio porttitor', 206);
+insert into portfolio (name, clientID)
+values ('rhoncus sed vestibulum sit', 114);
+insert into portfolio (name, clientID)
+values ('diam cras pellentesque volutpat dui', 247);
+insert into portfolio (name, clientID)
+values ('adipiscing elit', 89);
+insert into portfolio (name, clientID)
+values ('aliquet massa', 232);
+insert into portfolio (name, clientID)
+values ('pharetra', 63);
+insert into portfolio (name, clientID)
+values ('pellentesque ultrices mattis', 224);
+insert into portfolio (name, clientID)
+values ('sit amet eleifend pede', 96);
+insert into portfolio (name, clientID)
+values ('ornare consequat lectus in est', 73);
+insert into portfolio (name, clientID)
+values ('convallis morbi odio odio', 85);
+insert into portfolio (name, clientID)
+values ('pulvinar', 191);
+insert into portfolio (name, clientID)
+values ('morbi', 169);
+insert into portfolio (name, clientID)
+values ('viverra dapibus nulla suscipit ligula', 145);
+insert into portfolio (name, clientID)
+values ('sapien quis libero nullam sit', 176);
+insert into portfolio (name, clientID)
+values ('ac nulla', 25);
+insert into portfolio (name, clientID)
+values ('volutpat', 87);
+insert into portfolio (name, clientID)
+values ('aliquet massa id', 214);
+insert into portfolio (name, clientID)
+values ('odio condimentum id luctus', 86);
+insert into portfolio (name, clientID)
+values ('nulla nisl', 144);
+insert into portfolio (name, clientID)
+values ('rutrum nulla tellus', 4);
+insert into portfolio (name, clientID)
+values ('sed interdum venenatis turpis enim', 33);
+insert into portfolio (name, clientID)
+values ('eu magna vulputate', 105);
+insert into portfolio (name, clientID)
+values ('luctus et ultrices posuere', 136);
+insert into portfolio (name, clientID)
+values ('pulvinar sed nisl nunc rhoncus', 43);
+insert into portfolio (name, clientID)
+values ('ligula pellentesque ultrices phasellus id', 34);
+insert into portfolio (name, clientID)
+values ('enim', 30);
+insert into portfolio (name, clientID)
+values ('amet sem', 49);
+insert into portfolio (name, clientID)
+values ('ultrices posuere cubilia curae', 203);
+insert into portfolio (name, clientID)
+values ('dapibus augue vel', 200);
+insert into portfolio (name, clientID)
+values ('curabitur in libero ut', 236);
+insert into portfolio (name, clientID)
+values ('sed sagittis', 174);
+insert into portfolio (name, clientID)
+values ('vel ipsum', 108);
+insert into portfolio (name, clientID)
+values ('parturient montes', 176);
+insert into portfolio (name, clientID)
+values ('interdum venenatis', 88);
+insert into portfolio (name, clientID)
+values ('in tempor turpis nec', 110);
+insert into portfolio (name, clientID)
+values ('viverra dapibus nulla suscipit ligula', 135);
+insert into portfolio (name, clientID)
+values ('in leo', 138);
+insert into portfolio (name, clientID)
+values ('parturient montes nascetur', 28);
+insert into portfolio (name, clientID)
+values ('at nunc commodo placerat', 132);
+insert into portfolio (name, clientID)
+values ('quisque erat', 243);
+insert into portfolio (name, clientID)
+values ('ut', 27);
+insert into portfolio (name, clientID)
+values ('porttitor pede justo eu', 157);
+insert into portfolio (name, clientID)
+values ('diam', 193);
+insert into portfolio (name, clientID)
+values ('lacus', 95);
+insert into portfolio (name, clientID)
+values ('posuere cubilia', 152);
+insert into portfolio (name, clientID)
+values ('felis', 22);
+insert into portfolio (name, clientID)
+values ('ultrices vel augue', 68);
+insert into portfolio (name, clientID)
+values ('phasellus id', 5);
+insert into portfolio (name, clientID)
+values ('enim sit', 67);
+insert into portfolio (name, clientID)
+values ('amet eros suspendisse accumsan tortor', 138);
+insert into portfolio (name, clientID)
+values ('venenatis', 24);
+insert into portfolio (name, clientID)
+values ('integer', 107);
+insert into portfolio (name, clientID)
+values ('bibendum', 213);
+insert into portfolio (name, clientID)
+values ('lacus morbi', 182);
+insert into portfolio (name, clientID)
+values ('porttitor', 22);
+insert into portfolio (name, clientID)
+values ('ultrices libero non mattis pulvinar', 123);
+insert into portfolio (name, clientID)
+values ('vitae', 145);
+insert into portfolio (name, clientID)
+values ('imperdiet et commodo', 161);
+insert into portfolio (name, clientID)
+values ('est donec', 51);
+insert into portfolio (name, clientID)
+values ('posuere', 68);
+insert into portfolio (name, clientID)
+values ('in quis', 53);
+insert into portfolio (name, clientID)
+values ('tempus semper est quam pharetra', 227);
+insert into portfolio (name, clientID)
+values ('pellentesque viverra pede ac', 63);
+insert into portfolio (name, clientID)
+values ('donec quis', 249);
+insert into portfolio (name, clientID)
+values ('nisi vulputate nonummy maecenas tincidunt', 101);
+insert into portfolio (name, clientID)
+values ('suscipit nulla elit', 214);
+insert into portfolio (name, clientID)
+values ('sit amet eleifend', 116);
 
 
 -- investment_profile sample data generated with Mockaroo
@@ -1485,242 +3576,714 @@ values ('Very Conservative', 'Asset Preservation', 'Less Than One Year', 'Modera
        ('Moderate', 'Growth', '5-10 Years', 'Moderate', 12),
        ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Moderate', 13),
        ('Moderate', 'Growth', '5-10 Years', 'Moderate', 14);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '1-2 Years', 'Averese', 15);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', 'Less Than One Year', 'Extreme', 16);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '3-5 Years', 'Moderate', 17);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Averese', 18);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', '1-2 Years', 'Moderate', 19);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', 'More Than 25 Years', 'Averese', 20);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '3-5 Years', 'Moderate', 21);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', 'Less Than One Year', 'Moderate', 22);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '3-5 Years', 'Extreme', 23);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '1-2 Years', 'Moderate', 24);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Extreme', 25);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', 'More Than 25 Years', 'Extreme', 26);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 27);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '5-10 Years', 'Moderate', 28);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '1-2 Years', 'Averese', 29);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '5-10 Years', 'Moderate', 30);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '1-2 Years', 'Extreme', 31);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', 'Less Than One Year', 'Moderate', 32);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', 'Less Than One Year', 'Averese', 33);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '10-15 Years', 'Moderate', 34);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '1-2 Years', 'Moderate', 35);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', 'More Than 25 Years', 'Moderate', 36);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '1-2 Years', 'Averese', 37);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '3-5 Years', 'Extreme', 38);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '1-2 Years', 'Moderate', 39);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '1-2 Years', 'Moderate', 40);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '5-10 Years', 'Moderate', 41);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '1-2 Years', 'Averese', 42);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '1-2 Years', 'Moderate', 43);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Moderate', 44);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', 'More Than 25 Years', 'Averese', 45);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '5-10 Years', 'Extreme', 46);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', 'Less Than One Year', 'Extreme', 47);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'Less Than One Year', 'Averese', 48);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 49);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '5-10 Years', 'Averese', 50);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '5-10 Years', 'Moderate', 51);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '5-10 Years', 'Averese', 52);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Extreme', 53);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '1-2 Years', 'Moderate', 54);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Averese', 55);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '5-10 Years', 'Extreme', 56);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '10-15 Years', 'Moderate', 57);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', 'More Than 25 Years', 'Averese', 58);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '5-10 Years', 'Moderate', 59);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '10-15 Years', 'Extreme', 60);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '10-15 Years', 'Extreme', 61);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '15-25 Years', 'Moderate', 62);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '15-25 Years', 'Averese', 63);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '3-5 Years', 'Extreme', 64);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '1-2 Years', 'Averese', 65);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '1-2 Years', 'Averese', 66);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', '3-5 Years', 'Moderate', 67);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', 'Less Than One Year', 'Extreme', 68);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Averese', 69);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '10-15 Years', 'Averese', 70);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', 'Less Than One Year', 'Averese', 71);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '3-5 Years', 'Extreme', 72);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '1-2 Years', 'Averese', 73);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '15-25 Years', 'Moderate', 74);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', '5-10 Years', 'Extreme', 75);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', 'More Than 25 Years', 'Averese', 76);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '1-2 Years', 'Extreme', 77);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 78);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '15-25 Years', 'Averese', 79);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '15-25 Years', 'Extreme', 80);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Moderate', 81);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Extreme', 82);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '15-25 Years', 'Averese', 83);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', 'Less Than One Year', 'Averese', 84);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '3-5 Years', 'Extreme', 85);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', 'More Than 25 Years', 'Moderate', 86);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 87);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', 'Less Than One Year', 'Extreme', 88);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '10-15 Years', 'Averese', 89);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '15-25 Years', 'Moderate', 90);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '15-25 Years', 'Extreme', 91);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '15-25 Years', 'Averese', 92);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '3-5 Years', 'Extreme', 93);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '1-2 Years', 'Extreme', 94);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '10-15 Years', 'Averese', 95);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '5-10 Years', 'Extreme', 96);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '3-5 Years', 'Averese', 97);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '5-10 Years', 'Averese', 98);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Averese', 99);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '15-25 Years', 'Averese', 100);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', 'Less Than One Year', 'Extreme', 101);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', 'Less Than One Year', 'Averese', 102);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'Less Than One Year', 'Extreme', 103);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '3-5 Years', 'Extreme', 104);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '1-2 Years', 'Moderate', 105);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '3-5 Years', 'Moderate', 106);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', 'Less Than One Year', 'Averese', 107);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', 'Less Than One Year', 'Extreme', 108);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Averese', 109);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '5-10 Years', 'Averese', 110);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', 'More Than 25 Years', 'Extreme', 111);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'Less Than One Year', 'Averese', 112);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', 'More Than 25 Years', 'Moderate', 113);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '10-15 Years', 'Extreme', 114);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '15-25 Years', 'Moderate', 115);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Extreme', 116);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '5-10 Years', 'Moderate', 117);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '1-2 Years', 'Extreme', 118);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Moderate', 119);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '10-15 Years', 'Moderate', 120);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '10-15 Years', 'Averese', 121);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '3-5 Years', 'Averese', 122);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'Less Than One Year', 'Averese', 123);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', 'More Than 25 Years', 'Averese', 124);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '3-5 Years', 'Averese', 125);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Extreme', 126);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '3-5 Years', 'Moderate', 127);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', 'More Than 25 Years', 'Averese', 128);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', '10-15 Years', 'Moderate', 129);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', 'More Than 25 Years', 'Moderate', 130);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 131);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '1-2 Years', 'Moderate', 132);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '10-15 Years', 'Extreme', 133);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '3-5 Years', 'Extreme', 134);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', 'Less Than One Year', 'Averese', 135);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '15-25 Years', 'Averese', 136);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '5-10 Years', 'Extreme', 137);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Extreme', 138);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', 'Less Than One Year', 'Averese', 139);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '1-2 Years', 'Extreme', 140);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '1-2 Years', 'Averese', 141);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Moderate', 142);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Averese', 143);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', '5-10 Years', 'Averese', 144);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '3-5 Years', 'Extreme', 145);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '3-5 Years', 'Moderate', 146);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '5-10 Years', 'Moderate', 147);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '3-5 Years', 'Moderate', 148);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '10-15 Years', 'Moderate', 149);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', 'Less Than One Year', 'Extreme', 150);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '1-2 Years', 'Averese', 151);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '15-25 Years', 'Extreme', 152);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '5-10 Years', 'Averese', 153);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '15-25 Years', 'Moderate', 154);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '10-15 Years', 'Moderate', 155);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '3-5 Years', 'Extreme', 156);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '10-15 Years', 'Extreme', 157);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', 'Less Than One Year', 'Extreme', 158);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '15-25 Years', 'Extreme', 159);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '5-10 Years', 'Moderate', 160);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '5-10 Years', 'Moderate', 161);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '1-2 Years', 'Moderate', 162);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Extreme', 163);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', 'More Than 25 Years', 'Moderate', 164);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', 'Less Than One Year', 'Moderate', 165);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '3-5 Years', 'Moderate', 166);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', 'Less Than One Year', 'Averese', 167);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '1-2 Years', 'Extreme', 168);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '1-2 Years', 'Extreme', 169);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '5-10 Years', 'Extreme', 170);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '15-25 Years', 'Extreme', 171);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', 'More Than 25 Years', 'Averese', 172);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', 'Less Than One Year', 'Averese', 173);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '3-5 Years', 'Averese', 174);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '3-5 Years', 'Extreme', 175);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', 'Less Than One Year', 'Averese', 176);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', 'Less Than One Year', 'Extreme', 177);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '10-15 Years', 'Moderate', 178);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '5-10 Years', 'Averese', 179);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '15-25 Years', 'Extreme', 180);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '10-15 Years', 'Moderate', 181);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', 'Less Than One Year', 'Extreme', 182);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', 'More Than 25 Years', 'Extreme', 183);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '10-15 Years', 'Averese', 184);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '1-2 Years', 'Moderate', 185);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '1-2 Years', 'Moderate', 186);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '5-10 Years', 'Extreme', 187);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Averese', 188);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '1-2 Years', 'Extreme', 189);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '10-15 Years', 'Averese', 190);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '15-25 Years', 'Extreme', 191);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '3-5 Years', 'Moderate', 192);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '5-10 Years', 'Averese', 193);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '10-15 Years', 'Averese', 194);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '10-15 Years', 'Averese', 195);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '10-15 Years', 'Averese', 196);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', '3-5 Years', 'Moderate', 197);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '15-25 Years', 'Extreme', 198);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '10-15 Years', 'Extreme', 199);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '10-15 Years', 'Extreme', 200);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '3-5 Years', 'Extreme', 201);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', 'Less Than One Year', 'Extreme', 202);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '10-15 Years', 'Moderate', 203);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '3-5 Years', 'Extreme', 204);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', 'Less Than One Year', 'Averese', 205);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', 'More Than 25 Years', 'Averese', 206);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', 'Less Than One Year', 'Averese', 207);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Averese', 208);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '1-2 Years', 'Extreme', 209);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '15-25 Years', 'Extreme', 210);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', 'More Than 25 Years', 'Averese', 211);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Extreme', 212);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '15-25 Years', 'Averese', 213);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '15-25 Years', 'Moderate', 214);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Extreme', 215);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '15-25 Years', 'Averese', 216);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Growth', '10-15 Years', 'Moderate', 217);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '3-5 Years', 'Averese', 218);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Extreme', 219);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 220);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Growth', '3-5 Years', 'Extreme', 221);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', 'Less Than One Year', 'Averese', 222);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', 'More Than 25 Years', 'Averese', 223);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Retirement', '1-2 Years', 'Averese', 224);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '10-15 Years', 'Moderate', 225);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '15-25 Years', 'Extreme', 226);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', 'Less Than One Year', 'Extreme', 227);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '10-15 Years', 'Averese', 228);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '3-5 Years', 'Extreme', 229);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Asset Preservation', '15-25 Years', 'Extreme', 230);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '1-2 Years', 'Extreme', 231);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', 'More Than 25 Years', 'Moderate', 232);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Retirement', '5-10 Years', 'Averese', 233);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', 'Less Than One Year', 'Moderate', 234);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Retirement', '3-5 Years', 'Extreme', 235);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '3-5 Years', 'Extreme', 236);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '10-15 Years', 'Moderate', 237);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Retirement', '3-5 Years', 'Averese', 238);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', '10-15 Years', 'Extreme', 239);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Asset Preservation', 'Less Than One Year', 'Averese', 240);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Growth', '3-5 Years', 'Averese', 241);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', '10-15 Years', 'Moderate', 242);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', 'Less Than One Year', 'Averese', 243);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Conservative', 'Growth', 'More Than 25 Years', 'Moderate', 244);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Somewhat Aggressive', 'Asset Preservation', '15-25 Years', 'Averese', 245);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Averese', 246);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Moderate', 'Retirement', '10-15 Years', 'Extreme', 247);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Extreme', 248);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', '10-15 Years', 'Extreme', 249);
-insert into investment_profile (investment_attitudeame, investment_purpose, investment_timeframe, risk_tolerance, portfolioID) values ('Very Conservative', 'Growth', '10-15 Years', 'Extreme', 250);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '1-2 Years', 'Averse', 15);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', 'Less Than One Year', 'Extreme', 16);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '3-5 Years', 'Moderate', 17);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Averse', 18);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', '1-2 Years', 'Moderate', 19);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', 'More Than 25 Years', 'Averse', 20);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '3-5 Years', 'Moderate', 21);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', 'Less Than One Year', 'Moderate', 22);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '3-5 Years', 'Extreme', 23);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '1-2 Years', 'Moderate', 24);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Extreme', 25);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', 'More Than 25 Years', 'Extreme', 26);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 27);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '5-10 Years', 'Moderate', 28);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '1-2 Years', 'Averse', 29);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '5-10 Years', 'Moderate', 30);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '1-2 Years', 'Extreme', 31);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', 'Less Than One Year', 'Moderate', 32);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', 'Less Than One Year', 'Averse', 33);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '10-15 Years', 'Moderate', 34);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '1-2 Years', 'Moderate', 35);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', 'More Than 25 Years', 'Moderate', 36);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '1-2 Years', 'Averse', 37);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '3-5 Years', 'Extreme', 38);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '1-2 Years', 'Moderate', 39);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '1-2 Years', 'Moderate', 40);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '5-10 Years', 'Moderate', 41);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '1-2 Years', 'Averse', 42);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '1-2 Years', 'Moderate', 43);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Moderate', 44);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', 'More Than 25 Years', 'Averse', 45);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '5-10 Years', 'Extreme', 46);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', 'Less Than One Year', 'Extreme', 47);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'Less Than One Year', 'Averse', 48);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 49);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '5-10 Years', 'Averse', 50);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '5-10 Years', 'Moderate', 51);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '5-10 Years', 'Averse', 52);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Extreme', 53);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '1-2 Years', 'Moderate', 54);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Averse', 55);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '5-10 Years', 'Extreme', 56);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '10-15 Years', 'Moderate', 57);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', 'More Than 25 Years', 'Averse', 58);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '5-10 Years', 'Moderate', 59);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '10-15 Years', 'Extreme', 60);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '10-15 Years', 'Extreme', 61);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '15-25 Years', 'Moderate', 62);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '15-25 Years', 'Averse', 63);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '3-5 Years', 'Extreme', 64);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '1-2 Years', 'Averse', 65);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '1-2 Years', 'Averse', 66);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', '3-5 Years', 'Moderate', 67);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', 'Less Than One Year', 'Extreme', 68);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Averse', 69);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '10-15 Years', 'Averse', 70);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', 'Less Than One Year', 'Averse', 71);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '3-5 Years', 'Extreme', 72);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '1-2 Years', 'Averse', 73);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '15-25 Years', 'Moderate', 74);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', '5-10 Years', 'Extreme', 75);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', 'More Than 25 Years', 'Averse', 76);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '1-2 Years', 'Extreme', 77);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 78);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '15-25 Years', 'Averse', 79);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '15-25 Years', 'Extreme', 80);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Moderate', 81);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Extreme', 82);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '15-25 Years', 'Averse', 83);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', 'Less Than One Year', 'Averse', 84);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '3-5 Years', 'Extreme', 85);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', 'More Than 25 Years', 'Moderate', 86);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 87);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', 'Less Than One Year', 'Extreme', 88);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '10-15 Years', 'Averse', 89);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '15-25 Years', 'Moderate', 90);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '15-25 Years', 'Extreme', 91);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '15-25 Years', 'Averse', 92);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '3-5 Years', 'Extreme', 93);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '1-2 Years', 'Extreme', 94);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '10-15 Years', 'Averse', 95);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '5-10 Years', 'Extreme', 96);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '3-5 Years', 'Averse', 97);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '5-10 Years', 'Averse', 98);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Averse', 99);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '15-25 Years', 'Averse', 100);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', 'Less Than One Year', 'Extreme', 101);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', 'Less Than One Year', 'Averse', 102);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'Less Than One Year', 'Extreme', 103);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '3-5 Years', 'Extreme', 104);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '1-2 Years', 'Moderate', 105);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '3-5 Years', 'Moderate', 106);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', 'Less Than One Year', 'Averse', 107);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', 'Less Than One Year', 'Extreme', 108);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '1-2 Years', 'Averse', 109);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '5-10 Years', 'Averse', 110);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', 'More Than 25 Years', 'Extreme', 111);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'Less Than One Year', 'Averse', 112);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', 'More Than 25 Years', 'Moderate', 113);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '10-15 Years', 'Extreme', 114);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '15-25 Years', 'Moderate', 115);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Extreme', 116);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '5-10 Years', 'Moderate', 117);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '1-2 Years', 'Extreme', 118);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Moderate', 119);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '10-15 Years', 'Moderate', 120);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '10-15 Years', 'Averse', 121);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '3-5 Years', 'Averse', 122);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'Less Than One Year', 'Averse', 123);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', 'More Than 25 Years', 'Averse', 124);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '3-5 Years', 'Averse', 125);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Extreme', 126);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '3-5 Years', 'Moderate', 127);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', 'More Than 25 Years', 'Averse', 128);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', '10-15 Years', 'Moderate', 129);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', 'More Than 25 Years', 'Moderate', 130);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 131);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '1-2 Years', 'Moderate', 132);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '10-15 Years', 'Extreme', 133);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '3-5 Years', 'Extreme', 134);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', 'Less Than One Year', 'Averse', 135);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '15-25 Years', 'Averse', 136);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '5-10 Years', 'Extreme', 137);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Extreme', 138);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', 'Less Than One Year', 'Averse', 139);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '1-2 Years', 'Extreme', 140);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '1-2 Years', 'Averse', 141);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Moderate', 142);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', 'More Than 25 Years', 'Averse', 143);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', '5-10 Years', 'Averse', 144);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '3-5 Years', 'Extreme', 145);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '3-5 Years', 'Moderate', 146);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '5-10 Years', 'Moderate', 147);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '3-5 Years', 'Moderate', 148);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '10-15 Years', 'Moderate', 149);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', 'Less Than One Year', 'Extreme', 150);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '1-2 Years', 'Averse', 151);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '15-25 Years', 'Extreme', 152);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '5-10 Years', 'Averse', 153);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '15-25 Years', 'Moderate', 154);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '10-15 Years', 'Moderate', 155);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '3-5 Years', 'Extreme', 156);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '10-15 Years', 'Extreme', 157);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', 'Less Than One Year', 'Extreme', 158);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '15-25 Years', 'Extreme', 159);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '5-10 Years', 'Moderate', 160);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '5-10 Years', 'Moderate', 161);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '1-2 Years', 'Moderate', 162);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Extreme', 163);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', 'More Than 25 Years', 'Moderate', 164);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', 'Less Than One Year', 'Moderate', 165);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '3-5 Years', 'Moderate', 166);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', 'Less Than One Year', 'Averse', 167);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '1-2 Years', 'Extreme', 168);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '1-2 Years', 'Extreme', 169);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '5-10 Years', 'Extreme', 170);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '15-25 Years', 'Extreme', 171);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', 'More Than 25 Years', 'Averse', 172);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', 'Less Than One Year', 'Averse', 173);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '3-5 Years', 'Averse', 174);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '3-5 Years', 'Extreme', 175);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', 'Less Than One Year', 'Averse', 176);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', 'Less Than One Year', 'Extreme', 177);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '10-15 Years', 'Moderate', 178);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '5-10 Years', 'Averse', 179);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '15-25 Years', 'Extreme', 180);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '10-15 Years', 'Moderate', 181);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', 'Less Than One Year', 'Extreme', 182);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', 'More Than 25 Years', 'Extreme', 183);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '10-15 Years', 'Averse', 184);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '1-2 Years', 'Moderate', 185);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '1-2 Years', 'Moderate', 186);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '5-10 Years', 'Extreme', 187);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Averse', 188);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '1-2 Years', 'Extreme', 189);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '10-15 Years', 'Averse', 190);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '15-25 Years', 'Extreme', 191);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '3-5 Years', 'Moderate', 192);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '5-10 Years', 'Averse', 193);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '10-15 Years', 'Averse', 194);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '10-15 Years', 'Averse', 195);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '10-15 Years', 'Averse', 196);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', '3-5 Years', 'Moderate', 197);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '15-25 Years', 'Extreme', 198);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '10-15 Years', 'Extreme', 199);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '10-15 Years', 'Extreme', 200);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '3-5 Years', 'Extreme', 201);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', 'Less Than One Year', 'Extreme', 202);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '10-15 Years', 'Moderate', 203);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '3-5 Years', 'Extreme', 204);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', 'Less Than One Year', 'Averse', 205);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', 'More Than 25 Years', 'Averse', 206);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', 'Less Than One Year', 'Averse', 207);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Averse', 208);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '1-2 Years', 'Extreme', 209);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '15-25 Years', 'Extreme', 210);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', 'More Than 25 Years', 'Averse', 211);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Extreme', 212);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '15-25 Years', 'Averse', 213);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '15-25 Years', 'Moderate', 214);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '5-10 Years', 'Extreme', 215);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '15-25 Years', 'Averse', 216);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Growth', '10-15 Years', 'Moderate', 217);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '3-5 Years', 'Averse', 218);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Extreme', 219);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Moderate', 220);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Growth', '3-5 Years', 'Extreme', 221);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', 'Less Than One Year', 'Averse', 222);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', 'More Than 25 Years', 'Averse', 223);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Retirement', '1-2 Years', 'Averse', 224);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '10-15 Years', 'Moderate', 225);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '15-25 Years', 'Extreme', 226);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', 'Less Than One Year', 'Extreme', 227);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '10-15 Years', 'Averse', 228);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '3-5 Years', 'Extreme', 229);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Asset Preservation', '15-25 Years', 'Extreme', 230);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '1-2 Years', 'Extreme', 231);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', 'More Than 25 Years', 'Moderate', 232);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Retirement', '5-10 Years', 'Averse', 233);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', 'Less Than One Year', 'Moderate', 234);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Retirement', '3-5 Years', 'Extreme', 235);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '3-5 Years', 'Extreme', 236);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '10-15 Years', 'Moderate', 237);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Retirement', '3-5 Years', 'Averse', 238);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', '10-15 Years', 'Extreme', 239);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Asset Preservation', 'Less Than One Year', 'Averse', 240);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Growth', '3-5 Years', 'Averse', 241);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', '10-15 Years', 'Moderate', 242);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', 'Less Than One Year', 'Averse', 243);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Conservative', 'Growth', 'More Than 25 Years', 'Moderate', 244);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Somewhat Aggressive', 'Asset Preservation', '15-25 Years', 'Averse', 245);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Aggressive', 'Asset Preservation', '5-10 Years', 'Averse', 246);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Moderate', 'Retirement', '10-15 Years', 'Extreme', 247);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Asset Preservation', '1-2 Years', 'Extreme', 248);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', '10-15 Years', 'Extreme', 249);
+insert into investment_profile (investment_attitude, investment_purpose, investment_timeframe, risk_tolerance,
+                                portfolioID)
+values ('Very Conservative', 'Growth', '10-15 Years', 'Extreme', 250);
 
 
 -- stock sample data generaed with Mockaroo
@@ -1739,989 +4302,989 @@ values ('MAA^I', '2022-08-01 05:22:09', 1018.219, 1),
        ('TSLA', '2020-06-06 20:57:56', 7.12, 12),
        ('PFE', '2020-06-06 20:57:56', 175.625, 13),
        ('DVN', '2020-06-06 20:57:56', 1000.0, 14);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RA', '2009-02-20 01:40:04', 1201.509, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ABAC', '2000-11-22 01:03:24', 2459.096, 118);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PMO', '2002-05-08 08:34:30', 561.605, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MHD', '2016-09-03 18:13:49', 2272.028, 220);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CORI', '2001-03-09 21:41:08', 1458.65, 158);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('XGTI', '2018-11-17 20:50:15', 1266.246, 205);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PAACR', '2010-06-04 02:19:41', 316.431, 66);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BST', '2003-11-24 08:21:34', 265.518, 196);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CELG', '2002-01-23 16:14:29', 1978.69, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PAHC', '2021-09-21 23:08:22', 2039.532, 225);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('APDNW', '2012-03-24 02:50:20', 473.269, 74);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VSTO', '2000-08-04 19:50:39', 2464.911, 116);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CERS', '2016-08-01 15:51:29', 2457.105, 244);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NSEC', '2016-04-06 10:55:15', 2399.402, 6);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JE', '2002-07-17 05:05:46', 2295.502, 173);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SMLP', '2022-10-26 19:02:24', 1116.574, 90);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IMMR', '2009-03-20 16:09:36', 2057.785, 170);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BCS^D', '2007-07-27 17:38:54', 684.742, 33);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SRCE', '2017-01-16 20:30:41', 1400.984, 64);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KPTI', '2004-09-05 21:55:00', 2072.799, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('Y', '2010-05-08 17:37:50', 2393.43, 185);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KR', '2017-07-30 11:11:28', 763.569, 56);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SBGI', '2013-03-26 12:58:24', 1153.072, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CHSP', '2006-12-03 17:27:07', 1403.0, 148);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BCH', '2021-02-17 02:53:44', 1562.897, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HFBC', '2008-08-03 14:52:53', 1883.212, 46);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MRCC', '2009-06-17 14:14:24', 2491.833, 121);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IXYS', '2019-02-13 18:11:53', 1228.419, 227);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RSG', '2014-06-07 07:52:26', 37.147, 91);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CERN', '2008-08-03 18:18:18', 829.746, 226);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ACET', '2002-07-24 16:48:47', 2253.402, 44);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HBI', '2004-04-18 06:00:59', 1706.506, 153);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CHMI', '2014-07-13 10:27:35', 1512.069, 131);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FLN', '2007-03-04 20:07:23', 1804.148, 66);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BSM', '2022-06-17 10:38:23', 396.044, 110);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SAIA', '2022-11-04 03:06:03', 1957.746, 153);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ENZY          ', '2018-02-25 14:27:11', 215.03, 7);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HIG', '2013-07-25 15:21:58', 1614.879, 157);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AMRI', '2011-10-28 04:07:18', 2167.493, 84);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FSAM', '2021-04-17 06:45:11', 643.799, 66);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PRPH', '2008-09-09 10:40:03', 1648.637, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SGZA', '2005-12-05 01:24:39', 696.175, 229);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KRC^H', '2012-09-24 16:57:17', 1508.011, 201);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('M', '2000-06-13 06:21:04', 2132.827, 99);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CIE', '2003-12-23 05:01:31', 867.32, 213);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MCHI', '2011-01-31 06:12:13', 99.686, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BBOX', '2022-11-22 09:29:06', 1674.951, 160);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SLTB', '2010-07-11 19:15:09', 922.834, 28);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UTF', '2020-07-12 03:57:02', 1192.383, 174);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KFN^', '2000-11-14 06:35:20', 48.511, 201);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ANGI', '2003-05-22 16:45:57', 355.077, 102);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HYI', '2000-11-13 12:24:13', 1093.86, 170);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UCP', '2005-08-18 02:54:01', 535.91, 173);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ICE', '2004-10-12 05:29:34', 414.803, 148);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VRA', '2007-12-16 17:58:56', 287.969, 107);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STAR^E', '2017-12-11 19:20:25', 1038.988, 150);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PERF', '2020-09-02 12:13:11', 1149.976, 31);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HBANP', '2000-07-06 06:11:39', 12.568, 249);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSB^U', '2004-11-30 12:49:21', 2442.664, 157);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LPX', '2018-10-07 23:43:09', 2302.067, 83);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FARO', '2015-06-02 07:37:29', 505.46, 85);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TEF', '2009-09-23 05:21:09', 532.818, 231);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STAR^F', '2006-08-08 07:51:27', 1511.251, 78);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AFW.CL', '2005-12-01 17:54:59', 1963.758, 192);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLBS', '2018-01-09 03:07:45', 127.708, 123);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MIME', '2011-08-10 22:50:58', 1229.393, 159);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RMTI', '2016-08-01 14:40:24', 1299.03, 29);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FNTEW', '2003-05-08 07:25:30', 1187.407, 154);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JCO', '2011-06-20 03:54:56', 2060.922, 74);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IDTI', '2000-11-16 05:43:37', 1941.92, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HLT', '2010-02-08 03:22:57', 451.184, 214);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CII', '2004-06-04 22:22:59', 1883.698, 59);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ETH', '2007-12-09 16:11:36', 202.742, 202);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('URRE', '2000-04-05 16:08:25', 786.389, 70);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALNY', '2019-06-29 10:05:25', 526.236, 118);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HRMNW', '2011-11-22 18:25:06', 450.705, 170);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WEB', '2022-06-01 03:44:11', 2118.166, 108);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RY', '2013-02-22 11:00:46', 217.063, 65);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HZO', '2001-02-26 12:30:41', 455.885, 1);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BLFS', '2005-02-02 18:03:30', 1477.691, 2);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OMAA', '2002-06-17 18:48:04', 255.891, 94);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AXR', '2001-02-09 16:53:45', 1711.181, 50);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NWFL', '2012-03-28 23:29:16', 1296.498, 221);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('INN^C', '2020-07-30 22:45:44', 2147.569, 197);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WSTL', '2013-12-19 09:46:40', 1838.105, 74);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KBWY', '2013-06-12 23:57:09', 1307.977, 117);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BLMN', '2005-02-02 16:02:32', 2138.462, 113);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NLY^C', '2013-11-25 07:38:37', 1085.313, 157);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TK', '2015-01-22 16:36:57', 784.801, 85);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BTT', '2015-06-28 22:21:44', 2139.904, 5);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TLI', '2007-02-14 12:27:09', 1643.721, 165);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GS^J', '2000-03-29 23:31:05', 2394.869, 173);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HCCI', '2003-08-21 16:38:07', 96.953, 231);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BATRA', '2011-12-20 01:24:25', 1022.696, 243);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ESNT', '2020-01-18 11:53:40', 838.759, 59);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ASB^C', '2013-12-11 10:05:49', 1299.867, 173);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CTHR', '2001-03-05 01:13:05', 1103.314, 85);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('X', '2015-05-15 18:52:48', 1384.276, 37);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BRSS', '2012-01-21 20:49:14', 40.357, 220);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AVGO', '2001-06-04 03:24:26', 2191.966, 132);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OMEX', '2020-08-16 17:11:28', 2372.762, 74);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SCG', '2005-11-26 21:39:47', 386.222, 157);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HMTV', '2018-05-01 21:48:03', 2421.392, 96);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ASB^D', '2000-04-09 02:21:16', 229.757, 82);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AKS', '2008-12-15 22:23:37', 508.179, 62);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NVEE', '2017-09-18 08:30:20', 264.213, 128);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SLP', '2012-12-26 04:34:12', 516.716, 229);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IMDZ', '2002-03-28 02:37:15', 1218.883, 178);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EXP', '2002-02-25 04:05:14', 2150.184, 162);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('XYL', '2021-04-07 01:58:44', 465.557, 94);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NGHCN', '2022-06-06 06:53:33', 2044.585, 30);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ACTX', '2011-07-02 07:12:16', 1587.23, 220);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JCE', '2016-11-02 02:07:11', 1535.564, 45);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PKO', '2017-01-22 15:36:06', 788.022, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PKOH', '2015-09-06 03:36:24', 1397.327, 75);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SGMA', '2009-08-07 18:25:34', 226.622, 170);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BC', '2009-12-10 00:01:38', 1429.9, 20);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BKD', '2013-12-04 01:11:48', 402.185, 144);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('POST', '2021-06-27 14:34:48', 1978.959, 210);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ITIC', '2011-06-28 07:53:28', 1492.507, 48);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OXBR', '2001-07-10 15:23:27', 1935.788, 114);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CIL', '2000-02-28 12:00:03', 919.279, 43);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BYM', '2006-08-28 15:41:45', 1023.622, 234);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PPHMP', '2009-10-06 01:29:13', 772.302, 10);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GJR', '2007-01-13 21:56:08', 73.445, 69);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CIO', '2018-11-16 04:12:29', 1789.966, 104);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MCR', '2018-04-12 23:36:00', 1288.823, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GEH', '2019-09-19 17:21:37', 2483.079, 29);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BCC', '2001-07-02 02:00:31', 1445.496, 158);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('URRE', '2000-07-25 11:38:26', 196.656, 76);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MBLY', '2020-08-09 23:19:13', 2368.412, 24);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BBRY', '2008-03-05 19:06:50', 192.767, 54);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CDL', '2013-09-06 04:51:41', 1247.379, 73);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VYGR', '2016-02-26 23:45:32', 839.572, 210);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IEUS', '2010-05-13 18:24:02', 2180.14, 137);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UFPT', '2017-01-04 14:01:39', 2338.796, 166);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OA', '2020-02-04 08:36:44', 1208.285, 234);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RY^T', '2008-03-10 05:42:37', 1957.908, 132);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HDSN', '2008-08-24 13:10:45', 1176.562, 76);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BF.A', '2015-01-17 09:35:05', 704.04, 248);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GALT', '2012-11-03 19:30:17', 1393.078, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATHM', '2020-02-22 18:44:42', 537.133, 152);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CPST', '2008-08-21 00:58:05', 1547.568, 89);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ZIV', '2015-06-10 00:36:57', 2115.871, 175);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GNW', '2022-11-03 06:53:09', 261.143, 201);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GJP', '2009-10-03 11:15:09', 1858.114, 29);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EOCC', '2019-04-13 12:19:58', 1660.638, 20);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ISBC', '2006-10-11 18:23:48', 724.505, 106);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ZBH', '2020-05-31 02:45:08', 215.191, 192);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HCSG', '2005-01-06 09:54:19', 1430.084, 151);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WBS^E', '2011-09-15 08:53:27', 2136.806, 190);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NRG', '2005-12-14 10:28:13', 86.941, 97);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ARRS', '2011-04-29 18:58:16', 2173.871, 83);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SCG', '2005-04-06 13:35:20', 2025.525, 234);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FCFP', '2018-12-29 01:26:33', 105.043, 18);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('APB', '2001-12-20 12:48:18', 654.555, 246);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSB^V', '2004-08-15 05:47:56', 716.111, 205);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DEPO', '2005-12-24 06:55:54', 1445.753, 55);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CMFN', '2000-10-02 07:57:01', 121.871, 146);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EIG', '2020-10-28 08:21:01', 596.079, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ESL', '2021-08-07 17:14:07', 1220.325, 33);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AWI', '2006-02-17 10:15:01', 1413.081, 107);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QEP', '2007-04-14 06:26:09', 313.096, 186);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CNBKA', '2001-10-17 11:10:45', 1801.589, 224);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SUP', '2017-03-15 18:36:27', 2048.865, 214);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HBM', '2019-02-24 06:05:10', 363.036, 32);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MS^A', '2002-06-23 10:52:42', 1649.985, 218);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BGFV', '2020-02-17 22:42:22', 1366.101, 131);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KDMN', '2002-10-06 05:38:33', 2038.912, 80);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ADRA', '2007-07-20 20:41:09', 1684.528, 120);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LVLT', '2004-03-19 03:53:48', 1750.644, 148);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WYIGW', '2016-02-29 06:06:13', 1786.627, 112);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AZRX', '2007-03-13 00:30:26', 586.514, 147);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WMK', '2001-07-17 10:38:28', 1312.807, 127);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DFVS', '2020-09-26 10:21:34', 1283.896, 59);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RS', '2009-03-11 16:03:27', 1815.094, 196);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KOF', '2014-12-16 06:38:17', 2021.103, 189);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NOAH', '2016-07-20 15:27:58', 822.538, 91);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ABIL', '2013-06-28 16:43:29', 452.074, 198);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AGM.A', '2005-05-26 11:18:39', 1085.401, 105);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLDC', '2015-07-16 22:23:02', 2415.041, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SMP', '2001-12-22 00:37:57', 427.027, 105);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LUX', '2017-12-17 23:57:56', 2102.138, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GJS', '2017-12-02 17:08:13', 1937.278, 97);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BHK', '2019-07-30 13:58:32', 464.492, 153);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WTTR', '2000-12-22 10:05:02', 2115.206, 235);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CSFL', '2000-02-20 12:15:35', 705.521, 220);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SXI', '2007-02-17 22:43:58', 1949.526, 103);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GRC', '2017-02-17 04:57:23', 1036.012, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NGHCP', '2001-05-13 09:37:18', 2249.311, 189);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MB', '2016-03-08 00:46:20', 1729.324, 125);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FUSB', '2001-04-13 10:43:54', 775.072, 191);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MEDP', '2001-08-17 22:46:54', 1622.404, 19);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GNCMA', '2013-02-27 00:08:50', 925.909, 172);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CERCW', '2019-02-13 05:34:33', 2303.977, 30);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TPGE.U', '2007-10-06 23:52:17', 2193.973, 41);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GGP^A', '2007-04-21 01:31:18', 2022.934, 204);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PXS', '2019-06-17 15:56:49', 2010.777, 245);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AMH^C', '2012-12-14 21:44:18', 1404.818, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ROKA', '2011-03-31 15:26:18', 1801.119, 89);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AGI', '2018-03-27 21:15:45', 1090.58, 176);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EXTN', '2009-03-10 20:41:34', 1131.587, 34);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NEE^R', '2000-08-20 02:40:46', 1702.22, 31);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CRVL', '2018-12-01 11:04:35', 1100.062, 211);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GLADO', '2016-03-28 21:48:21', 787.445, 62);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IPI', '2015-11-12 13:38:03', 348.033, 131);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UBP', '2002-10-31 00:47:52', 328.895, 8);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PFIN', '2021-10-21 13:33:12', 2165.688, 15);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EOG', '2007-08-21 02:32:51', 542.278, 140);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GAM^B', '2008-12-06 08:37:13', 96.837, 215);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NR', '2012-09-02 05:49:07', 1945.504, 129);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CTZ', '2009-07-24 01:08:58', 851.579, 248);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DUK', '2016-04-26 18:01:59', 765.395, 79);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLMT', '2006-07-06 21:57:07', 1314.015, 229);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PIM', '2018-09-22 11:00:27', 512.748, 7);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BOJA', '2004-03-22 08:05:57', 435.165, 233);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PESI', '2015-02-20 11:19:21', 1580.585, 75);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FANG', '2009-07-20 05:45:17', 1279.881, 27);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NVCN', '2021-01-10 10:59:45', 375.906, 71);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LGCYO', '2007-06-13 23:31:57', 1404.618, 211);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RIO', '2021-08-14 19:20:03', 2073.097, 88);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CTL', '2010-11-25 19:28:16', 999.488, 98);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MHO^A', '2008-08-03 02:00:48', 840.357, 101);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GDO', '2009-09-15 08:45:19', 420.974, 7);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AYR', '2007-08-04 17:29:24', 457.806, 113);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BANC^E', '2002-02-04 22:27:06', 1821.451, 231);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TDA', '2001-12-06 16:48:12', 1067.84, 72);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BR', '2007-07-06 05:35:07', 432.951, 221);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QADB', '2006-10-11 19:59:19', 608.622, 87);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HOS', '2018-08-03 06:17:20', 1646.984, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CTLT', '2005-11-12 04:38:46', 1835.83, 42);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BSL', '2009-02-09 00:04:34', 652.165, 83);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CSBR', '2020-07-11 00:15:10', 2181.994, 24);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FTRI', '2020-08-30 23:40:46', 1039.404, 213);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BIO.B', '2022-08-13 15:26:29', 249.814, 208);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SDR', '2012-09-27 22:03:39', 2244.166, 220);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FCAU', '2007-09-16 12:37:24', 310.387, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NSC', '2008-04-27 23:02:21', 2190.742, 167);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PFO', '2011-10-27 05:14:03', 1806.41, 52);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IESC', '2016-11-16 13:38:09', 719.329, 87);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LEXEA', '2018-08-25 10:11:42', 974.557, 184);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SGMO', '2014-06-09 20:10:48', 536.553, 8);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MLR', '2004-09-08 11:14:14', 1783.741, 173);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TTMI', '2017-10-26 07:20:17', 1896.764, 8);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CHSCL', '2008-06-10 23:19:18', 2271.411, 232);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ZBH', '2003-09-08 19:30:37', 2445.279, 84);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BRKS', '2021-05-21 13:05:53', 738.254, 139);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QQQC', '2015-10-11 17:58:54', 1169.446, 208);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GAINO', '2022-06-01 23:14:40', 697.518, 144);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VOD', '2021-03-28 11:44:27', 1943.632, 189);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TWIN', '2001-02-05 22:34:18', 822.889, 250);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PFIS', '2007-07-19 06:38:25', 600.176, 11);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WBK', '2001-07-02 04:30:19', 922.877, 205);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WIW', '2005-03-16 09:43:54', 2246.012, 110);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MIXT', '2013-06-03 01:03:04', 2086.515, 122);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PDT', '2022-06-07 09:01:36', 1606.593, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OMED', '2003-03-01 19:24:20', 977.543, 236);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ELP', '2015-06-21 02:11:16', 238.421, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RA', '2012-09-07 01:08:54', 207.763, 51);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AGIIL', '2013-11-17 19:43:18', 195.563, 241);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LKOR', '2018-09-26 17:22:35', 2429.09, 77);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MUS', '2017-10-19 18:47:36', 1860.774, 176);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ELP', '2018-12-21 07:49:44', 1303.731, 130);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BAC.WS.A', '2014-07-27 15:53:29', 1167.979, 228);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('COOL', '2017-01-16 00:35:44', 1508.6, 134);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HTD', '2019-08-15 09:05:01', 1174.764, 19);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WDR', '2020-01-18 10:16:12', 383.856, 195);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UFPT', '2010-06-16 21:18:02', 539.948, 83);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GPM', '2011-01-24 03:58:03', 2165.152, 90);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSA^D', '2018-11-24 22:50:14', 1995.277, 189);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('USPH', '2021-05-14 11:07:42', 200.355, 237);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MIE', '2001-02-06 17:37:30', 1845.655, 187);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TAHO', '2022-02-16 05:29:23', 1028.781, 210);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EXFO', '2001-12-07 08:49:21', 1011.368, 35);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BTE', '2001-04-27 18:02:17', 1826.181, 78);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CHEKW', '2012-03-03 01:31:54', 2042.28, 116);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GSBC', '2011-04-20 21:17:17', 2438.327, 89);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ASET', '2022-01-02 15:30:41', 2399.929, 162);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ERJ', '2003-08-08 00:27:09', 1286.832, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ELLI', '2005-04-13 02:41:19', 831.152, 207);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MCY', '2011-12-05 12:48:01', 490.451, 212);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SFST', '2005-08-09 18:29:21', 2065.874, 8);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EIGR', '2015-11-18 16:26:29', 1047.733, 172);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('USB', '2022-02-24 02:17:39', 71.776, 137);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ECOL', '2017-01-19 11:23:44', 1691.109, 2);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IVC', '2001-10-21 02:16:30', 1442.533, 191);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LPSN', '2009-09-27 09:58:05', 2009.88, 48);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VRX', '2003-07-24 13:44:47', 1947.994, 244);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MGU', '2001-11-08 15:20:28', 637.284, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TNP^D', '2017-05-22 19:07:46', 1692.953, 221);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BAH', '2012-09-17 22:48:54', 217.591, 98);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSA^Z', '2012-02-11 16:38:24', 2463.638, 211);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MMI', '2010-09-27 16:55:31', 334.908, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KIM^K', '2006-06-13 11:17:52', 2041.791, 178);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MDIV', '2004-09-16 09:32:25', 1359.178, 28);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UONEK', '2002-10-21 14:30:03', 578.669, 228);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BDN', '2017-08-06 17:17:17', 2355.92, 17);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DS^B', '2008-10-12 10:56:12', 109.306, 134);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ESGG', '2021-05-04 07:25:44', 203.162, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KODK.WS', '2003-11-11 07:56:16', 418.436, 182);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALTY', '2021-03-08 09:08:11', 2404.675, 77);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SNLN', '2007-10-16 16:20:14', 454.235, 87);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CNI', '2004-05-15 00:22:18', 1426.207, 123);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MFA^B', '2015-05-16 00:06:15', 951.334, 35);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AGYS', '2019-01-01 01:09:35', 1033.124, 196);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GNE^A', '2021-03-01 08:01:15', 919.746, 238);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SBBP', '2017-09-06 17:02:05', 2259.063, 176);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ABUS', '2021-12-05 13:47:25', 2108.76, 104);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VALE.P', '2018-05-03 05:18:38', 1763.865, 116);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HTLF', '2004-12-17 14:54:21', 1330.782, 84);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LIND', '2004-07-28 21:28:25', 152.907, 33);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LEN.B', '2000-04-19 12:37:49', 695.829, 10);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NTRP', '2002-11-22 13:31:56', 81.719, 223);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ACC', '2017-09-23 13:02:48', 1352.595, 244);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MNP', '2015-02-11 23:01:00', 2211.303, 250);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NWN', '2021-08-13 02:31:14', 2084.9, 27);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OSN', '2022-09-02 22:52:19', 1564.17, 106);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PLUS', '2012-02-16 04:50:45', 591.74, 133);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AWP', '2020-04-05 16:00:25', 729.242, 241);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VIVO', '2006-09-24 19:25:09', 542.397, 19);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EXPR', '2019-10-12 20:44:56', 1840.929, 191);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SLNO', '2012-05-30 22:32:35', 695.174, 250);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALL^B', '2007-07-04 16:51:09', 813.669, 10);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HYGS', '2012-06-26 03:31:46', 1595.059, 237);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ESGU', '2018-09-19 18:52:26', 1756.443, 135);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VPV', '2019-01-05 10:01:09', 2361.705, 102);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SKYY', '2014-05-30 01:17:54', 2027.722, 173);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALJJ', '2017-03-21 08:33:51', 1052.354, 75);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TWO', '2012-08-17 21:43:45', 2188.484, 35);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MGU', '2012-01-12 07:23:22', 2403.228, 163);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JEQ', '2003-09-11 20:57:06', 1092.785, 233);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HURN', '2000-08-28 12:31:09', 2062.87, 210);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MACK', '2009-01-31 02:55:08', 670.821, 87);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NK', '2020-06-27 21:48:00', 1091.194, 114);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MCEP', '2005-06-22 08:10:33', 1974.38, 223);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NX', '2001-03-22 23:03:30', 1724.92, 242);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NEPT', '2015-07-15 23:11:52', 303.415, 12);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DBVT', '2011-10-17 00:25:45', 581.207, 98);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TVIZ', '2011-05-05 06:51:35', 728.479, 239);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MNDO', '2009-01-11 17:54:22', 394.542, 245);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HEBT', '2013-03-05 16:37:59', 273.287, 93);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ELP', '2003-07-18 14:30:23', 2462.748, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NSP', '2001-06-03 15:26:33', 777.627, 224);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPKEP', '2016-12-27 05:00:38', 21.33, 222);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PLW', '2013-11-22 09:25:51', 943.053, 182);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BCR', '2008-03-13 16:32:11', 1038.456, 190);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MYD', '2011-08-22 07:15:29', 634.394, 158);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CPHC', '2007-05-08 15:27:17', 2402.252, 170);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('USPH', '2000-03-16 14:02:17', 2182.128, 186);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GCAP', '2006-03-21 12:14:38', 1628.891, 113);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IMMR', '2013-07-09 19:09:03', 1774.968, 1);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EGF', '2002-11-15 00:05:19', 1288.236, 172);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATV', '2003-04-26 03:48:50', 944.026, 196);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MPAA', '2000-12-08 19:10:03', 1300.244, 18);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ZTR', '2006-08-12 19:09:34', 1295.791, 1);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BKU', '2010-08-02 03:12:23', 305.733, 211);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MHO', '2005-07-14 05:11:48', 718.836, 152);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STI^A', '2009-10-04 07:05:05', 1484.37, 35);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CORI', '2018-04-15 21:42:02', 671.329, 129);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SHEN', '2002-04-03 18:19:34', 2132.548, 242);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JEQ', '2017-12-30 00:49:15', 1772.908, 76);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CGBD', '2005-09-30 17:08:39', 1771.821, 49);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SAN^A', '2005-03-31 11:53:22', 851.175, 121);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NRT', '2010-06-03 18:31:10', 1032.792, 48);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NORD', '2009-10-16 07:45:41', 2429.392, 117);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SMG', '2022-06-29 13:40:15', 597.019, 31);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LLNW', '2002-02-20 21:49:01', 1659.428, 18);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SAN^A', '2002-03-22 21:00:23', 296.339, 56);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MBFIP', '2000-12-01 10:15:35', 2113.413, 237);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KRC^H', '2001-01-14 13:46:11', 696.363, 162);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NVET', '2008-04-22 09:22:42', 1736.511, 110);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LGND', '2008-03-25 20:02:07', 39.305, 174);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ABEOW', '2001-03-04 11:15:40', 1191.262, 43);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NMK^C', '2006-11-02 14:00:32', 421.782, 10);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TENX', '2002-10-30 11:29:13', 2226.708, 240);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AEHR', '2011-04-11 19:59:41', 624.698, 108);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AMH^C', '2001-05-28 06:38:13', 177.059, 185);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NX', '2020-05-31 04:49:42', 1419.541, 200);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HWCC', '2011-04-22 10:52:56', 1965.188, 55);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DCT', '2014-04-12 01:29:26', 1198.162, 21);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SOI', '2013-05-04 04:36:31', 1013.967, 34);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PIR', '2010-05-18 10:36:09', 537.576, 100);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BAM', '2003-05-20 05:02:57', 1927.974, 23);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UBP^G', '2022-09-30 04:21:58', 740.208, 160);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SSW^E', '2015-08-04 06:13:48', 2371.551, 134);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CYTR', '2006-01-21 15:17:25', 757.654, 177);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('INCY', '2021-12-04 13:17:03', 523.71, 180);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SGBX', '2000-09-18 16:47:24', 231.659, 35);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VEEV', '2002-10-05 10:37:45', 852.654, 45);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SYMX', '2013-01-03 12:58:09', 20.399, 131);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FUL', '2008-06-05 19:08:21', 1759.903, 102);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NTEST.C', '2007-09-25 19:50:58', 1236.365, 185);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('C^P', '2011-01-24 23:32:13', 795.837, 78);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UGLD', '2006-05-02 15:08:51', 345.344, 223);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALDR', '2003-04-25 11:11:12', 1289.437, 56);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AHC', '2001-11-22 22:34:07', 623.999, 179);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ORBC', '2012-01-14 21:00:36', 1729.893, 139);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VIRC', '2020-03-23 22:26:57', 1025.886, 235);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NYV', '2014-12-31 22:31:43', 1800.968, 135);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NL', '2012-11-07 12:01:31', 1421.771, 101);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JMU', '2003-11-30 06:16:38', 1762.042, 241);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SOI', '2020-06-09 00:51:10', 726.873, 193);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DUC', '2000-10-31 20:36:12', 1970.226, 219);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CSLT', '2001-04-13 02:40:19', 768.793, 40);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SVRA', '2010-12-06 09:46:07', 1631.398, 54);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WMS', '2012-09-28 14:08:03', 91.265, 101);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BELFB', '2006-12-23 00:56:19', 1933.474, 1);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UMH', '2020-04-02 02:19:07', 629.529, 124);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JPM^A', '2011-09-23 05:36:48', 1817.702, 129);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WBS', '2020-07-15 15:20:45', 289.032, 163);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MITT^A', '2005-10-15 20:54:29', 373.092, 191);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OHAI', '2020-10-10 16:55:11', 2153.435, 65);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TDOC', '2022-05-14 17:44:51', 2025.746, 45);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UHAL', '2021-09-27 18:55:17', 1849.847, 129);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NNN', '2008-07-09 08:48:27', 1364.105, 111);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CRCM', '2003-08-27 16:32:26', 1700.1, 89);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WHFBL', '2012-12-22 18:16:12', 2475.972, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ARES^A', '2019-08-01 05:24:12', 2305.27, 110);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GPP', '2000-03-26 02:33:05', 1947.347, 81);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FNV', '2016-08-10 17:47:42', 189.845, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TNH', '2021-05-16 15:42:50', 1662.661, 104);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KRO', '2015-04-09 20:07:48', 2276.71, 169);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SOHO', '2009-02-24 19:45:43', 205.47, 25);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PRXL', '2009-04-02 14:12:37', 1184.483, 239);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BFZ', '2015-10-10 04:07:14', 1228.692, 19);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BCX', '2011-12-26 18:49:06', 2226.125, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RDVY', '2013-12-20 03:52:22', 45.331, 133);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BMRN', '2011-01-16 04:21:07', 2401.744, 208);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FORR', '2006-09-17 17:31:54', 1089.92, 99);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SRE', '2004-08-13 16:49:01', 426.49, 112);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NWHM', '2004-10-01 12:47:29', 1410.1, 130);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('XENT', '2015-11-10 14:19:17', 878.05, 6);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DPLO', '2020-09-02 08:56:22', 1352.543, 166);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CVLT', '2008-05-30 10:46:56', 2001.316, 206);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FVE', '2004-04-28 21:07:17', 71.766, 66);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SB^B', '2020-09-19 13:23:37', 598.507, 44);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VDTH', '2019-09-05 12:13:14', 135.779, 218);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MTX', '2011-10-29 06:27:32', 1082.694, 31);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MNTX', '2015-02-05 23:54:56', 2098.945, 147);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PZZA', '2016-12-17 00:25:14', 2076.462, 72);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GCO', '2016-01-10 07:09:27', 197.874, 238);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SLM', '2011-06-03 23:27:03', 833.388, 216);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ONSIW', '2016-10-25 07:51:27', 361.797, 137);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MERC', '2019-06-05 04:46:04', 244.749, 87);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DMRC', '2022-01-18 18:03:00', 2198.086, 80);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALV', '2014-02-21 00:12:07', 1008.075, 161);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SLQD', '2017-10-10 23:03:23', 1192.465, 25);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SKT', '2018-08-23 11:08:08', 840.875, 43);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PTGX', '2006-08-17 03:44:11', 1053.465, 97);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TWN', '2017-09-16 08:09:56', 930.586, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CDTI', '2010-03-05 21:50:48', 2215.107, 149);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PAVMW', '2018-06-09 08:17:13', 792.132, 109);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OPK', '2000-08-01 14:18:33', 2069.545, 89);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OIBR.C', '2019-02-14 03:00:42', 1156.495, 158);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PFM', '2002-11-09 04:25:50', 263.509, 188);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VPG', '2005-07-15 09:54:24', 1429.367, 242);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CUTR', '2020-11-19 23:26:47', 674.912, 48);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('Y', '2000-12-20 19:07:40', 1784.845, 171);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MHO^A', '2003-06-03 09:00:15', 844.035, 62);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RH', '2021-07-15 20:56:39', 1708.284, 124);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SGLBW', '2018-06-05 06:07:56', 584.622, 33);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AMD', '2020-11-11 10:23:54', 1266.148, 247);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LGF.A', '2000-06-25 02:29:36', 769.627, 210);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AVAV', '2014-10-20 01:51:10', 1276.154, 114);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FCAP', '2021-01-10 22:21:16', 1049.53, 166);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TECK', '2002-01-17 02:06:17', 1135.412, 108);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EVC', '2008-06-20 02:34:18', 1945.04, 217);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TOL', '2017-12-20 10:56:12', 1030.369, 88);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ARTW', '2009-07-20 19:45:48', 2259.749, 73);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FDS', '2005-01-14 00:37:02', 1790.966, 224);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FTK', '2001-12-14 19:26:51', 1217.92, 12);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MZF', '2021-02-01 01:05:18', 432.661, 164);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AI^B', '2008-12-29 16:51:41', 473.778, 165);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DVA', '2018-10-12 09:10:26', 1093.889, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SVVC', '2003-04-07 10:06:30', 2013.115, 238);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EQM', '2008-04-17 09:15:13', 589.106, 203);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALSN', '2004-03-04 07:16:30', 2370.23, 21);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RWT', '2005-07-09 21:11:16', 1433.581, 133);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MOFG', '2013-05-19 05:36:29', 558.263, 35);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BLMT', '2005-04-06 11:39:12', 1314.355, 187);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GBLIL', '2017-10-31 23:54:05', 429.681, 218);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LNN', '2000-08-23 07:26:02', 1429.588, 10);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VTR', '2005-06-26 15:23:14', 926.974, 32);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KMM', '2015-11-10 13:25:04', 1238.149, 177);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PAVMW', '2010-12-04 10:03:29', 2139.371, 197);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EARS', '2003-05-17 08:09:30', 2110.833, 250);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RGC', '2001-07-11 11:50:05', 1764.457, 106);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FGP', '2011-12-15 17:13:26', 314.092, 234);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SAM', '2008-04-10 19:17:14', 2117.156, 102);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NUE', '2004-03-05 08:48:11', 1581.74, 233);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TCP', '2000-03-26 04:37:22', 2317.004, 127);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QHC', '2019-06-07 04:26:02', 1625.151, 41);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CMS', '2009-04-29 21:04:31', 1003.566, 223);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPG', '2022-04-02 15:45:07', 1183.463, 60);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DAKT', '2015-08-06 19:17:27', 862.244, 80);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BAC^I', '2006-03-02 20:36:57', 2263.386, 73);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UA', '2004-03-05 06:02:48', 433.541, 19);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KYE', '2005-05-09 20:39:32', 495.507, 186);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MBI', '2019-07-03 13:05:37', 781.474, 79);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LIVN', '2011-12-08 07:08:47', 1083.825, 177);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPLP^A', '2021-04-16 05:56:09', 2445.335, 146);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TGA', '2012-02-28 11:07:15', 2193.344, 34);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LKQ', '2006-08-21 07:12:14', 368.32, 227);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CBB^B', '2019-09-01 05:43:32', 720.67, 147);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ENR', '2012-12-20 04:48:59', 1480.263, 229);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ENOC', '2018-04-26 14:30:03', 2406.106, 228);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ISCA', '2010-02-28 08:26:06', 39.981, 195);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SYNT', '2009-04-05 13:49:56', 2191.079, 214);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SMTC', '2022-01-25 03:51:45', 2418.534, 23);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GPI', '2011-08-05 21:43:48', 1770.765, 141);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MUR', '2017-10-29 23:21:43', 1727.134, 131);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TRCO', '2008-02-01 19:44:22', 1228.292, 77);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WPCS', '2017-07-27 21:39:11', 2176.665, 71);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATGE', '2013-10-04 11:47:23', 1051.652, 22);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EBMT', '2015-01-05 14:03:52', 1392.903, 49);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DMB', '2001-07-17 15:47:20', 1773.098, 206);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JAZZ', '2013-07-28 00:26:00', 1375.1, 20);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DTYS', '2019-07-15 20:55:31', 450.72, 162);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UNFI', '2003-05-29 02:57:35', 1530.115, 74);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RVT', '2020-11-10 20:44:39', 1687.663, 92);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NYMT', '2022-06-08 21:29:58', 1109.973, 44);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SORL', '2015-06-05 20:45:40', 886.563, 201);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LSXMB', '2000-08-30 20:36:01', 1859.306, 155);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QPAC', '2005-09-26 18:47:34', 723.285, 221);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QUOT', '2001-12-23 00:43:50', 681.811, 203);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OCN', '2001-12-09 07:44:18', 651.293, 155);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SGRY', '2009-03-01 20:30:13', 2301.216, 66);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GNC', '2004-11-29 16:05:33', 1993.692, 195);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GTYHU', '2018-04-09 02:40:47', 2279.186, 136);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LUB', '2000-10-23 06:39:27', 779.093, 41);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BGB', '2016-12-13 04:12:03', 2387.467, 148);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TGP^A', '2012-04-29 19:25:05', 1957.145, 70);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RGR', '2022-02-02 23:39:34', 2470.371, 77);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BNSO', '2009-06-03 03:36:40', 1604.474, 88);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WFBI', '2011-05-02 13:39:05', 892.438, 220);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GTYHW', '2003-08-08 08:44:05', 1439.617, 12);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BHLB', '2016-03-27 02:31:11', 1856.02, 202);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HPE', '2013-10-09 17:28:25', 1372.619, 50);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NXN', '2006-08-02 23:17:13', 212.049, 136);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ARNA', '2002-04-29 16:41:18', 778.164, 112);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AHT^A', '2016-02-28 06:40:13', 2385.939, 134);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DCO', '2000-12-31 19:30:46', 282.351, 196);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NTRSP', '2010-10-29 15:10:37', 2036.0, 152);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATO', '2009-03-22 17:31:50', 270.298, 214);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PEI^B', '2018-10-01 23:10:44', 983.475, 245);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IAG', '2003-06-15 17:22:18', 564.979, 220);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BJRI', '2020-05-19 16:01:03', 2256.69, 118);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PK', '2022-05-30 06:57:29', 838.499, 112);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('USNA', '2003-12-25 14:06:04', 1183.76, 56);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MSFG', '2004-05-22 03:48:39', 1439.001, 249);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WBK', '2006-07-19 07:08:24', 1847.072, 222);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSA^B', '2014-08-06 22:25:05', 1273.164, 136);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MYOS', '2006-07-15 12:31:52', 1527.05, 13);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('YORW', '2019-03-26 20:26:56', 2187.123, 42);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UVSP', '2016-12-21 02:13:11', 1152.56, 52);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HMLP', '2004-04-21 01:48:05', 526.362, 54);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IFF', '2021-01-19 23:51:04', 1011.767, 126);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RBCAA', '2012-03-16 15:39:01', 2240.572, 216);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ENZY          ', '2007-06-21 19:44:33', 1007.47, 219);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PYT', '2000-10-23 08:38:23', 969.117, 176);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALLT', '2019-03-15 19:10:54', 2290.7, 108);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VRA', '2009-06-17 00:26:10', 2115.08, 22);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PUK', '2007-05-06 07:43:58', 662.787, 239);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VKTX', '2009-11-01 19:52:29', 1755.869, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VTA', '2005-09-05 07:48:52', 1173.883, 153);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WHLRW', '2011-12-30 18:21:20', 1230.516, 3);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UNF', '2019-08-18 09:37:16', 2207.231, 198);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SRUN', '2007-03-16 04:27:32', 395.21, 171);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EGAN', '2021-01-29 22:02:25', 497.118, 147);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GSVC', '2005-05-26 20:56:33', 1253.121, 6);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NMT', '2018-07-16 07:08:20', 489.109, 84);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MYSZ', '2012-11-27 21:24:26', 800.61, 172);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CALM', '2022-07-20 06:21:58', 2351.615, 205);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HCAP', '2018-09-10 12:14:37', 1652.834, 101);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALCO', '2021-12-22 04:49:28', 801.329, 56);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RSO^A', '2011-03-23 22:51:22', 1609.969, 197);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FTXR', '2010-08-01 15:20:29', 1636.303, 234);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EYEGW', '2005-11-17 12:00:41', 2215.367, 141);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SHO', '2018-01-24 02:58:30', 1518.847, 11);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SDR', '2014-12-07 19:42:53', 1660.949, 193);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALGT', '2003-11-24 00:18:19', 195.0, 46);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DWLV', '2001-03-25 01:07:45', 2172.435, 106);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DE', '2000-12-27 19:28:54', 1647.042, 226);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MDLQ', '2006-08-16 11:47:55', 1488.152, 197);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('POWI', '2008-08-30 20:07:02', 1741.116, 54);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AZZ', '2009-01-16 14:55:05', 1086.566, 15);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STAR^I', '2011-10-21 02:33:32', 251.434, 119);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MSB', '2002-10-01 00:03:18', 2160.036, 127);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATNX', '2006-10-27 14:26:30', 34.125, 22);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ADRE', '2012-07-31 11:38:08', 1340.262, 101);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UBSH', '2022-02-08 22:27:33', 1062.177, 15);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('E', '2000-11-21 16:44:38', 1914.093, 6);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EMMS', '2003-12-25 01:36:16', 1887.825, 97);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('INSE', '2013-01-19 10:58:20', 551.996, 102);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FMI', '2018-07-18 20:14:42', 1547.451, 190);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DCP', '2016-02-13 16:22:40', 1042.063, 63);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STAG^B', '2011-11-09 10:02:56', 423.364, 234);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BC', '2016-12-16 08:13:28', 797.039, 143);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VIAV', '2002-11-27 00:35:41', 2352.516, 214);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NVO', '2007-03-31 09:14:47', 809.111, 184);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CPIX', '2021-10-01 17:59:05', 466.426, 131);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DNKN', '2007-04-04 01:45:34', 1856.242, 170);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AFSI^D', '2014-04-06 16:35:36', 2159.853, 193);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LGI', '2016-05-14 20:33:57', 1035.454, 48);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FNTEU', '2012-02-10 16:32:49', 879.521, 246);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SQBG', '2014-11-14 04:21:23', 2128.788, 113);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CAPL', '2008-01-11 05:15:02', 2224.745, 3);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RSG', '2014-08-19 12:02:10', 1797.307, 44);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KORS', '2021-12-21 08:21:29', 764.011, 32);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LTRPB', '2019-11-21 01:55:06', 1389.711, 196);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WTFC', '2009-10-07 16:43:36', 2202.578, 101);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FCAN', '2022-08-01 22:48:33', 1723.08, 78);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OMAM', '2022-02-02 15:37:43', 2263.659, 147);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MPCT', '2008-08-04 14:38:20', 2067.505, 52);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NVR', '2014-01-31 17:32:39', 2101.114, 41);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PLCE', '2011-11-15 21:38:08', 609.183, 219);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BAC^C', '2014-12-03 22:17:04', 2497.652, 165);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RF^B', '2006-07-15 08:18:17', 1221.803, 249);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FNGN', '2007-12-12 17:01:31', 1983.13, 71);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AROW', '2018-03-15 13:01:58', 424.406, 177);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AFHBL', '2010-07-29 12:05:47', 2186.206, 30);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PAC', '2008-01-04 08:02:29', 966.601, 17);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ELEC', '2006-03-22 01:39:26', 1799.712, 8);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RZA', '2007-11-20 13:38:54', 730.261, 118);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BKU', '2015-07-01 09:29:44', 779.549, 95);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WETF', '2012-05-06 13:52:51', 847.128, 29);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AFB', '2017-11-12 22:55:09', 37.851, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EXAS', '2020-05-13 05:45:52', 2443.11, 26);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LMNR', '2011-04-02 07:12:17', 360.0, 19);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BML^H', '2011-12-13 11:30:30', 871.061, 199);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NNN^F', '2015-03-09 06:03:15', 731.886, 103);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HBAN', '2014-12-09 21:47:20', 1216.914, 179);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CECO', '2017-09-11 00:25:13', 1375.029, 81);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HBIO', '2005-05-04 13:56:39', 1321.009, 178);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KE', '2002-07-12 10:14:25', 434.469, 95);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DXB', '2002-11-08 07:12:17', 2187.804, 15);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLRB', '2004-09-04 04:52:12', 265.059, 176);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NZF', '2017-06-10 08:52:10', 854.112, 109);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BUFF', '2019-09-20 00:25:10', 2327.133, 96);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IRIX', '2022-10-25 23:30:13', 1112.401, 54);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BBG', '2005-11-08 00:14:07', 2424.133, 135);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LINC', '2022-09-16 13:56:22', 1809.516, 9);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AON', '2019-04-03 21:06:30', 2449.8, 222);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CSS', '2004-12-11 08:13:25', 2260.719, 154);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HJV', '2017-09-03 19:52:47', 1408.792, 94);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IGLD', '2008-10-23 12:51:47', 421.013, 84);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SBH', '2004-02-23 08:16:26', 2017.121, 203);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MTB.WS', '2013-06-04 23:48:42', 1459.827, 62);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ECA', '2010-03-14 12:00:39', 1720.595, 193);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WHR', '2014-07-18 08:31:32', 1827.744, 240);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CCP', '2019-11-05 15:12:22', 1174.877, 90);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CFO', '2008-12-31 10:30:50', 982.177, 218);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DDR^J', '2004-11-28 02:29:30', 164.698, 153);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FRC^C', '2013-04-10 04:28:34', 1341.692, 139);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DXJS', '2001-10-19 09:57:26', 24.05, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('USLB', '2020-06-03 18:02:29', 389.309, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DXC', '2001-05-28 03:25:50', 1555.035, 186);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CTBB', '2011-09-11 09:18:18', 2171.919, 26);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HBM.WS', '2008-08-21 14:31:22', 137.545, 44);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('INNL', '2015-01-04 00:23:11', 885.622, 40);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GMZ', '2015-10-25 15:14:57', 1187.136, 59);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ROSEW', '2013-05-29 10:51:45', 2264.7, 168);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ANAB', '2000-07-08 04:13:03', 750.923, 139);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KOS', '2022-10-04 16:22:58', 33.998, 6);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('III', '2010-12-07 16:13:42', 1657.376, 106);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MAMS', '2000-11-28 00:54:39', 2371.969, 135);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NBTB', '2008-02-29 08:37:15', 1874.716, 41);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FGEN', '2021-07-11 11:53:24', 2215.526, 154);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RIGL', '2013-02-01 16:45:43', 2372.703, 23);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EYEGW', '2019-12-31 15:47:27', 1293.973, 244);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RETA', '2005-08-21 03:52:13', 1794.259, 243);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SSI', '2006-08-05 10:15:08', 906.505, 206);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VRNS', '2017-06-11 23:15:50', 178.116, 225);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EGLT', '2009-12-01 23:25:14', 1865.22, 134);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ANH^A', '2008-05-23 21:00:36', 2003.073, 116);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GALT', '2000-02-27 11:17:07', 450.82, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LMRK', '2008-06-17 21:52:31', 670.781, 163);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EDR', '2000-12-15 06:50:17', 270.019, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TUSA', '2007-09-03 12:16:40', 2302.034, 64);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TECD', '2000-01-25 21:41:32', 1270.763, 100);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DRYS', '2013-01-02 08:34:31', 1132.09, 103);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BW', '2006-09-04 18:26:06', 969.047, 111);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JEQ', '2013-02-22 15:47:03', 2337.275, 200);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FCBC', '2018-11-16 12:58:30', 2487.943, 34);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ZUMZ', '2005-10-27 02:01:05', 1487.545, 135);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BOJA', '2021-10-27 22:40:51', 477.812, 102);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GNL', '2021-06-09 00:02:25', 2462.656, 205);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STRL', '2007-08-15 22:35:25', 2479.628, 57);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('INVA', '2002-04-09 01:53:44', 1300.484, 147);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NOC', '2014-05-20 14:44:36', 1782.606, 100);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATRC', '2019-11-24 15:09:11', 312.823, 216);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EGLT', '2012-12-24 02:46:55', 800.809, 157);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AMN', '2008-01-01 00:12:46', 526.487, 236);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('COG', '2012-02-24 11:43:16', 1942.683, 103);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AFAM', '2016-08-04 10:40:58', 1570.891, 71);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AGD', '2009-08-22 15:20:01', 1292.762, 247);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DRE', '2019-07-02 18:59:06', 565.934, 148);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GOF', '2015-11-22 12:35:18', 1397.63, 108);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AMWD', '2008-05-15 21:57:55', 338.136, 178);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DLR', '2005-03-12 19:07:45', 2058.295, 226);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OKE', '2016-05-19 15:23:25', 2198.159, 3);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ODP', '2020-03-22 20:29:46', 1022.274, 151);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MPCT', '2022-06-07 18:00:17', 2390.065, 241);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WBMD', '2012-04-19 11:47:28', 2166.278, 161);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STRT', '2018-07-15 15:58:35', 2024.956, 34);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATHM', '2013-08-19 15:56:41', 2065.184, 59);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ORCL', '2015-02-10 17:23:56', 1265.4, 107);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('THQ', '2001-10-02 01:21:49', 956.172, 136);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CPLA', '2006-08-22 01:30:51', 1.448, 91);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('COG', '2002-10-02 04:34:28', 1687.119, 63);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BIIB', '2002-10-07 04:04:59', 991.196, 169);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RGNX', '2015-11-18 03:35:12', 730.446, 5);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SBR', '2013-01-18 12:37:44', 518.501, 236);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ORRF', '2020-09-14 19:39:58', 2072.216, 242);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WPG^H', '2006-12-06 01:01:15', 130.358, 211);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CHEKW', '2007-03-06 04:02:55', 1729.243, 240);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PBHC', '2009-07-07 05:22:06', 1924.958, 158);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PFSI', '2015-03-29 02:50:25', 2423.761, 57);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JCI', '2022-09-17 09:26:34', 599.674, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ASMB', '2005-04-27 22:31:02', 1391.613, 142);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NEOS', '2021-02-16 12:59:56', 804.297, 48);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LBRDK', '2022-08-26 05:28:30', 907.201, 232);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NWBI', '2021-06-06 15:28:03', 2180.648, 190);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ARCX', '2011-08-16 04:16:14', 1534.192, 89);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSA^B', '2009-11-15 00:49:34', 2251.586, 106);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PVBC', '2012-07-23 20:48:24', 1251.06, 249);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WTTR', '2007-12-05 16:28:22', 1191.113, 31);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VET', '2019-07-13 00:24:56', 32.056, 130);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UMBF', '2012-03-12 07:51:27', 1923.284, 20);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DFS^B', '2013-03-03 11:11:51', 881.157, 179);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EAI', '2002-10-01 02:48:48', 1700.67, 206);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DSM', '2015-12-11 01:58:38', 2314.27, 127);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HOMB', '2005-02-18 08:14:39', 2188.48, 131);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FFC', '2016-02-08 13:52:03', 2257.897, 33);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('G', '2020-10-26 04:32:58', 1842.487, 201);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TANNL', '2005-11-15 07:02:22', 439.856, 139);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GGT', '2000-12-07 16:55:10', 2479.358, 92);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OFG^D', '2019-04-06 10:55:06', 1023.607, 128);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MACQW', '2005-05-07 06:35:30', 2322.64, 54);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CCD', '2012-01-16 13:31:38', 605.263, 55);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RL', '2007-12-09 15:12:36', 1065.14, 152);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EVEP', '2003-04-09 00:20:56', 2157.507, 18);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WYIGU', '2007-04-30 08:11:24', 753.408, 85);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STO', '2004-02-27 03:16:59', 359.07, 231);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PRMW', '2011-11-20 04:32:57', 701.609, 178);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CYTR', '2009-01-15 06:41:38', 1436.996, 105);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JSM', '2019-12-03 11:05:30', 927.745, 106);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLRO', '2022-04-10 07:30:13', 914.681, 185);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BRCD', '2006-11-19 09:37:21', 1879.422, 96);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HCM', '2011-02-26 15:09:28', 1046.43, 162);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SCAC', '2018-12-25 20:50:16', 1364.183, 202);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NEWS', '2001-08-24 02:43:34', 1238.744, 56);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATH', '2020-02-21 00:23:03', 332.213, 136);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BCPC', '2014-04-10 04:43:55', 1691.315, 87);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JNCE', '2016-05-10 00:56:48', 974.956, 155);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JKS', '2020-03-26 20:40:51', 1190.029, 224);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HSIC', '2022-03-24 22:53:29', 1741.817, 181);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NWBI', '2003-07-27 18:04:11', 672.655, 133);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HNH', '2016-08-27 20:48:29', 504.669, 240);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPCB', '2003-03-02 06:04:46', 872.721, 126);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TERP', '2009-01-02 18:29:26', 1102.169, 141);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TVTY', '2001-09-30 13:20:06', 332.475, 97);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KVHI', '2017-08-13 16:20:46', 2493.328, 69);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SFLY', '2000-04-19 21:56:15', 192.661, 201);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HUNTU', '2022-08-03 09:56:09', 536.038, 248);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BX', '2001-02-20 12:59:57', 1237.745, 181);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LDRI', '2017-09-06 19:49:06', 777.86, 234);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DVCR', '2019-08-18 16:07:29', 934.301, 215);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BME', '2020-06-13 16:57:15', 1472.672, 85);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VRA', '2021-05-20 02:27:51', 1645.914, 224);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VDSI', '2018-06-30 11:04:42', 348.097, 227);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STDY', '2012-08-22 21:48:46', 2477.733, 245);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DE', '2004-11-02 23:59:21', 1541.14, 185);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TCMD', '2015-04-20 05:00:24', 222.107, 214);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UONEK', '2008-03-13 22:18:20', 543.957, 175);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MYOS', '2018-01-16 15:57:01', 826.499, 82);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NOC', '2020-12-05 00:57:09', 2445.711, 177);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RELX', '2007-07-29 11:22:05', 1122.186, 109);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TREE', '2006-05-17 01:04:28', 247.584, 231);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BEL', '2018-11-25 18:39:49', 1250.466, 34);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PRFZ', '2014-02-01 19:11:02', 2359.823, 180);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CSTE', '2005-03-17 06:44:43', 478.146, 43);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FYC', '2004-01-28 15:32:55', 440.37, 204);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BSX', '2015-02-01 04:08:04', 1879.768, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DYN', '2015-07-12 12:18:47', 1558.857, 136);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DSGX', '2017-03-29 18:31:39', 1043.729, 157);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ICPT', '2007-09-25 22:33:35', 1288.314, 177);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ITW', '2015-11-27 06:13:42', 1811.772, 179);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EVGBC', '2001-04-14 11:23:22', 677.291, 120);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FORD', '2006-12-28 09:44:57', 2364.264, 231);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HAIN', '2011-06-25 20:33:36', 782.583, 59);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BHP', '2009-09-11 11:49:30', 23.699, 231);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FSZ', '2005-05-02 18:11:50', 180.199, 168);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RGCO', '2009-04-16 18:41:44', 1098.047, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BANC^E', '2004-10-23 10:49:58', 1659.38, 131);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NL', '2015-02-27 03:28:39', 1084.479, 191);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TR', '2016-12-04 04:20:31', 1994.781, 78);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSCF', '2003-05-29 03:08:55', 1523.255, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GAIN', '2015-09-23 17:46:55', 1065.349, 238);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPSC', '2000-07-29 06:03:26', 201.686, 179);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OMN', '2015-02-21 08:24:36', 861.53, 105);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KO', '2016-02-28 14:03:03', 450.513, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PHG', '2002-10-23 18:22:31', 2350.692, 14);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PYN', '2012-11-25 21:40:37', 2101.241, 63);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LEO', '2005-10-29 23:35:02', 1851.882, 100);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FCCY', '2000-09-18 07:22:22', 2006.579, 116);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GDV^A', '2016-12-24 13:16:49', 2398.803, 161);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ONEQ', '2010-08-25 08:25:24', 2288.96, 130);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FMBI', '2010-03-24 21:19:04', 562.412, 236);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLWT', '2022-09-11 15:25:58', 1232.229, 147);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STAY', '2022-03-21 13:02:59', 2345.71, 103);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OCC', '2005-03-15 06:24:06', 1720.08, 118);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WBA', '2002-10-29 17:44:19', 1345.197, 133);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SUPV', '2008-07-19 21:03:42', 1321.911, 245);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VCRA', '2015-07-22 20:40:51', 2088.581, 236);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MDSO', '2018-10-12 04:03:09', 1313.369, 174);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AXAS', '2010-08-28 22:39:01', 1436.937, 6);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CCO', '2009-02-21 13:58:10', 857.031, 19);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NESRW', '2002-08-22 08:20:19', 1667.881, 169);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VVR', '2003-11-01 10:08:36', 1513.954, 158);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RLGY', '2008-05-03 01:03:07', 1874.69, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MVO', '2018-12-30 17:50:09', 805.09, 48);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BID', '2005-09-25 16:15:29', 485.503, 1);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PNR', '2011-09-29 03:23:49', 1381.792, 97);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DEL', '2016-12-30 20:24:58', 286.925, 159);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSCH', '2020-03-01 09:37:14', 2282.917, 110);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MBSD', '2000-02-11 00:49:20', 2181.085, 130);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VZ', '2001-10-21 09:32:28', 924.083, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MSGN', '2009-01-28 05:30:15', 2028.962, 206);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SBBP', '2017-03-02 04:24:20', 1133.377, 235);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DWAQ', '2001-04-03 07:12:05', 2070.511, 197);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CHMA', '2014-06-05 02:11:05', 1375.011, 208);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EXTR', '2003-06-11 04:09:51', 1268.029, 68);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IPXL', '2001-05-01 18:23:44', 719.979, 248);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('IVR^B', '2012-01-07 00:59:38', 1669.782, 148);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLNS^G', '2000-05-29 12:14:15', 1892.22, 202);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SYMX', '2019-07-21 01:52:08', 1590.704, 118);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GOLD', '2003-06-07 08:34:04', 2203.95, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DEX', '2005-12-27 09:42:31', 1626.33, 12);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FGM', '2005-10-23 22:37:10', 104.311, 249);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CFO', '2000-10-15 20:24:40', 896.356, 230);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GIFI', '2020-06-15 10:49:06', 2309.581, 164);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JCP', '2001-10-13 09:43:01', 1915.287, 134);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ATRS', '2010-05-14 09:11:14', 1114.927, 125);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MNR^C', '2011-12-27 03:30:25', 696.339, 197);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KBWB', '2005-01-15 23:19:24', 731.135, 226);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WFC^J', '2009-09-06 23:45:59', 1071.104, 97);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HIG', '2019-07-15 05:07:53', 1845.836, 185);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SMMF', '2015-10-15 07:01:10', 1754.661, 1);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VIA', '2009-07-25 23:46:40', 1811.138, 77);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BOBE', '2004-04-24 23:43:35', 653.721, 49);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TLI', '2015-05-08 03:35:17', 1100.575, 141);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DISCB', '2018-12-25 21:59:13', 2117.152, 56);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPLP^A', '2004-09-27 09:12:18', 516.685, 20);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EPR^E', '2009-10-16 06:55:50', 705.366, 216);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HSY', '2011-01-23 15:15:33', 1980.085, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('COR^A', '2004-08-12 21:01:21', 1405.74, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GSL', '2016-04-25 18:17:10', 387.362, 129);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VGSH', '2008-05-17 19:54:59', 2273.708, 122);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ASUR', '2002-05-15 14:01:34', 1716.189, 13);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HAWK', '2001-07-09 00:11:27', 1601.476, 19);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OMI', '2004-08-01 09:25:52', 1660.436, 103);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BHACW', '2007-06-13 05:20:00', 1548.867, 84);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PGP', '2005-09-06 04:52:07', 466.756, 242);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GEB', '2008-02-14 20:44:23', 608.119, 237);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GGT^B', '2008-05-04 10:36:25', 2031.636, 132);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSA^E', '2021-06-10 15:03:45', 490.083, 239);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FSBW', '2004-07-08 04:29:57', 237.216, 24);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TEDU', '2011-04-24 21:20:55', 1067.308, 219);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AINV', '2006-11-22 17:26:27', 664.957, 55);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VPV', '2003-12-27 19:34:52', 2058.266, 37);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NTRI', '2005-05-25 21:14:03', 79.437, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RYAM^A', '2017-05-09 17:12:47', 133.081, 204);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MMI', '2019-03-11 00:21:11', 1064.429, 34);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KINS', '2016-06-14 09:34:03', 1606.145, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CPSI', '2013-11-26 01:23:34', 1207.031, 134);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CHSP', '2001-06-24 02:31:39', 840.197, 135);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('LHO^J', '2011-10-12 19:19:18', 639.692, 31);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PPC', '2021-01-28 00:59:39', 94.632, 113);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GPRE', '2000-04-11 15:15:27', 1329.782, 35);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('AC', '2017-01-09 19:37:38', 808.885, 76);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DCOM', '2011-02-19 16:20:37', 939.947, 99);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NTLA', '2018-09-21 13:04:28', 1.234, 196);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FBMS', '2002-05-28 08:11:56', 579.042, 168);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('STZ.B', '2001-05-12 04:16:34', 822.445, 86);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLRO', '2013-10-12 03:52:56', 1637.04, 96);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BJZ', '2021-03-11 02:42:24', 866.072, 207);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('INTC', '2003-12-18 20:37:26', 1167.793, 227);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MSTR', '2011-10-31 19:54:14', 178.038, 228);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EYEG', '2010-06-09 22:07:45', 1362.277, 121);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QCOM', '2014-05-22 14:42:52', 838.475, 91);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WLH', '2013-03-26 19:09:25', 196.948, 121);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CSU', '2022-02-19 13:19:29', 954.159, 154);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MASI', '2002-06-10 22:43:21', 522.387, 136);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BPK', '2022-11-18 04:09:28', 412.263, 189);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DNB', '2003-07-20 20:51:32', 1721.209, 245);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('III', '2017-07-20 13:40:55', 376.391, 150);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HOLX', '2005-12-10 04:22:23', 844.06, 129);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DCOM', '2020-07-02 08:05:20', 2420.619, 227);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QEP', '2009-04-04 19:48:12', 1509.936, 220);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MHN', '2006-03-25 07:04:02', 2428.271, 235);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TCRD', '2016-04-16 19:42:16', 1379.429, 126);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MCS', '2013-04-23 05:03:26', 429.426, 247);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VEEV', '2004-04-07 01:44:44', 2488.25, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CLRB', '2019-11-13 19:53:26', 1822.083, 111);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CMC', '2003-09-08 06:25:22', 476.446, 145);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CTHR', '2009-11-30 09:49:25', 1370.585, 247);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VDTH', '2022-04-08 09:47:09', 60.073, 80);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GPS', '2001-08-11 09:59:51', 1944.541, 83);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ECPG', '2013-09-22 20:28:35', 2195.374, 114);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OIA', '2002-09-27 21:23:15', 1730.09, 239);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('E', '2011-07-07 10:41:10', 493.128, 33);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EGBN', '2007-09-18 15:17:38', 298.051, 236);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SNGXW', '2015-06-21 12:22:30', 1213.415, 184);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PSA', '2022-05-07 15:08:22', 2312.584, 125);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TDI', '2018-04-03 23:36:16', 703.959, 137);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('INGR', '2011-10-13 17:57:06', 996.483, 141);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BIVV', '2016-08-30 15:24:46', 370.614, 3);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FTCS', '2019-02-15 02:02:57', 1069.575, 146);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CHW', '2003-04-11 00:36:14', 416.983, 229);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JKHY', '2006-03-19 08:03:48', 1551.942, 244);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HGV', '2021-09-05 05:45:12', 1687.173, 4);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FVE', '2009-01-09 23:59:16', 499.244, 209);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UHT', '2010-02-12 10:56:31', 1535.822, 219);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('OXFD', '2019-01-06 00:45:34', 1705.897, 117);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DBD', '2008-01-22 22:56:27', 293.093, 155);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ARA', '2008-12-24 10:19:26', 1055.22, 40);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('UFPI', '2009-01-24 18:59:47', 2427.644, 79);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FTSL', '2012-05-23 10:40:08', 2047.553, 163);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('KFRC', '2016-01-19 12:42:29', 1971.725, 181);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('GALE', '2004-03-29 20:07:24', 336.643, 170);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CYS^B', '2006-12-25 14:24:44', 1173.002, 188);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FCCY', '2005-02-19 17:09:03', 1474.575, 205);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VREX', '2005-09-30 12:23:20', 2405.946, 203);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SHLD', '2007-01-05 12:00:49', 2103.425, 157);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ASA', '2010-10-24 11:53:31', 2152.759, 188);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PPSI', '2007-11-18 15:47:53', 993.141, 87);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CTB', '2009-03-07 03:15:09', 1757.503, 17);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CBT', '2019-04-24 12:35:07', 2074.656, 129);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BA', '2016-06-26 12:02:48', 1542.979, 235);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ABEO', '2021-07-15 17:36:13', 2240.854, 97);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PBCTP', '2010-02-06 09:32:40', 807.235, 138);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ISCA', '2000-05-08 21:48:57', 1717.549, 3);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('DSE', '2002-01-31 10:39:38', 1925.079, 205);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TCON', '2005-03-12 14:35:55', 624.806, 179);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HAL', '2006-03-24 21:19:38', 2122.188, 14);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('COL', '2008-06-27 05:44:09', 1550.292, 39);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('VALU', '2012-12-26 18:11:42', 118.075, 81);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FGP', '2011-11-05 08:33:34', 653.208, 149);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WU', '2002-03-13 14:16:19', 1716.455, 98);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NEON', '2018-11-07 16:39:23', 125.129, 59);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('BEL', '2010-05-01 14:29:01', 754.868, 169);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MULE', '2022-03-28 23:51:02', 701.863, 213);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NCOM', '2014-12-15 00:33:50', 665.513, 231);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ALL^C', '2013-04-18 09:00:29', 2251.016, 121);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('NM^G', '2010-08-18 23:58:05', 2398.469, 141);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SERV', '2006-08-16 03:29:20', 426.127, 173);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('HP', '2016-08-30 17:02:11', 1298.317, 249);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPHS', '2016-11-30 06:31:55', 343.85, 173);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CAVM', '2011-10-28 10:20:03', 412.271, 81);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('WIA', '2010-01-21 08:43:44', 1164.39, 172);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FCA', '2013-03-22 22:09:14', 849.541, 115);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CPTAG', '2002-12-03 12:31:32', 208.57, 133);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('JOUT', '2019-04-06 20:12:52', 1387.593, 193);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MCC', '2003-11-20 23:09:42', 1711.405, 183);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('PTH', '2008-12-01 21:03:35', 1736.344, 108);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('EME', '2011-09-21 05:50:35', 347.639, 170);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ABY', '2021-03-03 15:00:36', 486.378, 154);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('CA', '2006-12-15 05:29:00', 2321.23, 216);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('RDY', '2005-11-28 05:38:00', 1880.896, 54);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ESL', '2004-05-14 20:51:04', 1716.373, 158);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPI', '2007-11-08 14:23:48', 632.082, 246);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FSS', '2016-09-11 15:03:11', 1596.384, 214);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MYOK', '2009-12-07 12:41:44', 1917.328, 201);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ROK', '2013-02-17 18:56:53', 881.824, 126);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('QEP', '2014-06-05 05:48:01', 1981.987, 147);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ACIA', '2007-01-27 03:20:12', 1132.928, 113);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SF^A', '2019-07-28 19:38:47', 1958.945, 235);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('MRDNW', '2018-02-07 12:35:41', 456.275, 116);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TWI', '2005-04-17 07:27:54', 805.729, 161);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TKR', '2011-02-10 23:30:07', 280.239, 211);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('REXR^A', '2011-10-22 09:52:39', 1287.013, 67);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('FMC', '2001-04-29 22:30:41', 1906.854, 92);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('SPR', '2022-04-30 16:32:06', 2207.255, 80);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('TBNK', '2012-08-28 19:02:44', 2434.768, 196);
-insert into stock (ticker, date_bought, quantity, porfolioID) values ('ESEA', '2010-12-16 00:54:18', 797.55, 58);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VZ', '2022-08-28 18:10:33', 1433.773, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PIM', '2022-11-07 11:07:10', 810.244, 142);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SMED', '2022-11-28 18:41:56', 2144.911, 13);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WHLRP', '2022-03-05 03:37:05', 1653.448, 217);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('C', '2022-08-09 01:54:17', 1746.154, 111);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QUAD', '2022-03-22 08:11:54', 1515.024, 202);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('STI^A', '2022-11-27 23:09:53', 2311.639, 73);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SSW^H', '2022-11-30 23:13:56', 2141.26, 195);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NXJ', '2021-12-12 06:07:16', 580.242, 21);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ACCO', '2022-10-21 11:32:57', 1780.921, 60);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VLY.WS', '2022-04-30 08:57:20', 478.236, 22);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BREW', '2022-07-12 15:52:18', 1590.145, 171);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GEVO', '2022-08-25 07:18:43', 462.346, 131);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LIVE', '2022-05-17 10:02:35', 162.809, 9);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SUNW', '2022-05-04 06:01:09', 1155.582, 2);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PEP', '2022-10-24 06:41:14', 150.069, 1);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MOG.B', '2022-06-30 21:46:50', 561.111, 193);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LGI', '2022-03-22 08:41:33', 1577.428, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARII', '2021-12-31 23:57:07', 90.181, 95);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FSCE', '2022-10-28 15:48:02', 76.072, 229);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QUMU', '2022-06-04 15:27:33', 1236.717, 7);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VLGEA', '2022-10-31 23:33:02', 1264.515, 48);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ODP', '2022-01-11 06:17:15', 2056.365, 91);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MMM', '2021-12-29 18:20:03', 705.745, 154);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RMD', '2021-12-27 00:29:16', 1065.232, 213);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MSFT', '2022-03-14 10:37:42', 1275.631, 160);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PNRA', '2022-02-20 17:32:53', 850.066, 124);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SFE', '2022-05-07 18:56:30', 2344.911, 219);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EIGI', '2022-05-07 19:05:08', 212.636, 44);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TNP^C', '2022-06-29 14:04:28', 1111.535, 16);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ROST', '2022-06-21 12:49:28', 732.87, 104);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JILL', '2022-03-23 03:13:45', 1762.284, 239);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ESXB', '2022-06-03 20:30:44', 577.332, 24);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EW', '2022-03-30 21:30:46', 400.935, 155);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARI^C', '2021-12-02 15:37:33', 1422.077, 94);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CNOB', '2021-12-04 14:35:54', 1703.761, 226);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNDX', '2022-06-03 13:52:03', 917.858, 87);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNA', '2022-09-18 15:21:39', 1252.628, 43);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BFS^C', '2022-10-25 17:11:19', 130.197, 49);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WKHS', '2022-07-12 17:51:41', 125.016, 9);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ANTM', '2022-06-24 00:05:40', 1960.411, 161);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CRIS', '2022-01-11 18:51:57', 4.085, 250);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WKHS', '2021-12-09 03:04:24', 1923.149, 2);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GENC', '2022-11-02 01:34:46', 353.245, 130);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UAA', '2022-09-20 02:27:13', 225.337, 187);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VRML', '2022-07-06 19:54:04', 885.267, 118);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TRHC', '2022-07-24 01:36:24', 952.382, 119);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PFL', '2022-06-14 02:33:21', 1821.452, 144);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LPI', '2021-12-30 21:45:07', 1991.449, 182);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ISSC', '2021-12-02 00:08:32', 1620.736, 111);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MT', '2022-08-21 02:12:16', 2087.796, 163);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BQH', '2022-09-13 14:20:38', 2205.238, 134);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SSKN', '2022-10-21 04:02:47', 224.799, 31);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CMU', '2022-06-25 02:19:19', 1140.698, 198);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FTV', '2022-07-20 12:50:59', 809.931, 36);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CPSI', '2022-06-26 20:47:32', 834.149, 97);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CIZ', '2022-04-20 19:37:23', 859.663, 129);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PFMT', '2022-10-26 03:21:24', 723.531, 39);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ADUS', '2022-10-09 22:46:09', 2281.782, 125);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TAX', '2022-10-03 07:56:29', 586.148, 61);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CTR', '2022-08-15 20:04:31', 223.004, 44);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SGMO', '2022-06-09 22:42:01', 544.016, 83);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KMM', '2022-08-04 03:30:19', 2318.065, 230);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NVFY', '2022-08-13 21:07:10', 1630.047, 156);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DRYS', '2022-07-16 19:17:16', 357.081, 230);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GBT', '2022-04-01 18:24:09', 240.356, 150);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DRYS', '2022-01-22 23:41:53', 1293.917, 170);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KFS', '2022-01-10 01:26:25', 300.571, 155);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CATS', '2022-05-26 17:00:21', 1331.928, 121);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HD', '2022-03-23 10:56:09', 736.639, 226);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SRSC', '2022-11-03 17:40:22', 808.819, 7);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MO', '2022-07-06 07:57:12', 1792.984, 94);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AB', '2022-05-03 14:04:58', 999.684, 54);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DSM', '2022-02-04 16:09:15', 2274.724, 244);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GIGM', '2022-04-07 03:56:26', 423.372, 50);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('B', '2022-09-04 11:16:25', 2494.332, 112);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ADMA', '2022-06-01 01:57:32', 18.948, 180);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QBAK', '2022-08-02 13:36:28', 1779.238, 48);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FFIN', '2022-08-26 01:06:35', 824.571, 94);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARLZ', '2022-03-27 15:03:39', 940.983, 139);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IPKW', '2022-04-12 11:50:27', 1865.395, 196);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RM', '2022-11-26 19:06:45', 798.728, 236);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NKTR', '2022-09-26 20:19:03', 1305.452, 241);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RP', '2022-07-27 03:33:12', 1390.467, 203);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JONE', '2022-10-28 09:59:01', 1230.153, 92);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ANSS', '2022-10-15 05:19:24', 11.348, 104);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CRR', '2022-11-13 20:01:13', 319.825, 3);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VER^F', '2022-08-30 03:00:58', 1684.957, 86);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ETB', '2022-10-15 11:44:07', 360.488, 131);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('METC', '2022-06-07 02:01:06', 1160.531, 25);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CTU', '2022-04-07 04:55:53', 2188.176, 227);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WEN', '2022-11-23 00:44:13', 713.602, 93);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MRIN', '2022-01-08 11:29:10', 117.836, 235);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CATO', '2022-09-05 01:28:15', 768.946, 22);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CECE', '2022-07-05 19:05:16', 1033.875, 129);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PJC', '2021-12-01 02:09:40', 796.324, 150);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DAN', '2022-09-29 14:00:51', 1871.143, 250);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SSW^E', '2021-12-24 18:48:47', 292.6, 98);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JE^A', '2022-09-08 12:40:38', 916.565, 67);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('STZ', '2022-10-26 19:48:13', 2425.143, 167);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HRMN', '2022-03-08 01:18:39', 2396.184, 224);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PKOH', '2022-10-25 03:54:15', 1893.189, 161);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CMCM', '2022-03-27 04:21:41', 2411.378, 142);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DWIN', '2022-05-25 21:09:42', 254.833, 38);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('COR', '2022-06-21 13:03:05', 5.54, 111);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SBH', '2022-01-23 04:20:09', 209.493, 30);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WPPGY', '2022-04-29 23:18:41', 2229.906, 192);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ITUB', '2022-02-03 01:42:55', 1258.718, 32);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DDR^J', '2022-04-02 06:00:57', 1812.841, 112);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AXGN', '2021-12-07 12:35:16', 763.75, 220);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INNL', '2022-02-01 07:05:33', 1604.483, 194);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RAS^A', '2022-09-19 18:50:17', 1340.217, 180);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PSA^T', '2022-10-17 13:27:55', 473.071, 212);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WVVIP', '2022-08-06 13:20:50', 413.483, 115);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CLNS^D', '2022-10-13 21:57:54', 1263.627, 20);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MYCC', '2022-06-24 13:12:43', 521.722, 168);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RGLD', '2022-05-07 16:42:06', 214.821, 22);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MDWD', '2021-12-11 01:36:30', 955.319, 45);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ISSC', '2022-01-06 17:48:59', 999.43, 197);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('REXR^A', '2022-07-26 23:24:42', 767.135, 77);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GPIAU', '2021-12-18 04:43:26', 1327.158, 131);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SAJA', '2022-05-26 03:04:34', 315.818, 190);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MITT^A', '2022-06-16 09:14:37', 1402.275, 40);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CSU', '2022-01-21 20:08:27', 1611.348, 18);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JSYN', '2021-12-14 15:16:43', 6.659, 14);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PFMT', '2022-07-08 09:48:50', 2103.384, 160);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VGM', '2022-01-23 02:59:01', 2451.996, 131);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DYSL', '2022-10-22 02:04:19', 2031.34, 78);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FFBC', '2022-10-23 18:51:33', 2411.255, 244);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KFRC', '2022-01-05 20:00:02', 223.949, 98);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EGRX', '2022-05-21 18:47:44', 1315.959, 30);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ASNA', '2022-06-03 12:14:29', 2483.488, 84);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PTI', '2022-08-31 09:59:18', 1755.56, 180);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RDS.A', '2022-07-09 21:43:18', 1909.323, 236);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MNRO', '2022-08-30 14:37:26', 2407.393, 87);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LMB', '2022-06-02 10:17:09', 2102.618, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SLIM', '2022-06-28 04:00:51', 1851.633, 243);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARDX', '2022-03-24 09:25:43', 2109.817, 71);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IPL^D', '2022-01-27 13:49:18', 1166.33, 179);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AER', '2022-05-08 15:56:54', 1464.685, 44);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ORI', '2022-02-14 14:25:17', 2174.862, 176);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TTOO', '2022-08-24 11:32:53', 60.45, 111);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TDE', '2022-10-03 17:40:07', 1969.827, 8);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SELB', '2022-09-25 23:45:34', 1052.908, 197);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WBT', '2022-06-18 09:01:02', 1262.796, 140);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TEN', '2021-12-07 09:54:30', 1210.07, 212);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QNST', '2022-04-10 07:18:35', 1188.669, 166);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SBPH', '2022-06-30 02:30:10', 764.309, 230);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NM^H', '2022-09-28 19:14:19', 1337.413, 17);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EVT', '2022-06-22 10:45:25', 1792.945, 89);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VRTS', '2022-09-04 16:07:06', 528.342, 216);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DSLV', '2022-10-07 20:49:45', 883.01, 4);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CAC', '2022-08-23 17:39:11', 96.835, 36);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GBLIZ', '2021-12-12 06:05:58', 905.663, 212);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BORN', '2022-02-06 06:08:14', 248.81, 67);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CGI', '2022-02-01 18:38:59', 1708.228, 192);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GOODP', '2022-08-28 13:26:28', 2118.676, 245);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ANDAR', '2022-11-07 18:36:51', 1857.171, 38);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DKT', '2022-05-28 19:59:55', 1334.725, 14);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNP', '2022-01-09 08:33:52', 379.051, 89);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AGM.A', '2022-05-08 01:46:28', 945.899, 233);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABM', '2022-10-05 23:20:30', 2364.872, 8);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('XCRA', '2022-05-10 20:39:46', 2330.218, 248);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CYS^B', '2022-04-02 20:51:49', 1188.658, 124);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PFM', '2022-04-28 07:26:00', 1829.058, 236);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AAPL', '2022-07-29 04:36:24', 1221.711, 26);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('APDN', '2022-06-13 17:53:37', 959.317, 92);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CEA', '2022-11-01 14:16:47', 2471.3, 12);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SCSS', '2022-02-25 08:51:42', 1311.864, 187);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RDHL', '2021-12-06 11:30:45', 2417.661, 221);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RPRX', '2022-05-13 21:55:07', 20.164, 42);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RIV', '2022-02-16 10:59:30', 2239.343, 97);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JAKK', '2022-01-30 12:44:39', 2139.355, 228);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZTS', '2022-06-10 02:21:26', 1762.548, 71);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NWL', '2021-12-12 23:01:32', 817.758, 24);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EGAN', '2022-03-10 19:52:55', 1492.288, 1);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RARE', '2022-11-15 09:22:37', 1913.672, 209);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TTPH', '2022-05-04 23:24:45', 1628.138, 211);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TOO', '2022-09-02 08:56:26', 2100.836, 28);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CSGP', '2022-10-15 08:05:30', 22.506, 40);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VDSI', '2022-01-27 01:07:13', 227.419, 5);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HYZD', '2022-05-07 06:41:38', 557.001, 210);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CRT', '2022-10-12 00:35:18', 577.973, 236);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PBT', '2021-12-28 01:03:39', 2274.655, 122);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CATO', '2022-06-17 05:06:44', 1590.626, 70);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CNC', '2022-01-07 12:35:10', 2155.698, 166);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DWAT', '2021-12-21 18:57:12', 249.779, 76);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TWN', '2022-03-17 16:26:58', 1526.404, 183);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FENX', '2022-04-19 11:24:21', 2405.352, 34);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WG', '2022-03-25 02:12:30', 921.862, 161);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CTL', '2021-12-30 20:31:24', 1878.285, 127);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('STAG^C', '2022-06-18 09:25:40', 1917.39, 83);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PCOM', '2022-04-21 19:24:50', 1370.845, 136);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('APRI', '2022-05-22 16:59:36', 1586.807, 225);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BBOX', '2021-12-24 08:22:07', 2259.531, 22);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('THLD', '2022-05-03 01:07:47', 1045.65, 200);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CWBC', '2022-05-08 16:58:10', 969.158, 164);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NSH', '2022-09-29 17:04:43', 387.699, 33);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZG', '2022-05-23 11:23:51', 609.594, 192);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FTW', '2022-05-01 21:52:36', 288.068, 250);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MTX', '2022-02-01 09:42:33', 351.003, 19);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PLD', '2022-04-08 00:37:54', 2264.572, 117);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DY', '2022-01-30 00:22:02', 365.789, 40);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CXRX', '2021-12-13 04:04:39', 347.164, 246);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNBC', '2022-08-14 18:50:40', 630.909, 202);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DLTH', '2021-12-08 22:25:06', 891.313, 165);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DCO', '2022-07-19 09:42:40', 1735.767, 21);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MICT', '2022-01-02 22:26:47', 1172.828, 97);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ACRE', '2022-07-25 05:43:28', 839.421, 100);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ITT', '2022-09-07 16:59:36', 2090.745, 231);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CSB', '2022-10-28 22:28:39', 2210.85, 163);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NCS', '2022-03-26 17:18:20', 2188.87, 177);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SJI', '2022-08-09 23:58:55', 51.655, 193);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CFCO', '2022-10-25 07:03:00', 1943.115, 188);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SGZA', '2022-07-08 18:07:00', 1894.151, 239);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('XBKS', '2022-03-09 04:39:36', 2181.213, 7);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SKYS', '2022-03-17 06:22:53', 1075.803, 22);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FOMX', '2022-03-07 16:13:59', 2476.984, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HVT', '2022-02-20 06:45:45', 401.737, 48);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ENJ', '2022-02-02 21:10:02', 648.111, 170);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CCM', '2022-02-06 18:33:39', 624.894, 96);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HTBX', '2022-04-21 06:49:30', 1312.416, 21);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UNF', '2022-02-16 08:22:28', 340.116, 160);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BF.B', '2022-10-27 20:05:29', 2105.738, 138);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABR^C', '2022-03-21 21:46:49', 1251.617, 154);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PAG', '2022-01-26 01:41:37', 2429.239, 173);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LULU', '2022-04-03 02:59:45', 608.095, 165);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ISP', '2022-02-19 20:11:33', 795.255, 1);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EHTH', '2022-06-02 10:29:06', 431.641, 119);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SSD', '2022-04-05 23:05:08', 1063.573, 159);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SCVL', '2021-12-04 15:24:42', 319.285, 17);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IRET', '2022-03-01 09:06:10', 2157.89, 7);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IMRNW', '2022-07-11 22:12:58', 398.056, 32);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WOW', '2022-03-24 04:26:15', 964.031, 219);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RICK', '2022-10-30 19:09:10', 1205.331, 246);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SAGE', '2022-10-07 07:12:23', 1130.331, 243);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CNTY', '2022-01-28 11:04:07', 1637.008, 48);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('APDN', '2022-05-29 00:59:42', 1026.299, 249);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SIRI', '2022-05-27 22:33:41', 785.694, 79);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RVT', '2022-09-21 05:31:32', 599.663, 208);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FTXD', '2022-02-10 14:01:59', 2169.692, 215);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BJZ', '2022-03-17 16:16:52', 1792.764, 56);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SID', '2022-03-11 07:52:02', 1076.878, 58);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CMA', '2022-06-18 14:57:07', 1094.312, 145);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EMD', '2022-08-25 00:44:54', 788.611, 115);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ENIC', '2022-02-07 14:16:22', 525.014, 241);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PLBC', '2021-12-26 07:39:12', 127.738, 110);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INTC', '2022-08-16 14:19:26', 2287.804, 204);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UBSH', '2022-10-08 07:59:10', 367.405, 87);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABUS', '2022-07-14 13:50:06', 1878.855, 172);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AHGP', '2022-01-28 14:45:25', 800.289, 131);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IMKTA', '2022-03-03 00:47:28', 1720.793, 238);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LSXMB', '2022-01-19 10:59:52', 618.13, 179);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DELT', '2022-02-03 05:11:27', 373.222, 231);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABCB', '2022-07-07 11:02:08', 1848.989, 217);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PCYO', '2022-09-29 03:03:06', 391.66, 235);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BLDR', '2022-02-15 22:26:33', 2244.172, 33);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WFC^Q', '2022-11-15 16:10:28', 354.0, 140);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KN', '2021-12-27 11:39:04', 835.167, 101);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('USB', '2022-03-08 14:17:48', 2402.935, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SSW^G', '2022-09-19 11:43:38', 1718.137, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WAL', '2022-04-25 18:49:17', 1319.319, 125);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RCMT', '2022-04-14 06:18:36', 2276.295, 178);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FTXN', '2022-09-06 09:43:47', 1854.453, 227);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SBRAP', '2022-10-14 04:30:56', 932.695, 113);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('YELP', '2022-03-21 09:43:53', 809.562, 87);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KREF', '2022-08-08 04:24:31', 678.17, 14);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MIII', '2022-11-09 10:57:27', 2225.009, 97);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CTBI', '2022-11-09 11:33:12', 2398.603, 185);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CDNA', '2022-03-11 16:49:02', 774.26, 193);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OPK', '2022-10-06 12:09:29', 1416.942, 5);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SHW', '2022-11-06 01:04:23', 1703.541, 77);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WBKC', '2021-12-11 20:07:15', 53.099, 51);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TXRH', '2022-07-09 09:03:06', 1183.106, 19);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UHAL', '2022-01-27 19:32:35', 355.722, 79);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RDI', '2022-10-07 12:37:21', 18.972, 134);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NVDA', '2022-07-02 22:10:24', 1096.391, 141);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JBT', '2022-07-25 10:28:26', 200.972, 243);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GYRO', '2022-10-19 23:26:45', 2105.738, 222);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UDR', '2022-05-08 00:46:22', 2486.628, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NVLS', '2022-01-26 18:45:01', 1746.869, 232);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZN', '2022-04-15 17:38:02', 1053.207, 90);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ALP^O', '2022-08-04 00:55:14', 166.511, 75);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GNT', '2022-05-16 16:39:14', 1685.131, 219);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GRX', '2022-06-26 06:02:23', 638.262, 155);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HSON', '2022-01-16 05:13:11', 1797.954, 65);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HIO', '2022-07-08 13:06:28', 2184.977, 117);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FLIC', '2022-02-20 02:36:17', 1998.885, 155);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABT', '2022-04-23 22:54:33', 1327.11, 215);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OVAS', '2022-09-20 16:19:36', 121.332, 196);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DXCM', '2021-12-31 11:28:57', 1494.28, 176);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('USDP', '2022-02-28 09:54:25', 404.182, 222);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OAKS^A', '2022-11-25 01:20:51', 1145.857, 65);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FBNK', '2022-09-22 12:15:09', 750.309, 190);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KRMA', '2022-10-30 17:22:48', 2414.571, 114);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JGH', '2022-05-12 05:39:56', 1743.937, 34);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PKE', '2022-04-16 06:41:23', 1412.419, 122);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KMF', '2022-02-23 01:38:45', 300.736, 136);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VLRS', '2022-02-02 00:01:12', 1509.43, 243);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CCD', '2022-09-15 09:43:42', 1854.199, 69);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CSTR', '2022-04-09 15:23:30', 1977.31, 116);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SDLP', '2021-12-09 03:29:53', 103.927, 36);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MIND', '2022-08-31 23:57:09', 1315.075, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GFF', '2022-10-17 23:42:34', 1521.533, 129);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TSN', '2021-12-07 21:32:31', 194.705, 113);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SYNL', '2022-05-04 00:09:54', 2178.547, 249);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DYNT', '2021-12-10 12:13:13', 858.109, 208);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ADM', '2022-09-05 07:09:30', 672.506, 222);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AIN', '2022-07-28 00:01:13', 959.989, 6);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IGF', '2022-02-22 04:07:44', 2110.814, 62);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NDP', '2021-12-30 08:35:52', 1615.312, 8);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FMS', '2022-03-30 07:01:22', 345.682, 226);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MGEN', '2022-08-12 06:09:30', 2175.881, 142);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CYRN', '2022-02-05 15:34:22', 444.705, 236);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DHI', '2022-04-24 09:26:24', 1856.093, 174);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VGM', '2022-04-01 18:20:46', 295.177, 101);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EIX', '2022-08-15 16:48:22', 755.794, 215);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NEE^H', '2022-09-23 15:33:38', 941.294, 24);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CNTF', '2021-12-05 13:41:11', 421.489, 58);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SMG', '2022-02-25 23:50:52', 1235.955, 138);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RDS.A', '2022-02-08 01:43:02', 247.65, 14);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GCVRZ', '2022-04-12 06:46:55', 251.159, 179);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PSA^T', '2022-03-01 00:57:12', 2268.626, 106);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NRK', '2022-09-25 03:18:57', 377.976, 31);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RBS^H', '2022-10-18 00:06:22', 1953.237, 202);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SWP', '2022-03-10 03:28:36', 556.012, 193);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GLBZ', '2022-10-23 05:12:46', 1681.173, 179);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ADBE', '2022-07-27 02:05:58', 1693.291, 237);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ACXM', '2022-04-27 20:27:04', 52.582, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TRK', '2022-02-05 13:58:18', 751.835, 40);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UDR', '2022-10-02 21:16:05', 1803.868, 139);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KTCC', '2022-04-18 09:59:11', 1022.765, 205);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VGR', '2022-09-07 21:58:21', 1283.641, 243);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CDXS', '2022-01-13 14:49:51', 830.596, 144);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CODI', '2022-07-25 17:50:07', 2269.586, 44);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NTEST', '2022-06-13 17:05:57', 59.874, 85);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AINV', '2022-11-09 10:09:31', 2481.582, 155);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ELVT', '2022-09-04 18:13:29', 152.228, 204);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AHPAW', '2022-07-04 00:31:28', 889.741, 136);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HAWK', '2022-05-25 11:16:58', 234.143, 190);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CBF', '2021-12-14 12:38:45', 2119.755, 146);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DBL', '2022-09-30 04:39:06', 680.202, 131);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EVGBC', '2022-08-23 01:04:26', 2218.483, 8);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KSU^', '2021-12-20 19:47:39', 759.517, 29);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IRR', '2022-05-27 13:16:24', 1596.169, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LFUS', '2022-09-12 10:21:10', 984.299, 210);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RFP', '2022-04-10 10:19:20', 585.677, 65);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UBSI', '2021-12-27 01:27:53', 173.326, 116);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CETXW', '2022-04-18 16:53:21', 1756.336, 51);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GE', '2022-04-10 20:36:36', 793.441, 136);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TURN', '2022-03-12 21:02:46', 1521.677, 240);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PEBK', '2021-12-14 23:06:38', 873.874, 145);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FBNC', '2022-08-30 17:45:54', 1050.395, 85);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NVRO', '2022-10-16 12:34:29', 1843.13, 240);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ICPT', '2022-11-04 01:31:31', 225.816, 85);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LLL', '2022-02-10 23:59:51', 2120.638, 140);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EXAS', '2022-09-07 08:30:04', 2275.615, 44);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WPCS', '2022-03-22 22:13:54', 2337.232, 107);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ADAP', '2022-04-09 23:43:44', 307.198, 153);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('REGI', '2022-05-29 11:25:30', 1367.648, 214);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IPG', '2022-03-06 11:40:56', 1474.103, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GHC', '2022-09-19 16:44:54', 177.541, 231);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('YTRA', '2022-11-19 18:35:40', 1776.883, 96);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LBIO', '2022-03-22 19:07:30', 1177.636, 228);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HMTA', '2022-03-15 01:27:20', 1452.1, 26);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CLH', '2022-08-27 12:14:46', 694.405, 29);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GOODP', '2022-08-06 15:07:49', 1804.197, 120);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('B', '2022-03-10 11:38:25', 994.426, 101);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SPKE', '2022-08-16 04:19:45', 129.549, 227);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARRS', '2021-12-17 03:49:18', 1541.288, 218);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ADBE', '2022-05-12 16:08:18', 622.761, 183);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BIVV', '2022-04-06 08:26:33', 1383.483, 229);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RCL', '2022-03-31 21:54:38', 2110.701, 57);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NUAN', '2022-03-05 20:21:02', 1200.168, 147);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HOLX', '2022-09-19 16:18:10', 61.66, 89);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('APO^A', '2022-08-21 09:18:06', 2402.595, 209);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AGZD', '2022-06-07 02:13:01', 800.066, 124);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CR', '2022-09-11 20:20:58', 2010.941, 17);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CVGW', '2022-01-04 22:58:42', 844.708, 152);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FALN', '2022-05-22 04:25:49', 1078.567, 192);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LAUR', '2021-12-24 00:57:08', 736.401, 12);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NWY', '2021-12-23 10:28:15', 1923.75, 96);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IRR', '2022-06-21 03:37:45', 2429.744, 217);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AES^C.CL', '2022-09-29 22:17:24', 2072.029, 52);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GAIN', '2022-01-19 11:10:27', 2290.152, 220);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IHC', '2022-01-03 02:19:56', 1931.632, 177);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TU', '2022-03-26 12:23:20', 1533.94, 157);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WYIGU', '2022-04-25 13:28:56', 1717.816, 228);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MORN', '2022-07-03 10:29:42', 735.39, 127);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NMIH', '2022-10-05 09:25:58', 1504.435, 231);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WMS', '2022-04-27 11:30:30', 2374.71, 103);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABY', '2022-07-27 02:36:19', 146.359, 17);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NEM', '2022-04-02 06:31:37', 786.278, 108);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PVTBP', '2022-11-21 00:46:00', 632.979, 59);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ANTM', '2022-01-24 18:13:44', 2130.025, 103);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HCC', '2022-02-04 22:39:39', 1969.387, 47);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AGN', '2022-09-11 16:10:33', 66.811, 165);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ELJ', '2022-08-27 13:53:57', 2153.657, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RFEU', '2022-03-10 10:22:00', 2398.968, 207);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LAWS', '2022-03-04 13:11:09', 870.547, 1);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HUNTW', '2022-08-19 08:01:20', 205.602, 247);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EXAC', '2022-04-30 05:44:06', 989.666, 86);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MRK', '2022-01-11 00:24:50', 318.229, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BOFIL', '2022-11-29 18:28:20', 2066.16, 148);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FEP', '2022-02-18 04:18:39', 313.144, 141);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GLBR', '2022-08-23 06:56:42', 818.748, 163);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MAGS', '2022-10-16 21:26:21', 865.195, 150);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FEX', '2022-06-11 01:13:01', 1949.694, 18);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CMCM', '2021-12-18 17:02:00', 1657.072, 80);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SWP', '2022-06-15 10:55:50', 890.511, 237);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IMMY', '2022-02-22 16:27:53', 1233.283, 169);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('REPH', '2022-03-06 13:21:57', 2472.714, 62);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ISHG', '2022-05-01 21:22:43', 1380.644, 173);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZG', '2021-12-15 00:11:14', 203.24, 10);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EDUC', '2022-04-25 07:18:08', 1575.496, 54);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MMAC', '2022-01-24 00:10:34', 1057.886, 59);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JAKK', '2022-11-25 02:22:39', 2306.302, 55);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('COHU', '2022-10-23 19:41:14', 1967.011, 23);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VAC', '2022-10-27 15:49:49', 511.378, 170);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ANH^B', '2022-07-16 09:50:40', 1153.551, 249);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MOH', '2022-05-13 17:27:49', 2134.617, 232);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LINC', '2021-12-02 16:12:03', 1603.504, 200);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KBWY', '2022-02-01 00:39:58', 2221.259, 226);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ERII', '2022-05-19 01:29:43', 977.576, 114);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WASH', '2022-02-16 14:16:13', 6.888, 68);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMSWA', '2022-05-17 17:37:39', 801.846, 200);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MTEX', '2022-08-23 19:49:33', 1286.952, 50);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VRIG', '2021-12-04 02:06:31', 1625.483, 99);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KTWO', '2022-08-13 00:54:58', 1833.121, 89);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LZB', '2022-05-11 21:23:06', 2365.549, 247);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TEL', '2022-05-04 15:39:29', 1327.101, 127);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FTRI', '2022-03-01 17:16:20', 916.569, 13);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMH^E', '2021-12-27 05:07:28', 1593.298, 88);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PRE^I', '2021-12-23 14:28:03', 111.057, 71);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EQGP', '2022-04-27 06:52:57', 1702.094, 93);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('YGE', '2022-05-13 08:44:45', 201.36, 82);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JGH', '2022-05-20 17:57:20', 136.147, 167);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PLOW', '2022-11-05 03:14:37', 248.618, 246);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PSXP', '2022-06-19 09:29:02', 1345.36, 223);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CTRV', '2022-10-26 17:30:57', 2194.882, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VG', '2022-01-29 10:16:44', 1834.89, 137);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VVPR', '2022-07-25 02:35:48', 606.735, 167);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('STRM', '2022-04-01 19:27:18', 324.953, 222);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DFVS', '2022-07-21 14:26:06', 1087.403, 125);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SPNS', '2022-04-22 17:41:46', 1538.289, 100);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JNJ', '2022-09-08 01:29:16', 643.139, 167);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LTC', '2022-09-20 22:23:53', 96.612, 32);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GATX', '2022-05-01 07:16:39', 115.112, 7);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ICD', '2022-07-28 02:16:27', 715.726, 11);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CWCO', '2022-07-04 15:20:57', 431.268, 139);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GNL', '2022-09-29 09:58:29', 273.374, 122);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PNTR', '2022-01-19 19:28:01', 1595.426, 244);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABDC', '2022-06-25 12:39:48', 568.387, 16);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('YIN', '2022-04-17 04:33:59', 25.642, 30);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EGRX', '2022-10-14 14:21:53', 1991.616, 237);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AKAM', '2022-08-11 21:05:19', 1123.219, 230);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CWT', '2022-04-05 04:02:06', 30.182, 173);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BLW', '2022-08-15 19:49:34', 2210.162, 247);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TISI', '2022-11-10 09:03:15', 2218.143, 192);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CZR', '2022-07-06 23:02:47', 1279.432, 72);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MANH', '2021-12-16 23:46:47', 1058.04, 233);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('COLL', '2022-02-14 14:01:43', 884.248, 143);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CIL', '2022-03-30 15:51:01', 396.889, 227);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AFSI^D', '2022-02-06 12:30:11', 2011.796, 191);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TLI', '2022-01-11 05:33:53', 2298.543, 51);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMRN', '2022-05-26 13:34:53', 611.653, 20);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('USB^O', '2022-06-12 16:22:37', 876.975, 122);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MFA^B', '2022-02-15 12:08:11', 175.348, 159);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MSBI', '2022-10-03 22:46:34', 990.731, 141);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BBC', '2022-08-29 07:59:43', 2159.021, 42);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QLYS', '2021-12-12 04:18:25', 2152.651, 64);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CADC', '2022-05-12 20:35:06', 2325.073, 163);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HGSH', '2022-11-03 17:36:03', 883.959, 71);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NCIT', '2022-10-15 20:28:37', 298.116, 169);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNA', '2022-11-13 02:07:25', 131.625, 164);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FLAT', '2022-08-03 10:28:56', 563.067, 139);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NEFF', '2022-03-20 12:05:49', 232.861, 21);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MHD', '2022-02-01 18:07:49', 1631.153, 199);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CSX', '2022-08-23 10:51:02', 1781.352, 30);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ANET', '2022-09-24 03:37:14', 642.973, 213);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QHC', '2022-02-24 08:15:41', 1542.974, 56);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KVHI', '2022-01-27 14:23:40', 1816.695, 91);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FLDM', '2022-03-11 00:33:03', 1200.084, 2);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NMZ', '2022-08-15 18:23:01', 1462.206, 132);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CLRBZ', '2021-12-22 15:43:03', 2437.977, 152);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HURN', '2022-08-12 18:05:20', 732.428, 211);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PGC', '2022-03-25 10:03:20', 1699.646, 198);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WSR', '2022-10-04 15:36:30', 223.576, 175);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CUZ', '2022-09-14 07:00:22', 813.161, 35);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DYSL', '2022-04-18 15:17:36', 1277.983, 201);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HUNTW', '2022-10-21 22:30:01', 340.107, 238);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ISIG', '2022-07-30 19:02:45', 388.314, 197);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UNB', '2022-04-24 20:57:51', 1367.675, 125);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IVTY', '2022-10-19 19:14:35', 2387.546, 116);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NWFL', '2022-01-21 19:17:35', 1225.188, 233);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NEM', '2022-07-14 20:54:19', 167.783, 195);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NPO', '2022-05-23 09:09:54', 1608.71, 34);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SRUN', '2022-09-08 14:41:31', 975.237, 14);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SLG', '2022-08-19 07:02:34', 760.94, 186);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PNFP', '2022-09-26 21:55:52', 2318.325, 180);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SQM', '2022-07-17 04:39:47', 1060.63, 239);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SHBI', '2022-09-04 20:56:36', 320.378, 186);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SAL', '2022-01-10 16:13:16', 1245.692, 50);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EMCF', '2022-03-05 17:51:06', 1973.253, 90);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TBK', '2022-05-11 23:20:20', 376.282, 200);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CHK', '2022-02-28 11:48:45', 2418.827, 80);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EML', '2022-11-19 08:44:23', 1680.929, 77);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KMT', '2022-02-01 11:35:51', 1633.95, 150);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABAC', '2022-01-30 11:41:25', 1398.951, 198);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PCQ', '2022-04-29 12:41:14', 2177.16, 150);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('APPS', '2022-09-07 02:55:38', 633.778, 36);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMKR', '2022-07-27 03:30:41', 1758.36, 178);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ADP', '2022-11-14 10:05:38', 1702.718, 228);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WMC', '2022-01-10 15:22:48', 2363.057, 73);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SIGI', '2022-04-03 08:15:34', 2253.211, 113);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NKE', '2022-04-22 21:40:38', 1862.761, 230);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FRAN', '2021-12-25 07:57:21', 813.093, 89);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AGRO', '2022-03-16 10:23:57', 579.723, 10);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SJI', '2022-03-03 08:36:08', 1010.114, 207);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NTRSP', '2022-03-02 20:52:01', 690.978, 47);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MLR', '2022-05-20 23:41:48', 1793.495, 234);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARCX', '2022-08-10 12:41:16', 2228.08, 225);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PYN', '2021-12-05 07:42:05', 572.471, 71);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('XBKS', '2022-01-11 20:03:11', 1209.63, 204);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EDI', '2022-01-05 23:39:04', 1700.244, 123);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DSKE', '2022-01-08 03:32:11', 951.751, 97);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AFSI^C', '2022-05-07 22:20:22', 833.606, 198);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NBB', '2022-08-25 14:10:46', 830.288, 205);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CXO', '2022-07-02 11:25:40', 1879.458, 134);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SMSI', '2022-02-24 17:07:35', 1401.623, 159);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NCZ', '2021-12-12 23:16:25', 998.161, 116);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HDS', '2022-05-30 04:15:44', 1981.627, 225);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SHEN', '2022-06-30 10:36:51', 2007.173, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CYBE', '2022-05-26 02:26:36', 112.137, 10);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNSS', '2022-06-03 02:02:20', 1465.429, 108);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TCRX', '2022-08-02 11:24:00', 720.346, 215);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PUI', '2022-07-09 21:30:51', 2398.552, 56);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OFC', '2021-12-27 13:09:31', 422.271, 11);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AKTS', '2022-02-24 19:43:46', 59.001, 192);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UNH', '2022-09-16 02:35:09', 734.066, 190);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HCAPL', '2022-03-15 18:50:17', 1555.97, 173);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CHNR', '2022-03-27 06:41:53', 208.61, 42);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('XIV', '2022-09-27 11:23:46', 1821.844, 168);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ELOS', '2022-07-29 16:29:26', 1748.011, 72);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PRH', '2021-12-07 21:02:10', 768.166, 150);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ONB', '2022-09-16 07:49:01', 1746.84, 222);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FSD', '2022-04-03 20:28:47', 1276.586, 29);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QUAD', '2022-05-08 20:19:36', 57.176, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TFX', '2022-02-14 02:42:27', 226.494, 135);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CHCI', '2022-08-14 01:35:01', 737.4, 216);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ORCL', '2022-05-01 15:14:47', 1135.551, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CRH', '2022-01-22 07:45:22', 246.727, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NWPX', '2022-11-05 00:52:56', 900.415, 131);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WEA', '2021-12-28 15:13:02', 536.474, 191);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WEB', '2021-12-14 16:59:51', 1625.226, 48);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KMM', '2022-07-11 10:48:32', 521.691, 145);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MXF', '2022-08-06 06:25:23', 509.485, 68);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CHDN', '2022-06-05 21:48:10', 2380.442, 10);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WPC', '2022-06-20 19:12:08', 1881.373, 160);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ACHC', '2022-05-28 04:50:10', 1074.742, 81);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CAFD', '2022-02-11 02:41:29', 170.345, 132);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GNTY', '2022-08-04 22:37:10', 526.625, 23);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RGLS', '2022-02-27 15:43:50', 407.506, 246);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CIG.C', '2022-02-11 12:38:37', 666.728, 126);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SBOT', '2021-12-30 14:23:00', 2246.958, 61);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QUMU', '2022-08-20 11:21:09', 1253.49, 182);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WSR', '2022-07-27 22:12:41', 1944.556, 128);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VTTI', '2022-06-20 10:17:21', 163.524, 229);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QEP', '2022-01-11 06:52:55', 54.594, 62);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DERM', '2022-10-13 19:00:24', 2206.036, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LUX', '2022-02-18 13:44:34', 832.619, 116);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZFGN', '2022-05-20 04:23:13', 2285.331, 64);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EMES', '2022-09-09 01:03:22', 2091.83, 112);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DFVL', '2022-07-12 10:47:48', 1845.179, 110);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TSBK', '2022-09-06 16:57:06', 1343.025, 89);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LINU', '2022-02-27 05:07:58', 2303.043, 106);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AEMD', '2022-02-26 22:16:30', 1797.765, 159);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KIM^K', '2022-10-03 14:20:22', 2231.147, 172);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OXBRW', '2022-05-11 22:27:25', 298.188, 234);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SHW', '2022-03-27 18:59:29', 1861.219, 119);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FELE', '2022-11-08 21:03:19', 354.619, 143);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FUEL', '2022-08-16 17:53:20', 389.1, 213);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RRD', '2022-09-22 06:33:21', 2016.381, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('YDIV', '2022-10-03 08:23:13', 854.544, 62);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NCB', '2021-12-27 20:10:09', 2483.19, 61);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PFL', '2022-09-29 11:52:41', 0.589, 170);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IMNP          ', '2022-08-03 15:36:33', 297.379, 202);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NGLS^A', '2022-08-24 01:33:13', 2156.02, 221);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARCC', '2022-05-26 04:23:25', 2249.105, 14);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WBT', '2022-07-13 00:30:05', 1606.821, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CRT', '2022-02-22 16:30:18', 1324.523, 221);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('STI.WS.B', '2022-10-09 20:11:37', 2346.973, 108);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BRFS', '2022-11-23 22:26:27', 2353.713, 55);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AVDL', '2022-05-12 22:40:51', 2184.989, 15);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MBWM', '2021-12-04 13:36:44', 1738.592, 58);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OBAS', '2022-08-29 20:34:18', 1963.981, 209);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DTLA^', '2022-09-10 01:49:17', 2472.423, 134);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MTL', '2022-11-27 22:48:00', 660.103, 92);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CME', '2022-04-14 21:52:18', 182.722, 214);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HOLX', '2022-11-01 15:13:54', 2228.948, 120);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NNDM', '2022-01-17 15:21:07', 1506.85, 176);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WKHS', '2021-12-23 00:32:46', 157.118, 69);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PETX', '2022-02-03 01:52:53', 2444.832, 137);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PAVM', '2022-07-29 10:40:21', 2333.333, 17);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RFEM', '2022-02-13 15:40:25', 1862.126, 120);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LDOS', '2022-10-02 16:14:36', 145.959, 105);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('XRAY', '2021-12-15 03:59:45', 2094.716, 67);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PAACR', '2022-11-19 14:36:05', 491.972, 241);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OXM', '2022-05-09 15:06:29', 1348.712, 192);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABCB', '2022-04-23 00:37:23', 2133.244, 160);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EXR', '2022-11-17 09:54:58', 959.233, 121);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SSRI', '2022-09-18 00:23:20', 2484.055, 225);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IDE', '2022-05-11 06:16:59', 1740.89, 78);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('COMT', '2022-09-28 11:50:39', 1996.059, 148);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NOV', '2022-01-26 22:55:57', 353.862, 123);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DB', '2022-04-02 19:21:11', 180.018, 36);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UBNK', '2022-08-11 02:49:13', 1527.357, 49);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QSR', '2022-07-17 06:18:31', 337.658, 96);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DOX', '2022-06-02 10:13:39', 476.329, 219);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BAC', '2022-04-07 22:41:36', 1471.99, 98);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LEA', '2022-07-04 23:52:13', 1455.917, 23);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AXS^D', '2022-09-03 14:15:17', 1361.994, 159);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HPF', '2022-07-28 21:28:40', 1011.343, 206);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LGND', '2022-08-21 05:18:47', 1297.996, 135);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INXN', '2022-03-13 10:28:52', 1570.149, 148);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MESO', '2022-05-12 16:32:03', 1211.827, 123);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMTD', '2022-03-05 06:00:12', 1766.685, 230);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BERY', '2022-07-18 13:21:30', 1346.494, 227);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FNB', '2022-04-08 22:33:49', 658.091, 161);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LTRPB', '2022-02-25 21:32:02', 288.4, 145);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GS^I', '2022-01-15 12:26:13', 846.49, 45);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PENN', '2022-07-03 08:34:57', 235.787, 67);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BKFS', '2022-02-14 18:56:12', 23.68, 21);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KBWY', '2022-10-02 16:11:47', 525.181, 43);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ALB', '2022-01-01 12:19:50', 1031.944, 22);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IPKW', '2021-12-15 16:03:38', 1677.538, 47);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MYC', '2022-09-26 15:17:58', 558.781, 39);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TVTY', '2022-11-16 03:24:46', 369.347, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ICUI', '2022-06-07 10:40:14', 1274.12, 163);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INFR', '2022-02-12 17:11:39', 938.008, 161);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CSTR', '2022-11-20 15:17:13', 2472.517, 249);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EBAY', '2022-07-15 09:00:19', 502.223, 36);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GTYH', '2022-01-30 03:35:53', 299.774, 116);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VNCE', '2022-09-24 22:12:03', 83.403, 117);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SCHW', '2022-06-17 02:33:53', 2375.847, 70);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PCI', '2022-02-09 16:40:51', 2112.979, 89);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ALK', '2022-02-17 18:16:14', 2241.866, 164);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IVZ', '2022-09-22 19:23:03', 638.271, 249);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MOBL', '2022-04-18 00:43:33', 2089.769, 142);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DWTR', '2022-03-31 14:18:38', 1676.425, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LRN', '2022-09-03 16:20:48', 392.613, 96);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FUL', '2022-01-20 15:49:16', 2196.841, 165);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DSW', '2022-02-22 06:33:40', 739.346, 187);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('UTMD', '2022-10-12 17:09:07', 2247.175, 236);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SOJB', '2022-08-31 18:56:38', 389.339, 40);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IID', '2022-05-07 10:57:41', 2018.073, 124);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NGL', '2022-11-12 05:06:50', 1123.539, 195);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('USATP', '2022-10-04 21:15:15', 432.348, 145);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CFI', '2022-05-28 14:01:09', 1797.649, 49);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FUND', '2022-07-17 17:03:00', 578.376, 212);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZNGA', '2022-04-02 01:38:09', 1654.882, 101);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OFS', '2022-03-02 19:16:46', 615.726, 163);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BGFV', '2022-07-22 04:34:20', 1853.096, 99);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RICK', '2022-09-07 09:39:41', 1418.628, 60);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AGM^A', '2022-01-01 21:21:33', 2115.505, 105);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AEY', '2022-06-14 13:50:24', 330.276, 238);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DGICB', '2022-05-05 19:49:40', 2057.485, 10);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CS', '2022-06-12 12:22:17', 102.182, 196);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NXJ', '2022-08-25 02:19:07', 1088.247, 165);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SSB', '2022-08-20 01:55:44', 2458.729, 141);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EMCG', '2022-05-02 22:08:11', 722.16, 15);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ENT', '2022-07-18 15:20:13', 1808.775, 202);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PDFS', '2022-07-13 00:24:27', 1173.065, 106);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IVR^B', '2022-10-20 21:43:46', 452.692, 48);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TPC', '2022-01-22 21:57:43', 1544.274, 186);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SXC', '2022-09-30 06:13:42', 1231.274, 235);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TSC', '2022-02-12 15:41:18', 2137.418, 141);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CCXI', '2022-05-01 16:40:36', 81.601, 45);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARTNA', '2022-11-21 14:02:05', 2048.586, 18);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SID', '2022-09-15 04:59:47', 1950.15, 133);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WAC', '2022-01-24 07:32:31', 177.316, 242);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TK', '2022-07-29 23:18:28', 1663.299, 151);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DELT', '2022-02-09 08:52:50', 92.635, 110);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BFZ', '2022-11-01 11:12:23', 0.829, 93);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INCY', '2022-09-12 09:07:10', 1967.282, 187);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DCM', '2022-04-07 08:16:40', 1826.231, 143);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OCRX', '2022-03-13 18:35:17', 1755.66, 85);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SCI', '2022-01-24 14:31:24', 1106.722, 79);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OVID', '2022-09-10 09:51:43', 143.19, 47);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WES', '2022-07-27 07:47:56', 1429.148, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NIM', '2022-03-01 18:13:51', 2248.178, 11);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PRSC', '2022-05-07 23:09:59', 499.02, 104);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WF', '2021-12-02 10:52:57', 230.798, 225);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TCP', '2022-04-19 20:54:31', 496.315, 99);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WHR', '2022-02-26 04:34:55', 1088.604, 36);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HIG.WS', '2022-04-10 21:42:12', 945.976, 105);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BLW', '2021-12-09 17:32:32', 2442.631, 200);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JBHT', '2022-07-24 07:31:25', 1251.234, 113);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MILN', '2022-11-03 14:47:56', 1636.19, 149);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MTOR', '2022-03-06 02:12:48', 982.026, 132);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CHK', '2022-04-04 08:45:32', 114.079, 42);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CJJD', '2022-06-05 11:15:21', 930.516, 57);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TTEC', '2022-04-22 10:43:48', 34.19, 69);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ARCB', '2022-07-27 10:54:10', 1792.18, 195);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NVO', '2022-09-24 23:10:28', 2077.922, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INSG', '2022-03-23 01:29:13', 1476.163, 198);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JUNO', '2021-12-27 09:01:16', 954.816, 19);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('POT', '2022-01-01 08:33:00', 2450.476, 145);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AFA', '2022-09-12 08:59:13', 2303.427, 117);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HBK', '2022-09-16 02:34:39', 2037.99, 175);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SEDG', '2022-08-10 02:53:31', 1402.273, 15);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CLNS^H', '2022-08-27 03:06:31', 206.786, 105);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HVT.A', '2022-08-06 07:50:37', 1983.622, 237);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JBSS', '2021-12-10 01:32:17', 69.94, 187);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OXM', '2022-09-14 11:14:55', 1924.033, 51);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AVA', '2022-08-13 13:05:44', 1382.32, 177);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FEYE', '2022-03-04 03:28:19', 1274.654, 4);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BLPH', '2022-03-19 23:38:06', 2135.044, 163);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DECK', '2022-04-13 00:35:44', 1941.728, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CUTR', '2021-12-23 03:00:59', 1431.442, 115);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PRAN', '2022-10-16 04:00:44', 688.834, 83);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NEM', '2022-10-09 04:25:54', 2459.434, 95);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AAWW', '2022-01-30 04:01:05', 2036.478, 99);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MBFIP', '2022-04-22 23:09:22', 2079.867, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GEF', '2022-01-02 02:21:59', 150.099, 199);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LAYN', '2022-07-28 01:19:50', 1793.264, 180);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PIE', '2022-06-23 00:57:14', 2113.397, 154);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('APF', '2022-09-17 10:58:35', 871.849, 132);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CWH', '2022-05-03 22:27:20', 450.688, 142);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EMCF', '2022-10-29 12:31:10', 1109.752, 240);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CPAC', '2022-06-18 05:30:37', 2319.187, 68);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WFE^A', '2021-12-09 03:49:38', 1544.486, 100);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RLJE', '2022-04-06 11:09:18', 2245.047, 146);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CHK', '2021-12-28 20:21:59', 1546.888, 184);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NTEC', '2022-04-03 15:23:08', 510.031, 122);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BL', '2022-01-26 11:47:43', 2019.518, 29);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RGCO', '2022-07-02 12:15:17', 589.706, 59);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FTXR', '2022-05-30 07:02:27', 2492.752, 118);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CLDC', '2022-09-24 15:58:21', 2254.089, 123);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TIPT', '2022-01-10 16:37:01', 2321.462, 222);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TDOC', '2022-01-28 12:28:30', 682.397, 105);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BTEC', '2022-07-26 04:44:57', 300.671, 79);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WBAI', '2022-04-01 12:50:30', 1310.827, 164);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CRVS', '2022-09-29 14:53:18', 2189.534, 174);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DMRC', '2022-08-26 15:42:07', 353.241, 101);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ASET', '2022-08-17 18:57:53', 1053.773, 85);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AQMS', '2022-10-18 13:07:44', 907.179, 114);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GSUM', '2022-03-30 09:35:44', 1134.086, 155);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JBSS', '2022-11-23 05:59:13', 899.406, 21);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TGNA', '2022-06-03 19:27:39', 1752.567, 167);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HTGM', '2022-04-17 00:34:09', 2338.258, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FDC', '2022-02-14 01:32:39', 2361.81, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INBK', '2022-06-29 04:50:41', 1195.52, 79);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SXT', '2022-11-12 07:28:10', 663.709, 146);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CORI', '2022-09-26 00:49:18', 610.87, 231);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VFC', '2022-06-15 16:42:57', 1974.712, 143);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VEACW', '2022-04-18 20:55:36', 1662.837, 25);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FFHL', '2022-02-03 06:18:05', 1416.793, 101);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INWK', '2022-04-30 22:33:33', 1437.469, 130);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DX^A', '2022-04-02 20:55:10', 1300.462, 94);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VLRS', '2022-01-31 06:52:47', 1984.928, 158);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GSK', '2022-09-17 00:00:14', 1218.732, 197);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMT^B', '2022-01-23 17:44:45', 2292.622, 32);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RIC', '2022-09-30 00:14:08', 2432.858, 130);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CFA', '2022-02-25 07:12:28', 2254.199, 122);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DWAC', '2022-09-27 03:38:23', 880.86, 190);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ICBK', '2022-06-03 13:04:21', 54.679, 206);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QGEN', '2022-05-31 14:00:43', 1051.594, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GASS', '2022-09-02 03:37:26', 1856.378, 190);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BBY', '2022-08-20 02:22:48', 1787.94, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LND', '2022-01-02 08:07:46', 1011.392, 187);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NEE^C', '2022-09-01 22:40:59', 841.274, 161);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AOI', '2022-08-22 08:41:13', 188.309, 21);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VSH', '2022-11-16 22:24:44', 2492.114, 34);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CAH', '2022-02-23 16:14:37', 614.493, 83);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FLN', '2022-02-10 02:07:46', 280.924, 207);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KIM^J', '2022-02-02 06:31:43', 2279.478, 104);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FN', '2022-02-27 16:21:50', 2109.623, 155);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PFK', '2021-12-04 18:23:14', 622.095, 230);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AKO.A', '2022-02-04 04:08:58', 580.841, 148);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MKL', '2022-03-01 22:03:06', 2042.383, 114);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MTSI', '2022-05-15 11:00:43', 2403.944, 156);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CFR', '2022-01-30 20:53:46', 2007.751, 80);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SPNS', '2021-12-07 22:56:40', 877.137, 109);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('STM', '2022-02-14 22:03:39', 2112.034, 69);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KIM^K', '2022-07-25 11:43:49', 863.091, 45);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RVLT', '2022-06-14 09:48:48', 109.621, 199);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CRAY', '2021-12-24 08:41:28', 2406.706, 115);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CCIH', '2022-07-02 21:04:20', 1137.212, 133);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BKCC', '2022-05-30 12:38:26', 1445.877, 107);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BELFA', '2021-12-28 23:04:36', 1132.858, 136);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GEF', '2022-03-11 15:57:00', 751.697, 6);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LRGE', '2022-06-26 13:30:54', 2185.08, 32);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CSU', '2022-04-14 01:37:47', 1427.05, 60);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CDNA', '2022-11-22 01:03:19', 544.129, 176);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HASI', '2022-02-05 00:56:58', 1014.39, 53);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WVVI', '2022-02-09 02:17:01', 180.482, 211);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HZO', '2022-08-11 15:31:55', 1476.307, 191);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WHLR', '2022-03-17 23:06:34', 1271.815, 228);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CCL', '2021-12-09 04:57:50', 448.567, 5);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MCI', '2021-12-24 14:56:44', 1877.658, 107);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IMMR', '2022-07-01 14:41:15', 265.563, 214);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FH', '2022-04-17 12:11:32', 87.189, 221);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SIVB', '2022-06-24 22:57:46', 2388.017, 247);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ELECW', '2022-01-16 04:21:34', 2181.248, 187);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CGNT', '2022-02-05 22:50:07', 2218.959, 236);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LM', '2022-10-27 02:04:11', 1158.1, 99);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FAD', '2022-04-11 19:51:37', 849.142, 61);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TLYS', '2022-02-03 14:49:32', 1984.949, 246);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MMAC', '2022-05-17 23:18:52', 1274.076, 161);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EAT', '2022-02-06 16:05:08', 1699.695, 16);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NEE^G', '2022-07-05 06:44:43', 579.96, 37);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNHY', '2022-02-15 23:27:15', 1837.108, 169);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FIF', '2021-12-17 21:08:53', 1500.546, 27);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('INO', '2022-03-20 07:17:05', 1695.689, 241);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BAC^Y', '2022-02-22 09:42:25', 920.726, 176);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMH^C', '2021-12-10 17:16:21', 1110.694, 45);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LPI', '2022-04-27 23:46:45', 772.271, 182);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZIONW', '2022-07-12 02:54:38', 406.063, 148);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BDJ', '2022-01-30 06:00:34', 2268.67, 187);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BRK.B', '2022-09-14 09:56:48', 1265.578, 132);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VIPS', '2022-04-27 21:26:12', 1397.052, 217);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MKL', '2021-12-21 16:45:27', 2031.263, 153);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SCZ', '2022-06-22 23:01:48', 815.554, 109);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FOR', '2022-03-13 04:24:14', 2239.071, 93);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BAF', '2022-10-01 20:09:04', 566.456, 31);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BWINB', '2022-08-27 18:58:31', 549.896, 73);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('COF^G', '2022-01-30 13:13:57', 2459.584, 180);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HPE', '2022-03-19 00:42:46', 2070.171, 30);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CREE', '2022-10-11 12:26:19', 1399.658, 59);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FLEX', '2022-04-11 17:00:55', 159.113, 216);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NVTA', '2022-01-25 07:13:53', 168.869, 66);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SPLP', '2022-04-05 00:57:06', 694.266, 222);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CSX', '2022-09-14 07:36:50', 457.811, 158);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FLL', '2022-03-27 19:30:18', 1105.279, 84);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('OXLCN', '2022-06-04 00:01:33', 302.309, 232);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FUL', '2022-03-05 08:17:56', 1275.165, 93);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MOS', '2022-06-27 11:01:49', 367.01, 3);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TIL', '2022-11-10 13:39:09', 2186.371, 26);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CUTR', '2022-01-27 00:52:55', 1801.156, 202);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BXE', '2022-05-21 14:47:48', 2356.851, 220);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WLK', '2022-02-28 01:00:17', 2287.377, 164);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RRC', '2022-05-31 10:09:02', 1269.591, 106);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VIVO', '2022-01-24 21:54:00', 23.876, 35);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ONCS', '2022-04-24 04:34:02', 502.23, 9);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ANH^A', '2022-10-08 20:49:14', 2377.767, 206);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CMD', '2022-10-21 11:36:01', 73.021, 18);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EZT', '2022-01-21 10:20:17', 427.421, 98);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RBCN', '2022-08-13 17:20:52', 1106.118, 156);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BEP', '2022-02-15 16:45:58', 979.378, 245);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AVD', '2022-09-20 23:26:21', 1348.715, 153);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KWR', '2022-11-04 03:27:46', 1107.956, 215);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NNC', '2022-04-23 09:11:13', 2175.388, 129);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FPL', '2022-11-11 21:24:39', 127.823, 246);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MTR', '2022-02-05 03:11:40', 669.493, 1);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DD', '2022-03-14 05:32:43', 1583.901, 14);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GTN.A', '2022-10-07 01:53:57', 383.212, 24);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TWI', '2022-08-28 21:12:32', 767.969, 219);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MOG.A', '2022-06-18 00:08:22', 2294.266, 225);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BLK', '2022-11-06 09:25:00', 672.537, 186);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MUA', '2022-06-02 17:35:57', 2323.402, 172);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZTS', '2022-11-18 11:38:50', 1733.158, 14);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MPVD', '2022-08-31 04:51:09', 2461.777, 144);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNPS', '2022-09-08 17:03:22', 265.909, 120);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BABY', '2022-10-24 22:43:09', 265.495, 220);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DCM', '2022-02-06 03:41:04', 734.171, 123);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BBRG', '2022-08-10 21:11:54', 1386.796, 125);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NATH', '2022-02-03 02:14:21', 419.464, 201);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CDK', '2022-09-30 00:16:30', 1072.31, 9);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZB^G', '2022-08-24 23:16:19', 995.143, 220);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MICTW', '2022-06-02 10:50:18', 318.108, 103);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TCRX', '2022-05-15 23:20:50', 80.407, 153);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ZIOP', '2022-08-23 23:38:19', 451.745, 243);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TACO', '2022-05-20 02:46:47', 2127.271, 93);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WBC', '2022-02-01 02:43:22', 2390.254, 97);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FSB', '2022-10-09 13:57:13', 187.42, 30);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GT', '2022-10-17 08:59:15', 932.027, 243);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('VRSN', '2022-07-08 01:53:48', 1770.972, 90);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MYSZ', '2022-08-08 08:29:33', 307.06, 249);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GHM', '2022-09-21 12:29:28', 690.966, 88);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WIN', '2022-07-31 19:45:35', 1149.726, 35);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CIB', '2022-10-17 14:59:01', 1873.328, 185);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('YUM', '2022-09-19 17:31:01', 2482.856, 26);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SNSS', '2021-12-28 19:35:21', 1357.089, 179);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HCN', '2022-04-17 05:53:56', 797.131, 39);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('APTS', '2022-10-26 10:55:28', 31.914, 216);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IPCC', '2022-08-09 07:22:58', 1001.819, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SPLP', '2022-03-29 07:20:35', 379.404, 25);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SMHI', '2022-05-03 06:15:56', 2395.325, 151);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BGG', '2022-05-02 19:48:52', 1574.565, 229);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MGM', '2022-02-07 23:14:23', 1472.638, 105);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RST', '2022-05-29 10:05:32', 429.665, 178);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FF', '2022-03-22 10:15:04', 708.461, 178);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RELV', '2022-08-07 07:46:08', 2186.99, 146);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TTS', '2022-02-04 21:13:42', 369.138, 189);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CIR', '2022-06-08 21:41:07', 1593.763, 185);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GJH', '2022-05-09 17:51:34', 1295.038, 97);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DNBF', '2022-05-14 22:00:26', 421.763, 168);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GNE', '2022-04-08 09:40:05', 2189.244, 201);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EV', '2022-01-04 16:47:09', 1664.796, 248);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SB', '2021-12-14 10:19:39', 2230.039, 217);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KS', '2022-01-13 03:27:45', 2243.726, 69);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KEQU', '2022-05-07 05:09:51', 1514.273, 58);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GGZ^A', '2021-12-30 06:14:47', 1178.134, 101);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MNK', '2022-03-22 22:37:01', 828.218, 198);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LNGR', '2022-02-07 18:00:15', 124.455, 3);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IVR', '2022-09-09 22:45:30', 1469.682, 102);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ANDAU', '2022-08-09 15:55:24', 355.135, 134);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SSW', '2022-02-04 07:26:39', 154.364, 55);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DY', '2022-03-24 09:37:39', 1795.176, 207);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TCBIP', '2022-02-28 12:06:36', 847.712, 29);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AVXS', '2022-09-23 15:10:16', 286.141, 211);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RA', '2021-12-04 22:43:36', 766.662, 177);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AIN', '2022-02-16 02:37:56', 508.388, 152);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PFMT', '2022-05-11 12:53:14', 1427.185, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ENR', '2022-09-08 19:40:01', 1012.473, 238);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NXN', '2022-05-25 06:57:56', 1468.6, 43);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WTTR', '2022-03-12 15:16:40', 2252.741, 108);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ESG', '2022-01-09 07:16:48', 2419.212, 119);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RYI', '2022-02-18 02:06:32', 2449.739, 26);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CDR^B', '2022-02-02 03:43:34', 604.401, 236);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SID', '2022-10-20 21:04:03', 998.156, 9);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMBA', '2022-02-27 04:59:27', 1459.868, 124);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PRSS', '2022-04-29 17:41:02', 299.048, 241);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('QINC', '2022-11-17 14:20:18', 1991.283, 85);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GNTY', '2022-08-20 17:30:41', 386.391, 95);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NTIC', '2022-06-10 16:26:01', 1640.477, 146);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BKH', '2022-11-11 18:57:59', 2478.813, 62);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DFVL', '2022-02-10 03:41:26', 1070.172, 110);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TSM', '2022-04-26 17:16:08', 2159.213, 124);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IRET', '2022-06-12 19:23:29', 1150.389, 48);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FTXD', '2022-07-22 08:02:44', 2027.069, 81);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MED', '2022-07-27 17:06:19', 509.386, 78);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ASB', '2022-11-18 07:28:53', 753.69, 165);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SCX', '2022-03-24 01:42:34', 2328.881, 249);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABCO', '2022-08-03 23:56:11', 196.63, 65);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('JCP', '2021-12-12 01:29:00', 1667.232, 10);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FBNC', '2022-09-22 18:38:14', 2036.026, 240);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SINA', '2022-05-20 18:21:16', 1906.359, 142);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ATI', '2022-11-22 03:19:29', 2169.633, 3);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ALBO', '2022-07-10 07:18:56', 295.003, 190);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NLY^D', '2022-02-05 01:00:35', 978.559, 205);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('GFN', '2022-08-29 05:58:59', 2458.825, 131);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HCSG', '2022-04-12 09:20:45', 1491.804, 176);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ASC', '2021-12-09 12:40:06', 49.742, 161);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CDTX', '2022-03-23 14:12:46', 333.602, 55);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EGP', '2022-06-25 14:56:19', 2132.882, 86);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DVN', '2022-10-07 03:23:48', 2005.162, 117);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LYG', '2022-05-21 08:57:41', 1403.546, 104);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('full_name', '2022-04-16 22:21:47', 1537.861, 224);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NFJ', '2022-10-08 17:49:43', 2333.214, 146);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NEWR', '2022-03-07 12:08:05', 267.246, 66);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('EMCF', '2022-04-08 07:43:16', 1110.125, 46);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('SBSI', '2022-10-20 01:24:44', 1248.089, 162);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LQ', '2022-06-14 19:26:31', 156.755, 134);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TRCB', '2022-11-08 13:45:24', 2345.013, 218);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CUBE', '2022-06-11 22:38:05', 2275.012, 26);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RNR^C', '2022-03-22 16:08:28', 347.595, 101);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('CRAI', '2022-07-22 01:37:07', 1335.839, 100);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LECO', '2021-12-25 09:36:15', 1091.027, 203);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PRFZ', '2022-02-22 12:46:54', 2010.171, 10);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MMU', '2022-11-28 07:33:57', 1587.03, 223);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('FIX', '2021-12-01 04:32:00', 122.286, 49);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ALDX', '2022-10-29 16:23:29', 669.627, 91);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ABT', '2022-09-07 08:36:31', 1193.275, 172);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('NOA', '2022-06-13 08:23:15', 524.224, 47);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('WRB', '2022-09-29 05:32:30', 520.683, 112);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('BBP', '2022-02-28 10:24:43', 265.812, 191);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('AMRC', '2022-05-13 19:33:05', 1058.536, 39);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('MHNB.CL', '2022-07-05 00:22:14', 796.272, 92);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DSWL', '2022-02-04 02:47:05', 231.424, 47);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PTH', '2022-03-01 20:53:37', 1746.639, 147);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('IZEA', '2022-01-07 10:16:58', 332.94, 217);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PVTBP', '2022-07-01 20:16:45', 1341.863, 193);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HHS', '2022-01-16 22:37:17', 522.955, 78);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TVIX', '2022-09-28 05:42:40', 462.737, 136);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('DXC', '2022-03-27 23:46:38', 20.577, 12);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('RPAI', '2022-07-26 13:07:34', 1722.515, 34);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ELON', '2022-10-20 15:56:40', 1365.354, 216);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TANH', '2022-11-27 08:46:00', 2185.754, 82);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('PRFT', '2022-07-29 01:54:44', 1079.571, 174);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('LPX', '2022-03-31 15:36:13', 1009.579, 146);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('KYN^F', '2022-04-16 13:28:31', 1475.536, 39);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('ENH^C', '2022-04-06 10:24:47', 1339.287, 237);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('TPVG', '2022-09-14 10:34:37', 1194.948, 134);
+insert into stock (ticker, date_bought, quantity, portfolioID) values ('HR', '2022-05-26 14:27:24', 994.261, 30);
