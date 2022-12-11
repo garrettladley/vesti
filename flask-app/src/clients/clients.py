@@ -1,15 +1,15 @@
-from flask import Blueprint
-from src import db, get_something
-
+from flask import Blueprint, request
+from src import get_something
 
 clients = Blueprint('clients', __name__)
 
+@clients.route('/client', methods=['POST'])
+def get_client():
+    current_client = request.form['clientID']
+    return get_something(f'select name, value from portfolio where clientID = "{current_client}" limit 50')
 
-# Get all customers from the db
+
 @clients.route('/clients', methods=['GET'])
-def get_customers():
-    return get_something('select * from client')
-
-@clients.route('/stocks', methods=['GET'])
-def get_stocks():
-    return get_something('select * from stock')
+def get_clients():
+    return get_something(
+        'select clientID as value, CONCAT_WS(" ", `first_name`, `last_name`) AS label from client limit 50;')
