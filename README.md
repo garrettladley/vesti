@@ -1,1 +1,1 @@
-# vesti: a full stack database-driven investment platform MVP
+# vesti: database-driven investment platform MVP
