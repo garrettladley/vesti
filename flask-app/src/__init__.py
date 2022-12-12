@@ -1,4 +1,3 @@
-# Some set up for the application 
 from flaskext.mysql import MySQL
 from flask import Flask, jsonify, make_response
 
@@ -14,7 +13,7 @@ def create_app():
     # extensions or your application
     app.config['SECRET_KEY'] = open('/secrets/secret_key.txt').readline()
 
-    # these are for the DB object to be able to connect to MySQL. 
+    # connect the DB object to MySQL.
     app.config['MYSQL_DATABASE_USER'] = 'webapp'
     app.config['MYSQL_DATABASE_PASSWORD'] = open('/secrets/db_password.txt').readline()
     app.config['MYSQL_DATABASE_HOST'] = 'db'
@@ -37,6 +36,7 @@ def create_app():
     return app
 
 
+# helper method for queries
 def get_something(query):
     cursor = db.get_db().cursor()
     cursor.execute(query)
