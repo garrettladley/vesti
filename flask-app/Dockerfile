@@ -3,19 +3,18 @@
 
 
 # Working from Python version 3.9
-FROM python:3.9-alpine
+FROM python:3.9.7-slim-bullseye
 
 # setting the working directory inside the container to /code
 WORKDIR /code
-
-RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev
 
 # copying the requirements.txt file from the host system to
 # inside the container
 COPY src/requirements.txt requirements.txt
 
 # install requirements inside the container using pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
 
 # expose port 4000 from the container
 EXPOSE 4000

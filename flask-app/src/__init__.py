@@ -1,6 +1,6 @@
 # Some set up for the application 
 from flaskext.mysql import MySQL
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 
 # create a MySQL object that we will use in other parts of the API
 db = MySQL()
@@ -40,10 +40,12 @@ def create_app():
 def get_something(query):
     cursor = db.get_db().cursor()
     cursor.execute(query)
-    # grab the column headers from the returned data
-    column_headers = [x[0] for x in cursor.description]
+    row_headers = [x[0] for x in cursor.description]
     json_data = []
     the_data = cursor.fetchall()
     for row in the_data:
-        json_data.append(dict(zip(column_headers, row)))
-    return jsonify(json_data)
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
