@@ -54,26 +54,9 @@ def get_help(query):
     return the_response
 
 
-# helper method for update queries
-def update_help(query):
-    cursor = db.get_db().cursor()
-    cursor.execute(query)
-    db.get_db().commit()
-
-
 @cache
 def yf_price(ticker):
     return yf.Ticker(ticker).info["regularMarketPrice"]
-
-
-# JIT portfolio updater
-def update_value(portfolio_query):
-    # get the portfolios according to query parameter
-    portfolios = get_help(portfolio_query).get_json()
-    # update the value of current portfolio
-    update_help(f'update portfolio p '
-                f'set p.value = "{portfolio_sum(portfolios)}" '
-                f'where p.portfolioID = "{p["ID"]}";')
 
 
 def portfolio_sum(p):
@@ -92,3 +75,22 @@ def portfolio_sum(p):
         quantity = float(s["quantity"])
         total += price * quantity
     return total
+
+
+# helper method for update queries
+def update_help(query):
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+
+# JIT portfolio updater
+def portf_update(portfolio_query):
+    # get the current_client's portfolios
+    portfolios = get_help(portfolio_query).get_json()
+    # for each portfolio...
+    for p in portfolios:
+        # update the value of current portfolio
+        update_help(f'update portfolio p '
+                    f'set p.value = "{portfolio_sum(p)}" '
+                    f'where portfolioID = "{p["ID"]}";')
