@@ -1,5 +1,7 @@
 from flaskext.mysql import MySQL
 from flask import Flask, jsonify, make_response
+from functools import lru_cache
+import yfinance as yf
 
 # create a MySQL object that we will use in other parts of the API
 db = MySQL()
@@ -57,3 +59,6 @@ def update_help(query):
     cursor.execute(query)
     db.get_db().commit()
 
+@lru_cache
+def yf_price(ticker):
+    return yf.Ticker(ticker).info["regularMarketPrice"]
