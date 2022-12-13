@@ -1,5 +1,5 @@
 from flask import Blueprint
-from src import get_something
+from src import get_help
 
 
 admins = Blueprint('admins', __name__)
@@ -7,5 +7,5 @@ admins = Blueprint('admins', __name__)
 
 @admins.route('/admins', methods=['GET'])
 def get_admins():
-    return get_something('select * from administrator')
+    return get_help('select * from administrator')
 

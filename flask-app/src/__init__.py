@@ -18,7 +18,7 @@ def create_app():
     app.config['MYSQL_DATABASE_PASSWORD'] = open('/secrets/db_password.txt').readline()
     app.config['MYSQL_DATABASE_HOST'] = 'db'
     app.config['MYSQL_DATABASE_PORT'] = 3306
-    app.config['MYSQL_DATABASE_DB'] = 'vesti_db'  # Change this to your DB name
+    app.config['MYSQL_DATABASE_DB'] = 'vesti_db'
 
     # Initialize the database object with the settings above. 
     db.init_app(app)
@@ -37,7 +37,7 @@ def create_app():
 
 
 # helper method for queries
-def get_something(query):
+def get_help(query):
     cursor = db.get_db().cursor()
     cursor.execute(query)
     row_headers = [x[0] for x in cursor.description]
@@ -49,3 +49,10 @@ def get_something(query):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
+
+
+def update_help(query):
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
