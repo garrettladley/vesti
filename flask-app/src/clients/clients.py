@@ -5,8 +5,8 @@ import yfinance as yf
 clients = Blueprint('clients', __name__)
 
 
-@clients.route('/client', methods=['POST'])
-def get_client():
+@clients.route('/portfs', methods=['POST', 'GET'])
+def post_get_portfs():
     current_client = request.form['clientID']
     value_updater(current_client)
     return get_help(f'select name as Name, value as Value from portfolio where clientID = "{current_client}" limit 50')
@@ -32,7 +32,7 @@ def value_updater(current_client):
         update_help(f'update portfolio set value = "{current_value}" where portfolioID = "{p["ID"]}"')
 
 
-@clients.route('/clients', methods=['GET'])
+@clients.route('/clis', methods=['GET'])
 def get_clients():
     return get_help(
         'select clientID as value, CONCAT_WS(" ", `first_name`, `last_name`) AS label from client limit 50;')

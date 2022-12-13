@@ -29,14 +29,14 @@ def create_app():
     from src.clients.clients import clients
 
     # Register the routes that we just imported, so they can be properly handled
-    app.register_blueprint(admins, url_prefix='/admins')
-    app.register_blueprint(advisors, url_prefix='/advisors')
-    app.register_blueprint(clients, url_prefix='/clients')
+    app.register_blueprint(admins, url_prefix='/adm')
+    app.register_blueprint(advisors, url_prefix='/adv')
+    app.register_blueprint(clients, url_prefix='/cli')
 
     return app
 
 
-# helper method for queries
+# helper method for select queries
 def get_help(query):
     cursor = db.get_db().cursor()
     cursor.execute(query)
@@ -51,6 +51,7 @@ def get_help(query):
     return the_response
 
 
+# helper method for update queries
 def update_help(query):
     cursor = db.get_db().cursor()
     cursor.execute(query)
