@@ -1,7 +1,8 @@
-from flaskext.mysql import MySQL
-from flask import Flask, jsonify, make_response
-from functools import lru_cache
+from functools import cache
+
 import yfinance as yf
+from flask import Flask, jsonify, make_response
+from flaskext.mysql import MySQL
 
 # create a MySQL object that we will use in other parts of the API
 db = MySQL()
@@ -59,6 +60,35 @@ def update_help(query):
     cursor.execute(query)
     db.get_db().commit()
 
-@lru_cache
+
+@cache
 def yf_price(ticker):
     return yf.Ticker(ticker).info["regularMarketPrice"]
+
+
+# JIT portfolio updater
+def update_value(portfolio_query):
+    # get the portfolios according to query parameter
+    portfolios = get_help(portfolio_query).get_json()
+    # update the value of current portfolio
+    update_help(f'update portfolio p '
+                f'set p.value = "{portfolio_sum(portfolios)}" '
+                f'where p.portfolioID = "{p["ID"]}";')
+
+
+def portfolio_sum(p):
+    # initially, set value of portfolio to 0
+    total = 0
+    # get the tickers and quantities in portfolio p
+    stocks = get_help(f'select s.ticker as "ticker", '
+                      f's.quantity as "quantity"'
+                      f' from stock s '
+                      f'where s.portfolioID = "{p["ID"]}";').get_json()
+    # for each stock...
+    for s in stocks:
+        price = yf_price(s["ticker"])
+        # if price is none, set to 0. otherwise, cast to a float
+        price = 0 if price is None else float(price)
+        quantity = float(s["quantity"])
+        total += price * quantity
+    return total
