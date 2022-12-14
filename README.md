@@ -1,5 +1,7 @@
 # `vesti`: a database-driven investment platform MVP
 
+# [Pitch Link](https://youtu.be/d2SfIR-RlU4)
+
 ## `vesti` User Archetypes:
 1. Administrator
     * an administrator at the firm. They oversee many advisors and provide strategical insight.
