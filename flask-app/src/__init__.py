@@ -54,24 +54,33 @@ def get_help(query):
     return the_response
 
 
+# cached helper method for calls to the Yahoo Finance API to determine the price of the stock identified by the given
+# ticker
 @cache
 def yf_price(ticker):
     return yf.Ticker(ticker).info["regularMarketPrice"]
 
 
-def portfolio_sum(p):
+# returns the sum of the value of all the stocks within the given portfolio
+# update_stock is a Boolean that indicates whether the value attribute within the stock table should be updated
+def portfolio_sum(p, update_stock):
     # initially, set value of portfolio to 0
     total = 0
     # get the tickers and quantities in portfolio p
     stocks = get_help(f'select s.ticker as "ticker", '
-                      f's.quantity as "quantity"'
-                      f' from stock s '
+                      f's.quantity as "quantity", '
+                      f's.stockID as "ID " '
+                      f'from stock s '
                       f'where s.portfolioID = "{p["ID"]}";').get_json()
     # for each stock...
     for s in stocks:
         price = yf_price(s["ticker"])
         # if price is none, set to 0. otherwise, cast to a float
-        price = 0 if price is None else float(price)
+        price = 0.0000 if price is None else float(price)
+        if update_stock:
+            update_help(f'update stock s '
+                        f'set s.value = "{price}" '
+                        f'where s.stockID = "{s["ID"]}";')
         quantity = float(s["quantity"])
         total += price * quantity
     return total
@@ -85,12 +94,12 @@ def update_help(query):
 
 
 # JIT portfolio updater
-def portf_update(portfolio_query):
+def portf_update(portfolio_query, update_stock=False):
     # get the current_client's portfolios
     portfolios = get_help(portfolio_query).get_json()
     # for each portfolio...
     for p in portfolios:
         # update the value of current portfolio
         update_help(f'update portfolio p '
-                    f'set p.value = "{portfolio_sum(p)}" '
+                    f'set p.value = "{portfolio_sum(p, update_stock)}" '
                     f'where portfolioID = "{p["ID"]}";')
