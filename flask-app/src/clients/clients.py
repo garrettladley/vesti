@@ -31,16 +31,8 @@ def post_get_portfs():
                           f'where p.clientID = "{current_client}" '
                           f'order by "Value" '
                           f'limit 50;').get_json(),
-                 get_help(f'select concat_ws(" ", adv.first_name, adv.last_name) as "Advisor Name", '
-                          f'adv.email as "Email" '
-                          f'from client c join advisor adv on c.advisorID = adv.advisorID '
-                          f'where c.clientID = "{current_client}";').get_json(),
-                 get_help(f'select concat_ws(" ", adm.first_name, adm.last_name) as "Administrator Name", '
-                          f'adm.email as "Email" '
-                          f'from client c join advisor adv on c.advisorID = adv.advisorID '
-                          f'join admin_advisor aa  on adv.advisorID = aa.advisorID '
-                          f'join administrator adm on aa.adminID = adm.adminID '
-                          f'where c.clientID = "{current_client}";').get_json()
+                 client_advisor(current_client),
+                 client_admins(current_client)
                  ]
     the_response = make_response(jsonify(json_data))
     the_response.status_code = 200
@@ -66,16 +58,8 @@ def post_get_select_client():
                           f'from portfolio p '
                           f'where p.clientID = "{current_client}" '
                           f'limit 50;').get_json(),
-                 get_help(f'select concat_ws(" ", adv.first_name, adv.last_name) as "Advisor Name", '
-                          f'adv.email as "Email" '
-                          f'from client c join advisor adv on c.advisorID = adv.advisorID '
-                          f'where c.clientID = "{current_client}";').get_json(),
-                 get_help(f'select concat_ws(" ", adm.first_name, adm.last_name) as "Administrator Name", '
-                          f'adm.email as "Email" '
-                          f'from client c join advisor adv on c.advisorID = adv.advisorID '
-                          f'join admin_advisor aa  on adv.advisorID = aa.advisorID '
-                          f'join administrator adm on aa.adminID = adm.adminID '
-                          f'where c.clientID = "{current_client}";').get_json()
+                 client_advisor(current_client),
+                 client_admins(current_client)
                  ]
     the_response = make_response(jsonify(json_data))
     the_response.status_code = 200
@@ -141,3 +125,21 @@ def post_get_trade():
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
+
+
+# gets this client's advisor
+def client_advisor(current_client):
+    return get_help(f'select concat_ws(" ", adv.first_name, adv.last_name) as "Advisor Name", '
+                    f'adv.email as "Email" '
+                    f'from client c join advisor adv on c.advisorID = adv.advisorID '
+                    f'where c.clientID = "{current_client}";').get_json()
+
+
+# gets this client's admins
+def client_admins(current_client):
+    get_help(f'select concat_ws(" ", adm.first_name, adm.last_name) as "Administrator Name", '
+             f'adm.email as "Email" '
+             f'from client c join advisor adv on c.advisorID = adv.advisorID '
+             f'join admin_advisor aa  on adv.advisorID = aa.advisorID '
+             f'join administrator adm on aa.adminID = adm.adminID '
+             f'where c.clientID = "{current_client}";').get_json()
