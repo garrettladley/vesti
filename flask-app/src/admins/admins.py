@@ -30,10 +30,11 @@ def post_get_taum():
     # use dict instead of list?
     json_data = [calc_taum(current_admin),
                  get_help(f'select c.email as "Email" '
-                          f'from client c join advisor adv join admin_advisor aa '
+                          f'from client c join advisor adv on c.advisorID = adv.advisorID '
+                          f'join admin_advisor aa on adv.advisorID = aa.advisorID '
                           f'where aa.adminID = "{current_admin}";').get_json(),
-                 get_help(f'select a.email as "Email" '
-                          f'from advisor av join admin_advisor aa '
+                 get_help(f'select adv.email as "Email" '
+                          f'from advisor adv join admin_advisor aa '
                           f'where aa.adminID = "{current_admin}";').get_json()
                  ]
     the_response = make_response(jsonify(json_data))
@@ -55,13 +56,13 @@ def calc_taum(current_admin):
         # get all the clientIDs
         clients = get_help(f'select c.clientID as "ID" '
                            f'from client c '
-                           f'where advisorID = "{adv["ID"]}";').get_json()
+                           f'where c.advisorID = "{adv["ID"]}";').get_json()
         # for each client...
         for cli in clients:
             # get all the portfolioIDs
             portfolios = get_help(f'select p.portfolioID as "ID" '
                                   f'from portfolio p '
-                                  f'where [.clientID = "{cli["ID"]}";').get_json()
+                                  f'where p.clientID = "{cli["ID"]}";').get_json()
             # for each portfolio...
             for p in portfolios:
                 # call to helper

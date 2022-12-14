@@ -86,7 +86,6 @@ CREATE TABLE stock
 (
     ticker      VARCHAR(10)    NOT NULL,
     date_bought DATETIME       NOT NULL,
-    value       DECIMAL(13, 4) NOT NULL DEFAULT 0.0000,
     quantity    DECIMAL(13, 3) NOT NULL,
     portfolioID INT            NOT NULL,
     PRIMARY KEY (ticker, date_bought, quantity),

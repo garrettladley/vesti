@@ -62,14 +62,12 @@ def yf_price(ticker):
 
 
 # returns the sum of the value of all the stocks within the given portfolio
-# update_stock is a Boolean that indicates whether the value attribute within the stock table should be updated
-def portfolio_sum(p, update_stock):
+def portfolio_sum(p):
     # initially, set value of portfolio to 0
     total = 0
     # get the tickers and quantities in portfolio p
     stocks = get_help(f'select s.ticker as "ticker", '
-                      f's.quantity as "quantity", '
-                      f's.stockID as "ID " '
+                      f's.quantity as "quantity" '
                       f'from stock s '
                       f'where s.portfolioID = "{p["ID"]}";').get_json()
     # for each stock...
@@ -77,10 +75,6 @@ def portfolio_sum(p, update_stock):
         price = yf_price(s["ticker"])
         # if price is none, set to 0. otherwise, cast to a float
         price = 0.0000 if price is None else float(price)
-        if update_stock:
-            update_help(f'update stock s '
-                        f'set s.value = "{price}" '
-                        f'where s.stockID = "{s["ID"]}";')
         quantity = float(s["quantity"])
         total += price * quantity
     return total
@@ -93,13 +87,13 @@ def update_help(query):
     db.get_db().commit()
 
 
-# JIT portfolio updater
-def portf_update(portfolio_query, update_stock=False):
+# updates the portfolios given by the portfolio query
+def portf_update(portfolio_query):
     # get the current_client's portfolios
     portfolios = get_help(portfolio_query).get_json()
     # for each portfolio...
     for p in portfolios:
         # update the value of current portfolio
         update_help(f'update portfolio p '
-                    f'set p.value = "{portfolio_sum(p, update_stock)}" '
-                    f'where portfolioID = "{p["ID"]}";')
+                    f'set p.value = "{portfolio_sum(p)}" '
+                    f'where p.portfolioID = "{p["ID"]}";')

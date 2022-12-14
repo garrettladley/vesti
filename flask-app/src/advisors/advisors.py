@@ -27,23 +27,24 @@ def get_admins():
 def post_get_portfs():
     current_advisor = request.form['advisorID']
     portf_update(f'select p.portfolioID as "ID" '
-                          f'from advisor a join client c join portfolio p '
-                          f'where c.advisorID = "{current_advisor}";')
+                 f'from advisor a join client c join portfolio p '
+                 f'where c.advisorID = "{current_advisor}";')
     # use dict instead of list?
     json_data = [get_help(f'select concat_ws(" ", c.first_name, c.last_name) as "Client Name", '
                           f'p.name as "Portfolio Name", '
                           f'p.value as "Value" '
-                          f'from portfolio p join client c join advisor a '
+                          f'from portfolio p join client c on p.clientID = c.clientID '
+                          f'join advisor a on c.advisorID = a.advisorID '
                           f'where a.advisorID = "{current_advisor}" '
                           f'order by "Client Name" '
                           f'limit 50;').get_json(),
                  get_help(f'select concat_ws(" ", c.first_name, c.last_name) as "Client Name", '
                           f'c.email as "Email" '
-                          f'from client c join advisor a '
+                          f'from client c join advisor a on c.advisorID = a.advisorID '
                           f'where a.advisorID = "{current_advisor}";').get_json(),
                  get_help(f'select concat_ws(" ", adm.first_name, adm.last_name) as "Administrator Name", '
                           f'adm.email as "Email" '
-                          f'from admin_advisor aa join administrator adm '
+                          f'from admin_advisor aa join administrator adm on aa.adminID = adm.adminID '
                           f'where aa.advisorID = "{current_advisor}";').get_json()
                  ]
     the_response = make_response(jsonify(json_data))
