@@ -30,6 +30,6 @@
   1. A JIT approach to value. Instead of constantly or periodically updating the value of stocks and portfolios, they were updated just before they were queried.  
   2. Caching the stock prices retrieved from the Yahoo Finance API. 
 
-    If I were to come back to this project, I would learn more about multithreading and see if applying it to my API calls would be a viable approach to optimize performance.
+    If I were to come back to this project, I would learn more about multiprocessing and see if applying it to my API calls would be a viable approach to optimize performance.
 * Testing. I am familiar with Python testing frameworks like pytest and unittest, however, I don't know how to approach testing this application. Testing Flask routes, and, more generally, how to test a program within a Docker container are topics I would have to learn.
 * Frontend. Implementing `vesti` with a frontend framework as opposed to a low-code tool like Appsmith would be a challenging project. However, I am not sure where and how to start.
