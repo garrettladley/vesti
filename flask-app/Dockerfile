@@ -11,11 +11,9 @@ COPY src/requirements.txt requirements.txt
 # install requirements inside the container using pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-
 # expose port 4000 from the container
 EXPOSE 4000
 
 # tell the container to run the flask application
-# CMD ["python", "src/app.py"]
 CMD ["python", "app.py"]
 
